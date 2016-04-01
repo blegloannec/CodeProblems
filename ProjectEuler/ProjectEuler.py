@@ -41,11 +41,9 @@ def eratosthene(n):
     l = range(2,n+1)
     s = int(sqrt(n))+1
     for i in range(2,s):
-        k = 2
-        while k*i<=n:
-            l[k*i-2] = -1
-            k += 1
-    return filter((lambda(x):x>0),l)
+        for k in range(2*i,n+1,i):
+            l[k-2] = -1
+    return filter((lambda x: x>0),l)
 
 def miroir(n):
     m = 0
