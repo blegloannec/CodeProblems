@@ -4,11 +4,13 @@ using namespace std;
 /*
   https://oeis.org/A000041
 
+  P(n) = nb de partitions de n
+
   Methode 1 : selon le nb k de composantes
   P(n,k) = nb de partitions de n en k morceaux
   P(n,k) = P(n-1,k-1)+P(n-k,k)
-  (derniere partition valant 1
-   + toutes les partitions >=2 donc equivalent a
+  (derniere composante valant 1
+   + toutes les composantes >=2 donc equivalent a
      partition de n-k en retirant 1 a chaque composante)
   P(n) = sum(P(n,k), k=1..n)
 
@@ -19,9 +21,17 @@ using namespace std;
    au moins 1 morceau de valeur k)
   P(n) = Q(n,n)
 
-  Mais dans ce cas :
+  Mais on peut aussi revisiter la methode 2 ainsi :
   Q(n,m) = Q(n,m-1)+Q(n-m,m)
-  Calculons les Q(.,m) successifs pour des m croissants
+  (toutes composantes <m + au moins une composante valant m)
+  SOLUTION : Calculons les Q(.,m) successifs pour des m croissants !
+
+  NB: dans le meme esprit on pourrait revisiter la methode 1 ainsi
+  P'(n,k) = nb de partitions de n en <=k morceaux
+  P'(n,k) = P'(n,k-1)+P(n,k)
+  P(n) = P'(n,n)
+  SOLUTION BIS : calculer les P(.,k) et P'(.,k) successifs pour des k croissants
+  mais c'est un peu moins simple (maintenir 2 tableaux au lieu d'un seul)...
 */
 
 const int M = 100000;
