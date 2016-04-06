@@ -1,14 +1,11 @@
 #!/usr/bin/python
-#import sys
+
 from fractions import gcd,Fraction
 from math import *
 
 #sys.setrecursionlimit(100000)
 
 ## Fonctions auxiliaires
-def matrice(h,w,e):
-    return [[e for j in range(w)] for i in range(h)]
-
 def lcm(a,b):
     return a*b/gcd(a,b)
 
@@ -74,21 +71,6 @@ def indice_coincidence(m):
             N += 1
     return float(sum(map((lambda(x):x*(x-1)),cpt)))/(N*(N-1))
 
-def fraction_continue(x,n):
-    a = int(floor(x))
-    print a
-    if n<=0:
-        return [a]
-    else:
-        y = 1/(x-a)
-        return fraction_continue(y,n-1).insert(0,a)
-
-def fact(n):
-    if n<2:
-        return 1
-    else:
-        return n*fact(n-1)
-
 def chiffres10(n):
     c = []
     while n>0:
@@ -98,10 +80,3 @@ def chiffres10(n):
 
 def somme_chiffres10(n):
     return sum(chiffres10(n))
-
-def syracuse(n):
-    if n%2==0:
-        return n/2
-    else:
-        return 3*n+1
-
