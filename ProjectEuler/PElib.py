@@ -1,11 +1,22 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from fractions import gcd,Fraction
 from math import *
 
 #sys.setrecursionlimit(100000)
 
-## Fonctions auxiliaires
+def sieve_factors(N):
+    P = [True for _ in xrange(N)]
+    Factors = [[] for _ in xrange(N)]
+    P[0] = False
+    P[1] = False
+    for i in xrange(2,int(sqrt(N))+1):
+        if P[i]:
+            for k in xrange(2*i,N,i):
+                P[k] = False
+                Factors[k].append(i)
+    return P,Factors
+
 def lcm(a,b):
     return a*b/gcd(a,b)
 
@@ -27,9 +38,9 @@ def nb_diviseurs(n):
     return s
 
 def premier(n):
-    if n<0 or n%2==0:
+    if n%2==0:
         return False
-    for i in range(3,int(sqrt(n))+1,2):
+    for i in xrange(3,int(sqrt(n))+1,2):
         if n%i==0:
             return False
     return True
@@ -44,7 +55,7 @@ def eratosthene(n):
 
 def miroir(n):
     m = 0
-    while n!=0:
+    while n>0:
         m = 10*m + n%10
         n /= 10
     return m
@@ -60,7 +71,7 @@ def taux_lettres(m):
     return float(cpt)/len(m)
 
 def indice_coincidence(m):
-    cpt = [0 for i in range(26)]
+    cpt = [0 for _ in xrange(26)]
     N = 0
     for c in m:
         if ord('a')<=c and c<=ord('z'):
@@ -71,12 +82,36 @@ def indice_coincidence(m):
             N += 1
     return float(sum(map((lambda(x):x*(x-1)),cpt)))/(N*(N-1))
 
-def chiffres10(n):
+def digits(n,b):
     c = []
     while n>0:
-        c.append(n%10)
-        n /= 10
+        c.append(n%b)
+        n /= b
     return c
 
-def somme_chiffres10(n):
-    return sum(chiffres10(n))
+def digits_sum(n,b):
+    return sum(digits(n,b))
+
+# t = n(n+1)/2
+# n^2 + n - 2t = 0
+# Given t, D = 1+8t must be a square
+# then n = (-1+sqrt(D))/2
+
+def is_triang(t):
+    D = 1+8*t
+    d = int(sqrt(1+8*t))
+    return d*d==D
+
+# p = n(3n-1)/2
+# 3n^2 - n - 2p = 0
+# D = 1+24p
+# et n = (1+sqrt(D))/6
+# mais les solutions pour n<0 ont n = (1-sqrt(D))/6
+# dans ce cas (1-sqrt(D))%6 == 0
+# donc (1+sqrt(D))%6 == 2 != 0
+
+def is_penta(p):
+    D = 1+24*p
+    d = int(sqrt(D))
+    return (d*d==D and (1+d)%6==0)
+
