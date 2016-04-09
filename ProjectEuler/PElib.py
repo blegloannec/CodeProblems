@@ -53,15 +53,15 @@ def eratosthene(n):
             l[k-2] = -1
     return filter((lambda x: x>0),l)
 
-def miroir(n):
+def mirror(n):
     m = 0
     while n>0:
         m = 10*m + n%10
         n /= 10
     return m
 
-def palindrome(n):
-    return miroir(n)==n
+def is_palindrome(n):
+    return mirror(n)==n
 
 def taux_lettres(m):
     cpt = 0
@@ -92,6 +92,9 @@ def digits(n,b):
 def digits_sum(n,b):
     return sum(digits(n,b))
 
+def nb_digits10(n):
+    return int(log10(n))+1
+
 # t = n(n+1)/2
 # n^2 + n - 2t = 0
 # Given t, D = 1+8t must be a square
@@ -114,4 +117,24 @@ def is_penta(p):
     D = 1+24*p
     d = int(sqrt(D))
     return (d*d==D and (1+d)%6==0)
+
+
+# Miller-Rabin
+def witness(a,n):
+    b = digits(n-1,2)
+    d = 1
+    for i in xrange(len(b)-1,-1,-1):
+        x = d
+        d = (d*d)%n
+        if d==1 and x!=1 and x!=n-1:
+            return True
+        if b[i]==1:
+            d = (d*a)%n
+    return d!=1
+
+def miller_rabin(n,s):
+    for j in xrange(s):
+        if witness(random.randint(1,n-1),n):
+            return False
+    return True
 
