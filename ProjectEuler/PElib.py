@@ -37,7 +37,7 @@ def nb_diviseurs(n):
             s += 2
     return s
 
-def premier(n):
+def prime(n):
     if n%2==0:
         return False
     for i in xrange(3,int(sqrt(n))+1,2):
@@ -138,3 +138,23 @@ def miller_rabin(n,s):
             return False
     return True
 
+# permutation suivante (ordre lex) d'un tableau quelconque
+# (repetitions autorisees)
+# (pour prev_permutation, inverser les comparaisons de T[.])
+def next_permutation(T):
+    pivot = len(T)-2
+    while pivot>=0 and T[pivot]>=T[pivot+1]:
+        pivot -= 1
+    if pivot<0:
+        return False
+    swap = len(T)-1
+    while T[swap]<=T[pivot]:
+        swap -= 1
+    T[swap],T[pivot] = T[pivot],T[swap]
+    i = pivot+1
+    j = len(T)-1
+    while i<j:
+        T[i],T[j] = T[j],T[i]
+        i += 1
+        j -= 1
+    return True
