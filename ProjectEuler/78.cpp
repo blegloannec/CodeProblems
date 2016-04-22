@@ -32,6 +32,10 @@ using namespace std;
   P(n) = P'(n,n)
   SOLUTION BIS : calculer les P(.,k) et P'(.,k) successifs pour des k croissants
   mais c'est un peu moins simple (maintenir 2 tableaux au lieu d'un seul)...
+
+  NB a posteriori: le pre-calcul est ici en O(N^2), on peut en fait le faire
+  en O(N*sqrt(N)) avec la formule d'Euler pour les partitions (via la fonction
+  generatrice). Voir PE+ 78 d'HackerRank pour cette solution...
 */
 
 const int M = 100000;
