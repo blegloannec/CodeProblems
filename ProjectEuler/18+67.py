@@ -1,13 +1,11 @@
-#!/usr/bin/python
-
-def zero(n):
-    return [[0 for j in range(n)] for i in range(n)]
+#!/usr/bin/env python
 
 def make_table(path):
     f = open(path,'r')
     ll = [map(int,l.split(' ')) for l in f.readlines()]
     n = len(ll)
-    M = zero(n)
+    M = [[0 for j in range(n)] for i in range(n)]
+    # for the sake of fun ;), we fill the diagonals of the matrix
     for i in range(n):
         for j in range(i+1):
             M[i-j][j] = ll[i][j]
@@ -29,6 +27,5 @@ def main():
     traite(M18)
     M67 = make_table('input/67_triangle.txt')
     traite(M67)
-    
 
 main()
