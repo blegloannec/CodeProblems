@@ -7,7 +7,7 @@ def sieve_factors(N):
     Factors = [[] for _ in xrange(N)]
     P[0] = False
     P[1] = False
-    for i in xrange(2,int(sqrt(N))+1):
+    for i in xrange(2,N):
         if P[i]:
             for k in xrange(2*i,N,i):
                 P[k] = False
@@ -15,11 +15,10 @@ def sieve_factors(N):
     return P,Factors
 
 def main():
-    N = 1000000
+    N = 500000
     M = 4
     P,F = sieve_factors(N)
     for i in xrange(9,N):
-        #s = set()
         sol = True
         for k in xrange(M):
             if len(F[i-k])!=M:
