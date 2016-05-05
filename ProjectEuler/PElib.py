@@ -5,6 +5,16 @@ from math import *
 
 #sys.setrecursionlimit(100000)
 
+def sieve(N):
+    P = [True for _ in xrange(N)]
+    P[0] = False
+    P[1] = False
+    for i in xrange(2,int(sqrt(N))+1):
+        if P[i]:
+            for k in xrange(2*i,N,i):
+                P[k] = False
+    return P
+
 def sieve_factors(N):
     P = [True for _ in xrange(N)]
     Factors = [[] for _ in xrange(N)]
@@ -20,14 +30,18 @@ def sieve_factors(N):
 def lcm(a,b):
     return a*b/gcd(a,b)
 
-def somme_diviseurs(n):
+def somme_diviseurs(n): # for n>1!
     s = 1
-    for i in range(2,int(sqrt(n))+1):
+    r = int(sqrt(n))
+    if r*r==n: # n is a square
+        s += r
+        r -= 1
+    for i in xrange(2,r+1):
         if n%i==0:
             s += i+n/i
     return s
 
-def nb_diviseurs(n): # for n>1
+def nb_diviseurs(n): # for n>1!
     s = 2
     r = int(sqrt(n))
     if r*r==n: # n is a square
