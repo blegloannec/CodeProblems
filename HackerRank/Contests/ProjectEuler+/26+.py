@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import sys
+
 # le developpement est soit periodique soit fini
 # il est fini ssi n divise une puissance de 10
 # i.e. n = 2^k * 5^l (auquel cas n | 10^max(k,l))
@@ -27,14 +29,18 @@ def period(n):
     return i-t[r]
 
 def main():
-    pmax = 0
-    nmax = 1000
-    for n in range(2,nmax):
+    NMAX = 10001
+    P = [0 for _ in xrange(NMAX)]
+    Nmax = [0 for _ in xrange(NMAX)]
+    for n in xrange(2,NMAX):
+        Nmax[n] = Nmax[n-1]
         if not dev_fini(n):
-            p = period(n)
-            if p>pmax:
-                d = n
-                pmax = p
-    print d
+            P[n] = period(n)
+            if P[n]>P[Nmax[n]]:
+                Nmax[n] = n
+    T = int(sys.stdin.readline())
+    for _ in xrange(T):
+        N = int(sys.stdin.readline())
+        print Nmax[N-1]
 
 main()
