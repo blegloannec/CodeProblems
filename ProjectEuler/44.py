@@ -7,8 +7,8 @@ from math import sqrt
 # D = 1+24p
 # et n = (1+sqrt(D))/6
 # mais les solutions pour n<0 ont n = (1-sqrt(D))/6
-# dans ce cas (1-sqrt(D)%6 == 0
-# donc (1+sqrt(D)%6 == 2 != 0
+# dans ce cas (1-sqrt(D))%6 == 0
+# donc (1+sqrt(D))%6 == 2 != 0
 
 def is_penta(p):
     D = 1+24*p
