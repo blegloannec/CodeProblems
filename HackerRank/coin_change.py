@@ -12,9 +12,9 @@ def C(s,k):
         return 0
     if (s,k) in memo:
         return memo[(s,k)]
-    res = 0
-    for ss in range(s,-1,-V[k]):
-        res += C(ss,k-1)
+    res = C(s,k-1)
+    if s>=V[k]:
+        res += C(s-V[k],k)
     memo[(s,k)] = res
     return res
 
