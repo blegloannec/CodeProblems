@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from math import sqrt
 
 # each term is of the form a_i + (sqrt(x)-p_i)/q_i
@@ -29,12 +30,13 @@ def period(D):
 def is_square(D):
     d = int(sqrt(D))
     return d*d==D
-        
-def problem64():
+
+def main():
+    N = int(sys.stdin.readline())
     cpt = 0
-    for D in xrange(2,10001):
+    for D in xrange(2,N+1):
         if not is_square(D) and period(D)%2==1:
             cpt += 1
     print cpt
 
-problem64()
+main()

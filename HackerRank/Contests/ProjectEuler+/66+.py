@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from math import sqrt
 
 # see pb 64 for details on the continued fraction of
@@ -27,10 +28,11 @@ def is_square(D):
     d = int(sqrt(D))
     return d*d==D
         
-def problem66():
+def main():
+    N = int(sys.stdin.readline())
     maxx = 0
     maxD = 0
-    for D in xrange(2,1001):
+    for D in xrange(2,N+1):
         if not is_square(D):
             x,_ = pell(D)
             if x>maxx:
@@ -38,4 +40,4 @@ def problem66():
                 maxD = D
     print maxD
 
-problem66()
+main()
