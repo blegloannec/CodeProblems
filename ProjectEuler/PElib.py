@@ -22,10 +22,40 @@ def sieve_factors(N):
     P[1] = False
     for i in xrange(2,N):
         if P[i]:
+            Factors[i].append(i)
             for k in xrange(2*i,N,i):
                 P[k] = False
                 Factors[k].append(i)
     return P,Factors
+
+def sieve_decomp(N):
+    P = [True for _ in xrange(N)]
+    Decomp = [[] for _ in xrange(N)]
+    P[0] = False
+    P[1] = False
+    for i in xrange(2,N):
+        if P[i]:
+            Decomp[i].append((i,1))
+            for k in xrange(2*i,N,i):
+                P[k] = False
+                m = 1
+                l = k/i
+                while l%i==0:
+                    l /= i
+                    m += 1
+                Decomp[k].append((i,m))
+    return P,Decomp
+
+# NB: phi(n) = n*Prod( 1 - 1/p, p facteur premier de n)
+# donc eulerphi(n) est calculable a partir des facteurs seuls
+# (sans leur multiplicite, ie avec sieve_factors au lieu de sieve_decomp)
+# mais ce calcul est a base de float, alors qu'on le fait ici en int
+# NB2: idealement, il faut aussi une fast_exp a la place du ** ci-dessous
+def eulerphi(decomp):
+    res = 1
+    for (p,m) in decomp:
+        res *= (p-1)*(p**(m-1))
+    return res
 
 def lcm(a,b):
     return a*b/gcd(a,b)
