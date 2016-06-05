@@ -5,6 +5,20 @@ from math import *
 
 #sys.setrecursionlimit(100000)
 
+def expo(x,n):
+    if n==0:
+        return 1
+    elif n%2==0:
+        return expo(x*x,n/2)
+    return x*expo(x*x,(n-1)/2)
+
+def expmod(x,n,p):
+    if n==0:
+        return 1
+    elif n%2==0:
+        return expmod((x*x)%p,n/2)
+    return (x*expmod((x*x)%p,(n-1)/2))%p
+
 def sieve(N):
     P = [True for _ in xrange(N)]
     P[0] = False
@@ -14,6 +28,12 @@ def sieve(N):
             for k in xrange(2*i,N,i):
                 P[k] = False
     return P
+
+# Les cribles suivants peuvent etre acceleres
+# en n'allant que jusqu'a la racine
+# le dernier facteur (>racine) manque potentiellement
+# mais dans ce cas sa multiplicite est 1
+# Voir en particulier pbs 70,72
 
 def sieve_factors(N):
     P = [True for _ in xrange(N)]
@@ -50,12 +70,34 @@ def sieve_decomp(N):
 # donc eulerphi(n) est calculable a partir des facteurs seuls
 # (sans leur multiplicite, ie avec sieve_factors au lieu de sieve_decomp)
 # mais ce calcul est a base de float, alors qu'on le fait ici en int
-# NB2: idealement, il faut aussi une fast_exp a la place du ** ci-dessous
 def eulerphi(decomp):
     res = 1
     for (p,m) in decomp:
-        res *= (p-1)*(p**(m-1))
+        res *= (p-1)*expo(p,m-1)
     return res
+
+# Version acceleree
+# le dernier facteur (>racine) manque potentiellement
+# mais dans ce cas sa multiplicite est 1
+def faster_sieve_decomp(N):
+    P = [True for _ in xrange(N)]
+    Decomp = [[] for _ in xrange(N)]
+    P[0] = False
+    P[1] = False
+    S = int(sqrt(N))+1 # pour accelerer
+    for i in xrange(2,S):
+        if P[i]:
+            Decomp[i].append((i,1))
+            for k in xrange(2*i,N,i):
+                P[k] = False
+                m = 1
+                l = k/i
+                while l%i==0:
+                    l /= i
+                    m += 1
+                Decomp[k].append((i,m))
+    return P,Decomp
+
 
 # also defined by module fractions
 def gcd(a,b):
