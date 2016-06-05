@@ -57,8 +57,18 @@ def eulerphi(decomp):
         res *= (p-1)*(p**(m-1))
     return res
 
+# also defined by module fractions
+def gcd(a,b):
+    return a if b==0 else gcd(b,a%b)
+
 def lcm(a,b):
     return a*b/gcd(a,b)
+
+def bezout(a,b):
+    if b==0:
+        return (a,1,0)
+    g,u,v = bezout(b,a%b)
+    return (g,v,u-(a/b)*v)
 
 def somme_diviseurs(n): # for n>1!
     s = 1
@@ -145,7 +155,7 @@ def indice_coincidence(m):
             N += 1
     return float(sum(map((lambda(x):x*(x-1)),cpt)))/(N*(N-1))
 
-def digits(n,b):
+def digits(n,b=10):
     c = []
     while n>0:
         c.append(n%b)
@@ -154,6 +164,14 @@ def digits(n,b):
 
 def digits_sum(n,b):
     return sum(digits(n,b))
+
+# or, if the digits are not useful:
+def digits_sum(n,b):
+    s = 0
+    while n>0:
+        s += n%b
+        n /= b
+    return s
 
 def nb_digits10(n):
     return int(log10(n))+1
