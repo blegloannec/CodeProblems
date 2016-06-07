@@ -218,6 +218,9 @@ def digits_sum(n,b):
 def nb_digits10(n):
     return int(log10(n))+1
 
+def nb_digits(n,b):
+    return int(log(n,b))+1
+
 # t = n(n+1)/2
 # n^2 + n - 2t = 0
 # Given t, D = 1+8t must be a square
@@ -281,3 +284,12 @@ def next_permutation(T):
         i += 1
         j -= 1
     return True
+
+# sous-ensembles de 0..n-1 de cardinal c
+def subsets(n,c):
+    if c==0:
+        yield 0
+    else:
+        for x in xrange(c-1,n):
+            for S in subsets(x,c-1):
+                yield S | (1<<x)
