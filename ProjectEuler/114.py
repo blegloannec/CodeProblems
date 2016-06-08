@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-memo = {}
+# NB: le +1 si n>=3
+# pourrait etre remplace par la convention 0:2
+
+memo = {0:1}
 def N(n):
-    if n==0:
-        return 1
     if n in memo:
         return memo[n]
     res = N(n-1)

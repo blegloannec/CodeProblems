@@ -293,3 +293,15 @@ def subsets(n,c):
         for x in xrange(c-1,n):
             for S in subsets(x,c-1):
                 yield S | (1<<x)
+
+def partitions(n,k):
+    if k==1:
+        yield [n]
+    elif k<=n:
+        for p in partitions(n-1,k-1):
+            p.append(1)
+            yield p
+        for p in partitions(n-k,k):
+            for i in xrange(k):
+                p[i] += 1
+            yield p
