@@ -98,6 +98,17 @@ def faster_sieve_decomp(N):
                 Decomp[k].append((i,m))
     return P,Decomp
 
+# eulerphi associee :
+def eulerphi(n,decomp): # decomp potentiellement partielle
+    res = 1
+    for (p,m) in decomp:
+        f = expo(p,m-1)
+        n /= f*p
+        res *= (p-1)*f
+    if n>1: # dernier facteur manquant
+        res *= n-1
+    return res
+
 
 # also defined by module fractions
 def gcd(a,b):
