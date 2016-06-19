@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-from fractions import gcd,Fraction
 from math import *
-
+from fractions import gcd
 #sys.setrecursionlimit(100000)
 
+
+# pas utile, x**n est aussi efficace
 def expo(x,n):
     if n==0:
         return 1
@@ -12,12 +13,14 @@ def expo(x,n):
         return expo(x*x,n/2)
     return x*expo(x*x,(n-1)/2)
 
+# pas utile, pow(x,n,p) est aussi efficace
 def expmod(x,n,p):
     if n==0:
         return 1
     elif n%2==0:
         return expmod((x*x)%p,n/2)
     return (x*expmod((x*x)%p,(n-1)/2))%p
+
 
 def sieve(N):
     P = [True for _ in xrange(N)]
@@ -163,6 +166,8 @@ def sieve_nb_divisors(N):
                 Nbdiv[k] *= j+1
     return P,Nbdiv
 
+
+# mauvais test de primalite
 def prime(n):
     if n%2==0:
         return False
@@ -171,13 +176,15 @@ def prime(n):
             return False
     return True
 
+# crible filtre (lent mais parfois pratique)
 def eratosthene(n):
     l = range(2,n+1)
     s = int(sqrt(n))+1
-    for i in range(2,s):
-        for k in range(2*i,n+1,i):
+    for i in xrange(2,s):
+        for k in xrange(2*i,n+1,i):
             l[k-2] = -1
     return filter((lambda x: x>0),l)
+
 
 def mirror(n):
     m = 0
@@ -188,6 +195,7 @@ def mirror(n):
 
 def is_palindrome(n):
     return mirror(n)==n
+
 
 def taux_lettres(m):
     cpt = 0
@@ -207,6 +215,7 @@ def indice_coincidence(m):
             cpt[c-ord('A')] += 1
             N += 1
     return float(sum(map((lambda(x):x*(x-1)),cpt)))/(N*(N-1))
+
 
 def digits(n,b=10):
     c = []
@@ -232,11 +241,11 @@ def nb_digits10(n):
 def nb_digits(n,b):
     return int(log(n,b))+1
 
+
 # t = n(n+1)/2
 # n^2 + n - 2t = 0
 # Given t, D = 1+8t must be a square
 # then n = (-1+sqrt(D))/2
-
 def is_triang(t):
     D = 1+8*t
     d = int(sqrt(1+8*t))
@@ -249,7 +258,6 @@ def is_triang(t):
 # mais les solutions pour n<0 ont n = (1-sqrt(D))/6
 # dans ce cas (1-sqrt(D))%6 == 0
 # donc (1+sqrt(D))%6 == 2 != 0
-
 def is_penta(p):
     D = 1+24*p
     d = int(sqrt(D))
@@ -275,6 +283,7 @@ def miller_rabin(n,s):
             return False
     return True
 
+
 # permutation suivante (ordre lex) d'un tableau quelconque
 # (repetitions autorisees)
 # (pour prev_permutation, inverser les comparaisons de T[.])
@@ -296,7 +305,8 @@ def next_permutation(T):
         j -= 1
     return True
 
-# sous-ensembles de 0..n-1 de cardinal c
+
+# generateur des sous-ensembles de 0..n-1 de cardinal c
 def subsets(n,c):
     if c==0:
         yield 0
@@ -305,6 +315,7 @@ def subsets(n,c):
             for S in subsets(x,c-1):
                 yield S | (1<<x)
 
+# generateur des partitions de n a k composantes
 def partitions(n,k):
     if k==1:
         yield [n]
