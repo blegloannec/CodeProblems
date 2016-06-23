@@ -176,7 +176,30 @@ def prime(n):
             return False
     return True
 
-# crible filtre (lent mais parfois pratique)
+# mauvaise factorisation
+def decomp(n):
+    F = []
+    m = 0
+    while n%2==0:
+        n /= 2
+        m += 1
+    if m>0:
+        F.append((2,m))
+    i = 3
+    s = int(sqrt(n))+1
+    while n>1 and i<s:
+        m = 0
+        while n%i==0:
+            n /= i
+            m += 1
+        if m>0:
+            F.append((i,m))
+        i += 2
+    if n>1:
+        F.append((n,1))
+    return F
+
+# mauvais crible filtre (lent mais parfois pratique)
 def eratosthene(n):
     l = range(2,n+1)
     s = int(sqrt(n))+1
@@ -264,7 +287,7 @@ def is_penta(p):
     return (d*d==D and (1+d)%6==0)
 
 
-# Miller-Rabin
+# Miller-Rabin (requires digits())
 def witness(a,n):
     b = digits(n-1,2)
     d = 1
@@ -277,7 +300,7 @@ def witness(a,n):
             d = (d*a)%n
     return d!=1
 
-def miller_rabin(n,s):
+def miller_rabin(n,s=30):
     for j in xrange(s):
         if witness(random.randint(1,n-1),n):
             return False
@@ -327,3 +350,35 @@ def partitions(n,k):
             for i in xrange(k):
                 p[i] += 1
             yield p
+
+
+# Pollard's rho (D = defaultdict(int), requires miller_rabin)
+# Attention : fait main il y a longtemps...
+# pas forcement le "vrai" algo (mais marche vite et bien)
+# ATTENTION : virer les facteurs 2 avant !
+def pollard_rho(n):
+    l = set()
+    c = random.randint(1,n-1)
+    f = (lambda x: (x*x+c)%n)
+    x = random.randint(0,n-1)
+    y = x
+    x = f(x)
+    y = f(f(y))
+    while x!=y:
+        p = gcd(n,abs(x-y))
+        if 1<p<n:
+            return p
+        x = f(x)
+        y = f(f(y))
+    return None
+
+def factorisation(n, D):
+    while n>1:
+        if miller_rabin(n):
+            D[n] += 1
+            return D
+        f = pollard_rho(n)
+        if f!=None:
+            factorisation(f,D)
+            n /= f
+    return D
