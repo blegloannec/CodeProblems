@@ -300,7 +300,7 @@ def witness(a,n):
             d = (d*a)%n
     return d!=1
 
-def miller_rabin(n,s=30):
+def miller_rabin(n,s=15):
     for j in xrange(s):
         if witness(random.randint(1,n-1),n):
             return False
