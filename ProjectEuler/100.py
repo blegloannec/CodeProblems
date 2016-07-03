@@ -5,10 +5,10 @@
 # 2(b-1/2)^2 - 1/2 = (n-1/2)^2 - 1/4
 # -1 = (2n-1)^2 - 2(2b-1)^2
 # N = 2n-1, B = 2b-1
-# N^2 - 2B^1 = -1
+# N^2 - 2B^2 = -1
 # Negative (due to -1) Pell equation with D = 2
 # https://en.wikipedia.org/wiki/Pell%27s_equation
-# see also pb 66
+# see also pb 66 & 94
 # Not always solvable in general, but has solutions for D = 2
 
 def main():
