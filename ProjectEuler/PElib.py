@@ -338,6 +338,17 @@ def subsets(n,c):
             for S in subsets(x,c-1):
                 yield S | (1<<x)
 
+# Autre version
+def parmi(n,p):
+    if p==0:
+        yield []
+    else:
+        for i in xrange(p-1,n):
+            for S in parmi(i,p-1):
+                S.append(i)
+                yield S
+
+
 # generateur des partitions de n a k composantes
 def partitions(n,k):
     if k==1:
