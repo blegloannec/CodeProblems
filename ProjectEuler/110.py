@@ -27,16 +27,16 @@
 P = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
 nblim = 2*(4*10**6-1)+1
 
-def loop(p=0,amax=100,n=1,nbdiv=1):
+def loop(p=0,amax=10,n=1,nbdiv=1):
     if p<len(P):
         for a in xrange(1,amax+1):
             n *= P[p]
             nb = nbdiv*(2*a+1)
-            if nb>nblim:
+            if nb>=nblim:
                 yield n
                 break
             else:
                 for x in loop(p+1,a,n,nb):
                     yield x
 
-print min(x for x in loop())
+print min(loop())

@@ -4,7 +4,7 @@
 # (a-1)^n + (a+1)^n = 2 si n pair et (2na)%a^2 sinon
 # 2na = 2(n-2)a + 4a
 # donc la sequence des impairs est obtenue par iteration
-# de f(x) = (x+2a) % a^2 donc ultimement periodique, etc
+# de f(x) = (x+4a) % a^2 donc ultimement periodique, etc
 
 def rmax(a):
     vu = set()
