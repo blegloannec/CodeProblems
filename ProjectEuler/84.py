@@ -8,6 +8,7 @@
 # si on tombe sur une case CC/CH qui nous fait retomber sur une
 # telle case apres avoir tire une carte de deplacement, alors on
 # devrait retirer une carte et potentiellement se redeplacer...
+# (cela n'est possible qu'avec "go back 3 squares" depuis CH3)
 
 JAIL = 10
 GO2JAIL = 30
