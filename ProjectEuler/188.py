@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
-import sys
 from math import sqrt
 from fractions import gcd
-sys.setrecursionlimit(2000)
 
 # "mauvaise" factorisation
 def decomp(n):
@@ -40,6 +38,10 @@ def eulerphi(n):
 def hypexpmod(a,k,m):
     if k==1:
         return a%m
+    if m==1:
+        # permet de s'arreter des que les phi(m) iteres
+        # atteignent 1 (des 24 pour m=10**8, au lieu de 1855)
+        return 0
     assert(gcd(a,m)==1)
     return pow(a,hypexpmod(a,k-1,eulerphi(m)),m)
 
