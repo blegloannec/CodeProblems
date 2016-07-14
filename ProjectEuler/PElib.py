@@ -76,7 +76,7 @@ def sieve_decomp(N):
 def eulerphi(decomp):
     res = 1
     for (p,m) in decomp:
-        res *= (p-1)*expo(p,m-1)
+        res *= (p-1)*p**(m-1)
     return res
 
 # Version acceleree
