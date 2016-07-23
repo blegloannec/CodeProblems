@@ -3,7 +3,7 @@
 import sys
 
 def main():
-    n1,n2,n3 = int(sys.stdin.readline())
+    n1,n2,n3 = map(int,sys.stdin.readline().split())
     H1 = [0]+map(int,sys.stdin.readline().split())[::-1]
     H2 = [0]+map(int,sys.stdin.readline().split())[::-1]
     H3 = [0]+map(int,sys.stdin.readline().split())[::-1]

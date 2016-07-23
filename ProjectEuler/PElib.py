@@ -363,6 +363,23 @@ def partitions(n,k):
             yield p
 
 
+# recursive permutation generator using Heap's algo, quite ugly
+# better in python 3: syntax "yield from <recursive call>"
+def heap(n,A):
+    if n==1:
+        yield A
+    else:
+        for i in xrange(n-1):
+            for B in heap(n-1,A):
+                yield B
+            if n%2==0:
+                A[i],A[n-1] = A[n-1],A[i]
+            else:
+                A[0],A[n-1] = A[n-1],A[0]
+        for B in heap(n-1,A):
+            yield B
+
+
 # Pollard's rho (D = defaultdict(int), requires miller_rabin)
 # Attention : fait main il y a longtemps...
 # pas forcement le "vrai" algo (mais marche vite et bien)
