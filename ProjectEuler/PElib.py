@@ -288,8 +288,7 @@ def is_penta(p):
 
 
 # Miller-Rabin (requires digits())
-def witness(a,n):
-    b = digits(n-1,2)
+def witness(a,n,b):
     d = 1
     for i in xrange(len(b)-1,-1,-1):
         x = d
@@ -301,8 +300,9 @@ def witness(a,n):
     return d!=1
 
 def miller_rabin(n,s=15):
+    b = digits(n-1,2)
     for j in xrange(s):
-        if witness(random.randint(1,n-1),n):
+        if witness(random.randint(1,n-1),n,b):
             return False
     return True
 
