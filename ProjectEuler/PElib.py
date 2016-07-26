@@ -400,7 +400,7 @@ def pollard_rho(n):
         y = f(f(y))
     return None
 
-def factorisation(n, D):
+def factorisation(n,D):
     while n>1:
         if miller_rabin(n):
             D[n] += 1
@@ -410,3 +410,10 @@ def factorisation(n, D):
             factorisation(f,D)
             n /= f
     return D
+
+def full_factorisation(n):
+    D = defaultdict(int)
+    while n%2==0:
+        D[2] += 1
+        n /= 2
+    return factor(n,D)
