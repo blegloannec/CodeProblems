@@ -129,7 +129,7 @@ def bezout(a,b):
 def inv_mod(a,n):
     g,u,_ = bezout(a,n)
     assert(g==1)
-    return u
+    return u # ajouter %n pour solution >0
 
 def somme_diviseurs(n): # for n>1!
     s = 1
