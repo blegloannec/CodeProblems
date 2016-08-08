@@ -18,10 +18,8 @@ def N(n):
 
 def main():
     n = 1
-    while True:
-        if N(n)>1000000:
-            print n
-            return
+    while N(n)<=1000000:
         n += 1
+    print n
 
 main()
