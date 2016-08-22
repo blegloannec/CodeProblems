@@ -407,7 +407,6 @@ def heap(n,A):
 # Pollard's rho (D = defaultdict(int), requires miller_rabin)
 # Attention : fait main il y a longtemps...
 # pas forcement le "vrai" algo (mais marche vite et bien)
-# ATTENTION : virer les facteurs 2 avant !
 def pollard_rho(n):
     l = set()
     c = random.randint(1,n-1)
@@ -435,9 +434,10 @@ def factorisation(n,D):
             n /= f
     return D
 
+# Retire les facteurs 2 avant (sinon ca boucle) :
 def full_factorisation(n):
     D = defaultdict(int)
     while n%2==0:
         D[2] += 1
         n /= 2
-    return factor(n,D)
+    return factorisation(n,D)
