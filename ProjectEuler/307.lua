@@ -17,15 +17,15 @@
     - a chips (among n) to receive 2 defects
     - 2a defects (among k) for these chips
     - the distribution of these 2a defects on the chips ((2a)! / 2^a)
-    - b chipss (among n-a remaining) to receive 1 defect
+    - b chips (among n-a remaining) to receive 1 defect
     - the distribution of these b defects on the chips (b!)
    leading to the sum for a=0..k/2 of
    binom(n,a)*binom(k,2a)*fact(2a)/(2^a) * binom(n-a,b)*fact(b)
    Simplifying (remember b = k-2a) and dividing by n^k to directly
    manipulate the proba, we obtain:
-   t(a) = 1/(2^a * a!) * n!/(n-(k-a))! * k!/(k-2a)!
-   or:
-   t(0) = n!/(n-k)! = prod( (n-i)/n, i=1..k-1 )
+   t(a) = 1/n^k * 1/(2^a * a!) * n!/(n-(k-a))! * k!/(k-2a)!
+   or again:
+   t(0) = 1/n^k * n!/(n-k)! = prod( (n-i)/n, i=1..k-1 )
    t(a+1) = 1/(2*(a+1)) * 1/(n-(k-(a+1))) * (k-2a-1)*(k-2a) * t(a)
    which is finally cheap enough to compute!
 ]]
