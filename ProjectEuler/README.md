@@ -10,5 +10,5 @@ Almost all of these codes are below the *one-minute rule* (and usually by far), 
 
 For more efficient implementations of some of these codes, check out `/HackerRank/Contests/ProjectEuler+` (harder variants of the problems, with larger inputs, generally requiring an optimal approach).
 
-**Fun additional constrains:**
+**Fun additional constraints:**
  * Problem 307, *Chip Defects*, was solved on an "actual" low-cost [ESP8266](https://en.wikipedia.org/wiki/ESP8266) chip (80MHz CPU), using the NodeMCU (Lua-based) firmware. It ran in 0.7s and fortunately my chip did not seem to have any defects!
