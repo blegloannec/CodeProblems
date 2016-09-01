@@ -19,12 +19,11 @@ def getC(C,i):
     return (C>>(2*i))&3
 
 def decrC(C,i):
-    v = getC(C,i)
-    #assert(v>0)
-    if not v&1:
-        C = C^(1<<(2*i+1))
-    return C^(1<<(2*i))
+    # on retire 1 au ieme chiffre (suppose >0)
+    # en base 4
+    return C - (1<<(2*i))
 
+# representation de C en base 4
 def encodeC(C):
     res = 0
     for i in xrange(len(C)-1,-1,-1):
@@ -43,13 +42,6 @@ N = len(G)
 LC = [[[] for _ in xrange(V)] for _ in xrange(K)]
 initLC(G,LC)
 C0 = encodeC(C0)
-
-def diffC(C1,C2):
-    C = 0
-    for k in xrange(N):
-        #assert(getC(C1,k)>=getC(C2,k))
-        C |= (getC(C1,k)-getC(C2,k))<<(2*k)
-    return C
 
 
 ## Backtracking
@@ -78,7 +70,10 @@ def backtrack_first_half(C1,i=0,S=[]):
 def backtrack_second_half(C1,i=K/2,S=[]):
     if i==K:
         # on cherche une premiere moitie complementaire
-        C = diffC(C0,C1)
+        # complement de C1 obtenu par simple soustraction
+        # car les chiffres en base 4 de C0 sont supposes
+        # >= a ceux de C1
+        C = C0-C1
         if C in memo:
             return list(memo[C])+S
         return None
