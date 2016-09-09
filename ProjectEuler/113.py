@@ -2,43 +2,19 @@
 
 N = 100
 
-# progdyn to count increasing numbers
-# with <=n digits
-I = [[-1  for _ in xrange(10)] for _ in xrange(N+1)]
-for a in xrange(10):
-    I[0][a] = 1
-def inc(n,a0=9):
-    if I[n][a0]>=0:
-        return I[n][a0]
-    res = 0
-    for a in xrange(a0+1):
-        res += inc(n-1,a)
-    I[n][a0] = res
-    return res
+# At first, used a prog-dyn to count increasing and decreasing
+# numbers. Then realised it was actually easy to count directly:
+# 1. To build an increasing number of size <=n, simply pick a
+# multiset of {0..9} of size n, hence there are binom(n+10-1,n) of them.
+# 2. For decreasing numbers, it is trickier as you can pick leading (to cover
+# numbers of size <n) as well as trailing 0s. Just distinguish those two
+# kinds of zero to get binom(n+11-1,n) numbers and remove the full 0s
+# that you get in several ways picking only leading and trailing zeros,
+# so binom(n+11-1,n) - (N+1).
+# 3. Add both quantities and remove 9N+1 constant numbers that are
+# counted twice.
 
-# progdyn to count decreasing numbers
-# with exactly n digits
-D = [[-1 for _ in xrange(10)] for _ in xrange(N+1)]
-D[0][0] = 0
-for a in xrange(1,10):
-    D[0][a] = 1
-def dec(n,a0=0):
-    if D[n][a0]>=0:
-        return D[n][a0]
-    res = 0
-    for a in xrange(a0,10):
-        res += dec(n-1,a)
-    D[n][a0] = res
-    return res
+def binom(n,p):
+    return 1 if p==0 else n*binom(n-1,p-1)/p
 
-# constant numbers (both inc and dec)
-# with <=n digits
-def con(n):
-    return 9*n+1
-
-def main():
-    i = inc(N)
-    d = sum(dec(n) for n in xrange(N+1))
-    print i+d-con(N)
-
-main()
+print binom(N+9,N) + binom(N+10,N)-(N+1) - (9*N+1)
