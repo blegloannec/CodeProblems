@@ -4,7 +4,7 @@
 
 **Obvious disclaimer:** Cheating spoils the fun of problem solving, etc... However, if you arrive here looking for some hints on a problem, those codes sometimes contain comments (usually in French though) to describe the approach.
 
-I generally use Python 2.7 and the fast Python interpreter `pypy`. I occasionally use C++, OCaml, Python 3.4...
+I generally use Python 2 and the fast Python interpreter `pypy`. I occasionally use C++, OCaml, Python 3, Prolog...
 
 Almost all of these codes are below the *one-minute rule* (and usually by far), though they are not necessarily optimal or optimized (they are sometimes just good enough considering the input size).
 
