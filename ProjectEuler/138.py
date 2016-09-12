@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# similaire au pb 94
+# on avait cependant pour ce dernier pousse l'analyse
+# plus loin qu'ici (on avait cherche a se ramener a une equation
+# de Pell, et pas simplement a une equation diophantienne
+# quadratique generale, ce dont on se contentera ici...)
+
 # h^2 = L^2 - (b/2)^2, soit 4h^2 = 4L^2 - b^2
 # pour h = b +/- 1, on trouve 5b^2 +/- 8b + 4 - 4L^2 = 0
 # equation diophantienne quadratique, on utilise le solveur
