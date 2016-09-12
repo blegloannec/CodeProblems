@@ -7,12 +7,12 @@ from fractions import gcd
 # g(x) = ln(f(x)) = x*ln(n) - x*ln(x)
 # g'(x) = ln(n) - ln(x) - 1
 # g'(x0) = 0 <=> ln(x0) = ln(n)-1
-# solution reelle x0 = exp(ln(n)-1)
+# solution reelle x0 = exp(ln(n)-1) = n/e
 # solution entiere int(x0) ou int(x0)+1
 # en pratique, pour N>4, c'est en fait toujours round(x0)
 
 def M(N):
-    return int(round(exp(log(N)-1)))
+    return int(round(N/e))
 
 # la fraction p/q est "terminating" si son
 # denominateur sous forme irreductible est
