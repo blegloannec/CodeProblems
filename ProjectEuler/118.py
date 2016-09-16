@@ -58,6 +58,9 @@ def backtrack(A,i=0,x=0,X=[]):
     else:
         x = 10*x+A[i]
         if (len(X)==0 or x>X[-1]) and prime(x):
+            # condition x>X[-1] pour ne compter que
+            # les decompositions "croissantes", les autres
+            # seront obtenues pour d'autres permutations
             X.append(x)
             for B in backtrack(A,i+1,0,X):
                 yield B
