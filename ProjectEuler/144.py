@@ -25,13 +25,12 @@ def main():
     cpt = 0
     while not (y>=0 and -0.01<=x<=0.01):
         # vecteur tangent
-        ex,ey = 1.,-4*x/y
-        # vecteur normal
-        ox,oy = -ey,ex
-        # projection de (-dx,-dy)
-        de,do = -(dx*ex+dy*ey),-(dx*ox+dy*oy)
-        # symetrie
-        dx,dy = de*(-ex)+do*ox,de*(-ey)+do*oy
+        ex,ey = y,-4.*x
+        # projection normalisee de (dx,dy)
+        de = (dx*ex+dy*ey)/(ex*ex+ey*ey)
+        # reflexion
+        dx -= 2.*de*ex
+        dy -= 2.*de*ey
         x,y = next_inter(x,y,dx,dy)
         cpt += 1
         X.append(x)
