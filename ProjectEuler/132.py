@@ -10,31 +10,24 @@ def eratosthene(n):
             l[k-2] = -1
     return filter((lambda x: x>0),l)
 
-P = eratosthene(1000000)
+def bezout(a,b):
+    if b==0:
+        return (a,1,0)
+    g,u,v = bezout(b,a%b)
+    return (g,v,u-(a/b)*v)
 
-# comportement de la suite 10^n mod p
-# attention: comportement special pour 2 et 5
-def periode(p):
-    T = [-1 for _ in xrange(p)]
-    S = [0]
-    n = 1
-    t = 0
-    while T[n]<0:
-        T[n] = t
-        S.append((S[-1]+n)%p)
-        t += 1
-        n = (10*n)%p
-    #return T[n],t-T[n]
-    return S
+def inv_mod(a,n):
+    g,u,_ = bezout(a,n)
+    assert(g==1)
+    return u
 
-# R(n) = sum( 10^k, k<n )
-# calcul de R(n)%p pour p =/= 2 ou 5
+# R(n) = (10^n-1)/9
+# calcul de R(n)%p pour p =/= 2,3,5
 def repumod(n,p):
-    S = periode(p)
-    l = len(S)-1
-    return ((n/l)*S[-1]+S[n%l])%p
+    return ((pow(10,n,p)-1)*inv_mod(9,p))%p
 
 def main():
+    P = eratosthene(1000000)
     N = 10**9
     cpt = 0
     s = 0
