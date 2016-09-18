@@ -132,6 +132,19 @@ def sieve_totient(N):
     return P,Totient
 
 
+# generateur des diviseurs (a partir des decomp)
+def divisors(F,i=0):
+    if i==len(F):
+        yield 1
+    else:
+        p,m = F[i]
+        f = 1
+        for _ in xrange(m+1):
+            for d in divisors(F,i+1):
+                yield f*d
+            f *= p
+
+
 # also defined by module fractions
 def gcd(a,b):
     return a if b==0 else gcd(b,a%b)
