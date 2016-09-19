@@ -7,6 +7,7 @@
 # donc 4 | 3y-n/y > 0
 
 # runs in 7s with pypy
+# cf 136 pour une approche plus efficace
 
 def sieve_decomp(N):
     P = [True for _ in xrange(N)]
