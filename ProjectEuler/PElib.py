@@ -32,6 +32,18 @@ def sieve(N):
                 P[k] = False
     return P
 
+def sieve_list(N):
+    P = [True for _ in xrange(N)]
+    L = []
+    P[0] = False
+    P[1] = False
+    for i in xrange(2,N):
+        if P[i]:
+            L.append(i)
+            for k in xrange(2*i,N,i):
+                P[k] = False
+    return L
+
 # Les cribles suivants peuvent etre acceleres
 # en n'allant que jusqu'a la racine
 # le dernier facteur (>racine) manque potentiellement
