@@ -175,6 +175,11 @@ def inv_mod(a,n):
     assert(g==1)
     return u # ajouter %n pour solution >0
 
+def rev_chinois(a,p,b,q):
+    _,u,v = bezout(p,q)
+    return (b*u*p+a*v*q)%(p*q)
+
+
 def somme_diviseurs(n): # for n>1!
     s = 1
     r = int(sqrt(n))
