@@ -438,6 +438,19 @@ def partitions(n,k):
                 p[i] += 1
             yield p
 
+# variante duale : partitions de n dont tous les morceaux sont <=k
+def gen_part(n,k):
+    if k==0:
+        if n==0:
+            yield []
+    else:
+        for P in gen_part(n,k-1):
+            yield P
+        if n>=k:
+            for P in gen_part(n-k,k):
+                P.append(k)
+                yield P
+
 
 # recursive permutation generator using Heap's algo, quite ugly
 # better in python 3: syntax "yield from <recursive call>"
