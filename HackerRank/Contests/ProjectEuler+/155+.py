@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
+import sys
 from fractions import *
-
-# https://oeis.org/A153588
-# related to https://oeis.org/A048211 (seq for exactly n)
 
 memo = {0:set(), 1:set([Fraction(1)])}
 def capa(n):
@@ -16,13 +14,21 @@ def capa(n):
         for a in A:
             for b in B:
                 R.add(a+b)
-                #R.add(1/(1/a+1/b))
                 R.add(Fraction(a.numerator*b.numerator,a.denominator*b.numerator+b.denominator*a.numerator))
     memo[n] = R
     return R
 
-# takes slightly more than a minute
-S = set()
-for i in xrange(1,19):
-    S |= capa(i)
-    print i,len(S)
+def precomp():
+    res = [0]
+    S = set()
+    for i in xrange(1,19):
+        S |= capa(i)
+        res.append(len(S))
+    print res
+
+def main():
+    V = [0, 1, 3, 7, 15, 35, 77, 179, 429, 1039, 2525, 6235, 15463, 38513, 96231, 241519, 607339, 1529533, 3857447]
+    n = int(sys.stdin.readline())
+    print V[n]
+
+main()
