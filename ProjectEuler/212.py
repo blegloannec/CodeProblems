@@ -81,7 +81,7 @@ N = 50000
 C = gen(N)
 Z = sortZ()
 
-# balayage "naif" en O(n^3)
+# balayage "naif" en O(n^3) (en pratique ~ 50000 * 1000^2 ici)
 def main_n3():
     A,V = 0,0
     S = set()
