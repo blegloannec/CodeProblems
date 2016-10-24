@@ -24,7 +24,7 @@ def sieve_decomp(N):
     P[1] = False
     for i in xrange(2,N):
         if P[i]:
-            Decomp[i].append((i,1))
+            Decomp[i].append(i)
             for k in xrange(2*i,N,i):
                 P[k] = False
                 m = i
