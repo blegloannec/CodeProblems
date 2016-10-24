@@ -2,7 +2,7 @@
 
 # naive solution (brute-force on all possible dice)
 
-# sous ensembles de taille n de 
+# sous-ensembles de taille p de {0,...,n-1}
 def parmi(n,p):
     if p==0:
         yield []
@@ -14,9 +14,6 @@ def parmi(n,p):
 
 def f69(c):
     return 6 if c==9 else c
-
-def decomp(n):
-    return (f69(n/10),f69(n%10))
 
 def CinD(c,D):
     res = c in D
@@ -32,12 +29,12 @@ def test(S,D1,D2):
 
 def main():
     N = 9
-    S = [decomp(i*i) for i in xrange(1,N+1)]
+    S = [(f69((i*i)/10),f69((i*i)%10)) for i in xrange(1,N+1)]
     cpt = 0
     for D1 in parmi(10,6):
         for D2 in parmi(10,6):
-            if test(S,D1,D2):
+            if D1<=D2 and test(S,D1,D2):
                 cpt += 1
-    print cpt/2
+    print cpt
 
 main()
