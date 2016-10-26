@@ -11,6 +11,11 @@ def A(n):
         i += 1
     return i
 
+# NB: la sequence des iteres modulo n etant periodique (on part de 0),
+# les valeurs de k pour lesquelles n | R(k) sont *exactement* les
+# multiples de A(n)
+# en particulier, A(n) | k <=> n | R(k)
+
 def main():
     M = 1000000
     a = 0

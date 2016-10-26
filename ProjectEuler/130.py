@@ -4,6 +4,11 @@ from math import sqrt
 
 # kinda naive approach as for pb 129, runs in 0.2s
 
+# NB (a posteriori, not used): as observed in pb 129 code
+# we have A(n) | k <=> n | R(k) hence A(n) | n-1 <=> n | R(n-1)
+# so that computing A(n) is actually not even necessary here!
+# (see HackerRank pb 130+ for the optimal approach)
+
 def A(k):
     r = 1
     a = 1
