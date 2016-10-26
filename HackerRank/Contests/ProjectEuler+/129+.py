@@ -17,6 +17,12 @@ random.seed()
 # the smallest that works
 # see also: http://math.stackexchange.com/questions/472404/repunit-divisibility
 
+# NB (a posteriori, not used): we actually have
+# A(n) = lcm(A(a),A(b)) for n = a*b with gcd(a,b) = 1
+# and, for p prime, A(p^k) = p^(k-1) * A(p)
+# hence we could even more affordably apply the previous method to each
+# prime p of the decomposition of n (so look for A(p) among the divisors
+# of p-1) and deduce A(n) from these formulas
 
 ## Miller-Rabin
 def digits(n,b=10):
