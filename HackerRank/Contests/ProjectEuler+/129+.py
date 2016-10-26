@@ -81,18 +81,6 @@ def full_factorisation(n):
         n /= 2
     return factorisation(n,D)
 
-## Bezout et inversion modulaire
-def bezout(a,b):
-    if b==0:
-        return (a,1,0)
-    g,u,v = bezout(b,a%b)
-    return (g,v,u-(a/b)*v)
-
-def inv_mod(a,n):
-    g,u,_ = bezout(a,n)
-    assert(g==1)
-    return u
-
 
 ## Code specifique au pb
 # decomp de phi(9n)
@@ -120,27 +108,14 @@ def divisors(F,i=0):
                 yield f*d
             f *= p
 
-# R(n) = (10^n-1)/9
-# calcul de R(n)%p pour p premier avec 2,3,5
-def repumod(n,p):
-    return ((pow(10,n,p)-1)*inv_mod(9,p))%p
-
 def main():
     T = int(sys.stdin.readline())
     for _ in xrange(T):
         n = int(sys.stdin.readline())
         D = eulerphi9(n)
-        # pour gerer le cas de n non premier avec 3,
-        # on decompose n = 3^k * n' avec n' premier avec 3
-        # comme on remarque que R(k) = k mod 3^k, on a
-        # A = 0 mod 3^k et repumod(A,n') == 0
-        n3 = 1        
-        while n%3==0:
-            n /= 3
-            n3 *= 3
         F = [(p,D[p]) for p in D]
         for d in sorted(divisors(F)):
-            if d%n3==0 and repumod(d,n)==0:
+            if pow(10,d,9*n)==1:
                 print d
                 break
 

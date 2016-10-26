@@ -22,43 +22,30 @@ from math import sqrt,log
 # et ppcm(a,b) <= a*b <= log2(N)*log5(N)
 # ce qui permet d'obtenir une borne sup raisonnable sur n
 
-def bezout(a,b):
-    if b==0:
-        return (a,1,0)
-    g,u,v = bezout(b,a%b)
-    return (g,v,u-(a/b)*v)
-
-def inv_mod(a,n):
-    g,u,_ = bezout(a,n)
-    assert(g==1)
-    return u
-
-# R(n) = (10^n-1)/9
-# calcul de R(n)%p pour p =/= 2,3,5
-def repumod(n,p):
-    return ((pow(10,n,p)-1)*inv_mod(9,p))%p
-
-def sieve(N):
+def sieve_list(N):
     P = [True for _ in xrange(N)]
+    L = []
     P[0] = False
     P[1] = False
-    for i in xrange(2,int(sqrt(N))+1):
+    for i in xrange(2,N):
         if P[i]:
+            L.append(i)
             for k in xrange(2*i,N,i):
                 P[k] = False
-    return P
+    return L
 
 def main():
     N = 10**5
-    P = sieve(N)
+    P = sieve_list(N)
     K = (int(log(N,2))+1)*(int(log(N,5))+1)
     # K = 136 pour N = 10^5
     k = 10**K
-    S = 2+3+5
-    for p in xrange(7,N,2):
-        if P[p]:
-            if repumod(k,p)!=0:
-                S += p
+    S = 0
+    for p in P:
+        # R(n) = (10^n-1)/9
+        # p | R(n) <=> p | (10^n-1)/9 <=> 9p | 10^n-1 <=> 10^n = 1 mod 9p
+        if pow(10,k,9*p)!=1:
+            S += p
     print S
 
 main()

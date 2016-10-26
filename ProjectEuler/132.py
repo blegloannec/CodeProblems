@@ -10,32 +10,16 @@ def eratosthene(n):
             l[k-2] = -1
     return filter((lambda x: x>0),l)
 
-def bezout(a,b):
-    if b==0:
-        return (a,1,0)
-    g,u,v = bezout(b,a%b)
-    return (g,v,u-(a/b)*v)
-
-def inv_mod(a,n):
-    g,u,_ = bezout(a,n)
-    assert(g==1)
-    return u
-
-# R(n) = (10^n-1)/9
-# calcul de R(n)%p pour p =/= 2,3,5
-def repumod(n,p):
-    return ((pow(10,n,p)-1)*inv_mod(9,p))%p
-
 def main():
     P = eratosthene(1000000)
     N = 10**9
     cpt = 0
     s = 0
-    i = 3 # on commence a 7
-    # le reste est 1 pour 2 et 5
-    # et 10**9 n'est pas multiple de 3
+    i = 0
     while cpt<40:
-        if repumod(N,P[i])==0:
+        # R(n) = (10^n-1)/9
+        # p | R(n) <=> p | (10^n-1)/9 <=> 9p | 10^n-1 <=> 10^n = 1 mod 9p
+        if pow(10,N,9*P[i])==1:
             s += P[i]
             cpt += 1
         i += 1
