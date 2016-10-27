@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from math import sqrt,log
+from math import log
 
 # R(10^(n+1)) = sum( R(10^n)*10^(i*10^n), i=0..9 )
 #             = R(10^n)*sum( 10^(i*10^n), i=0..(n-1) )
