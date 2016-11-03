@@ -20,9 +20,9 @@ function expo(M,n,p)
   if n==0
     eye(M)
   elseif n%2==0
-    (expo(M,(n//2).num,p)^2)%p
+    (expo(M,div(n,2),p)^2)%p
   else
-    (M*(expo(M,((n-1)//2).num,p)^2)%p)%p
+    (M*(expo(M,div(n-1,2),p)^2)%p)%p
   end
 end
 
@@ -31,9 +31,9 @@ for t = 1:T
   N = parse(Int128,readline(STDIN))
   if N==1
     println(17)
-   elseif N==2
-     println(322)
-   else
-     println(((expo(M,N-3,P)*I)%P)[1])
-   end
+  elseif N==2
+    println(322)
+  else
+    println(((expo(M,N-3,P)*I)%P)[1])
+  end
 end
