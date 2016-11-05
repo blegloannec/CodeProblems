@@ -2,6 +2,26 @@
 
 import sys
 
+# Pb tres basique avec une belle astuce dans le calcul de la complexite !
+# L'idee est que si l'on simule betement, on descend dans X et Y (equipes
+# comparees) en O(|X|+|Y|), mais on peut accelerer la descente en remarquant
+# que si l'on connait les forces maximales FX et FY des combattants restant
+# dans X et Y et les nb NX, NY de combattants restants ayant cette force, alors
+# on est certain de faire k = min(NY/FX, NX/FY) etapes de ping-pong entre
+# les 2 equipes a ce "palier de force", que l'on peut simuler en une seule
+# etape. Ainsi on est certain de descendre strictement d'au moins un palier de
+# force dans X ou Y a chaque etape de simulation. Si l'on note Fi les K forces
+# considerees dans A et B et Ni le nb d'etapes (simulees) de descente associees,
+# alors S = sum( Ni*Fi, 1<=i<=K ) = O(|A|+|B|)
+# et la complexite est O(K) car on descend d'au moins un palier a chaque fois,
+# ie. car a chaque pas on ajoute + kx*FX + ky*FY avec kx ou ky >= 1 a
+# la somme et l'on est certain d'en avoir fini avec FX ou FY, d'ou O(K) etapes
+# pour tout boucler.
+# De plus une meme valeur est presente au plus 2 fois parmi les Fi
+# (1 fois pour X et 1 fois pour Y).
+# Au pire, tout Ni = 1 et Fi = 1,1,2,2,3,3,4,4,... d'ou S ~ Omega(K^2)
+# et donc la complexite est O(K) = O(sqrt(|A|+|B|)) !
+
 def winner(x,y):
     X,Y = T[x],T[y]
     ix,iy = len(X)-1,len(Y)-1
