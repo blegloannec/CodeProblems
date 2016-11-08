@@ -5,13 +5,15 @@ import sys
 # we simply want to count the number of iterations of the loop nest 
 # an iteration is determined by 1 <= i1 < i2 < ... < ik <= n
 # with i2-i1 >= 1, i3-i2 >= 2, i4-i3 >= 3, ...
-# let us do a simple translation
-# so let j1 = i1, j2 = i2 > j1, j3 = i3-1 > j2 with j2-j1 >= 1,
-# j4 = i4-(1+2) >= i3 > j3 with j4-j3 >= 1,
-# j5 = i5-(1+2+3) >= i4-2 > j4 with j5-j4 >= 1, etc
+# let us do a simple translation:
+# let j1 = i1, j2 = i2 > j1,
+# j3 = i3-1 > j2 so that i3-i2 >= 2 becomes j3-j2 >= 1,
+# j4 = i4-(1+2) >= i3 > j3 so that j4-j3 >= 1,
+# j5 = i5-(1+2+3) >= i4-2 > j4 so that j5-j4 >= 1, etc
 # so that an iteration is perfectly determined by
 # 1 <= j1 < j2 < ... < jk <= n-(1+2+...+(k-2)) = n-(k-1)(k-2)/2
-# the number of iterations is then binom(n-(k-1)(k-2)/2,k)
+# without the additional constraints
+# and the number of iterations is then binom(n-(k-1)(k-2)/2,k)
 
 P = 10**9+7
 
