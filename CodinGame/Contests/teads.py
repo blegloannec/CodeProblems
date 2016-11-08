@@ -12,8 +12,12 @@ def depth(u, u0=None):
 def maj(u, u0=None, p0=0):
     p,p2 = p0,0
     for v in T[u]:
-        if v!=u0 and 1+D[v]>=p:
-            p,p2 = 1+D[v],p
+        if v!=u0:
+            dv = 1+D[v]
+            if dv>p:
+                p,p2 = dv,p
+            elif dv>p2:
+                p2 = dv
     P[u] = p
     for v in T[u]:
         if v!=u0:
