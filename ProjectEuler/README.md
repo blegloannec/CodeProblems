@@ -16,3 +16,5 @@ More efficient implementations of some of these codes are in `/HackerRank/Contes
 **Interesting links:**
  * [OEIS](http://oeis.org/)
  * [Quadratic (two variable) Diophantine equation solver](https://www.alpertron.com.ar/QUAD.HTM) (particularly useful when not reducible to the [Pell-Fermat case](https://en.wikipedia.org/wiki/Pell%27s_equation))
+ * [Custom Grid Paper generator](http://incompetech.com/graphpaper/)
+ 
