@@ -143,12 +143,12 @@ A = map(int,mv_prod(Minv,B))
 
 # NB (a posteriori): the sequence seems to be http://oeis.org/A028452
 # yet the coefficients computed are not exactly the same as those found on
-# OEIS and their reccurence is of degree 23 instead of 19?!...
+# OEIS and their recurrence is of degree 23 instead of 19?!...
 # Yet this works, so their recurrence might not be optimal...
 
 
 ## PART 3 ##
-# Matric exponentiation to compute the result
+# Matrix exponentiation to compute the result
 P = 10**8+7
 
 class Matrice:
