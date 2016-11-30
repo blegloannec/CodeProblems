@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+
+from multiprocessing import Pool
 
 # en affichant le triangle modulo un nb premier p,
 # on remarque une regularite de motif "fractale"
@@ -11,19 +13,25 @@
 # https://en.wikipedia.org/wiki/Lucas%27_theorem
 
 # algo naif ici
-# TODO : prog dyn efficace
-
 def contrib(n):
     c = 1
     while n>0:
         c *= n%7 + 1
-        n //= 7
+        n /= 7
     return c
 
-def main():
+# runs in 1 min 15 with multiprocessed pypy
+
+CORES = 4
+
+def compte(start,step=CORES):
     res = 0
-    for n in range(10**9):
+    for n in xrange(start,10**9,step):
         res += contrib(n)
-    print res
+    return res
+
+def main():
+    p = Pool(CORES)
+    print sum(p.map(compte,range(CORES)))
 
 main()
