@@ -97,17 +97,16 @@ def next_conf(X):
 
 # simple BFS dans le graphe des confs
 def bfs(start,dest):
-    Q = deque()
-    dist = {}
-    Q.append((start,0))
-    dist[start] = 0
+    Q = deque([start])
+    dist = {start:0}
     while Q:
-        u,d = Q.popleft()
+        u = Q.popleft()
+        d = dist[u]
         for v in next_conf(u):
             if v==dest:
                 return d+1
             if v not in dist:
                 dist[v] = d+1
-                Q.append((v,d+1))
+                Q.append(v)
 
 print bfs(start,dest)
