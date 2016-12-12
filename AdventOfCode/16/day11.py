@@ -46,7 +46,7 @@ def decode(X):
 
 # verifie que le floor f est valide
 def valid_floor(f,C,G):
-    return not (any(floor(G,i)==f for i in xrange(N)) and any(floor(C,i)==f and not floor(G,i)==f for i in xrange(N)))
+    return not (any(floor(G,i)==f for i in xrange(N)) and any(floor(C,i)==f and floor(G,i)!=f for i in xrange(N)))
 
 # genere les configurations suivantes valides
 def next_conf(X):
