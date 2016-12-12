@@ -35,7 +35,7 @@ dest = (3,int('3333333',4),int('3333333',4))
 
 # codage d'un triplet en un seul int pour economiser la memoire
 def encode(E,C,G):
-    return E+(C<<2)+(G<<(2*N+2))
+    return E|(C<<2)|(G<<(2*N+2))
 
 start = encode(*start)
 dest = encode(*dest)
