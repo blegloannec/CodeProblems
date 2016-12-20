@@ -5,7 +5,9 @@ Input = '00101000101111010'
 def dragon(A,n):
     A = list(A)
     while len(A)<n:
-        A += ['0']+['0' if A[-i-1]=='1' else '1' for i in xrange(len(A))]
+        # recent discovery: reversed() to reverse an iterator
+        # (requires length and random access)
+        A += ['0']+['0' if a=='1' else '1' for a in reversed(A)]
     return A[:n]
 
 def checksum(A):
