@@ -1,48 +1,27 @@
 #!/usr/bin/env python
 
-# runs in ~4min with pypy :/
+# runs in <50s with pypy
 
-# renvoie un couple de booleens :
-# (n n'a que des chiffres <=2, n%10^k n'a que des chiffres <=2)
-def test(n,k):
-    p = 1
-    while n>0:
-        if n%10>2:
-            return False,(p>=k)
-        n /= 10
-        p += 1
-    return True,True
+def dp(n):
+    R = [[int(i<=2) for i in xrange(n)]]
+    p10 = 1
+    while R[-1][0]==1: # tant qu'il n'y a que la solution 0
+        p10 = (p10*10)%n
+        R.append([sum(R[-1][(r-i*p10)%n] for i in xrange(3)) for r in xrange(n)])
+    # on a trouve un solution de taille len(R)
+    # remontee pour calculer la plus petite solution
+    r,f = 0,0
+    for l in xrange(len(R)-1,0,-1):
+        p10 = pow(10,l,n)
+        # test de debut de range pour eviter la solution 0
+        # l'ordre du range assure la plus petite solution
+        # lexicographique
+        for i in xrange(int(l==len(R)-1),3):
+            if R[l-1][(r-i*p10)%n]>0:
+                r = (r-i*p10)%n
+                f = 10*f+i
+                break
+    f = 10*f+r
+    return f
 
-def f(n):
-    # p = 10^a puissance de 10 courante
-    p = 1
-    a = 0
-    # V = valeurs des 0 <= v < p tels que (v*n)%p ne
-    #     contient que des chiffres <=2
-    # V sera maintenue croissante dans l'algo
-    V = [0]
-    while True:
-        # puissance superieure
-        p10 = 10*p
-        V10 = []
-        # pour chaque v, on teste les valeurs 0 <= v + i*p < 10*p
-        # et on retient celles pour lesquelles (n*(v+i*p))%(10*p)
-        # ne contient que des chiffres <=2
-        # on teste suivant i, puis v croissants pour construire
-        # une liste V10 croissante
-        for i in xrange(int(p==1),10):
-            for v in V:
-                v10 = p*i+v
-                m = n*v10
-                sol,valid = test(m,a)
-                if sol:
-                    # comme on teste suivant i, puis v, croissants
-                    # la premiere solution trouvee est la plus petite
-                    return v10
-                if valid:
-                    V10.append(v10)
-        V = V10
-        p = p10
-        a += 1
-
-print sum(f(n) for n in xrange(1,10001))
+print 2+sum(dp(n)/n for n in xrange(3,10001))
