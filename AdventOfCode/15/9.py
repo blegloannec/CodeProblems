@@ -1,43 +1,35 @@
 #!/usr/bin/env python
 
-import sys
-import re
+import sys,re
 
 instr = re.compile('([a-zA-Z]+) to ([a-zA-Z]+) = ([0-9]+)$')
 
 N = 10
-dist = [[-1 for j in range(N)] for i in range(N)]
+dist = [[-1 for _ in xrange(N)] for _ in xrange(N)]
 memo = {}
 
-def D(S,s,c):
-    h = (tuple(S),s,c)
+# Held–Karp algorithm for the TSP
+# ideally would use a bitmask for the sets, yet good enough
+def D(S,c):
+    h = (tuple(sorted(S)),c)
     if h in memo:
         return memo[h]
-    if len(S)==1:
-        res = dist[s][c]
-        memo[h] = res
-        return res
+    if len(S)==1: # S = {c}
+        res1,res2 = 0,0
     else:
-        #res = 100000000
-        res = -1
         S.remove(c)
-        for x in S:
-            #res = min(res,D(S,s,x)+dist[x][c])
-            res = max(res,D(S,s,x)+dist[x][c])
+        # iterate over list(S) as S is modified during iterations
+        res1 = min(D(S,x)[0]+dist[x][c] for x in list(S))
+        res2 = max(D(S,x)[1]+dist[x][c] for x in list(S))
         S.add(c)
-        memo[h] = res
-        return res
+    memo[h] = (res1,res2)
+    return res1,res2
 
 def TSP(n):
     S = set(range(n))
-    #res = 100000000
-    res = -1
-    for s in range(n):
-        S.remove(s)
-        #res = min(res,min([D(S,s,c) for c in S]))
-        res = max(res,max([D(S,s,c) for c in S]))
-        S.add(s)
-    return res
+    res1 = min(D(S,c)[0] for c in xrange(n))
+    res2 = max(D(S,c)[1] for c in xrange(n))
+    return res1,res2
 
 def main():
     f = open(sys.argv[1],'r')
