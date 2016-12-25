@@ -33,7 +33,7 @@ print cpt
 # viable destination node, which is empty, so that the only way to
 # solve the problem is by "moving around" the empty node
 assert(len(S)==1)
-empty = list(S)[0]
+empty = S.pop()
 # also observe that if (x0,y0) is the empty node position
 # we have to move (W-1,0) to (0,0) so that it costs at least
 # (W-1-x0) + y0 + 5*(W-2)

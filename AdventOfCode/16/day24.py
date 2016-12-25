@@ -29,28 +29,31 @@ def bfs(start):
 # min dists from each point of interest
 dists = [bfs(V[i]) for i in xrange(N)]
 
-def heap(n,A):
-    if n==1:
-        yield A
-    else:
-        for i in xrange(n-1):
-            for B in heap(n-1,A):
-                yield B
-            if n%2==0:
-                A[i],A[n-1] = A[n-1],A[i]
-            else:
-                A[0],A[n-1] = A[n-1],A[0]
-        for B in heap(n-1,A):
-            yield B
+def enum(S):
+    i = 0
+    while S>0:
+        if S&1:
+            yield i
+        S >>= 1
+        i += 1
 
-d1,d2 = float('inf'),float('inf')
-# trying all permutations, it's a TSP anyway!
-for P in heap(N-1,range(1,N)):
-    d0 = dists[0][V[P[0]]]
-    for i in xrange(len(P)-1):
-        d0 += dists[P[i]][V[P[i+1]]]
-    d1 = min(d1,d0)
+# bitmask-based Held-Karp for the TSP
+memo = {}
+def D(S,c):
+    if (S,c) in memo:
+        return memo[S,c]
+    if S==0:
+        res = dists[0][V[c]]
+    else:
+        res = min(D(S^(1<<x),x)+dists[x][V[c]] for x in enum(S))
+    memo[S,c] = res
+    return res
+
+def TSP(n):
+    S = ((1<<n)-1)^1 # all points of interests (0 excluded)
+    res1 = min(D(S^(1<<x),x) for x in xrange(1,n))
     # going back to 0 for part two
-    d0 += dists[P[-1]][V[0]]
-    d2 = min(d2,d0)
-print d1,d2
+    res2 = min(D(S^(1<<x),x)+dists[x][V[0]] for x in xrange(1,n))
+    return res1,res2
+
+print TSP(N)
