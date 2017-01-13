@@ -4,6 +4,7 @@
 #include <ctime>
 #include <algorithm>
 #include <climits>
+#include <cassert>
 using namespace std;
 
 typedef long long ent;
@@ -15,8 +16,7 @@ typedef pair<int,int> couple;
   Given j, the number of triples "centered" in j is exactly the
   #{triangle nb before j with greater dT} * #{triangle nb after j with less dT}
   Here we use custom "indexed" Skip Lists to count, which takes a lot of memory...
-  Runs in ~100s with -O3
-  Should have used Binary Indexed (or Fenwick) Trees.
+  As an better alternative solution, we use Binary Indexed (or Fenwick) Trees.
 */
 
 /* ===== Indexed Skip List ===== */
@@ -106,6 +106,29 @@ void isl_clear(IdxSkipLink *L) {
 }
 /* =============== */
 
+
+/* ===== Fenwick Trees ===== */
+typedef vector<int> fenwick;
+
+void ft_add(fenwick &A, int i, int v=1) {
+  assert(i>0);
+  while (i<(int)A.size()) {
+    A[i] += v;
+    i += i&-i;
+  }
+}
+
+int ft_sum_prefix(fenwick &A, int i) {
+  int s = 0;
+  while (i>0) {
+    s += A[i];
+    i -= i&-i;
+  }
+  return s;
+}
+/* ================ */
+
+
 const int N = 60000002;
 const int dmax = 25;
 const ent M = 1000000000000000000;
@@ -140,7 +163,9 @@ void decomp(int n, vector<couple> &D) {
   if (n>1) decomp(n,D);
 }
 
-int main() {
+
+// Skip List solution, runs in ~100s with -O3
+int main0() {
   srand(time(NULL));
   // Computing dT
   sieve_smallest_factor();
@@ -166,6 +191,44 @@ int main() {
   for (int i=N-2; i>0; --i)
     nb_less_after[i] = isl_insert(L,dT[i],true)-1;
   isl_clear(L);
+  // Computing result
+  ent res = 0;
+  for (int n=1; n<N-1; ++n)
+    res = (res + (ent)nb_greater_before[n]*(ent)nb_less_after[n])%M;
+  cout << res << endl;
+  return 0;
+}
+
+
+// Fenwick Tree solution, runs in 13s with -O3
+int main() {
+  srand(time(NULL));
+  // Computing dT
+  sieve_smallest_factor();
+  int nbdn = 1;
+  int maxdT = 0;
+  for (int n=1; n<N-1; ++n) {
+    vector<couple> Divsnp1;
+    decomp(n+1,Divsnp1);
+    int nbdnp1 = 1;
+    for (vector<couple>::iterator it=Divsnp1.begin(); it!=Divsnp1.end(); ++it)
+      nbdnp1 *= it->first==2?it->second:it->second+1;
+    dT[n] = nbdn*nbdnp1;
+    maxdT = max(dT[n],maxdT);
+    nbdn = nbdnp1;
+  }
+  // Inserting in increasing index order
+  fenwick A(maxdT+1,0);
+  for (int i=1; i<N-1; ++i) {
+    ft_add(A,dT[i]);
+    nb_greater_before[i] = i-ft_sum_prefix(A,dT[i]);
+  }
+  // Inserting in decreasing index order
+  fill(A.begin(),A.end(),0);
+  for (int i=N-2; i>0; --i) {
+    ft_add(A,dT[i]);
+    nb_less_after[i] = ft_sum_prefix(A,dT[i]-1);
+  }
   // Computing result
   ent res = 0;
   for (int n=1; n<N-1; ++n)
