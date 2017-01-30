@@ -17,10 +17,8 @@ int curr;
 void produit(ent *mat, ent *vect, ent *res) {
   for (int i=0; i<n; ++i) {
     res[i] = 0;
-    for (int j=0; j<n; ++j) {
-      res[i] += (vect[j]*mat[(i-j+n)%n])%momo;
-    }
-    res[i] = res[i]%momo;
+    for (int j=0; j<n; ++j)
+      res[i] = (res[i] + (vect[j]*mat[(i-j+n)%n])%momo)%momo;
   }
 }
 
@@ -52,7 +50,7 @@ int main() {
     curr = 0;
     for (int i=0; i<n; ++i) {
       cin >> a;
-      mess[i] = a;
+      mess[i] = a%momo;
       m[curr][i] = 0L;
       svg[i] = 0L;
     }
@@ -71,7 +69,7 @@ int main() {
     m[curr][1] = L;
     svg[1] = L;
     m[curr][n-1] = R;
-    svg[n-1] = R;      
+    svg[n-1] = R;
     expo(S);
     produit(m[curr],mess,m[(curr+1)%2]);
     curr = (curr+1)%2;
