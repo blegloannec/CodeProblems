@@ -89,8 +89,8 @@ def l_swap(M,i,j):
         M[i][k],M[j][k] = M[j][k],M[i][k]
 
 def first_non_zero(M,i):
-    w = len(M[0])
-    for j in range(w):
+    h = len(M)
+    for j in range(i,h):
         if M[i][j]!=0:
             return j
     return None
@@ -112,9 +112,10 @@ def inverse(M0):
     I = id(n)
     for i in range(n):
         j0 = first_non_zero(M,i)
+        assert(j0!=None)
         if j0>i:
-            c_swap(M,i,j0)
-            c_swap(I,i,j0)
+            l_swap(M,i,j0)
+            l_swap(I,i,j0)
         a = Fraction(1,M[i][i]) # for exact Fraction computation
         sline_prod(a,M,i)
         sline_prod(a,I,i)
