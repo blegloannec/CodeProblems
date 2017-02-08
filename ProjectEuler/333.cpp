@@ -60,6 +60,7 @@ SpePart C(int n, int max2=19, int min3=0) {
   if (n==0) {
     cs.t = one;
     cs.c = new part_c();
+    memo[h] = cs;
     return cs;
   }
   if (max2<0 || min3>12) return cs;
@@ -75,7 +76,7 @@ SpePart C(int n, int max2=19, int min3=0) {
     memo[h] = cs;
     return cs;
   }
-  if (c1s1.t==one and c2s2.t==one) {
+  if (c1s1.t==one && c2s2.t==one) {
     if (*(c1s1.c)==*(c2s2.c)) {
       cs.t = one;
       cs.c = c1s1.c;
@@ -99,7 +100,7 @@ SpePart C(int n, int max2=19, int min3=0) {
     SpePart c1s1 = C(n-x,max2-1,min3+1);
     if (c1s1.t==mult) {
       cs.t = mult;
-      //cs.c = NULL; // who cares
+      cs.c = NULL; // useless, yet cleaner
       memo[h] = cs;
       return cs;
     }
@@ -109,7 +110,8 @@ SpePart C(int n, int max2=19, int min3=0) {
       s1->insert(x);
       if (cs.t==one && *(cs.c)!=*s1) {
 	cs.t = mult;
-	//cs.c = NULL; // who cares
+	cs.c = NULL; // cleaner
+	delete s1; // no mem leak pls
 	memo[h] = cs;
 	return cs;
       }
