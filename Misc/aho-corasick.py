@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# see HR 101Hack46 dna_health.cpp for a C++ version
-
 from collections import deque
 
 # Aho-Corasick, Efficient String Matching, 1975

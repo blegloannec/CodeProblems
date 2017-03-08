@@ -23,16 +23,6 @@ int num(char c) {
 
 typedef pair<int,int> match;
 
-vector<int> sort_merge(const vector<int> &A, const vector<int> &B) {
-  int ia=0,ib=0,sa=A.size(),sb=B.size();
-  vector<int> R;
-  while (ia<sa || ib<sb) {
-    if (ib==sb || (ia<sa && A[ia]<=B[ib])) R.push_back(A[ia++]);
-    else R.push_back(B[ib++]);
-  }
-  return R;
-}
-
 struct ACTrie {
   vector<string> W;
   vector< vector<int> > G,O;
