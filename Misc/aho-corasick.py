@@ -12,6 +12,7 @@ class ACTrie:
         self.G = [{}]   # transitions
         self.O = [[]]   # final states
         self.F = [None] # fail function
+        self.B = [None]  # dict backlink
         for iw in range(len(self.W)):
             w = self.W[iw]
             s = 0
@@ -38,8 +39,10 @@ class ACTrie:
                         f = self.F[f]
                     f0 = self.g(f,c)
                     self.F[s0] = f0
-                    # on complete la sortie de s0
-                    self.O[s0] += self.O[f0]
+                    # IMPLEM. 1 - on complete la sortie de s0
+                    #self.O[s0] += self.O[f0]
+                    # IMPLEM. 2 - backlink
+                    self.B[s0] = f0 if self.O[f0] else self.B[f0]
             
     def g(self,s,c): # transition function completed for 0 -*-> 0
         if c in self.G[s]:
@@ -51,6 +54,7 @@ class ACTrie:
         self.G.append({})
         self.O.append([])
         self.F.append(None)
+        self.B.append(None)
         return s
 
     def find(self,S):
@@ -60,20 +64,31 @@ class ACTrie:
             while self.g(s,c)==None:
                 s = self.F[s]
             s = self.g(s,c)
-            if self.O[s]: # motif(s) trouve(s)
+            # IMPLEM. 1 dans laquelle on complete l'output
+            # if self.O[s]: # motif(s) trouve(s)
                 # renvoie les indices des motifs
                 #yield (i,self.O[s])
                 # renvoie les motifs
-                yield (i,list(map(lambda iw: self.W[iw], self.O[s])))
-                
+                # yield (i,list(map(lambda iw: self.W[iw], self.O[s])))
+            # IMPLEM. 2 dans laquelle on utilise des backlink
+            if self.O[s] or self.B[s]: # motif direct ou backlink
+                # renvoie le noeud du trie
+                yield (i,s)
+
+    # IMPLEM 2 - calculer l'ouput d'un noeud
+    # (version iterative, parce que Python)
+    def output(self,s):
+        while s:
+            yield from self.O[s]
+            s = self.B[s]
 
 A = ACTrie(['he','she','is','hers'])
-for o in A.find('ishers'):
-    print(o)
+for (i,s) in A.find('ishers'):
+    print(i,[A.W[a] for a in A.output(s)])
 
 B = ACTrie(['aaa','a','aa'])
-for o in B.find('aaaaa'):
-    print(o)
+for (i,s) in B.find('aaaaa'):
+    print(i,[B.W[a] for a in B.output(s)])
 
 
 # =============================================
@@ -93,6 +108,7 @@ class ACTrie:
         self.G = [[None]*Alpha] # transitions
         self.O = [[]]           # final states
         self.F = [None]         # fail function
+        self.B = [None]         # dict backlink
         for iw in range(len(self.W)):
             w = self.W[iw]
             s = 0
@@ -122,8 +138,7 @@ class ACTrie:
                         f = self.F[f]
                     f0 = self.g(f,c)
                     self.F[s0] = f0
-                    # on complete la sortie de s0
-                    self.O[s0] += self.O[f0]
+                    self.B[s0] = f0 if self.O[f0] else self.B[f0]
             
     def g(self,s,c): # transition function completed for 0 -*-> 0
         if self.G[s][c]!=None:
@@ -135,6 +150,7 @@ class ACTrie:
         self.G.append([None]*Alpha)
         self.O.append([])
         self.F.append(None)
+        self.B.append(None)
         return s
 
     def find(self,S):
@@ -144,8 +160,19 @@ class ACTrie:
             while self.g(s,c)==None:
                 s = self.F[s]
             s = self.g(s,c)
-            if self.O[s]: # motif(s) trouve(s)
-                # renvoie les indices des motifs
-                yield (i,self.O[s])
-                # renvoie les motifs
-                #yield (i,list(map(lambda iw: self.W[iw], self.O[s])))
+            if self.O[s] or self.B[s]: # motif(s) trouve(s)
+                yield (i,s)
+    
+    def output(self,s):
+        while s:
+            yield from self.O[s]
+            s = self.B[s]
+
+
+A = ACTrie(['he','she','is','hers'])
+for (i,s) in A.find('ishers'):
+    print(i,[A.W[a] for a in A.output(s)])
+
+B = ACTrie(['aaa','a','aa'])
+for (i,s) in B.find('aaaaa'):
+    print(i,[B.W[a] for a in B.output(s)])
