@@ -88,7 +88,6 @@ def Q(N):
     return cpt
 
 def main():
-    N = 100
     res = 0
     for u in range(1,40):
         res = (res + Q(1<<u))%P
