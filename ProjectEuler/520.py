@@ -83,7 +83,7 @@ def Q(N):
     cpt = 0
     for O in range(6):
         M = Matrice(genM(O))**N
-        # on choisit 0 chiffres impairs parmi 5
+        # on choisit O chiffres impairs parmi 5
         cpt = (cpt + binom(5,O)*(M[6*(O+1)][0]))%P
     return cpt
 
