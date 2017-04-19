@@ -15,7 +15,7 @@ for _ in range(nb_tests):
 examples = []
 for _ in range(nb_examples):
     examples.append([list(map(int,x)) for x in input().split()])
-    
+
 # weights
 Wtheta = [[0]*layer_size[i] for i in range(nb_layers)]
 W = [[[0]*layer_size[i+1] for _ in range(layer_size[i])] for i in range(nb_layers-1)] 
