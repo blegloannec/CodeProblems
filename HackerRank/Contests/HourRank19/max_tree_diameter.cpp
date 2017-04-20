@@ -45,8 +45,6 @@ void diameter(int u=0, int u0=-1) {
   sub_diam[u] = max(sub_diam[u],mp1+mp2);
 }
 
-int res = 0;
-
 /*
   second pass
   u0 ---> u ---> v
@@ -73,7 +71,7 @@ int res = 0;
 	ou bien il faudrait initialiser a -1 mais cela peut a priori poser pb
 	dans certains cas particuliers)
 */
-void dfs(int u=0, int u0=-1, int sd=0, int mp=-1) {
+int dfs(int u=0, int u0=-1, int sd=0, int mp=-1) {
   int mp1=0, mp2=0, mp3=0, sd1=0, sd2=0;
   for (vector<int>::iterator iv=G[u].begin(); iv!=G[u].end(); ++iv)
     if (*iv!=u0) {
@@ -95,7 +93,7 @@ void dfs(int u=0, int u0=-1, int sd=0, int mp=-1) {
       else if (sub_diam[*iv]>sd2)
 	sd2 = sub_diam[*iv];
     }
-  if (u0>=0) res = max(res,sd+1+sub_diam[u]);
+  int res = u0<0 ? sub_diam[u] : sd+1+sub_diam[u];
   for (vector<int>::iterator iv=G[u].begin(); iv!=G[u].end(); ++iv)
     if (*iv!=u0) {
       int mpv = max(mp+1,(mp1==max_path[*iv]+1 ? mp2 : mp1));
@@ -104,8 +102,9 @@ void dfs(int u=0, int u0=-1, int sd=0, int mp=-1) {
       if (max_path[*iv]+1==mp1) sdv = max(sdv,mp2+mp3);
       else if (max_path[*iv]+1==mp2) sdv = max(sdv,mp1+mp3);
       else sdv = max(sdv,mp1+mp2);
-      dfs(*iv,u,sdv,mpv);
+      res = max(res,dfs(*iv,u,sdv,mpv));
     }
+  return res;
 }
 
 int main() {
@@ -120,7 +119,6 @@ int main() {
     G[v].push_back(u);
   }
   diameter();
-  dfs();
-  cout << res << endl;
+  cout << dfs() << endl;
   return 0;
 }
