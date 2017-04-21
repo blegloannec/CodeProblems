@@ -2,11 +2,7 @@
 #include <vector>
 using namespace std;
 
-/* 
-   Trie + kinda Backtracking with memoization (kinda DP too)
-   Pretty simple actually (the problem is tagged "very hard")!
-   NB: almost identical to ACM-ICPC (UVa) pb 1113 (Multiple Morse Matches)
-*/
+// Trie + kinda Backtracking with memoization (kinda DP too)
 
 typedef long long ll;
 typedef vector<bool> morse_string;
@@ -29,6 +25,7 @@ struct MorseTree {
   }
 
   void insert(const morse_string &s, unsigned int i);
+  void clear();
 };
   
 void MorseTree::insert(const morse_string &s, unsigned int i=0) {
@@ -43,8 +40,14 @@ void MorseTree::insert(const morse_string &s, unsigned int i=0) {
   }
 }
 
+void MorseTree::clear() {
+  if (l!=NULL) l->clear();
+  if (r!=NULL) r->clear();
+  delete this;
+}
+
 morse_string L; // morse string to cut
-MorseTree *LT = new MorseTree(); // Trie root
+MorseTree *LT; // Trie root
 vector<ll> memo;
 
 // kinda Backtracking + Memoization (only when on root node, i.e. actual cuts)
@@ -77,18 +80,28 @@ morse_string word2morse(const string &W) {
 }
 
 int main() {
-  string L0;
-  cin >> L0;
-  for (unsigned int i=0; i<L0.size(); ++i)
-    L.push_back(L0[i]=='-');
-  int N;
-  cin >> N;
-  for (int i=0; i<N; ++i) {
-    string W;
-    cin >> W;
-    LT->insert(word2morse(W));
+  int T;
+  cin >> T;
+  for (int t=0; t<T; ++t) {
+    string L0;
+    cin >> L0;
+    for (unsigned int i=0; i<L0.size(); ++i)
+      L.push_back(L0[i]=='-');
+    int N;
+    cin >> N;
+    LT = new MorseTree();
+    for (int i=0; i<N; ++i) {
+      string W;
+      cin >> W;
+      LT->insert(word2morse(W));
+    }
+    memo.resize(L.size(),-1);
+    if (t>0) cout << endl; // blank line
+    cout << word_split(LT) << endl;
+    // cleaning
+    L.clear();
+    LT->clear();
+    memo.clear();
   }
-  memo.resize(L.size(),-1);
-  cout << word_split(LT) << endl;
   return 0;
 }
