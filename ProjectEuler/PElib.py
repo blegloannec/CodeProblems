@@ -180,6 +180,32 @@ def rev_chinois(a,p,b,q):
     return (b*u*p+a*v*q)%(p*q)
 
 
+# Solveur chinois general (cas NON p-e-e)
+# (utilise la decompositon primale donc, evidemment,
+#  a ne pas utiliser dans le cas plus simple des modulos
+#  2-a-2 p-e-e)
+# E une liste de couples (a,n) pour ? = a mod n
+# (c.f. pb 531)
+def solveur_chinois(Decomp,E):
+    S = {} # S[p] = (a,x) pour ? = x mod p^a
+    for (x,n) in E:
+        for (p,a) in Decomp[n]:
+            if p not in S:
+                S[p] = (a,x)
+            else:
+                b,y = S[p]
+                if (x-y)%(p**min(a,b))!=0: # pas de solution
+                    return None
+                if b<a:
+                    S[p] = (a,x)
+    x,p = 0,1
+    for q in S:
+        b,y = S[q]
+        qb = q**b
+        x,p = rev_chinois(x,p,y,qb),p*qb
+    return (x,p)
+
+
 def somme_diviseurs(n): # for n>1!
     s = 1
     r = int(sqrt(n))

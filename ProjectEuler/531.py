@@ -68,11 +68,10 @@ def G(Decomp,a,n,b,m):
     return solve(E)
 
 def solve(E):
-    while len(E)>1:
-        a,n = E.pop()
-        b,m = E.pop()
-        E.append((rev_chinois(a,n,b,m),n*m))
-    return E[0][0]
+    a,n = 0,1
+    for (b,m) in E:
+        a,n = rev_chinois(a,n,b,m),n*m
+    return a
 
 def sieve_decomp(N):
     P = [True for _ in xrange(N)]
