@@ -4,6 +4,9 @@ import sys
 
 # la solution est simplement le nb d'inversions
 
+# NB: choisir "Pypy 2" pour ce pb (Python 2 trop lent)
+# NB: c'est aussi la solution au pb "Merge Sort: Counting Inversions"
+
 # compte les inversions d'une permutation
 # en O(n log n) par tri fusion modifie
 def inversions(A):
@@ -34,6 +37,6 @@ def main():
     for _ in xrange(T):
         N = int(sys.stdin.readline())
         A = map(int,sys.stdin.readline().split())
-        print merge_sort_inv(A,0,N-1)
+        print merge_sort_inv(A,0,N-1)[0]
 
 main()
