@@ -11,27 +11,18 @@
 # on evalue en x = 1
 # sum(2^k / k, k=1..n) - H(n) = 2^n * JA(n)
 
-def binom(n,p):
-    return 1 if p==0 else n*binom(n-1,p-1)/p
-
-def JA(n):
-    return sum(1./k*binom(n,k) for k in xrange(1,n+1)) / 2.**n
-
-def JAbis(n):
-    H = sum(1./k for k in xrange(1,n+1))
-    return (sum(2.**k/k for k in xrange(1,n+1))-H) / 2.**n
-
-def JB(n):
-    return sum(1./(k*binom(n,k)) for k in xrange(1,n+1))
-
-def JBbis(n):
-    return sum(2.**k/k for k in xrange(1,n+1)) / 2.**n
+# JB(n) = sum(1/(k*binom(n,k)), k=1..n)
+# et l'on remarque un peu par hasard (!) que
+# JB(n) = sum(2^k / k, k=1..n) / 2^n (= JA(n) + H(n)/2^n)
+# ce qui n'est pas evident a demontrer...
+# (voir le post de amic sur le forum du pb 568 pour une
+#  preuve simple et elegante)
 
 def S(m):
-    res = 0
-    J,H = 0,0
+    res,J,H,p2 = 0,0,0,1.
     for n in xrange(1,m+1):
-        H = H/2. + (1./(n*2**n) if n<1000 else 0.)
+        p2 *= 2.
+        H = H/2. + 1./(n*p2)
         J = J/2. + 1./n
         res += 2*J - H
     return res
