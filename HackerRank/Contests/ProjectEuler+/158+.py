@@ -11,6 +11,11 @@
 # voir aussi PE 595 pour une methode de denombrement similaire
 # et PE 602 pour ces nombres (et d'autres formules)
 
+# Les p(n,m) de l'enonce ne sont pas exactement ces nombres car
+# on a une taille N fixee pour l'alphabet, donc il faut choisir
+# les n lettres a utiliser :
+# p(n,m) = binom(N,n) * a(n,m)
+
 def main():
     N,q = map(int,input().split())
     M = list(map(int,input().split()))
