@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 
-# Eulerian numbers
-# http://oeis.org/A008292
-# see also PE pb 602
+# a(n,i) = nb de permutations de {1..n} avec exactement i "fractures"
+# Partant d'une permutation de {1..n-1}, il s'agit de choisir une position
+# d'insertion pour le n (qui sera la plus grande valeur courante).
+# Si on l'insere au debut ou entre 2 blocs decroissants alors on ne cree pas
+# de nouvelle fracture. Toute autre position cree une nouvelle fracture.
+# D'où, en ecrivant ce raisonnement "a l'envers" :
 # a(n,i) = (i+1)*a(n-1,i) + (n-i)*a(n-1,i-1)
+# Eulerian numbers http://oeis.org/A008292
+# voir aussi PE 595 pour une methode de denombrement similaire
+# et PE 602 pour ces nombres (et d'autres formules)
 
 def main():
     N,q = map(int,input().split())
