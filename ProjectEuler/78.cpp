@@ -31,7 +31,7 @@ using namespace std;
 
   Solution ci-dessous : calculer les Q(.,m) successifs pour des m croissants.
 
-  NB : P(n,k) = Q(n,k) car ils verifient la meme relation de recurrence, mais
+  NB : P'(n,k) = Q(n,k) car ils verifient la meme relation de recurrence, mais
   cela peut se voir directement par la dualite sur les partitions d'entiers
   (transposition du diagramme de Young).
 
