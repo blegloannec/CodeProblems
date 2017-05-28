@@ -43,18 +43,16 @@ struct LazySegmentTree {
 
   void propagate(int p, int span) {
     //assert(p<(int)N && L0[p]);
-    S[2*p] = iter_op(L[p],span/2);
-    S[2*p+1] = iter_op(L[p],span/2);
+    S[2*p] = S[2*p+1] = iter_op(L[p],span/2);
     if (2*p<(int)N) {
-      L0[2*p] = true;
-      L[2*p] = L[p];
-      L0[2*p+1] = true;
-      L[2*p+1] = L[p];
+      L0[2*p] = L0[2*p+1] = true;
+      L[2*p] = L[2*p+1] = L[p];
     }
     L0[p] = false;
     //L[p] = NEUTRAL; // useless
   }
 
+  // returns S[p], to allow the parents update
   elem _lazy_set_range(int p, int start, int span, int i, int j, elem v) {
     if (start+span<=i || j<=start) return S[p];
     if (i<=start && start+span<=j) {
@@ -76,9 +74,9 @@ struct LazySegmentTree {
     _lazy_set_range(1,0,N,i,j+1,v);
   }
 
+  // returns the op in t in the indexes [i,j) intersected
+  // with [start,start+span)
   elem _range(int p, int start, int span, int i, int j) {
-    // returns the minimum in t in the indexes [i,j) intersected
-    // with [start,start+span)
     if (p<(int)N && L0[p]) propagate(p,span);
     if (start+span<=i || j<=start) return NEUTRAL;
     if (i<=start && start+span<=j) return S[p];
