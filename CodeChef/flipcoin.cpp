@@ -33,19 +33,18 @@ struct FlipSegmentTree {
     L0[p] = false;
   }
 
-  // returns S[p], to allow the parents update
-  elem _lazy_flip_range(int p, int start, int span, int i, int j) {
-    if (start+span<=i || j<=start) return S[p];
-    if (i<=start && start+span<=j) {
+  void _lazy_flip_range(int p, int start, int span, int i, int j) {
+    if (start+span<=i || j<=start) return;
+    else if (i<=start && start+span<=j) {
       S[p] = span - S[p];
       if (p<(int)N) L0[p] = !L0[p];
-      return S[p];
     }
-    if (p<(int)N && L0[p]) propagate(p,span);
-    elem left = _lazy_flip_range(2*p,start,span/2,i,j);
-    elem right = _lazy_flip_range(2*p+1,start+span/2,span/2,i,j);
-    S[p] = left + right;
-    return S[p];
+    else {
+      if (p<(int)N && L0[p]) propagate(p,span);
+      _lazy_flip_range(2*p,start,span/2,i,j);
+      _lazy_flip_range(2*p+1,start+span/2,span/2,i,j);
+      S[p] = S[2*p] + S[2*p+1];
+    }
   }
   
   void flip_range(int i, int j) {
