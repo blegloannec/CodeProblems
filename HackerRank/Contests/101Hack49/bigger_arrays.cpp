@@ -77,9 +77,9 @@ struct LazySegmentTree {
   // returns the op in t in the indexes [i,j) intersected
   // with [start,start+span)
   elem _range(int p, int start, int span, int i, int j) {
-    if (p<(int)N && L0[p]) propagate(p,span);
     if (start+span<=i || j<=start) return NEUTRAL;
     if (i<=start && start+span<=j) return S[p];
+    if (p<(int)N && L0[p]) propagate(p,span);
     elem left = _range(2*p,start,span/2,i,j);
     elem right = _range(2*p+1,start+span/2,span/2,i,j);
     return op(left,right);
