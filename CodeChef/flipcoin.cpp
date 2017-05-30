@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cstdio>
 #include <vector>
 using namespace std;
 
@@ -70,13 +70,13 @@ struct FlipSegmentTree {
 
 int main() {
   int N,Q,c,r,l;
-  cin >> N >> Q;
+  scanf("%d %d",&N,&Q);
   vector<elem> T(N,0);
   FlipSegmentTree FST(T);
   for (int q=0; q<Q; ++q) {
-    cin >> c >> l >> r;
+    scanf("%d %d %d",&c,&l,&r);
     if (c==0) FST.flip_range(l,r);
-    else cout << FST.range(l,r) << endl;
+    else printf("%d\n",FST.range(l,r));
   }
   return 0;
 }
