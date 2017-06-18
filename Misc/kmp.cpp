@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-void prefs(string B, vector<int> &P) {
+void prefs(string &B, vector<int> &P) {
   P.resize(B.size()+1);
   P[0] = -1;
   int k = -1;
@@ -14,7 +14,7 @@ void prefs(string B, vector<int> &P) {
   }
 }
 
-vector<int> kmp(string A, string B) {
+vector<int> kmp(string &A, string &B) {
   vector<int> pos;
   vector<int> P;
   prefs(B,P);
