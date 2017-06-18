@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 const int C = 100000;
@@ -8,7 +7,7 @@ bool P[C];
 void sieve() {
   P[0] = P[1] = false;
   for (int i=2; i<C; ++i) P[i] = true;
-  for (int i=2; i<C; ++i)
+  for (int i=2; i*i<C; ++i)
     if (P[i])
       for (int j=2*i; j<C; j+=i)
 	P[j] = false;

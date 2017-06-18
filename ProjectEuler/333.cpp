@@ -40,7 +40,7 @@ map<triple,SpePart> memo;
 
 void sieve() {
   P[0] = P[1] = false;
-  for (int i=2; i<N; ++i)
+  for (int i=2; i*i<N; ++i)
     if (P[i])
       for (int k=2*i; k<N; k+=i)
 	P[k] = false;
