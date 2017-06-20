@@ -57,6 +57,15 @@ def sieve_list(N):
                 P[k] = False
     return L
 
+# crible pour marquer les nb premiers L <= n <= R
+def prime_int(L,R):
+    P = sieve_list(int(sqrt(R))+1)
+    D = [True for _ in xrange(R-L+1)]
+    for p in P:
+        for n in xrange(max(2,(L+p-1)/p)*p,R+1,p):
+            D[n-L] = False
+    return D
+
 # Les cribles suivants peuvent etre acceleres
 # en n'allant que jusqu'a la racine
 # le dernier facteur (>racine) manque potentiellement
@@ -545,3 +554,37 @@ def full_factorisation(n):
         D[2] += 1
         n /= 2
     return factorisation(n,D)
+
+
+# Matrices modulo P (a definir)
+class Matrice:
+    def __init__(self,M):
+        self.M = M
+        self.m = len(M)
+        self.n = len(M[0])
+
+    def __getitem__(self,i):
+        return self.M[i]
+        
+    def __mul__(self,A):
+        assert(self.n==A.m)
+        C = Matrice([[0 for _ in xrange(A.n)] for _ in xrange(self.m)])
+        for i in xrange(self.m):
+            for j in xrange(A.n):
+                for k in xrange(self.n):
+                    C[i][j] = (C[i][j]+self[i][k]*A[k][j])%P
+        return C
+
+    def copy(self):
+       return Matrice([self[i][:] for i in xrange(self.m)])
+    
+    def __pow__(self,b):
+        assert(self.m==self.n)
+        result = Matrice([[int(i==j) for j in xrange(self.n)] for i in xrange(self.n)])
+        A = self.copy()
+        while b:
+            if b & 1:
+                result *= A
+            A *= A
+            b >>= 1
+        return result
