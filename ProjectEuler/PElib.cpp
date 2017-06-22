@@ -86,3 +86,58 @@ void divisors(vector<couple> &D, vector<ent> &Divs) {
   }
   sort(Divs.begin(),Divs.end());
 }
+
+
+typedef double scal;
+typedef vector< vector<scal> > matrice;
+
+struct Matrice {
+  int m,n;
+  matrice M;
+  
+  Matrice(matrice &M0) {
+    M = M0; // attention, pas de copie profonde
+    m = M.size();
+    n = M[0].size();
+  }
+
+  static Matrice zero(int m, int n) {
+    matrice M0(m);
+    for (int i=0; i<m; ++i) M0[i].resize(n,0);
+    return Matrice(M0);
+  }
+
+  static Matrice id(int n) {
+    Matrice M = zero(n,n);
+    for (int i=0; i<n; ++i) M.M[i][i] = 1;
+    return M;
+  }
+  
+  Matrice operator*(const Matrice &A) const {
+    //assert(n==A.m);
+    Matrice C = zero(m,A.n);
+    for (int i=0; i<m; ++i)
+      for (int k=0; k<n; ++k)
+	for (int j=0; j<A.n; ++j)
+	  C.M[i][j] += M[i][k] * A.M[k][j];
+    return C;
+  }
+  
+  Matrice copy() const {
+    matrice M0(n);
+    for (int i=0; i<n; ++i) M0[i] = M[i]; // copy
+    return Matrice(M0);
+  }
+  
+  Matrice pow(int b) const {
+    //assert(m==n);
+    Matrice result = id(n);
+    Matrice A = copy();
+    while (b) {
+      if (b&1) result = result*A;
+      A = A*A;
+      b >>= 1;
+    }
+    return result;
+  }
+};
