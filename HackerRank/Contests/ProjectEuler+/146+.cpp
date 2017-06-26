@@ -15,14 +15,16 @@ void sieve() {
 }
 
 // multiplication modulo overflow-safe
+// (pour a<m, sinon ajouter "a %= m;" au debut)
 ent mulmod(ent a, ent b, ent m) {
-  ent x = 0, y = a%m;
-  while (b>0) {
-    if (b%2==1) x = (x+y)%m;
-    y = (y<<1)%m;
+  ent ab = 0;
+  while (b) {
+    if (b&1) ab += a;
+    if (ab>=m) ab -= m;
+    a = (a<<1)%m;
     b >>= 1;
   }
-  return x%m;
+  return ab;
 }
 
 // Miller-Rabin deterministe 64 bits
