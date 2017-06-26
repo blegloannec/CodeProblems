@@ -19,8 +19,10 @@ void sieve() {
 ent mulmod(ent a, ent b, ent m) {
   ent ab = 0;
   while (b) {
-    if (b&1) ab += a;
-    if (ab>=m) ab -= m;
+    if (b&1) {
+      ab += a;
+      if (ab>=m) ab -= m;
+    }
     a = (a<<1)%m;
     b >>= 1;
   }
