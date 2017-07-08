@@ -25,86 +25,47 @@ using namespace std;
   arriver a N
   essentiellement, c'est un algo glouton tres accelere
 
-  runs in 1s with -03
+  C(x) = nb de couples (a,b) tq a+b = x et gcd(a,b) = 1
+  mais gcd(a,b) = gcd(a,b+a) = gcd(a,x) donc C(x) = phi(x)
+
+  runs in 0.15s with -03
 */
 
 typedef long long ll;
-typedef pair<int,int> couple;
-
-const ll n = 1000000000000000000LL; // input
 
 const int N = 2500000;
 vector<bool> P(N,true);
-vector<int> F(N);
+vector<int> Phi(N,1);
 
-void sieve_smallest_factor() {
+void sieve_totient() {
   P[0] = P[1] = false;
   for (int i=2; i<N; ++i)
     if (P[i]) {
-      F[i] = i;
-      for (int k=2*i; k<N; k+=i)
-	if (P[k]) {
-	  P[k] = false;
-	  F[k] = i;
+      Phi[i] = i-1;
+      for (int k=2*i; k<N; k+=i) {
+	P[k] = false;
+	int m = 1;
+	int l = k/i;
+	while (l%i==0) {
+	  l /= i;
+	  m *= i;
 	}
+	Phi[k] *= (i-1)*m;
+      }
     }
-}
-
-void decomp(int n, vector<couple> &D) {
-  int p = F[n];
-  n /= p;
-  int m = 1;
-  while (n%p==0) {
-    n /= p;
-    ++m;
-  }
-  D.push_back(couple(p,m));
-  if (n>1) decomp(n,D);
-}
-
-void divisors(int n, vector<int> &Divs) {
-  vector<couple> D;
-  decomp(n,D);
-  Divs.push_back(1);
-  for (vector<couple>::iterator it=D.begin(); it!=D.end(); ++it) {
-    int l = Divs.size();
-    int f = it->first;
-    for (int a=1; a<=it->second; ++a) {
-      for (int i=0; i<l; ++i)
-	Divs.push_back(Divs[i]*f);
-      f *= it->first;
-    }
-  }
 }
 
 int gcd(int a, int b) {
   return b==0 ? a : gcd(b,a%b);
 }
 
-int main() {
-  // Calcul de C()
-  sieve_smallest_factor();
-  vector<int> C(N,0);
-  // C[i] = nb de couples (a,b) tq i = a+b et gcd(a,b) = 1
-  C[2] = 1;
-  for (int i=3; i<N; ++i) {
-    // si i = a+b avec gcd(a,b) = d > 1, alors d | i
-    // a = da', b = db', i/d = a'+b' avec gcd(a',b') = 1
-    // il y a donc C[i/d] tels couples
-    // ainsi C[i] = i-1 - sum( C[i/d] pour 1 < d | i )
-    C[i] = i-1;
-    vector<int> D;
-    divisors(i,D);
-    for (vector<int>::iterator id=D.begin(); id!=D.end(); ++id)
-      if (0<*id && *id<i) C[i] -= C[*id];
-  }
-  // Glouton accelere
+ll F(ll n) {
   ll s = 1, ab = 3, f = 1;
   while (s<=n) {
-    if (s+(C[ab]*ab)/2<=n) {
+    if (s+(Phi[ab]*ab)/2<=n) {
       // on traite d'un coup toutes les fractions a/b tq a+b = ab
-      f += C[ab];
-      s += (C[ab]*ab)/2;
+      f += Phi[ab];
+      s += (Phi[ab]*ab)/2;
     }
     else {
       // on les parcourt une a une jusqu'a arriver a s > n
@@ -123,6 +84,12 @@ int main() {
     }
     ++ab;
   }
-  cout << f << endl;
+  return f;
+}
+
+int main() {
+  sieve_totient();
+  const ll n = 1000000000000000000LL; // input 10^18
+  cout << F(n) << endl;
   return 0;
 }
