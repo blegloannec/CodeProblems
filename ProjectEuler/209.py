@@ -29,16 +29,18 @@ memo = {(1,0,0):1,(1,0,1):0,(1,1,0):0,(1,1,1):1}
 def chaine(n,a,b):
     if (n,a,b) in memo:
         return memo[n,a,b]
-    if a==1:
-        res = chaine(n-1,0,b)
-    else:
-        res = chaine(n-1,0,b)+chaine(n-1,1,b)
+    res = chaine(n-1,0,b)
+    if a==0:
+        res += chaine(n-1,1,b)
     memo[n,a,b] = res
     return res
 
 # nb de coloriages d'un cycle de taille n
 def cycle(n):
     return chaine(n,0,0)+chaine(n,0,1)+chaine(n,1,0)
+
+# NB: il s'agit des nb de Lucas (variante de Fibonacci)
+# http://oeis.org/A000032
 
 def main():
     res = 1
