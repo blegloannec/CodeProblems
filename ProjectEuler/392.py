@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# terrible gradient descent :/ ... runs in ~70s with pypy
+# Approach no. 2 runs in 7s with pypy
 
 from math import sqrt
 
@@ -17,13 +17,16 @@ from math import sqrt
 #        = y{i-1} - sqrt(1-xi^2) - (x{i+1}-xi)*xi/sqrt(1-xi^2)
 #        = y{i-1} - yi - (x{i+1}-xi)*xi/yi
 
-# Approche : descente de gradient avec recherche dichotomique
+
+# Approche 1 : descente de gradient avec recherche dichotomique
 # du point d'annulation de la derivee de la fonction le long de
 # la direction de descente.
 # On suppose ici a priori que l'approche theorique consistant a resoudre
 # le systeme non lineaire grad(X) = 0 est trop compliquee et que la
 # differentielle du gradient serait un peu moche donc on laisse la methode
 # de Newton de cote.
+
+# terrible gradient descent :/ ... runs in ~70s with pypy
 
 def valX(X,i):
     return 1. if i>=len(X) else X[i]
@@ -70,7 +73,7 @@ def dicho(X,G,b0):
             b,db = m,dm
     return m
 
-def main():
+def main1():
     N = 200
     X = [(i+1.)/(N+1.) for i in xrange(N)]
     cpt = 0
@@ -89,4 +92,38 @@ def main():
             cpt = 0
     print 4*A(X)
 
-main()
+#main1()
+
+
+# Approche 2 : si l'on fixe x{i-1} et x{i+1}, l'aire entre les deux est
+# (xi-x{i-1})*sqrt(1-x{i-1}^2) + (x{i+1}-xi)*sqrt(1-xi^2)
+# on cherche le xi qui minimise l'aire par recherche dichotomique
+# on itere cela sur tous les i un certain nb de fois jusqu'a "convergence"
+
+# runs in 7s with pypy
+
+def f(X,i,x):
+    return (x-X[i-1])*sqrt(1-X[i-1]*X[i-1]) + (X[i+1]-x)*sqrt(1-x*x)
+
+def df(X,i,x):
+    return sqrt(1-X[i-1]*X[i-1]) - x*(X[i+1]-x)/sqrt(1-x*x) - sqrt(1-x*x)
+
+def dicho_min(X,i):
+    a,b = X[i-1],X[i+1]
+    while b-a > 1e-13:
+        m = (a+b)/2.
+        if df(X,i,m)<0:
+            a = m
+        else:
+            b = m
+    return a
+
+def main2():
+    N = 200
+    X = [0.]+[(i+1.)/(N+1.) for i in xrange(N+1)]
+    for _ in xrange(40000):
+        for i in xrange(1,N+1):
+            X[i] = dicho_min(X,i)
+    print 4*sum((X[i+1]-X[i])*sqrt(1.-X[i]*X[i]) for i in xrange(N+1))
+
+main2()
