@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 
-# a simple DP does well enough, runs in 37s with pypy
-# surprisingly overrated (difficulty 70%)!
+# runs in <2s with pypy
 
 memo = {}
-# number of partitions of B black + W white where
-# all components are <= M (lexicographical order)
-def dp(B,W,M):
+# number of partitions of B blacks + W whites where
+# all components are of size <= M and the components
+# of size exactly M have at most MB blacks
+def dp(B,W,M,MB):
     if B==W==0:
         return 1
-    if (B,W,M) in memo:
-        return memo[B,W,M]
-    res = 0
-    for b in xrange(min(B,M[0])+1):
-        for w in xrange(W+1):
-            if (0,0)<(b,w)<=M:
-                res += dp(B-b,W-w,(b,w))
-    memo[B,W,M] = res
+    if M==0:
+        return 0
+    if (B,W,M,MB) in memo:
+        return memo[B,W,M,MB]
+    res = dp(B,W,M-1,min(B,M-1))
+    for b in xrange(max(0,M-W),MB+1):
+        w = M-b
+        res += dp(B-b,W-w,M,min(B-b,b))
+    memo[B,W,M,MB] = res
     return res
 
-print dp(60,40,(60,40))
+B,W = 60,40
+print dp(B,W,B+W,B)
