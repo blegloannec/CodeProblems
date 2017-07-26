@@ -75,42 +75,37 @@ def id(n):
     return [[int(i==j) for j in xrange(n)] for i in xrange(n)]
 
 def copy(M):
-    h,w = size(M)
-    return [[M[i][j] for j in range(w)] for i in range(h)]
-
-def c_swap(M,i,j):
-    h = len(M)
-    for k in range(h):
-        M[k][i],M[k][j] = M[k][j],M[k][i]
+    h,_ = size(M)
+    return [M[i][:] for i in xrange(h)]
 
 def l_swap(M,i,j):
     w = len(M[0])
-    for k in range(w):
+    for k in xrange(w):
         M[i][k],M[j][k] = M[j][k],M[i][k]
 
 def first_non_zero(M,i):
     h = len(M)
-    for j in range(i,h):
+    for j in xrange(i,h):
         if M[i][j]!=0:
             return j
     return None
 
 def sline_prod(a,M,i):
     w = len(M[0])
-    for j in range(w):
+    for j in xrange(w):
         M[i][j] *= a
 
 def line_diff(a,M,i,j):
     # Mj <- Mj - a*Mi
     w = len(M[0])
-    for k in range(w):
+    for k in xrange(w):
         M[j][k] -= a*M[i][k]
 
 def inverse(M0):
     M = copy(M0)
     n = len(M)
     I = id(n)
-    for i in range(n):
+    for i in xrange(n):
         j0 = first_non_zero(M,i)
         assert(j0!=None)
         if j0>i:
@@ -119,7 +114,7 @@ def inverse(M0):
         a = Fraction(1,M[i][i]) # for exact Fraction computation
         sline_prod(a,M,i)
         sline_prod(a,I,i)
-        for j in range(n):
+        for j in xrange(n):
             if j!=i:
                 a = M[j][i]
                 line_diff(a,M,i,j)
@@ -128,9 +123,9 @@ def inverse(M0):
 
 def mv_prod(M,x):
     n = len(x)
-    y = [0 for i in range(n)]
-    for i in range(n):
-        for j in range(n):
+    y = [0]*n
+    for i in xrange(n):
+        for j in xrange(n):
             y[i] += x[j]*M[i][j]
     return y
 
