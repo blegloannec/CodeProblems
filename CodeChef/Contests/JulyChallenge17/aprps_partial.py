@@ -64,26 +64,26 @@ def inv_mod(x):
 
 class Poly:
     def __init__(self,C=None):
-        if C==None or len(C)==0:
-            C = [0]
+        if C==None:
+            C = []
         self.C = C  #map(Fraction,C)  # add [:] for copy
         self.reduce()
 
-    def deg(self):
+    def deg(self):  # -1 pour le polynome 0
         return len(self.C)-1
 
     def is_zero(self):
-        return self.deg()==0 and self[0]==0
+        return self.deg()<0
     
     def reduce(self):
-        while self.deg()>0 and self[-1]==0:
+        while self.deg()>=0 and self[-1]==0:
             self.C.pop()
 
     def __getitem__(self,i):
         return self.C[i] if i<=self.deg() else 0
 
     def __setitem__(self,i,x):
-        while self.deg()<=i:
+        while self.deg()<i:
             self.C.append(0)
         self.C[i] = x%MOD
         #self.reduce()  # idealement, mais ici on le vire pour gagner du temps
@@ -123,14 +123,16 @@ class Poly:
         assert(not B.is_zero())
         R = self.copy()
         Q = Poly()
-        while not R.is_zero() and R.deg()>=B.deg():
-            #X = Poly([Fraction(R[-1],B[-1])]).shift(R.deg()-B.deg())
+        while R.deg()>=B.deg():
+            # X = Poly([Fraction(R[-1],B[-1])]).shift(R.deg()-B.deg())
+            # R -= X*B
+            # Q += X
             x = (R[-1]*inv_mod(B[-1]))%MOD
             Q[R.deg()-B.deg()] = x
             for i in xrange(B.deg()+1):
                 R[R.deg()-B.deg()+i] -= (x*B[i])%MOD
             R.reduce()  # plus rapide que de le faire dans __setitem__
-        Q.reduce()      # idem
+        #Q.reduce()      # idem mais inutile
         return (Q,R)
 
     def __div__(self,B):
@@ -155,6 +157,7 @@ class Poly:
         if self.is_zero():
             return '0'
         return ' + '.join(self.str_mono(i) for i in xrange(self.deg(),-1,-1) if self[i]!=0)
+
 
 class RationalFraction:
     def __init__(self,P,Q):
