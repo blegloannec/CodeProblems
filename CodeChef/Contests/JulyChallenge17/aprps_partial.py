@@ -86,6 +86,7 @@ class Poly:
         while self.deg()<=i:
             self.C.append(0)
         self.C[i] = x%MOD
+        #self.reduce()  # idealement, mais ici on le vire pour gagner du temps
     
     def __add__(self,Q):
         d = max(self.deg(),Q.deg())
@@ -128,8 +129,8 @@ class Poly:
             Q[R.deg()-B.deg()] = x
             for i in xrange(B.deg()+1):
                 R[R.deg()-B.deg()+i] -= (x*B[i])%MOD
-            R.reduce()
-        Q.reduce()
+            R.reduce()  # plus rapide que de le faire dans __setitem__
+        Q.reduce()      # idem
         return (Q,R)
 
     def __div__(self,B):
@@ -222,16 +223,19 @@ def polydet(M0):
             if j!=i:
                 a = M[j][i]
                 line_diff(a,M,i,j)
-    #d.reduce()
     return d
 
-#https://en.wikipedia.org/wiki/Resultant#Number_theory
 
 def fractionize(M):
     for i in xrange(len(M)):
         for j in xrange(len(M)):
             M[i][j] = RationalFraction(M[i][j],Poly([1]))
 
+# https://en.wikipedia.org/wiki/Resultant#Number_theory
+# si b est racine de P
+# et Q = X^2 - a
+# res_X(P(X),Q(Z-X)) est un polynome en Z dont a+b est racine
+# Q(Z-X) = X^2 + (-2Z)X + (Z^2-a)
 def res_const(P,a):
     PC = [Poly([x]) for x in P.C]
     M = []
@@ -255,8 +259,10 @@ def main():
     for _ in range(T):
         n = int(raw_input())
         A = map(int,raw_input().split())
+        # on traite le cas des a carres (racines entieres)
         S = filter(is_sqr,A)
         P = Poly([-sum(int(sqrt(s)) for s in S),1]) if S else None
+        # on traite le cas des racines irrationnelles
         for a in A:
             if not is_sqr(a):
                 if P==None:
