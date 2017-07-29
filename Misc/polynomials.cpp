@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <vector>
-//#include <cassert>
+#include <cassert>
 using namespace std;
 
 // GLOBAL MODULUS
@@ -49,8 +49,8 @@ void matrix_print(const matrix &A) {
 
 struct Poly {
   coeffs C;
-  Poly() {}
-  Poly(int a, int d=0) {
+  Poly() {} // zero constructor
+  Poly(int a, int d=0) { // monomial constructor
     if (a!=0) {
       C.resize(d+1,0);
       C[d] = a;
@@ -163,25 +163,37 @@ Poly Poly::operator*(const Poly &B) const {
   return S;
 }
 
-Poly Poly::operator%(const Poly &B) const {
-  //assert(B.deg()>=0);
-  Poly R(C);
-  while (R.deg()>=B.deg()) {
-    Poly T((R.dom()*inv_mod(B.dom(),M))%M,R.deg()-B.deg());
-    R -= T*B;
-  }
-  return R;
-}
-
 Poly Poly::operator/(const Poly &B) const {
-  //assert(B.deg()>=0);
+  assert(B.deg()>=0);
   Poly R(C),Q;
   while (R.deg()>=B.deg()) {
-    Poly T((R.dom()*inv_mod(B.dom(),M))%M,R.deg()-B.deg());
-    R -= T*B;
-    Q += T;
+    /*
+      Poly T((R.dom()*inv_mod(B.dom(),M))%M,R.deg()-B.deg());
+      R -= T*B;
+      Q += T;
+    */
+    int x = (R.dom()*inv_mod(B.dom(),M))%M;
+    int d = R.deg()-B.deg();
+    if (Q.deg()<d) Q.C.resize(d+1,0);
+    Q[d] = x;
+    for (int i=0; i<=B.deg(); ++i)
+      R[d+i] = (R[d+i] - (x*B[i])%M + M)%M;
+    R.reduce();
   }
   return Q;
+}
+
+Poly Poly::operator%(const Poly &B) const {
+  assert(B.deg()>=0);
+  Poly R(C);
+  while (R.deg()>=B.deg()) {
+    int x = (R.dom()*inv_mod(B.dom(),M))%M;
+    int d = R.deg()-B.deg();
+    for (int i=0; i<=B.deg(); ++i)
+      R[d+i] = (R[d+i] - (x*B[i])%M + M)%M;
+    R.reduce();
+  }
+  return R;
 }
 
 // derivative
@@ -263,7 +275,7 @@ matrix Poly::null_space(matrix &A) {
   matrix B;
   int n = A.size();
   vector<int> C(n,-1);
-  //int r = 0; // rank
+  //int r = 0;  // kernel dimension
   for (int k=0; k<n; ++k) {
     int j = 0;
     while (j<n && !(A[k][j]!=0 && C[j]<0)) ++j;
@@ -287,7 +299,7 @@ matrix Poly::null_space(matrix &A) {
       //++r;
     }
   }
-  // rank is B.size()
+  // matrix rank is n-r = n-B.size()
   return B;
 }
 
@@ -316,7 +328,7 @@ vector<Poly> Poly::berlekamp() const {
     }
   }
   matrix B = null_space(A);
-  int r = B.size(); // rank
+  int r = B.size(); // kernel dimension
   int k = 1;
   vector<Poly> F;
   F.push_back(*this);
