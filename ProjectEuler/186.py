@@ -19,7 +19,6 @@ def union(x,y):
 
 # generateur de paires
 def gen():
-    n = 0
     s = [(100003-200003*k+300007*k*k*k)%N for k in range(1,56)]
     # pour taille paire :
     s.append((s[-24]+s[-55])%N)
