@@ -40,3 +40,7 @@ def rna2prot(RNA, start=0, stop_required=False):
 def revc(DNA):
     D = {'A':'T', 'C':'G', 'G':'C', 'T':'A'}
     return ''.join(D[c] for c in reversed(DNA))
+
+def hamming(A,B):
+    assert(len(A)==len(B))
+    return sum(int(A[i]!=B[i]) for i in range(len(A)))
