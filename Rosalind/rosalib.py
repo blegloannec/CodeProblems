@@ -44,3 +44,45 @@ def revc(DNA):
 def hamming(A,B):
     assert(len(A)==len(B))
     return sum(int(A[i]!=B[i]) for i in range(len(A)))
+
+
+# Newick parser
+def unroot_tree(T,u,u0=None):
+    for v in T[u]:
+        assert(v!=u0)
+        unroot(T,v,u)
+    if u0!=None:
+        T[u].append(u0)
+        
+def parse_newick(L,T,unroot=True):
+    S = []
+    curr_name = []
+    curr_children = []
+    for i in range(len(L)):
+        if L[i]=='(':
+            assert(not curr_name)
+            S.append('(')
+        elif L[i] in '),;':
+            if not curr_name:
+                # unnamed nodes are arbirarily named
+                # the new name starts with "@" to identify them
+                name = '@node%d'%(len(T))
+            else:
+                name = ''.join(curr_name)
+            T[name] = curr_children
+            S.append(name)
+            curr_children = []
+            if L[i]==')':
+                while S[-1]!='(':
+                    curr_children.append(S[-1])
+                    S.pop()
+                S.pop()
+            elif L[i]==';':
+                assert(len(S)==1)
+                if unroot:
+                    unroot_tree(T,S[0])
+                return S[0]
+            curr_name = []
+        else:
+            assert('a'<=L[i]<='z' or 'A'<=L[i]<='Z' or L[i]=='_')
+            curr_name.append(L[i])
