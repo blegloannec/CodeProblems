@@ -54,7 +54,7 @@ def unroot_tree(T,u,u0=None):
     if u0!=None:
         T[u].append(u0)
         
-def parse_newick(L,T,unroot=True):
+def parse_newick(L,T,unroot=False):
     S = []
     curr_name = []
     curr_children = []
