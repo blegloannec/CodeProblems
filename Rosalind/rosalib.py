@@ -50,7 +50,7 @@ def hamming(A,B):
 def unroot_tree(T,u,u0=None):
     for v in T[u]:
         assert(v!=u0)
-        unroot(T,v,u)
+        unroot_tree(T,v,u)
     if u0!=None:
         T[u].append(u0)
         
