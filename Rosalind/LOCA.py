@@ -29,53 +29,51 @@ B = [[2,-2,0,0,-3,1,-1,-1,-1,-2,-1,0,1,0,-2,1,1,0,-6,-3],
 
 LGap = 5
 
-# scoring code from GLOB
-def global_score(u,v):
+def suffix_score(u,v):
     m,n = len(u),len(v)
-    T = [[float('-inf')]*(n+1) for _ in range(m+1)]
-    T[0][0] = 0
+    T = [[0]*(n+1) for _ in range(m+1)]
+    # 0 everywhere instead of -inf as we have the right to discard
+    # any prefix of u or v
+    pred = [[None]*(n+1) for _ in range(m+1)]
     for i in range(m+1):
         for j in range(n+1):
             if i>0:
-                T[i][j] = max(T[i][j],T[i-1][j]-LGap)
+                s = T[i-1][j]-LGap
+                if s>T[i][j]:
+                    T[i][j] = s
+                    pred[i][j] = (i-1,j)
             if j>0:
-                T[i][j] = max(T[i][j],T[i][j-1]-LGap)
+                s = T[i][j-1]-LGap
+                if s>T[i][j]:
+                    T[i][j] = s
+                    pred[i][j] = (i,j-1)
             if i>0 and j>0:
-                T[i][j] = max(T[i][j],T[i-1][j-1]+B[Num[u[i-1]]][Num[v[j-1]]])
-    return T
+                s = T[i-1][j-1] + B[Num[u[i-1]]][Num[v[j-1]]]
+                if s>T[i][j]:
+                    T[i][j] = s
+                    pred[i][j] = (i-1,j-1)
+    return T,pred
 
 def local_score(A,B):
-    # on commence par calculer le score global pour trouver les
-    # possibles points d'arret (maxima locaux)
-    T = global_score(A,B)
-    M,R = float('-inf'),[]
-    for i in range(len(A)+1):
-        for j in range(len(B)+1):
-            if T[i][j]>M:
-                M = T[i][j]
-                R = [(i,j)]
-            elif T[i][j]==M:
-                R.append((i,j))
-    # puis pour chaque point d'arret on calcule le score global des
-    # chaines *inversees* a partir du point d'arret et on cherche les
-    # points de depart (maxima locaux)
-    M,LR = float('-inf'),[]
-    for (a,b) in R:
-        T = global_score(A[a-1::-1],B[b-1::-1])
-        for i in range(a+1):
-            for j in range(b+1):
-                if T[i][j]>M:
-                    M = T[i][j]
-                    LR = [(a-i,a,b-j,b)]
-                elif T[i][j]==M:
-                    LR.append((a-i,a,b-j,b))
-    return M,LR
+    T,pred = suffix_score(A,B)
+    m,n = len(A),len(B)
+    # finding a maximal score ending position
+    smax = float('-inf')
+    for i in range(m+1):
+        for j in range(n+1):
+            if T[i][j]>smax:
+                smax = T[i][j]
+                imax,jmax = i,j
+    # climbing back to score 0 where prefixes were discarded
+    i,j = imax,jmax
+    while T[i][j]>0:
+        i,j = pred[i][j]
+    return (smax,i,imax,j,jmax)
 
 def main():
-    A,B = tuple(S for _,S in rosalib.parse_fasta())
-    M,P = local_score(A,B)
-    print(M)
-    la,ra,lb,rb = P[0]
+    A,B = (S for _,S in rosalib.parse_fasta())
+    s,la,ra,lb,rb = local_score(A,B)
+    print(s)
     print(A[la:ra])
     print(B[lb:rb])
 
