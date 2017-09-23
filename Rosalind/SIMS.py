@@ -38,7 +38,7 @@ def fitting_score(u,v):
     return T[m][n],''.join(reversed(Su)),''.join(reversed(Sv))
 
 def main():
-    A,B = tuple(S for _,S in rosalib.parse_fasta())
+    A,B = (S for _,S in rosalib.parse_fasta())
     M,SA,SB = fitting_score(A,B)
     print(M)
     print(SA)
