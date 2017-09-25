@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# le nb de decoupages d'un tableau de taille n est 2^(n-1)
+
 # la contribution totale du segment d'indices l a r est
 # s(l,r) = 2^max(0,l-1) * (r-l+1)*(T[l]+...+T[r]) * 2^max(0,n-1-r-1)
 # (avec les max(0,.) pour les cas particuliers l=0 ou r=n-1)
