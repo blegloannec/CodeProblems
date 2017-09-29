@@ -4,36 +4,18 @@ class Quaternion:
     # a + bi + cj + dk
     def __init__(self,a=0,b=0,c=0,d=0):
         self.a,self.b,self.c,self.d = a,b,c,d
-    def __str__(self):  # (-_-)...
+    def __str__(self):
         S = []
-        if self.b!=0:
-            if S and self.b>0:
-                S.append('+')
-            elif self.b<0:
-                S.append('-')
-            if abs(self.b)!=1:
-                S.append(str(abs(self.b)))
-            S.append('i')
-        if self.c!=0:
-            if S and self.c>0:
-                S.append('+')
-            elif self.c<0:
-                S.append('-')
-            if abs(self.c)!=1:
-                S.append(str(abs(self.c)))
-            S.append('j')
-        if self.d!=0:
-            if S and self.d>0:
-                S.append('+')
-            elif self.d<0:
-                S.append('-')
-            if abs(self.d)!=1:
-                S.append(str(abs(self.d)))
-            S.append('k')
-        if self.a!=0:
-            if S and self.a>0:
-                S.append('+')
-            S.append(str(self.a))
+        for (x,c) in [(self.b,'i'),(self.c,'j'),(self.d,'k'),(self.a,'')]:
+            if x!=0:
+                if S and x>0:
+                    S.append('+')
+                elif x<0:
+                    S.append('-')
+                y = abs(x)
+                if y!=1:
+                    S.append(str(y))
+                S.append(c)
         return ''.join(S)
     def __add__(self,q):
         return Quaternion(self.a+q.a,self.b+q.b,self.c+q.c,self.d+q.d)
