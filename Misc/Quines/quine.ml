@@ -1,0 +1,1 @@
+(fun s -> print_string s; print_char ' '; print_char (Char.chr 34); print_string s; print_char (Char.chr 34)) "(fun s -> print_string s; print_char ' '; print_char (Char.chr 34); print_string s; print_char (Char.chr 34))"

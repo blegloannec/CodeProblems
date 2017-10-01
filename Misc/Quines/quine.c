@@ -1,0 +1,3 @@
+#include<stdio.h>
+void f(char* s1,char* s2,char* s3) {printf("#include<stdio.h>%c%s%c%s%c%s%cint main(void) {f(%c%s%c,%c%s%c,%c%s%c);return 0;}",10,s1,34,s2,34,s3,10,34,s1,34,34,s2,34,34,s3,34);}
+int main(void) {f("void f(char* s1,char* s2,char* s3) {printf(","#include<stdio.h>%c%s%c%s%c%s%cint main(void) {f(%c%s%c,%c%s%c,%c%s%c);return 0;}",",10,s1,34,s2,34,s3,10,34,s1,34,34,s2,34,34,s3,34);}");return 0;}
