@@ -4,9 +4,9 @@
 using namespace std;
 
 /* 
-   hardest "medium" problem ever...
-   expected complexity O(n^3), yet too slow to pass every testcase
-   it would require some more stupid optimizations...
+   hardest "medium" problem ever!...
+   expected complexity O(n^3), yet had to use a few more stupidish
+   optimizations to pass every testcase.
 
    for sparse tables, see for instance:
    https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/#Sparse_Table_(ST)_algorithm
@@ -27,19 +27,19 @@ typedef int elem;
 struct SparseTable {
   int size, depth;
   vector<elem> A;
-  vector< vector<elem> > T;
+  elem T[9][351];  // forget about vectors here for memory efficiency
   
   SparseTable(vector<elem> &A0) {
     A = A0;  // copy
     size = A.size();
     depth = 0;
     while ((1<<depth)<=size) ++depth;
-    T.resize(depth);
-    T[0].resize(size);
+    //T.resize(depth);
+    //T[0].resize(size);
     for (int i=0; i<size; ++i) T[0][i] = i;
     for (int k=1; k<depth; ++k) {
       int sizek = size+1-(1<<k), dk = 1<<(k-1);
-      T[k].resize(sizek,0);
+      //T[k].resize(sizek,0);
       for (int i=0; i<sizek; ++i) // MAX
         T[k][i] = A[T[k-1][i]] >= A[T[k-1][i+dk]] ? T[k-1][i] : T[k-1][i+dk];
     }
@@ -90,8 +90,9 @@ int main() {
       for (int i=1; i<n; ++i) C[j][i] += C[j][i-1];
     // on essaye tous les centres (i,j)
     int res = 0;
-    for (int i=0; i<n; ++i)
-      for (int j=0; j<m; ++j) {
+    int maxres = min(n,m);
+    for (int i=0; i<n && res<maxres; ++i)
+      for (int j=0; j<m && res<maxres; ++j) {
 	int minh = H[i][j];   // taille minimale d'une pyramide
 	int blocs = H[i][j];  // nb de blocs deja places
 	if (res==0 && minh<=1 && blocs+K>=1) res = 1;
@@ -104,7 +105,11 @@ int main() {
 	  if (required[k]>blocs+K) break;
 	  minh = max(minh,k+max(SR[i-k].range(j-k,j+k),SR[i+k].range(j-k,j+k)));
 	  minh = max(minh,k+max(SC[j-k].range(i-k,i+k),SC[j+k].range(i-k,i+k)));
-	  if (res<k+1 && minh<=k+1) res = k+1;
+	  if (minh>maxres) break;
+	  if (res<k+1 && minh<=k+1) {
+	    res = k+1;
+	    if (res==maxres) break;
+	  }
 	}
       }
     printf("%d\n",res);
