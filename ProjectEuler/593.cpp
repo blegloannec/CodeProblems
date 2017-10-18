@@ -8,13 +8,12 @@ using namespace std;
   For "science", two methods implemented:
    - the first one uses a Fenwick tree as buckets for the current window of
      size k and dicho search to find medians
-     O(n log^2 k)
-   - the second one maintains 2 multisets (balanced BST) for the K/2 lowest
-     and K/2 highest elements of the current window
+     O(n log^2 2m)  (for the modulus m = 10007 here)
+   - the second one maintains 2 multisets (balanced BST) for the k/2 lowest
+     and k/2 highest elements of the current window
      O(n log k)
-  The second method is theoretically better but structurally heavier.
-    first method runs in 5.5s with -O3
-    second method runs in 10s with -O3
+  first method runs in 5.5s with -O3
+  second method runs in 10s with -O3
 */
 
 typedef int ent;
