@@ -18,7 +18,7 @@ struct Fenwick {
   ent operator[](int i) const;
 
   Fenwick(int n) {
-    FT.resize(n,0);
+    FT.resize(n+1,0);
   }
 };
 
