@@ -2,9 +2,9 @@ typedef long long ent;
 typedef pair<int,int> couple;
 
 ent expmod(ent x, ent n, ent m) {
-  if (n==0) return 1;
-  if (n%2==0) return expmod((x*x)%m,n/2,m);
-  return (x*expmod((x*x)%m,(n-1)/2,m))%m;
+  if (!n) return 1;
+  if (!(n&1)) return expmod((x*x)%m,n>>1,m);
+  return (x*expmod((x*x)%m,n>>1,m))%m;
 }
 
 ent gcd(ent a, ent b) {
