@@ -4,17 +4,17 @@
 #include <cmath>
 using namespace std;
 
+// O(Q sqrt(N) log(sqrt(N))) square-root decomposition approach
+
 int N,Q,S,BS;
 vector<int> A;
 vector< vector<int> > B;
 
 void pass(int l, int r, vector<int> &Q) {
   Q.clear();
-  for (int i=r; i>=l; --i) {
-    while (!Q.empty() && Q[(int)Q.size()-1]<=A[i]) Q.pop_back();
-    Q.push_back(A[i]);
-  }
-  reverse(Q.begin(),Q.end());
+  Q.push_back(A[l]);
+  for (int i=l+1; i<=r; ++i)
+    if (Q[(int)Q.size()-1]<A[i]) Q.push_back(A[i]);
 }
 
 void block_pass(int i) {
