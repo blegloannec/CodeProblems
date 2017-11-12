@@ -101,7 +101,7 @@ struct LazySegmentTree {
     //assert(p<(int)N && L0[p]);
     // propagation de la lazy value de p,
     // mise a jour des valeurs des 2 fils
-    int D = iter_op(L[p],span/2);
+    elem D = iter_op(L[p],span/2);
     S[2*p] = up_op(S[2*p],D);
     S[2*p+1] = up_op(S[2*p+1],D);
     if (2*p<(int)N) {
