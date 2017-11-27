@@ -1,72 +1,64 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-#define MAX 101
-#define CAP 200
-#define INFTY 1000000000
+typedef long long ent;
 
-int kmax;
-int C[MAX];
-int S[MAX];
-int mem[MAX][CAP+1];
+const int CAP = 200;
+const int CAP0 = CAP/2;
+const ent INF = 1000000000;
 
-bool init() {
-  for (int e=0; e<=CAP; e++) {
-    if (e==CAP/2-S[1]) mem[1][e] = 0;
-    else mem[1][e] = INFTY;
-  }
-  for (int k=2; k<=kmax; k++) 
-    for (int e=0; e<=CAP; e++) 
-      mem[k][e] = -1;
-  return (CAP/2-S[1]>=0);
-}
+int W;
+vector<ent> D,P;
+vector< vector<ent> > mem;
 
-
-/* Cout minimal pour arriver a la kieme station
-   avec la quantite E
-*/
-int cost(int k, int E) {
+// Cout minimal pour partir de la k-ieme station
+// avec la quantite E
+ent cost(int k, int E) {
   if (mem[k][E]>=0) return mem[k][E];
-  int d = S[k]-S[k-1];
-  int res = INFTY;
-  if (E+d<=CAP) {
-    for (int e=0; e<=E+d; e++)
-      res = min(res,cost(k-1,e)+(E-e+d)*C[k-1]);
-  }
+  if (k==0) return E==CAP0 ? 0 : INF;
+  ent res = INF;
+  int d = D[k]-D[k-1];
+  for (int e=0; e<=E && e+d<=CAP; ++e)
+    res = min(res, cost(k-1,e+d) + (E-e)*P[k]);
   mem[k][E] = res;
   return res;
 }
 
 int main() {
-  int nb,dist,d,p,res;
+  int cas,d,p;
   char buff[100];
-  cin >> nb;
-  
-  while (cin >> dist) {
+  cin >> cas;
+
+  while (cas-->0) {
+    cin >> W;
+    D.push_back(0);
+    P.push_back(-1);
     cin.getline(buff,sizeof(buff));
     cin.getline(buff,sizeof(buff));
-    kmax = 1;
-    while (sscanf(buff,"%d %d",&d,&p) == 2) {
-      C[kmax] = p;
-      S[kmax] = d;
-      ++kmax;
+    while (sscanf(buff,"%d %d",&d,&p)==2) {
+      if (d<=W) {
+	D.push_back(d);
+	P.push_back(p);
+      }
       cin.getline(buff,sizeof(buff));
     }
-    S[kmax] = dist;
-    if (kmax==1) {
-      if (dist==0) cout << p << '\n';
-      else cout << "Impossible\n";
-    }
-    else {
-      if (init()) {
-	res = cost(kmax,CAP/2);
-	if (res>=INFTY) cout << "Impossible\n";
-	else cout << res << '\n';
-      }
-      else cout << "Impossible\n";
-    }
+    int K = D.size();
+    mem.resize(K);
+    for (int i=0; i<K; ++i) mem[i].resize(CAP+1,-1);
+    ent res = INF;
+    int d = W-D[K-1];
+    for (int e=CAP0; e+d<=CAP; ++e)
+      res = min(res, cost(K-1,e+d));
+    if (res>=INF) cout << "Impossible" << endl;
+    else cout << res << endl;
+    if (cas>0) cout << endl;
+
+    // cleaning
+    D.clear();
+    P.clear();
+    mem.clear();
   }
-  
 
   return 0;
 }
