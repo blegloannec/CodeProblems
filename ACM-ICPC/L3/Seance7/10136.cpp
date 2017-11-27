@@ -1,19 +1,14 @@
-/* Algo en n^3
-   On pourrait faire mieux (proche n^2 en pratique)
-   en travaillant sur des carrés 5x5 cm, mais c'est
-   chiant à coder.
-*/
-
 #include <iostream>
 #include <cstdio>
 #include <cmath>
 using namespace std;
 
-#define MAX 202
+// O(n^3)
+
+#define MAX 200
 #define RAY 2.5
 #define RANGE 1e-16
-#define MOY(X,Y) (((X)+(Y))/2.0)
-#define NORM(X,Y) sqrt((X)*(X)+(Y)*(Y))
+#define MOY(X,Y) (((X)+(Y))/2.)
 #define NORM2(X,Y) ((X)*(X)+(Y)*(Y))
 
 typedef long double flott;
@@ -31,28 +26,23 @@ int main() {
   cin.getline(buff,sizeof(buff));
   
   while (nb-->0) {
-
     n = 0;
-    res = 0;
-
+    res = 1;
     cin.getline(buff,sizeof(buff));
     /* Attention
        %Lf pour des long double
        %lf pour des double
        %f pour des float
     */
-    while (sscanf(buff,"%Lf %Lf",&x,&y) == 2) {
+    while (sscanf(buff,"%Lf %Lf",&x,&y)==2) {
       pts[n][0] = x;
       pts[n++][1] = y;
       cin.getline(buff,sizeof(buff));
     }
-    
-    if (n==0) break;
-
-    for (int i = 0; i<n-1; i++) {
+    for (int i=0; i<n; ++i) {
       x = pts[i][0];
       y = pts[i][1];
-      for (int j = i+1; j<n; j++) {
+      for (int j=i+1; j<n; ++j) {
 	x2 = pts[j][0];
 	y2 = pts[j][1];
 	if (NORM2(x2-x,y2-y)>4*RAY*RAY+RANGE) continue;
@@ -73,19 +63,17 @@ int main() {
 	cy2 = my-vy;
 	M1 = 2;
 	M2 = 2;
-	for (int k=0; k<n; k++) {
-	  if ((k==i)||(k==j)) continue;
+	for (int k=0; k<n; ++k) {
+	  if (k==i || k==j) continue;
 	  if (NORM2(pts[k][0]-cx1,pts[k][1]-cy1)<=RAY*RAY+RANGE) ++M1;
 	  if (NORM2(pts[k][0]-cx2,pts[k][1]-cy2)<=RAY*RAY+RANGE) ++M2;
 	}
 	res = max(M1,max(M2,res));
-	  
       }
     }
-
-    cout << res << '\n';
-
+    cout << res << endl;
+    if (nb>0) cout << endl;
   }
-
+  
   return 0;
 }
