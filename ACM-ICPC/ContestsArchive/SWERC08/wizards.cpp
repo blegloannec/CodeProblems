@@ -5,7 +5,6 @@
 using namespace std;
 
 typedef double flott;
-
 typedef flott *poly;
 
 #define MAX 12
@@ -16,9 +15,8 @@ int d_P, d_PP;
 
 #define RANGE (1e-6)
 
-
-flott abs(flott f) {
-  return (f<0) ? -f : f;
+flott fabs(flott f) {
+  return f<0 ? -f : f;
 }
 
 void MOD_poly(poly P, int &d_P, poly Q, int &d_Q) {
@@ -45,9 +43,9 @@ int GCD_poly(poly P, int &d_P, poly Q, int &d_Q) {
   }
   else {
     MOD_poly(P,d_P,Q,d_Q);
-    while ((d_P>=0)&&(abs(P[d_P])<RANGE)) --d_P;
+    while ((d_P>=0)&&(fabs(P[d_P])<RANGE)) --d_P;
     // on normalise :
-    if (abs(P[d_P])<RANGE) P[d_P] = 0;
+    if (fabs(P[d_P])<RANGE) P[d_P] = 0;
     else {
       flott c = 1/P[d_P];
       for (int i=0; i<=d_P; ++i) 
@@ -57,16 +55,6 @@ int GCD_poly(poly P, int &d_P, poly Q, int &d_Q) {
     return GCD_poly(Q,d_Q,P,d_P);
   }
 }
-
-
-bool constante(poly P, int d_P) {
-  flott tmp;
-  for (int i=1; i<=d_P; ++i) {
-    if (abs(tmp)>RANGE) return false;
-  }
-  return true;
-}
-
 
 int main() {
   int t,n,a;
