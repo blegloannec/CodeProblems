@@ -18,15 +18,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	  Indications pour certains problèmes : <a href="http://www.algorithmist.com/index.php/UVa_Problemset">http://www.algorithmist.com/index.php/UVa_Problemset</a><br />
 	  Archives du concours : <a href="http://acm.uva.es/archive/nuevoportal/">http://acm.uva.es/archive/nuevoportal/</a></p>
 	  <p>P : page du problème<br />
-	  C<sub><i>n</i></sub> : <i>n</i><sup>ième</sup> code solution<br />
-	  <b><i>n</i>*</b> : code pour le problème numéro <i>n</i> <i>a priori</i> correct mais non validé, à déboguer ou optimiser selon les cas.</p>
+	  C<sub><i>n</i></sub> : <i>n</i><sup>ième</sup> code solution<br /></p>
 	  <table>
 	    <tr>
 	      <th>Date</th>
-	      <th>Numéro</th>
+	      <th>Numéro(s)</th>
 	      <th>Problème</th>
-	      <th>Algorithme</th>
-	      <th>Liens</th>
+	      <th>Méthode</th>
+	      <th>Lien</th>
 	    </tr>
 	    <xsl:for-each select="problems/problem">
 	      <tr>
@@ -46,12 +45,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 		<td><xsl:value-of select="name"/></td>
 		<td><xsl:value-of select="desc"/></td>
 		<td>
-		  <xsl:element name="a">
-		    <xsl:attribute name="href">
-		      <xsl:value-of select="link"/>
-		    </xsl:attribute>
-		    <xsl:text>P</xsl:text>
-		  </xsl:element>
+		  <xsl:if test="link!=''">
+		    <xsl:element name="a">
+		      <xsl:attribute name="href">
+			<xsl:value-of select="link"/>
+		      </xsl:attribute>
+		      <xsl:text>P</xsl:text>
+		    </xsl:element>
+		  </xsl:if>
 		</td>
 	      </tr>
 	    </xsl:for-each>
