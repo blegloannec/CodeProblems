@@ -1,0 +1,166 @@
+body {
+  font-family: Bitstream Vera Sans, Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  background-color: #005a96;
+}
+
+.cadre {
+  width: 80%;
+  border: 6px solid #a0a0a0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scadre {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stexte {
+  text-align: center;
+  color: #ffffff;
+  font-size: 7pt;
+}
+
+.titre {
+  background-color: #404040;
+  font-size: 16pt;
+  color: #ffa500;
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.menu {
+  background-color: #a0a0a0;
+  color: #ffffff;
+  text-align: right;
+  padding: 8px;
+  padding-right: 0;
+}
+
+.sousmenu {
+  background-color: #c0c0c0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.contenu {
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.enorange {
+  color: #ffa500;
+}
+
+.aucentre {
+  text-align: center;
+}
+
+.rubrique {
+  color: #008080;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.bouton {
+  padding: 8px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-weight: bold;
+}
+
+.fondvert {
+  background-color: #6060ff;
+}
+
+.bouton:hover {
+  background-color: #ffa500;
+}
+
+.minibouton {
+  padding: 0;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.minibouton:hover {
+  background-color: #ffa500;
+}
+
+a {
+  color: #008080;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+a.bouto {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+img {
+  border: 0;
+}
+
+ul {
+  list-style-type: square;
+}
+
+.travaux {
+  width: 288px;
+  height: 258px;
+  background: url(/images/travfract.png) no-repeat scroll;
+  border: 4px dashed #ff0000;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  width: 320px;
+  height: 240px;
+  background: url(/images/sierp.png) no-repeat scroll;
+  border: 4px solid #a0a0a0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pourwin {
+  width: 25px;
+  height: 23px;
+  background: url(/images/winxp.png) no-repeat scroll;
+  background-position: center center;
+}
+
+.pourlinux {
+  width: 25px;
+  height: 23px;
+  background: url(/images/linux.gif) no-repeat scroll;
+  background-position: center center;
+}
+
+.erreur {
+  width: 366px;
+  height: 365px;
+  background: url(/images/errfrac.png) no-repeat scroll;
+  border: 4px dashed #ff0000;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  width: 100%;
+  border: 2px solid #a0a0a0;
+  border-collapse: collapse;
+}
+
+td {
+  border: 2px solid #a0a0a0;
+  padding: 3px;
+}

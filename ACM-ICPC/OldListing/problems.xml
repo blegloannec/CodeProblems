@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="problems.xsl"?>
+<problems>
+<problem>
+<date>01/2008</date>
+<name>Tiling a Grid With Dominoes</name>
+<desc>Relation de récurrence</desc>
+<link>http://acm.uva.es/archive/nuevoportal/data/problem.php?p=3917</link>
+<ref>
+<num>3917</num>
+<code>dominoes2.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>01/2008</date>
+<name>Reaux! Sham! Beaux!</name>
+<desc>Manipulation de <i>strings</i></desc>
+<link>http://acm.uva.es/archive/nuevoportal/data/problem.php?p=3960</link>
+<ref>
+<num>3960</num>
+<code>roshambo.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 1</date>
+<name>The 3n + 1 problem</name>
+<desc>Syracuse avec mémorisation</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=36</link>
+<ref>
+<num>100</num>
+<code>syracuse.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 1</date>
+<name>Ecological Bin Packing</name>
+<desc><i>Backtracking</i> (énumération des cas)</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=38</link>
+<ref>
+<num>102</num>
+<code>binpacking.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 2</date>
+<name>Sabotage</name>
+<desc>Ford-Fulkerson - MinCut</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1421</link>
+<ref>
+<num>10480</num>
+<code>sabotage.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 2</date>
+<name>Buy one, get the rest free</name>
+<desc>Ford-Fulkerson - MaxFlow (ATTENTION : programme peu efficace)</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1924</link>
+<ref>
+<num>10983</num>
+<code>flights.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 3</date>
+<name>Wormholes</name>
+<desc>Bellman-Ford - Cycles négatifs</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=499</link>
+<ref>
+<num>558</num>
+<code>wormholes.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 3</date>
+<name>King</name>
+<desc>Bellman-Ford - Cycles négatifs</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=456</link>
+<ref>
+<num>515</num>
+<code>king.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>25/02/08</date>
+<name>Here We Go(relians) Again</name>
+<desc>Dijkstra (listes d'adjacence)</desc>
+<link>http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=3850</link>
+<ref>
+<num>3850</num>
+<code>dijkstra.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 4</date>
+<name>DNA Sorting</name>
+<desc>Programmation dynamique sur <i>strings</i></desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=553</link>
+<ref>
+<num>612</num>
+<code>DNA.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 4</date>
+<name>Testing the CATCHER</name>
+<desc>Programmation dynamique (C<sub>1</sub> en n<sup>2</sup>) et plus astucieux (C<sub>2</sub> en n.log(n))</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=167</link>
+<ref>
+<num>231</num>
+<code>catcher.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 4</date>
+<name>Cutting Sticks</name>
+<desc>Programmation dynamique (ATTENTION : probablement pas optimal)</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=944</link>
+<ref>
+<num>10003</num>
+<code>cutting_sticks.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 4</date>
+<name>Arbitrage</name>
+<desc>Prog. dyn. chemins poids min toutes paires de sommets</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=40</link>
+<ref>
+<num>104</num>
+<code>arbitrage.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>07/03/08</date>
+<name>Is There A Second Way Left?</name>
+<desc>Arbres couvrants - Kruskal (avec Tarjan)</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1403</link>
+<ref>
+<num>10462</num>
+<code>second_way.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 5</date>
+<name>Tree Summing</name>
+<desc><i>Backtracking</i></desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=48</link>
+<ref>
+<num>112</num>
+<code>112.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 5</date>
+<name>Determine The Combination</name>
+<desc><i>Backtracking</i></desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1717</link>
+<ref>
+<num>10776</num>
+<code>10776.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 5</date>
+<name>The Sum Equals the Product</name>
+<desc><i>Backtracking</i></desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1424</link>
+<ref>
+<num>10483</num>
+<code>sum_prod.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 6</date>
+<name>You can say 11</name>
+<desc>Jeux mathématiques</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1870</link>
+<ref>
+<num>10929</num>
+<code>10929.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 6</date>
+<name>Consecutive Integers</name>
+<desc>Jeux mathématiques</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2221</link>
+<ref>
+<num>11254</num>
+<code>11254ter.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 6</date>
+<name>Relatives</name>
+<desc>Jeux mathématiques - Indicatrice d'Euler</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1240</link>
+<ref>
+<num>10299</num>
+<code>10299.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 7</date>
+<name>Boxes of Chocolates</name>
+<desc>Jeux mathématiques</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1430</link>
+<ref>
+<num>10489</num>
+<code>10489.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 7</date>
+<name>Bit Stream</name>
+<desc>Jeux mathématiques</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2120</link>
+<ref>
+<num>11179</num>
+<code>11179.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 8</date>
+<name>The House Of Santa Claus</name>
+<desc>Méthode hongroise &amp; co</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=227</link>
+<ref>
+<num>291</num>
+<code>291.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 8</date>
+<name>Street Numbers</name>
+<desc>Méthode hongroise &amp; co</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=74</link>
+<ref>
+<num>138</num>
+<code>138.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 8</date>
+<name>Rare Order</name>
+<desc>Arbres lexicographiques - Tri topologique</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=136</link>
+<ref>
+<num>200</num>
+<code>200.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Partiel</date>
+<name>B2-Sequence</name>
+<desc></desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2004</link>
+<ref>
+<num>11063</num>
+<code>b2sequence.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Partiel</date>
+<name>Travelling Salesman</name>
+<desc>Programmation dynamique</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1643</link>
+<ref>
+<num>10702</num>
+<code>tsp2.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Partiel</date>
+<name>The primary problem</name>
+<desc>Nombres premiers</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1889</link>
+<ref>
+<num>10948</num>
+<code>prim.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Partiel</date>
+<name>Bar Codes</name>
+<desc>Programmation dynamique</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1662</link>
+<ref>
+<num>10721</num>
+<code>codbar.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Partiel</date>
+<name>Planarity</name>
+<desc>Bourrinage violent</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1709</link>
+<ref>
+<num>10768</num>
+<code>planarity.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 9</date>
+<name>Dollars</name>
+<desc>Programmation dynamique</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=83</link>
+<ref>
+<num>147</num>
+<code>147.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 9</date>
+<name>Robbery</name>
+<desc>Programmation dynamique</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=648</link>
+<ref>
+<num>707</num>
+<code>707.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 10</date>
+<name>Polygon Inside A Circle</name>
+<desc>Géométrie</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1373</link>
+<ref>
+<num>10432</num>
+<code>10432.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 10</date>
+<name>Ancient Village Sports</name>
+<desc>Géométrie</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1392</link>
+<ref>
+<num>10451</num>
+<code>10451.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 10</date>
+<name>Moth Eradication</name>
+<desc>Géométrie - Enveloppe Convexe</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=154</link>
+<ref>
+<num>218</num>
+<code>218.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 10</date>
+<name>Centre of Masses</name>
+<desc>Géométrie</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=943</link>
+<ref>
+<num>10002</num>
+<code>10002.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 11</date>
+<name>Mobile Phone Coverage</name>
+<desc>Géométrie - Calcul d'aire - Balayage (v1) / Bourrinage (v2)</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=629</link>
+<ref>
+<num>688</num>
+<code>688.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>03/05/08</date>
+<name>The Closest Pair Problem</name>
+<desc>Géométrie - Distance min 2D</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1186</link>
+<ref>
+<num>10245</num>
+<code>10245.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Examen</date>
+<name>World Cup Noise</name>
+<desc>Suite du type Fibonacci</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1391</link>
+<ref>
+<num>10450</num>
+<code>wcn.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Examen</date>
+<name>Mr. Azad and His Son!!!!!</name>
+<desc>Nombres parfaits</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1431</link>
+<ref>
+<num>10490</num>
+<code>azad.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Examen</date>
+<name>Farey sequences</name>
+<desc>Fractions</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1349</link>
+<ref>
+<num>10408</num>
+<code>farey.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Examen</date>
+<name>Ingenuous Cubrency</name>
+<desc>Programmation dynamique</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2078</link>
+<ref>
+<num>11137</num>
+<code>cubrency.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Séance 12</date>
+<name>Skew Binary</name>
+<desc>Premier problème validé par Philippe (mais c'est pas sa version du code) !</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=516</link>
+<ref>
+<num>575</num>
+<code>575.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Summer 08 (BLG)</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>457</num>
+<code>457.cpp</code>
+</ref>
+<ref>
+<num>213</num>
+<code>213.cpp</code>
+</ref>
+<ref>
+<num>256</num>
+<code>256.cpp</code>
+</ref>
+<ref>
+<num>299</num>
+<code>299.cpp</code>
+</ref>
+<ref>
+<num>297</num>
+<code>297.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Summer 08 (BLG)</date>
+<name>Ugly Numbers</name>
+<desc>Bourrinage mathématique - Code puis code de génération</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=139</link>
+<ref>
+<num>139</num>
+<code>139.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Summer 08 (TT)</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>686</num>
+<code>686.cpp</code>
+</ref>
+<ref>
+<num>900</num>
+<code>900.cpp</code>
+</ref>
+<ref>
+<num>11415</num>
+<code>11415.cpp</code>
+</ref>
+<ref>
+<num>583</num>
+<code>583.cpp</code>
+</ref>
+<ref>
+<num>543</num>
+<code>543.cpp</code>
+</ref>
+<ref>
+<num>10055</num>
+<code>10055.cpp</code>
+</ref>
+<ref>
+<num>636</num>
+<code>636.cpp</code>
+</ref>
+<ref>
+<num>621</num>
+<code>621.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Summer 08 (BLG)</date>
+<name>Garden Of Eden</name>
+<desc>Automates cellulaires élémentaires</desc>
+<link>http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=942</link>
+<ref>
+<num>10001</num>
+<code>10001naif.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 1</date>
+<name></name>
+<desc>Problèmes d'I/O</desc>
+<link></link>
+<ref>
+<num>10189</num>
+<code>10189.cpp</code>
+</ref>
+<ref>
+<num>10137</num>
+<code>10137.cpp</code>
+</ref>
+<ref>
+<num>706</num>
+<code>706.cpp</code>
+</ref>
+<ref>
+<num>10033</num>
+<code>10033.cpp</code>
+</ref>
+<ref>
+<num>10196</num>
+<code>10196.cpp</code>
+</ref>
+<ref>
+<num>10142</num>
+<code>10142.cpp</code>
+</ref>
+<ref>
+<num>10050</num>
+<code>10050.cpp</code>
+</ref>
+<ref>
+<num>10258</num>
+<code>10258.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 2</date>
+<name></name>
+<desc>Prog. dyn.</desc>
+<link></link>
+<ref>
+<num>10003</num>
+<code>10003.cpp</code>
+</ref>
+<ref>
+<num>10074</num>
+<code>10074.cpp</code>
+</ref>
+<ref>
+<num>10131</num>
+<code>10131.cpp</code>
+</ref>
+<ref>
+<num>10405</num>
+<code>10405.cpp</code>
+</ref>
+<ref>
+<num>10602</num>
+<code>10602.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 3</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>112</num>
+<code>112.cpp</code>
+</ref>
+<ref>
+<num>114</num>
+<code>114.cpp</code>
+</ref>
+<ref>
+<num>343</num>
+<code>343.cpp</code>
+</ref>
+<ref>
+<num>10909</num>
+<code>10909.cpp</code>
+</ref>
+<ref>
+<num>10918</num>
+<code>10918.cpp</code>
+</ref>
+<ref>
+<num>10959</num>
+<code>10959.cpp</code>
+</ref>
+<ref>
+<num>11465</num>
+<code>11465.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 4</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>10009</num>
+<code>10009.cpp</code>
+</ref>
+<ref>
+<num>10127</num>
+<code>10127.cpp</code>
+</ref>
+<ref>
+<num>10192</num>
+<code>10192.cpp</code>
+</ref>
+<ref>
+<num>10194</num>
+<code>10194.cpp</code>
+</ref>
+<ref>
+<num>10400</num>
+<code>10400.cpp</code>
+</ref>
+<ref>
+<num>10409</num>
+<code>10409.cpp</code>
+</ref>
+<ref>
+<num>10440</num>
+<code>10440.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 5</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>10016</num>
+<code>10016.cpp</code>
+</ref>
+<ref>
+<num>10026</num>
+<code>10026.cpp</code>
+</ref>
+<ref>
+<num>10390</num>
+<code>10390.cpp</code>
+</ref>
+<ref>
+<num>10534</num>
+<code>10534.cpp</code>
+</ref>
+<ref>
+<num>10543</num>
+<code>10543.cpp</code>
+</ref>
+<ref>
+<num>10790</num>
+<code>10790.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 6</date>
+<name></name>
+<desc>Graphes</desc>
+<link></link>
+<ref>
+<num>117</num>
+<code>117.cpp</code>
+</ref>
+<ref>
+<num>315</num>
+<code>315.cpp</code>
+</ref>
+<ref>
+<num>334</num>
+<code>334.cpp</code>
+</ref>
+<ref>
+<num>352</num>
+<code>352.cpp</code>
+</ref>
+<ref>
+<num>10034</num>
+<code>10034.cpp</code>
+</ref>
+<ref>
+<num>10397</num>
+<code>10397.cpp</code>
+</ref>
+<ref>
+<num>10926</num>
+<code>10926.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Partiel</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>485</num>
+<code>485.cpp</code>
+</ref>
+<ref>
+<num>539</num>
+<code>539.cpp</code>
+</ref>
+<ref>
+<num>544</num>
+<code>544.cpp</code>
+</ref>
+<ref>
+<num>590</num>
+<code>590.cpp</code>
+</ref>
+<ref>
+<num>10100</num>
+<code>10100.cpp</code>
+</ref>
+<ref>
+<num>10300</num>
+<code>10300.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 7</date>
+<name></name>
+<desc>Géométrie</desc>
+<link></link>
+<ref>
+<num>143</num>
+<code>143.cpp</code>
+</ref>
+<ref>
+<num>688</num>
+<code>688.cpp</code>
+</ref>
+<ref>
+<num>10002</num>
+<code>10002.cpp</code>
+</ref>
+<ref>
+<num>10065</num>
+<code>10065.cpp</code>
+</ref>
+<ref>
+<num>10078</num>
+<code>10078.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 8</date>
+<name></name>
+<desc>Arithmétique et grands nombres</desc>
+<link></link>
+<ref>
+<num>374</num>
+<code>374.cpp</code>
+</ref>
+<ref>
+<num>686</num>
+<code>686.cpp</code>
+</ref>
+<ref>
+<num>10106</num>
+<code>10106.cpp</code>
+</ref>
+<ref>
+<num>10220</num>
+<code>10220.cpp</code>
+</ref>
+<ref>
+<num>10299</num>
+<code>10299.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Séance 9</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>218</num>
+<code>218.cpp</code>
+</ref>
+<ref>
+<num>673</num>
+<code>673.cpp</code>
+</ref>
+<ref>
+<num>10742</num>
+<code>10742.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>M1 Examen</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>494</num>
+<code>494.cpp</code>
+</ref>
+<ref>
+<num>737</num>
+<code>737.cpp</code>
+</ref>
+<ref>
+<num>10083</num>
+<code>10083.cpp</code>
+</ref>
+<ref>
+<num>10672</num>
+<code>10672.cpp</code>
+</ref>
+<ref>
+<num>10853</num>
+<code>10853.cpp</code>
+</ref>
+<ref>
+<num>10898</num>
+<code>10898.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>SWERC 08</date>
+<name></name>
+<desc></desc>
+<link>http://acm.uva.es/archive/nuevoportal/region.php?r=sw&amp;year=2008</link>
+<ref>
+<num>4296</num>
+<code>horse.cpp</code>
+</ref>
+<ref>
+<num>4302</num>
+<code>toll_road.cpp</code>
+</ref>
+<ref>
+<num>4303</num>
+<code>top.cpp</code>
+</ref>
+<ref>
+<num>4304</num>
+<code>book.cpp</code>
+</ref>
+<ref>
+<num>4305</num>
+<code>wizards.cpp</code>
+</ref>
+</problem>
+<problem>
+<date>Autres</date>
+<name></name>
+<desc></desc>
+<link></link>
+<ref>
+<num>11105</num>
+<code>11105.cpp</code>
+</ref>
+</problem>
+</problems>
