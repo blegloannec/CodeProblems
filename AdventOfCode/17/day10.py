@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-S = 256      # list size
-I = input()  # input
+S = 256  # list size
 
 def invert(T,i,l):
     if l>1:
@@ -18,14 +17,6 @@ def knot_round(T,L,p=0,s=0):
         s += 1
     return p,s
 
-# Part 1
-T = list(range(S))
-L = list(map(int,I.split(',')))
-knot_round(T,L)
-print(T[0]*T[1])
-
-
-# Part 2
 def knot_hash(I):
     T = list(range(S))
     L = list(map(ord,I)) + [17,31,73,47,23]
@@ -38,4 +29,12 @@ def knot_hash(I):
             H[i] ^= T[16*i+j]
     return ''.join('%02x'%h for h in H)
 
-print(knot_hash(I))
+if __name__=='__main__':
+    I = input()  # input
+    # Part 1
+    T = list(range(S))
+    L = list(map(int,I.split(',')))
+    knot_round(T,L)
+    print(T[0]*T[1])
+    # Part 2
+    print(knot_hash(I))
