@@ -9,5 +9,5 @@ for n in range(1,N+1):
         for p in P[n-k]:
             P[n].append([k]+p)
 
-for p in P[n]:
+for p in P[N]:
     print(' '.join(map(str,p)))
