@@ -19,7 +19,6 @@ random.seed()
 
 # Pollard's rho
 def pollard_rho(n):
-    l = set()
     c = random.randint(1,n-1)
     f = (lambda x: (x*x+c)%n)
     x = random.randint(0,n-1)

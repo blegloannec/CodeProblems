@@ -521,7 +521,6 @@ def heap(n,A):
 # Attention : fait main il y a longtemps...
 # pas forcement le "vrai" algo (mais marche vite et bien)
 def pollard_rho(n):
-    l = set()
     c = random.randint(1,n-1)
     f = (lambda x: (x*x+c)%n)
     x = random.randint(0,n-1)
@@ -588,3 +587,16 @@ class Matrice:
             A *= A
             b >>= 1
         return result
+
+
+class Matrix2:
+    def __init__(self,a=1,b=0,c=0,d=1):
+        self.m00,self.m01,self.m10,self.m11 = a,b,c,d
+    def __mul__(self,B):
+        return Matrix2((self.m00*B.m00+self.m01*B.m10)%P,(self.m00*B.m01+self.m01*B.m11)%P,(self.m10*B.m00+self.m11*B.m10)%P,(self.m10*B.m01+self.m11*B.m11)%P)
+    def __pow__(self,n):
+        if n==0:
+            return Matrix2()
+        if n&1==0:
+            return (self*self)**(n>>1)
+        return self*(self*self)**(n>>1)
