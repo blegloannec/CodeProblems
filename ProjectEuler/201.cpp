@@ -3,6 +3,8 @@
 #include <unordered_map>
 using namespace std;
 
+// runs in 4s with -O3
+
 const int N = 100;
 const int K = 50;
 vector< unordered_map<int,int> > C(K+1);
