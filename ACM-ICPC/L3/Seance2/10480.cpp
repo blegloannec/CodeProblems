@@ -13,7 +13,7 @@ using namespace std;
 int t[MAX][MAX];
 int svgt[MAX][MAX];
 int f[MAX][MAX];
-int prev[MAX];
+int pred[MAX];
 int n,m;
 deque<int> fifo;
 list<int> vert;
@@ -28,15 +28,15 @@ bool BFS(int t[MAX][MAX]) {
   fifo.clear();
   fifo.push_back(SOURCE);
   vert.clear();
-  for (int i=1; i<=n; i++) prev[i]=0; 
-  prev[SOURCE] = SOURCE;
+  for (int i=1; i<=n; i++) pred[i]=0; 
+  pred[SOURCE] = SOURCE;
   bool test = true;
   while (test && (!fifo.empty())) {
     int c = fifo.front();
     for (int i=1; i<=n; i++) {
-      if ((prev[i]==0) && (t[c][i]!=0)) {
+      if ((pred[i]==0) && (t[c][i]!=0)) {
 	fifo.push_back(i);
-	prev[i] = c;
+	pred[i] = c;
 	if (i==SINK) {
 	  test = false;
 	  break;
@@ -50,7 +50,7 @@ bool BFS(int t[MAX][MAX]) {
     int c = SINK;
     vert.push_front(c);
     while (c != SOURCE) {
-      c = prev[c];
+      c = pred[c];
       vert.push_front(c);
     } 
     return true;
@@ -130,9 +130,9 @@ int main() {
        accessibles à partir de la source dans le graphe résiduel.
      */
     for (int i=1; i<=n; i++) 
-      if (prev[i]>0) 
+      if (pred[i]>0) 
 	for (int j=1; j<=n; j++) 
-	  if ((prev[j]==0)&&(svgt[i][j]>0)) 
+	  if ((pred[j]==0)&&(svgt[i][j]>0)) 
 	    cout << i << ' ' << j << endl;
        
 
