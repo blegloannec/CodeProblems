@@ -30,14 +30,14 @@ double win(int C=0, int p=1) {
   if (align(C,p)) res = 1.;
   else if (align(C,o)) res = 0.;
   else {
-    int cpt = 0;
+    bool tie = true;
     for (int i=0; i<3; ++i)
       for (int j=0; j<3; ++j)
 	if (get_cell(C,i,j)==0) {
-	  ++cpt;
+	  tie = false;
 	  res = max(res,P[p-1][i][j]*(1.-win(set_cell(C,i,j,p),o))+(1.-P[p-1][i][j])*(1.-win(set_cell(C,i,j,o),o)));
 	}
-    if (p==2 && cpt==0) res = 1.; // on compte les tie pour le player 2
+    if (tie && p==2) res = 1.; // on compte les tie pour le player 2
   }
   memo[p-1][C] = res;
   return res;
