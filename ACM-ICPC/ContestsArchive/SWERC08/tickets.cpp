@@ -7,7 +7,6 @@ const int PMAX = NMAX*RMAX;
 int N,R;
 int M[NMAX][NMAX];
 double P[RMAX+1][NMAX+1][PMAX+1];
-double B[NMAX+1][NMAX+1];
 
 void floyd_warshall() {
   for (int k=0; k<N; ++k)
@@ -20,15 +19,15 @@ void dp_proba() {
   for (int R=1; R<=RMAX; ++R) {
     P[R][0][0] = 1.;
     for (int d=1; d<=NMAX; ++d) P[R][d][0] = 0.;
-    for (int m=1; m<=PMAX; ++m) P[R][0][m] = 0.;
+    for (int m=1; m<=R*NMAX; ++m) P[R][0][m] = 0.;
     for (int d=1; d<=NMAX; ++d)
-      for (int m=1; m<=PMAX; ++m) {
+      for (int m=1; m<=R*d; ++m) {
 	P[R][d][m] = 0.;
 	for (int r=1; r<=R && r<=m; ++r)
 	  P[R][d][m] += P[R][d-1][m-r]/R;
       }
     for (int d=1; d<=NMAX; ++d)
-      for (int m=1; m<=PMAX; ++m)
+      for (int m=1; m<=R*d; ++m)
 	P[R][d][m] += P[R][d][m-1];
   }
 }
@@ -54,7 +53,7 @@ int main() {
       cin >> a >> b >> m; --a; --b;
       double p;
       if (M[a][b]>N) p = 0.;
-      else if (m>=PMAX) p = 1.;
+      else if (m>=R*M[a][b]) p = 1.;
       else p = P[R][M[a][b]][m];
       cout << p << endl;
     }
