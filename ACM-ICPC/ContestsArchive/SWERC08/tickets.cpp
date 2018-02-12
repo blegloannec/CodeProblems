@@ -7,6 +7,7 @@ const int PMAX = NMAX*RMAX;
 int N,R;
 int M[NMAX][NMAX];
 double P[RMAX+1][NMAX+1][PMAX+1];
+double C[RMAX+1][NMAX+1][PMAX+1];
 
 void floyd_warshall() {
   for (int k=0; k<N; ++k)
@@ -15,25 +16,36 @@ void floyd_warshall() {
 	M[i][j] = min(M[i][j],M[i][k]+M[k][j]);
 }
 
-void dp_proba() {
-  for (int R=1; R<=RMAX; ++R) {
-    P[R][0][0] = 1.;
-    for (int d=1; d<=NMAX; ++d) P[R][d][0] = 0.;
-    for (int m=1; m<=R*NMAX; ++m) P[R][0][m] = 0.;
+void init_dp() {
+  for (int r=1; r<=RMAX; ++r) {
+    P[r][0][0] = C[r][0][0] = 1.;
+    for (int d=1; d<=NMAX; ++d) P[r][d][0] = C[r][d][0] = 0.;
+    for (int m=1; m<=r*NMAX; ++m) {
+      P[r][0][m] = 0.;
+      C[r][0][m] = 1.;
+    }
     for (int d=1; d<=NMAX; ++d)
-      for (int m=1; m<=R*d; ++m) {
-	P[R][d][m] = 0.;
-	for (int r=1; r<=R && r<=m; ++r)
-	  P[R][d][m] += P[R][d-1][m-r]/R;
-      }
-    for (int d=1; d<=NMAX; ++d)
-      for (int m=1; m<=R*d; ++m)
-	P[R][d][m] += P[R][d][m-1];
+      for (int m=1; m<=r*d; ++m)
+	P[r][d][m] = C[r][d][m] = -1.;
   }
 }
 
+double dp_proba(int d, int m) {
+  if (P[R][d][m]<0) {
+    P[R][d][m] = 0.;
+    for (int r=1; r<=R && r<=m; ++r)
+      P[R][d][m] += dp_proba(d-1,m-r)/R;
+  }
+  return P[R][d][m];
+}
+
+double dp_cumul(int d, int m) {
+  if (C[R][d][m]<0) C[R][d][m] = dp_proba(d,m)+dp_cumul(d,m-1);
+  return C[R][d][m];
+}
+
 int main() {
-  dp_proba();
+  init_dp();
   int T;
   cin >> T;
   for (int t=1; t<=T; ++t) {
@@ -54,7 +66,7 @@ int main() {
       double p;
       if (M[a][b]>N) p = 0.;
       else if (m>=R*M[a][b]) p = 1.;
-      else p = P[R][M[a][b]][m];
+      else p = dp_cumul(M[a][b],m);
       cout << p << endl;
     }
     cout << endl;
