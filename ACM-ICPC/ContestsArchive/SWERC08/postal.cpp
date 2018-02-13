@@ -14,8 +14,8 @@ typedef vector<point> points;
 const int M = 10;
 int n;
 points B[M][M];
-ent LinC[M][M],ColC[M][M],RecC[M][M];
-double BS[M][M],LinS[M][M],ColS[M][M],RecS[M][M];
+ent LinC[M][M],RecC[M][M];
+double BS[M][M],LinS[M][M],RecS[M][M];
 
 void init() {
   for (int i=0; i<M; ++i)
@@ -44,21 +44,12 @@ int main() {
 	  LinS[i][j] += LinS[i][j-1] + LinC[i][j-1];
 	}
       }
-    for (int j=0; j<M; ++j)
-      for (int i=0; i<M; ++i) {
-	ColC[i][j] = B[i][j].size();
-	ColS[i][j] = 2.*B[i][j].size() - BS[i][j];
-	if (i>0) {
-	  ColC[i][j] += ColC[i-1][j];
-	  ColS[i][j] += ColS[i-1][j] + ColC[i-1][j];
-	}
-      }
     double d = 0.;
     ent c = 0;
     for (int i=0; i<M; ++i)
       for (int j=0; j<M; ++j) {
-	RecC[i][j] = LinC[i][j] + (i&&j ? RecC[i-1][j-1] : 0.) + (i ? ColC[i-1][j] : 0.);
-	RecS[i][j] = LinS[i][j] + (i&&j ? RecS[i-1][j-1]+2.*RecC[i-1][j-1] : 0.) + (i ? ColS[i-1][j]+ColC[i-1][j] : 0.);
+	RecC[i][j] = LinC[i][j] + (i ? RecC[i-1][j] : 0.);
+	RecS[i][j] = LinS[i][j] + (i ? RecS[i-1][j]+RecC[i-1][j] : 0.);
 	if (i&&j) {
 	  d += RecS[i-1][j-1]*B[i][j].size() + BS[i][j]*RecC[i-1][j-1];
 	  c += B[i][j].size()*RecC[i-1][j-1];
