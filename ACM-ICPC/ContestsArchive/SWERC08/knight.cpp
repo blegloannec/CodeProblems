@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <vector>
-#include <cassert>
+//#include <cassert>
 using namespace std;
 
 /*
@@ -70,17 +70,16 @@ int first_non_zero(matrix &M, int j) {
 
 // line operations optimized for block-width n
 void sline_prod(scal a, matrix &M, int i) {
-  //for (int j=0; j<s; ++j) M[i][j] *= a;
-  for (int j=max(0,i-n); j<min(s,i+n+1); ++j) M[i][j] *= a;
+  //for (int j=i; j<s; ++j) M[i][j] *= a;
+  for (int j=i; j<min(s,i+n+1); ++j) M[i][j] *= a;
 }
 
 void line_diff(scal a, matrix &M, int i, int j) {
-  //for (int k=0; k<s; ++k) M[j][k] -= a*M[i][k];
-  for (int k=max(0,i-n); k<min(s,i+n+1); ++k) M[j][k] -= a*M[i][k];
+  //for (int k=i; k<s; ++k) M[j][k] -= a*M[i][k];
+  for (int k=i; k<min(s,i+n+1); ++k) M[j][k] -= a*M[i][k];
 }
 
-vec system_solve(matrix &M, vec &B) {
-  vec Sol(s);
+void system_solve(matrix &M, vec &B) {
   // triangularization in O(s*n^2) = O(m*n^3)
   for (int i=0; i<s; ++i) {
     /* // NOT USED as in this particular case we always have j0 = i
@@ -101,13 +100,11 @@ vec system_solve(matrix &M, vec &B) {
       B[j] -= a*B[i];
     }
   }
-  // backwards substitutions in O(s^2) = O(m^2*n^2)
-  for (int i=s-1; i>=0; --i) {
-    Sol[i] = B[i];
-    for (int j=i+1; j<s; ++j)
-      Sol[i] -= M[i][j]*Sol[j];
-  }
-  return Sol;
+  // backwards substitutions optimized for block-width n
+  // in O(s*n) = O(m*n^2)
+  for (int i=s-1; i>=0; --i)
+    for (int j=i+1; j<min(s,i+n+1); ++j)
+      B[i] -= M[i][j]*B[j];
 }
 
 
@@ -116,8 +113,8 @@ int main() {
     // system constant part B = (1,1,...,1,0)
     vec B(s,1.);
     B[s-1] = 0.;
-    vec Sol = system_solve(M,B);
-    printf("%lf\n",Sol[0]);
+    system_solve(M,B);
+    printf("%lf\n",B[0]);
   }
   return 0;
 }
