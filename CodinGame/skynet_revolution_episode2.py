@@ -48,15 +48,18 @@ def dijkstra(u0):
     u0 = None
     while H:
         d,u = heappop(H)
+        if d>D[u]:
+            continue
         assert(d>=len(V[u])-1)
         if V[u] and d==len(V[u])-1:
             return u
         if u0==None and V[u]:
             u0 = u
+        d += 1-len(V[u])
         for v in G[u]:
-            if not E[v] and D[v]==None:
-                D[v] = d + 1-len(V[u])
-                heappush(H,(D[v],v))
+            if not E[v] and (D[v]==None or d<D[v]):
+                D[v] = d
+                heappush(H,(d,v))
     return u0
 
 # game loop
