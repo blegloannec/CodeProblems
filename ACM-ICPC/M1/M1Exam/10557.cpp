@@ -1,98 +1,115 @@
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
-#define MAX 105
-#define INF -1000000
-#define TINF -1000
+#define MAX 101
+#define INTMAX 100000
 
-int n;
-//matbase[i][j]: cout pour aller de i a j;
-int matbase[MAX][MAX];
-int vec[MAX];
-int vectmp[MAX];
-int matres[MAX][MAX];
-int mattmp[MAX][MAX];
+int size;
+bool t[MAX][MAX]; // Table
+int poids[MAX];
+bool valide[MAX]; // etats accessibles
+bool covalide[MAX]; // etats coaccessibles
+int pred[MAX]; /* tableau des predecesseurs
+		  A INITIALISER A -1 */
 
-void init(){
-  int e, nbdoor, tmp;
-
-  for (int i=0;i<n;++i)
-    vec[i]= INF;
-
-  vec[0]= 100;
-
-  for (int i=0;i<n;++i)
-    for (int j=0;j<n;++j)
-      matbase[i][j]= INF;
-
-  for (int i=0;i<n;++i){
-    cin >> e >> nbdoor;
-    for (int j=0;j<nbdoor;++j){
-      cin >> tmp;
-      tmp--;
-      matres[i][tmp] = matbase[i][tmp]= e;
-    }
-  }
-  for (int i=0;i<n;++i)
-    matbase[i][i]=0;
+void clear_pred(int start) { // avant un DFS
+  for (int i=0; i<size; ++i) pred[i] = -1;
+  pred[start] = start;
 }
 
-void computvec(){
-  for (int i=0;i<n;++i){
-    vectmp[i]= vec[0] + matbase[0][i];
-    for (int k=1;k<n;++k){
-      vectmp[i]= max(vectmp[i], vec[k]+ matbase[k][i]);
-    }
+void clear2() {
+  for (int i=0; i<size; ++i) {
+    valide[i] = false;
+    covalide[i] = false;
+    for (int j=0; j<size; ++j)
+      t[i][j] = false;
   }
-  for (int i=0;i<n;++i)
-    if (vectmp[i]>0)
-      vec[i]= max(vec[i],vectmp[i]);
 }
 
-void computmat(){
-  for (int i=0;i<n;++i)
-    for (int j=0;j<n;++j){
-      mattmp[i][j]= matres[i][0]+matbase[0][j]; 
-      for (int k=1;k<n;++k){
-        mattmp[i][j]= max(mattmp[i][j], matres[i][k]+ matbase[k][j]);
+int dist[MAX];
+
+// INITIALISER clear_pred(start);
+void DFS(int start) {
+  for (int i=0; i<size; ++i)
+    if ((t[start][i]>0)&&(pred[i]<0)) {
+      pred[i] = start;
+      valide[i] = true;
+      DFS(i);
+    }
+}
+
+void DFS_inv(int start) {
+  for (int i=0; i<size; ++i)
+    if ((t[i][start])&&(pred[i]<0)) {
+      pred[i] = start;
+      covalide[i] = true; 
+      DFS_inv(i);
+    }
+}
+
+void relacher(int u, int v, int w) {
+  int d2 = dist[u]+w;
+  // on vérifie que d2<100 pour ne pas dépasser l'énergie.
+  if (dist[v]>d2 && d2<100) {
+    dist[v] = d2;
+    pred[v] = u;
+  }
+}
+
+bool bellman_ford(int start) { 
+  // detecte les cycles de poids negatif
+  for (int v=0; v<size; v++) { // initialisation
+    dist[v] = INTMAX;
+    pred[v] = -1;
+  }
+  dist[start] = 0;
+  for (int j=1; j<size; j++) // relachements
+    for (int u=0; u<size; u++) {
+      if (valide[u] && covalide[u])
+	for (int v=0; v<size; ++v)
+	  if (valide[v] && covalide[v])
+	    if (t[u][v]) relacher(u,v,poids[v]); // SIP
+    }
+  // detection des cycles negatifs, RINN
+  for (int u=0; u<size; u++) 
+    if (valide[u] && covalide[u])
+      for (int v=0; v<size; ++v) 
+	if (valide[v] && covalide[v])
+	  if ((t[u][v])&&(dist[v]>dist[u]+poids[v])
+	      // on vérifie que le sommet est bien accessible avec l'énergie
+	      && dist[v]<INTMAX/2)
+	    return false;
+  return true;  
+}
+
+
+int main() {
+  int k,d;
+  while (cin >> size) {
+    if (size < 0) return 0;
+    clear2();
+    for (int i=0; i<size; ++i) {
+      cin >> poids[i] >> k;
+      poids[i] = -poids[i];
+      for (int j=0; j<k; ++j) {
+	cin >> d;
+	--d;
+	t[i][d] = true;
       }
     }
-  for (int i=0;i<n;++i)
-    for (int j=0;j<n;++j){
-      if (mattmp[i][j]>TINF)
-        matres[i][j]= max(matres[i][j], mattmp[i][j]);
-    }
-}
-
-
-int main(){
-  cin >> n;
-  while (n!=-1){
-    init();
-
-    for (int i=0;i<n;++i){
-      computmat();
-      computvec();
-    }
-
-    for (int i=0; i<n;++i)
-      cout << vec[i] << " ";
-
-    if (vec[n-1]< TINF)
+    valide[0] = true;
+    clear_pred(0);
+    DFS(0);
+    covalide[size-1] = true;
+    clear_pred(size-1);
+    DFS_inv(size-1);
+    if (!bellman_ford(0)) 
+      cout << "winnable\n";
+    else if (dist[size-1]<100) 
+      cout << "winnable\n";
+    else 
       cout << "hopeless\n";
-    else{
-      bool possible=false;
-      for (int i=0;i<n;++i){
-        if (vec[i]>0 && matres[i][i]>0 && matres[i][n-1]>TINF)
-          possible=true;
-      }
-      if (possible || vec[n-1]>0)
-        cout << vec[n-1] << "winnable\n";
-      else
-        cout << "hopeless\n";
-    }
-
-    cin >> n;
   }
+  return 0;
 }
