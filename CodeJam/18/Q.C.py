@@ -27,7 +27,7 @@ def main():
     T = int(input())
     for _ in range(T):
         A = int(input())
-        # 9x3 = 27 for 20, 18x13 = 216 for 200
+        # 9x3 = 27 for 20, 18x12 = 216 for 200
         H,W = (3,1) if A==20 else (6,4)
         case(H,W)
 
