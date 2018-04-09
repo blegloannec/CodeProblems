@@ -6,6 +6,7 @@ import solution  # solver
 import time
 
 N = 5
+N2 = N*N
 
 class IHM(Frame):
     def __init__(self, fname, master=None):
@@ -24,7 +25,7 @@ class IHM(Frame):
         self.text_res.grid(row=N+1, column=0, columnspan=5)
         self.text_print('%d grids loaded' % len(self.Grids))
         self.grid()
-
+    
     def load_grids(self, fname):
         f = open(fname,'r')
         self.Grids = []
@@ -37,7 +38,7 @@ class IHM(Frame):
             for i in range(N):
                 for j in range(N):
                     self.Sets[i][j][self.Grids[n][i][j]].add(n)
-
+    
     def text_print(self, s=''):
         self.text_res.config(state=NORMAL)
         self.text_res.insert(END,s+'\n')
@@ -47,57 +48,59 @@ class IHM(Frame):
         self.text_res.config(state=NORMAL)
         self.text_res.delete(1.0,END)
         self.text_res.config(state=DISABLED)
-        
-    def search(self):
-        self.text_clear()
-        S = set(range(len(self.Grids)))
+    
+    def input_grid(self):
+        G = [[0]*N for _ in range(N)]
         for i in range(N):
-            L = []
             for j in range(N):
                 try:
                     v = int(self.V[i][j].get())
-                    S &= self.Sets[i][j][v]
-                    L.append(str(v))
+                    assert(1<=v<=N*N)
+                    G[i][j] = v
                 except:
-                    L.append('0')
-                    #pass
-            self.text_print(' '.join(L))
+                    pass
+        return G
+    
+    def print_grid(self, G):
+        for L in G:
+            self.text_print(' '.join(map(str,L)))
+    
+    def search(self):
+        G = self.input_grid()
+        S = set(range(len(self.Grids)))
+        for i in range(N):
+            for j in range(N):
+                if G[i][j]>0:
+                    S &= self.Sets[i][j][G[i][j]]
+        self.text_clear()
+        self.print_grid(G)
         self.text_print()
         self.text_print('%d grid(s) found' % len(S))
         if len(S)<=10:
             for n in S:
                 self.text_print()
-                for i in range(N):
-                    self.text_print(' '.join(map(str,self.Grids[n][i])))
-
+                self.print_grid(self.Grids[n])
+    
     def solve(self):
-        self.text_clear()
-        M = N*N
-        G = [None]*(M+1)
-        Avail = (1<<M)-1
+        G0 = self.input_grid()
+        G = [None]*(N2+1)
+        Avail = (1<<N2)-1
         for i in range(N):
-            L = []
             for j in range(N):
-                try:
-                    v = int(self.V[i][j].get())
-                    assert(1<=v<=M)
-                    G[v] = N*i+j
+                if G0[i][j]>0:
+                    G[G0[i][j]] = N*i+j
                     Avail ^= 1<<(N*i+j)
-                    L.append(str(v))
-                except:
-                    L.append('0')
-                    #pass
-            self.text_print(' '.join(L))
+        self.text_clear()
+        self.print_grid(G0)
         self.text_print()
-        S = [None]*(M+1)
+        S = [None]*(N2+1)
         t0 = time.clock()
         succ = solution.backtrack(G,Avail,S)
         t1 = time.clock()
         if succ:
             self.text_print('Success -- %.3fs\n' % (t1-t0))
             Sol = solution.grid(S)
-            for L in Sol:
-                self.text_print(' '.join(map(str,L)))
+            self.print_grid(Sol)
         else:
             self.text_print('Failed! -- %.3fs' % (t1-t0))
 
