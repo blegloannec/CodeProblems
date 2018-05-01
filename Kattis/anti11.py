@@ -3,12 +3,12 @@
 M = 10000
 P = 10**9+7
 
-N = [1]
-N0,N1 = 1,0  # nb of anti-11 strings ending with 0/1
-for i in range(1,M+1):
-    N0,N1 = (N0+N1)%P,N0
-    N.append((N0+N1)%P)
-# (it's fibonacci btw)
+# PRECOMP
+# N(n) = N(n-1) + N(n-2)
+#       (..0    + ..01    -> fibonacci)
+N = [1,2]
+for i in range(2,M+1):
+    N.append((N[-2]+N[-1])%P)
 
 # MAIN
 T = int(input())
