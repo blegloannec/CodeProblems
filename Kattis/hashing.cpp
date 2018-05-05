@@ -13,7 +13,7 @@ const ent B3 = 37;
 
 int N;
 string S;
-vector<ent> H1,H2,H3,H4,Bpow1,Bpow2,Bpow3,Bpow4;
+vector<ent> H1,H2,H3,Bpow1,Bpow2,Bpow3;
 
 void init_hash() {
   N = S.size();
