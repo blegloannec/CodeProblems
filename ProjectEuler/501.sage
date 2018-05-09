@@ -3,9 +3,11 @@
 # donc n a exactement 8 diviseurs ssi il est de la forme
 # n = p^7 ou n = pq^3 ou n = pqr avec p,q,r premiers distincts
 
-# on utilise ici le denombrement rapide prime_pi() de Sage
+# on utilise ici le denombrement rapide prime_pi() de Sage (~45s)
 # https://en.wikipedia.org/wiki/Meissel%E2%80%93Lehmer_algorithm
 # http://acganesh.com/blog/2016/12/23/prime-counting
+
+# voir aussi http://images.math.cnrs.fr/Nombres-a-huit-diviseurs.html
 
 memo = {}
 def memo_prime_pi(n):
