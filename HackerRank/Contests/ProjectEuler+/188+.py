@@ -120,12 +120,12 @@ def hypexpbigger(a,k,x):
 def hypexpmod(a,k,m):
     if k==0:
         return 1
-    if m==1:
+    elif m==1:
         return 0
-    if gcd(a,m)==1:
+    elif gcd(a,m)==1:
         return pow(a,hypexpmod(a,k-1,eulerphi(m)),m)
     else:
-        # cas difficile, on decompoe m et on traite chaque facteur premier
+        # cas difficile, on decompose m et on traite chaque facteur premier
         # separement, on recompose par theoreme chinois
         D = full_factorisation(m)
         E = []
