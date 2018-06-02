@@ -13,7 +13,7 @@ struct Node {
   int h;  // heap-style priority
 
   Node(val x, Node *p=NULL, Node *l=NULL, Node *r=NULL) : x(x),p(p),l(l),r(r) {
-    h = rand()%100;
+    h = rand();
   }
 };
 
