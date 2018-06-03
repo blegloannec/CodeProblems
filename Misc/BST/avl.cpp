@@ -23,6 +23,10 @@ struct AVL {
     root = NULL;
   }
 
+  ~AVL() {
+    clear();
+  }
+
   int height(Node *u) const;
   void refresh_height(Node *u);
   int bf(Node *u) const;

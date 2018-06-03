@@ -20,6 +20,10 @@ struct BST {
     root = NULL;
   }
 
+  ~BST() {
+    clear();
+  }
+  
   Node *find(val x) const;
   void insert(val x);
   Node *min(Node *u) const;

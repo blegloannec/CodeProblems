@@ -24,6 +24,10 @@ struct Treap {
     root = NULL;
   }
 
+  ~Treap() {
+    clear();
+  }
+  
   void rotate_left(Node *u);
   void rotate_right(Node *u);
   Node *find(val x) const;
