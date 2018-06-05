@@ -42,7 +42,20 @@ struct Splay {
   }
 
   ~Splay() {
-    clear();
+    /* 
+       Due to (external) split and join, automatic clearing is extremely
+       dangerous as it can free some data shared between several Splay objects.
+       Possibilities are:
+         - use destructor clearing and let the programmer pay attention
+  	   to "neutralize" useless trees that still share data with others
+	   by setting root = NULL;
+	 - avoid destructor clearing and let the programmer pay attention
+	   to free the data by calling clear() manually to avoid memory
+	   leaks.
+       Here we pick the second solution as it is less likely to be responsible
+       for serious problems.
+    */
+    //clear();
   }
 
   void rotate_left(Node *u);
@@ -50,8 +63,10 @@ struct Splay {
   void splay(Node *u);
   Node *access(val x);
   Node *access_max();
-  void join(Node *u);
-  pair<Node*,Node*> split(val x);
+  void ijoin(Node *u);              // "internal" version (uses Node*)
+  pair<Node*,Node*> isplit(val x);  // idem
+  void join(Splay &T);              // "external" version (uses Splay)
+  pair<Splay,Splay> split(val x);   // idem
   void insert(val x);
   void erase(val x);
   Node *min(Node *u) const;
@@ -130,17 +145,19 @@ Node *Splay::access_max() {
   return u;
 }
 
-void Splay::join(Node *u) {
+// "internal" join
+void Splay::ijoin(Node *u) {
   if (root==NULL) root = u;
   else {
     access_max();
-    assert(root->r==NULL);
+    //assert(root->r==NULL);
     root->r = u;
     if (root->r!=NULL) root->r->p = root;
   }
 }
 
-pair<Node*,Node*> Splay::split(val x) {
+// "internal" split
+pair<Node*,Node*> Splay::isplit(val x) {
   Node *L = NULL, *R = NULL;
   if (root!=NULL) {
     access(x);
@@ -156,14 +173,30 @@ pair<Node*,Node*> Splay::split(val x) {
       R->l = NULL;
       if (L!=NULL) L->p = NULL;
     }
-    root = NULL;  // neutralize current tree
+    root = NULL;  // neutralize current tree (for safety)
   }
   return make_pair(L,R);
 }
 
+// "external" join (useful when using Splay as a black box)
+void Splay::join(Splay &T) {
+  ijoin(T.root);
+  T.root = NULL;  // neutralize joined tree (for safety)
+}
+
+// "external" split
+// !! implementation not compatible with destructor clearing !!
+//   (returns copies of local objects that get destructed,
+//    so would be their associated data; use referenced arguments
+//    implementation to get around that problem if absolutely needed)
+pair<Splay,Splay> Splay::split(val x) {
+  pair<Node*,Node*> LR = isplit(x);
+  return make_pair(Splay(LR.first),Splay(LR.second));
+}
+
 // splay spirit method: insertion using split
 void Splay::insert(val x) {
-  pair<Node*,Node*> LR = split(x);
+  pair<Node*,Node*> LR = isplit(x);
   root = new Node(x,NULL,LR.first,LR.second);
 }
 
@@ -176,7 +209,7 @@ void Splay::erase(val x) {
   root = u->l;
   if (root!=NULL) root->p = NULL;
   delete u;
-  join(r);
+  ijoin(r);
 }
 
 Node *Splay::min(Node *u=NULL) const {
@@ -247,6 +280,7 @@ int main() {
     if (c>0) T.insert(x);
     else if (T.access(x)!=NULL) T.erase(x);
   }
+  T.clear();
   //draw(T);
   //traversal(T);
   return 0;
