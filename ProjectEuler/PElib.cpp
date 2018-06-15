@@ -54,23 +54,24 @@ void sieve_smallest_factor() {
     }
 }
 
-void factors(int n, vector<int> &D) {
-  int p = F[n];
-  D.push_back(p);
-  do {n /= p;} while (n%p==0);
-  if (n>1) factors(n,D);
+vector<int> factors(int n) {
+  vector<int> D;
+  while (n>1) {
+    int p = F[n];
+    D.push_back(p);
+    do {n /= p;} while (n%p==0);
+  }
+  return D;
 }
 
-void decomp(int n, vector<couple> &D) {
-  int p = F[n];
-  n /= p;
-  int m = 1;
-  while (n%p==0) {
-    n /= p;
-    ++m;
+vector<couple> decomp(int n) {
+  vector<couple> D;
+  while (n>1) {
+    int p = F[n], m = 0;
+    while (n%p==0) {++m; n /= p;}
+    D.push_back(make_pair(p,m));
   }
-  D.push_back(couple(p,m));
-  if (n>1) decomp(n,D);
+  return D;
 }
 
 void divisors(vector<couple> &D, vector<ent> &Divs) {
