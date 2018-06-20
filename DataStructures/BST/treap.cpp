@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <vector>
+#include "benchmark.hpp"
 using namespace std;
 
 /* ===== Treap BST ====== */
@@ -37,6 +38,7 @@ struct Treap {
   Node *min(Node *u) const;
   Node *succ(Node *u) const;
   void _erase_in_line(Node *u);
+  void _copy_node_data(Node *src, Node *dst); // !! to modify when enhancing Node !!
   void erase(Node *u);
   void erase(val x);
   void clear(Node *u);
@@ -128,12 +130,18 @@ void Treap::_erase_in_line(Node *u) {
   delete u;
 }
 
+// copies all non structural data from src to dst
+// !! IMPORTANT: any additional data field in Node must be copied here !!
+void Treap::_copy_node_data(Node *src, Node *dst) {
+  dst->x = src->x;
+  dst->h = src->h;
+}
+
 void Treap::erase(Node *u) {
   if (u->l==NULL || u->r==NULL) _erase_in_line(u);
   else {
     Node *v = min(u->r);  // we could as well use succ(u)
-    u->x = v->x;
-    u->h = v->h;
+    _copy_node_data(v,u);
     _erase_in_line(v);  // v has no left child
     downward_percolation(u);
   }
@@ -186,6 +194,7 @@ void draw(Treap &T) {
   cout << "}" << endl;
 }
 
+/*
 int main() {
   srand(42);
   Treap T;
@@ -200,6 +209,22 @@ int main() {
     if (C[i]>0) T.insert(x);
     else if (T.find(x)!=NULL) T.erase(x);
   }
-  //traversal(T);
+  traversal(T);
+  return 0;
+}
+*/
+
+class BST_Treap : public BSTStructure {
+public:
+  Treap T;
+  virtual bool exists(int x) {return T.find(x)!=NULL;}
+  virtual void insert(int x) {T.insert(x);}
+  virtual void erase(int x) {T.erase(x);}
+  virtual void clear() {T.clear();}
+};
+
+int main() {
+  BST_Treap S;
+  bench(&S);
   return 0;
 }

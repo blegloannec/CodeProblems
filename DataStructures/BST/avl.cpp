@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include "benchmark.hpp"
 using namespace std;
 
 /* ===== AVL BST ====== */
@@ -39,6 +40,7 @@ struct AVL {
   Node *min(Node *u) const;
   Node *succ(Node *u) const;
   void _erase_in_line(Node *u);
+  void _copy_node_data(Node *src, Node *dst); // !! to modify when enhancing Node !!
   void erase(Node *u);
   void erase(val x);
   void clear(Node *u);
@@ -171,6 +173,12 @@ void AVL::_erase_in_line(Node *u) {
   delete u;
 }
 
+// copies all non structural data from src to dst
+// !! IMPORTANT: any additional data field in Node must be copied here !!
+void AVL::_copy_node_data(Node *src, Node *dst) {
+  dst->x = src->x;
+}
+
 void AVL::erase(Node *u) {
   if (u->l==NULL || u->r==NULL) {
     Node *u0 = u->p;
@@ -179,7 +187,7 @@ void AVL::erase(Node *u) {
   }
   else {
     Node *v = min(u->r);  // we could as well use succ(u)
-    u->x = v->x;
+    _copy_node_data(v,u);
     Node *v0 = v->p;
     _erase_in_line(v);  // v has no left child
     upward_balance(v0);
@@ -233,6 +241,7 @@ void draw(AVL &T) {
   cout << "}" << endl;
 }
 
+/*
 int main() {
   srand(42);
   AVL T;
@@ -242,5 +251,21 @@ int main() {
     if (c>0) T.insert(x);
     else if (T.find(x)!=NULL) T.erase(x);
   }
+  return 0;
+}
+*/
+
+class BST_AVL : public BSTStructure {
+public:
+  AVL T;
+  virtual bool exists(int x) {return T.find(x)!=NULL;}
+  virtual void insert(int x) {T.insert(x);}
+  virtual void erase(int x) {T.erase(x);}
+  virtual void clear() {T.clear();}
+};
+
+int main() {
+  BST_AVL S;
+  bench(&S);
   return 0;
 }

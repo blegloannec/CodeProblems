@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include "benchmark.hpp"
 using namespace std;
 
 /* 
@@ -271,6 +272,7 @@ void draw(Splay &T) {
   cout << "}" << endl;
 }
 
+/*
 int main() {
   srand(42);
   Splay T;
@@ -285,3 +287,20 @@ int main() {
   //traversal(T);
   return 0;
 }
+*/
+
+class BST_Splay : public BSTStructure {
+public:
+  Splay T;
+  virtual bool exists(int x) {return T.access(x)!=NULL;}
+  virtual void insert(int x) {T.insert(x);}
+  virtual void erase(int x) {T.erase(x);}
+  virtual void clear() {T.clear();}
+};
+
+int main() {
+  BST_Splay S;
+  bench(&S);
+  return 0;
+}
+

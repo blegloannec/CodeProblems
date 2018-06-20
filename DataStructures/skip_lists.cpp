@@ -5,6 +5,7 @@
 #include <vector>
 #include <climits>
 #include <cassert>
+#include "BST/benchmark.hpp"
 using namespace std;
 
 /* ===== Skip List ===== */
@@ -157,6 +158,7 @@ int main() {
   return 0;
 }*/
 
+/*
 int main() {
   srand(42);
   int n = 5000000, m = 5000;
@@ -172,5 +174,23 @@ int main() {
     else if (L.exists(x)) L.remove(x);
   }
   //L.print();
+  return 0;
+}
+*/
+
+class BST_SL : public BSTStructure {
+public:
+  SkipList *T;
+  BST_SL() {T = new SkipList(25);}
+  ~BST_SL() {delete T;}
+  virtual bool exists(int x) {return T->exists(x);}
+  virtual void insert(int x) {T->insert(x);}
+  virtual void erase(int x) {T->remove(x);}
+  virtual void clear() {T->clear();}
+};
+
+int main() {
+  BST_SL S;
+  bench(&S);
   return 0;
 }
