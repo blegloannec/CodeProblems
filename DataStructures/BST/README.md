@@ -1,4 +1,4 @@
-### Benchmark (4 datasets in `benchmark.cpp`)
+### Benchmark - `g++ -O2` - 4 datasets in `benchmark.cpp`
 
 ```
 redblack          0.11s    3.18s    3.05s    7.38s
