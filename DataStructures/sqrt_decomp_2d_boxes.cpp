@@ -59,7 +59,8 @@ void SqrtBoxes::init(vector<point> &V) {
     sbox[i].resize(S,0);
   }
   // S-quantiles
-  vector<int> X(N),Y(N);
+  vector<xtype> X(N);
+  vector<ytype> Y(N);
   for (int i=0; i<N; ++i) {
     X[i] = V[i].first;
     Y[i] = V[i].second;
@@ -106,7 +107,7 @@ ctype SqrtBoxes::count(xtype x, ytype y) const {
   return res;
 }
 
-ctype SqrtBoxes::naive_count(int x, int y) const {
+ctype SqrtBoxes::naive_count(xtype x, ytype y) const {
   ctype res = 0;
   for (auto it=box[0][0].begin(); it!=box[0][0].end() && it->first<=x; ++it)
     if (it->second<=y) ++res;
