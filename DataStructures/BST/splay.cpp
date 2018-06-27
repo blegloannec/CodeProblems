@@ -4,7 +4,7 @@
 #include "benchmark.hpp"
 using namespace std;
 
-/* 
+/*
    Sleator-Tarjan, Self-Adjusting Binary Search Trees
    Only the "splay-spirit" insertion/deletion are implemented here.
    Alternative "hybrid" implementations consists in using the standard
@@ -12,8 +12,7 @@ using namespace std;
    parent of the deleted node (as we do in any other balanced BST
    implementation: standard insertion/deletion followed by a re-balancing
    pass). The amortized analysis of these alternatives is theoretically
-   slighty better, yet they do not seem to perform better in practice
-   and are not as straightforwardly simple and elegant.
+   slighty better, yet they are not as straightforwardly simple and elegant.
 */
 
 
@@ -69,7 +68,9 @@ struct Splay {
   void join(Splay &T);              // "external" version (uses Splay)
   pair<Splay,Splay> split(val x);   // idem
   void insert(val x);
+  void insert_hybrid(val x);
   void erase(val x);
+  void erase_hybrid(val x);
   Node *min(Node *u) const;
   Node *succ(Node *u);
   void clear(Node *u);
@@ -101,7 +102,7 @@ void Splay::splay(Node *u) {
       else rotate_left(u->p);
     }
     else {  // u->p->p exists
-      assert(u->p->p!=NULL);
+      //assert(u->p->p!=NULL);
       if (u==u->p->l) {
 	if (u->p==u->p->p->l) {
 	  rotate_right(u->p->p);
@@ -201,6 +202,20 @@ void Splay::insert(val x) {
   root = new Node(x,NULL,LR.first,LR.second);
 }
 
+// alternative hybrid insertion method
+void Splay::insert_hybrid(val x) {
+  Node *u0 = NULL, *u = root;
+  while (u!=NULL) {
+    u0 = u;
+    u = x<=u->x ? u->l : u->r;
+  }
+  u = new Node(x,u0);
+  if (u0==NULL) root = u;
+  else if (x<=u0->x) u0->l = u;
+  else u0->r = u;
+  splay(u);
+}
+
 // splay spirit method: deletion using join
 void Splay::erase(val x) {
   Node *u = access(x);
@@ -211,6 +226,26 @@ void Splay::erase(val x) {
   if (root!=NULL) root->p = NULL;
   delete u;
   ijoin(r);
+}
+
+// alternative hybrid deletion method
+void Splay::erase_hybrid(val x) {
+  Node *u = root, *u0 = NULL;
+  while (u!=NULL && u->x!=x) {
+    u0 = u;
+    u = x<=u->x ? u->l : u->r;
+  }
+  assert(u!=NULL);
+  Splay L(u->l);
+  L.ijoin(u->r);
+  if (u0==NULL) root = L.root;
+  else {
+    L.root->p = u0;
+    if (u0->l==u) u0->l = L.root;
+    else u0->r = L.root;
+    splay(u0);
+  }
+  delete u;
 }
 
 Node *Splay::min(Node *u=NULL) const {
@@ -279,12 +314,12 @@ int main() {
   int n = 5000000, m = 5000;
   for (int i=0; i<n; ++i) {
     int c = rand()%3, x = rand()%m;
-    if (c>0) T.insert(x);
-    else if (T.access(x)!=NULL) T.erase(x);
+    if (c>0) T.insert_hybrid(x);
+    else if (T.access(x)!=NULL) T.erase_hybrid(x);
   }
-  T.clear();
   //draw(T);
-  //traversal(T);
+  traversal(T);
+  T.clear();
   return 0;
 }
 */
@@ -293,8 +328,10 @@ class BST_Splay : public BSTStructure {
 public:
   Splay T;
   virtual bool exists(int x) {return T.access(x)!=NULL;}
-  virtual void insert(int x) {T.insert(x);}
-  virtual void erase(int x) {T.erase(x);}
+  //virtual void insert(int x) {T.insert(x);}
+  virtual void insert(int x) {T.insert_hybrid(x);}
+  //virtual void erase(int x) {T.erase(x);}
+  virtual void erase(int x) {T.erase_hybrid(x);}
   virtual void clear() {T.clear();}
 };
 
@@ -303,4 +340,3 @@ int main() {
   bench(&S);
   return 0;
 }
-

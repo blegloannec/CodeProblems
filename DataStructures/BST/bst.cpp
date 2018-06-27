@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include "benchmark.hpp"
 using namespace std;
 
 /* ===== BST ====== */
@@ -29,6 +30,7 @@ struct BST {
   Node *min(Node *u) const;
   Node *succ(Node *u) const;
   void _erase_in_line(Node *u);
+  void _copy_node_data(Node *src, Node *dst); // !! to modify when enhancing Node !!
   void erase(Node *u);
   void erase(val x);
   void clear(Node *u);
@@ -84,11 +86,17 @@ void BST::_erase_in_line(Node *u) {
   delete u;
 }
 
+// copies all non structural data from src to dst
+// !! IMPORTANT: any additional data field in Node must be copied here !!
+void BST::_copy_node_data(Node *src, Node *dst) {
+  dst->x = src->x;
+}
+
 void BST::erase(Node *u) {
   if (u->l==NULL || u->r==NULL) _erase_in_line(u);
   else {
     Node *v = min(u->r);  // we could as well use succ(u)
-    u->x = v->x;
+    _copy_node_data(v,u);
     _erase_in_line(v);  // v has no left child
   }
 }
@@ -123,6 +131,7 @@ void traversal(BST &T) {
   cout << endl;
 }
 
+/*
 int main() {
   srand(42);
   BST T;
@@ -132,5 +141,21 @@ int main() {
     if (c>0) T.insert(x);
     else if (T.find(x)!=NULL) T.erase(x);
   }
+  return 0;
+}
+*/
+
+class BST_S : public BSTStructure {
+public:
+  BST T;
+  virtual bool exists(int x) {return T.find(x)!=NULL;}
+  virtual void insert(int x) {T.insert(x);}
+  virtual void erase(int x) {T.erase(x);}
+  virtual void clear() {T.clear();}
+};
+
+int main() {
+  BST_S S;
+  bench(&S);
   return 0;
 }
