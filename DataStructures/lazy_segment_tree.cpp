@@ -7,7 +7,7 @@ typedef int elem;
 /* ===== BEGIN LazySegmentTree ===== */
 struct LazySegmentTree {
   const elem NEUTRAL = 0; // neutre
-  unsigned int N;
+  unsigned int N = 0;
   vector<elem> S,L;
   vector<bool> L0;
 
@@ -29,10 +29,10 @@ struct LazySegmentTree {
   }
 
   LazySegmentTree() {}
-  LazySegmentTree(const vector<elem> &T) {
-    init(T);
-  }
-  
+  LazySegmentTree(unsigned int n) {init(n);}
+  LazySegmentTree(const vector<elem> &T) {init(T);}
+
+  void init(unsigned int n);
   void init(const vector<elem> &T);
   
   void _update_lazy_field(int p, elem v);
@@ -46,7 +46,6 @@ struct LazySegmentTree {
   // returns the op in t in the indexes [i,j) intersected
   // with [start,start+span)
   elem _range(int p, int start, int span, int i, int j);
-  
   // returns op{t[i], t[i+1], ..., t[j]}
   elem range(int i, int j) {
     return _range(1,0,N,i,j+1);
@@ -61,12 +60,16 @@ struct LazySegmentTree {
   }
 };
 
-void LazySegmentTree::init(const vector<elem> &T) {
+void LazySegmentTree::init(unsigned int n) {
   N = 1;
-  while (N<T.size()) N <<= 1;
+  while (N<n) N <<= 1;
   S.resize(2*N,NEUTRAL);
   L.resize(N,NEUTRAL); // lazy fields
   L0.resize(N,false);
+}
+
+void LazySegmentTree::init(const vector<elem> &T) {
+  init(T.size());
   // les feuilles sont les elements >=N
   for (unsigned int i=0; i<T.size(); ++i) S[N+i] = T[i];
   // les noeuds internes sont les elements de 1 a N-1

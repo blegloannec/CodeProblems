@@ -7,7 +7,7 @@ typedef int elem;
 /* ===== BEGIN SegmentTree ===== */
 struct SegmentTree {
   const elem NEUTRAL = 1<<30; // neutre pour l'operation, ici l'infini
-  unsigned int N;
+  unsigned int N = 0;
   vector<elem> S;
 
   // operation utilisee, ici min
@@ -16,10 +16,10 @@ struct SegmentTree {
   }
 
   SegmentTree() {}
-  SegmentTree(const vector<elem> &T) {
-    init(T);
-  }
+  SegmentTree(unsigned int n) {init(n);}
+  SegmentTree(const vector<elem> &T) {init(T);}
 
+  void init(unsigned int n);
   void init(const vector<elem> &T);
 
   elem get(int i) const {
@@ -29,17 +29,20 @@ struct SegmentTree {
   void set(int i, elem v);
 
   elem _range(int p, int start, int span, int i, int j) const;
-  
   // returns op{t[i], t[i+1], ..., t[j]}
   elem range(int i, int j) const {
     return _range(1,0,N,i,j+1);
   }
 };
 
-void SegmentTree::init(const vector<elem> &T) {
+void SegmentTree::init(unsigned int n) {
   N = 1;
-  while (N<T.size()) N <<= 1;
+  while (N<n) N <<= 1;
   S.resize(2*N,NEUTRAL);
+}
+
+void SegmentTree::init(const vector<elem> &T) {
+  init(T.size());
   for (unsigned int i=0; i<T.size(); ++i) S[N+i] = T[i];
   for (int p=N-1; p>0; --p) S[p] = op(S[2*p],S[2*p+1]);
 }

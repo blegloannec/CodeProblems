@@ -15,11 +15,7 @@ struct Node {
 };
 
 struct BST {
-  Node *root;
-
-  BST() {
-    root = NULL;
-  }
+  Node *root = NULL;
 
   ~BST() {
     clear();

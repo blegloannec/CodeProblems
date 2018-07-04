@@ -18,11 +18,7 @@ struct Node {
 };
 
 struct AVL {
-  Node *root;
-
-  AVL() {
-    root = NULL;
-  }
+  Node *root = NULL;
 
   ~AVL() {
     clear();

@@ -19,11 +19,7 @@ struct Node {
 };
 
 struct Treap {
-  Node *root;
-
-  Treap() {
-    root = NULL;
-  }
+  Node *root = NULL;
 
   ~Treap() {
     clear();

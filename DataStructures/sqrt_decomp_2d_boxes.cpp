@@ -22,11 +22,11 @@ typedef int ytype;
 typedef int ctype; // type pour le denombrement / somme
 typedef pair<xtype,ytype> point;
 
-const int naive_thresh = 30;  /* taille en dessous de laquelle on se
-				 contente d'une simple liste triee en x */
-const float D = 3.5;          // pour S = sqrt(N)/D
-
 struct SqrtBoxes {
+  const int naive_thresh = 30;  /* taille en dessous de laquelle on se
+				 contente d'une simple liste triee en x */
+  const float D = 3.5;          // pour S = sqrt(N)/D
+  
   vector< vector< vector<point> > > box;
   vector< vector<ctype> > sbox;
   vector<xtype> boxx;

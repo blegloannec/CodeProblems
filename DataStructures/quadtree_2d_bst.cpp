@@ -14,10 +14,11 @@ void shuffle(vector<point> &A) {
 }
 
 struct quadnode {
-  int x,y,mx,Mx,my,My,cnt,mult;
-  quadnode *sw,*se,*ne,*nw;
+  int x,y,mx,Mx,my,My;
+  int cnt = 1, mult = 1;
+  quadnode *sw = NULL, *se = NULL, *ne = NULL, *nw = NULL;
 
-  quadnode(int x, int y) : x(x), y(y), mx(x), Mx(x), my(y), My(y), cnt(1), mult(1), sw(NULL), se(NULL), ne(NULL), nw(NULL) {}
+  quadnode(int x, int y) : x(x), y(y), mx(x), Mx(x), my(y), My(y) {}
 };
 
 struct QuadTree {
