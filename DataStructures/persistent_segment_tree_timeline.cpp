@@ -5,7 +5,7 @@
 using namespace std;
 
 /*
-  Array-based Persistent Segment Tree for a *linear* timeline.
+  Array-based implementation of Persistent Segment Tree for a *linear* timeline.
   Standard usage:
     using set_curr() and set_new()
     version times are 0, 1, 2, 3, ...
@@ -149,7 +149,7 @@ elem PersistentSegmentTree::range(int t, int i, int j) const {
   --it;
   t = distance(Time[root].begin(),it);
   */
-  return _range(t,1,0,N,i,j+1);
+  return _range(t,root,0,N,i,j+1);
 }
 /* ===== END PersistentSegmentTree ===== */
 
