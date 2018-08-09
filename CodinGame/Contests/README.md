@@ -7,18 +7,11 @@ To access it, consider the problem expected output to the following input of siz
 ```
 (which is the concatenation of the SHA-512 hashes of the strings `nintendo` and `NIN10DO`)
 
-Now remove all the whitespace characters from that output to get a single hexadecimal string. That string has been used as the key to encrypt the code using the following basic XOR encryption/decryption algorithm:
+Now remove all the whitespace characters from that output to get a single hexadecimal string. That string has been used as the key to encrypt the code using the following basic XOR encryption/decryption `python3` lines (see `xorcat.py`):
 ```
-#!/usr/bin/env python3
-
-import sys
-
-key = open(sys.argv[1],'r').read().strip()
-K = [int(key[i*2:(i+1)*2],16) for i in range(len(key)//2)]
-i = 0
-for c in sys.stdin.read():
-    sys.stdout.write(chr(ord(c)^K[i]))
-    i = (i+1)%len(K)
+K = bytes.fromhex(open(sys.argv[1],'r').read().strip())
+M = sys.stdin.buffer.read()
+sys.stdout.buffer.write(bytes(c^k for c,k in zip(M,itertools.cycle(K))))
 ```
 
 The MD5 hash of the decrypted file is `d1fc8764673110e1384929ef45343252`.
