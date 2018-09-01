@@ -5,7 +5,7 @@ BINS = $(SOURCES:.ml=.out)
 
 all: $(BINS)
 
-alg_expr.out: alg_expr.ml
+simplify_the_algebraic_expressions.out: simplify_the_algebraic_expressions.ml
 	$(CC) str.cmxa $< -o $@
 
 %.out: %.ml
