@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# for the record, hard testcases generator for brackets_ultimate
+
 import random
 random.seed()
 
