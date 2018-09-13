@@ -15,8 +15,8 @@ def urinals(n):
     # computing result in O(n)
     imax = 0
     kmax = DP[n-2]+2
-    if n>=5:
-        for i in range(1,n//2+1):
+    if n>=4:
+        for i in range(1,(n+1)//2):
             # the first 3 people go to positions
             # i, 0 (if i>1) and n-1
             k = 1 + DP[i-1]+int(i>1) + DP[n-2-i]+1
