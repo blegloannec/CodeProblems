@@ -589,6 +589,7 @@ class Matrice:
         return result
 
 
+# 2x2 matrices (see also 624.py for a more complete version)
 class Matrix2:
     def __init__(self,a=1,b=0,c=0,d=1):
         self.m00,self.m01,self.m10,self.m11 = a,b,c,d
