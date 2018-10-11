@@ -86,7 +86,7 @@ def l_swap(M,i,j):
 def first_non_zero(M,i):
     h = len(M)
     for j in xrange(i,h):
-        if M[i][j]!=0:
+        if M[j][i]!=0:
             return j
     return None
 
