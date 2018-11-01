@@ -5,7 +5,9 @@ using namespace std;
 int W,H;
 vector< vector<int> > G;
 
-// O(W^2 H) similar to largest rectangle of 1 in a grid of 0/1
+/* O(W^2 H) run 1D DP approach (in O(H))
+            on each interval (O(W^2) of them) of columns
+   (code modified from HackerRank/mr_k_marsh.cpp)  */
 int max_sum_rect() {
   vector< vector<int> > CX = G;
   for (int i=0; i<H; ++i)
