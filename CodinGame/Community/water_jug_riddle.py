@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# see also HackerRank/die_hard_3.py
+
 from collections import deque
 
 W = int(input())
