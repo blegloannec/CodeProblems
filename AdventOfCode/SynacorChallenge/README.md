@@ -6,19 +6,19 @@
 
 ### Usage
 
-```
+```bash
 $ python3 emulator.py challenge.bin
 ```
 
 To replay some recorded inputs at the beginning, then take back control of the game, while still logging inputs, use:
-```
+```bash
 $ cat recorded_inputs - | tee inputs_log | python3 emulator.py challenge.bin
 ```
 
 ### Maze solver
 
 The control command `*` solves the maze by a BFS in the emulator states.
-```
+```bash
 $ cat maze - | python3 emulator.py challenge.bin
 ```
 
@@ -27,11 +27,11 @@ $ cat maze - | python3 emulator.py challenge.bin
 The control command `@` dumps a trace of every instruction executed while `&` modifies register 8 (see `emulator.py` source code for more details on the *associated bypass*).
 
 We trace the teleporter validation computation (just kill it after a few seconds):
-```
+```bash
 $ cat teleporter - | python3 emulator.py challenge.bin
 ```
 Let us sort out the dump a little:
-```
+```shell
 $ sort trace.dump | uniq
 ```
 And isolate the following important instructions:
@@ -60,7 +60,7 @@ And isolate the following important instructions:
 06067   ret
 ```
 The second part directly translates into the following code (where arithmetic operations are done on 15-bit unsigned int):
-```
+```python
 def f(R0=4, R1=1):
     if R0==0:
         return R1+1
