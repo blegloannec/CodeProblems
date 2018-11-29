@@ -2,7 +2,7 @@
 
 [Synacor Challenge](https://challenge.synacor.com)
 
-## Notes (spoilers!)
+## A few additional notes (contain spoilers!)
 
 ### Usage
 
@@ -10,9 +10,9 @@
 $ python3 emulator.py challenge.bin
 ```
 
-To replay some registered inputs at the beginning, then take the hand on the game, and logs inputs, use:
+To replay some recorded inputs at the beginning, then take back control of the game, while still logging inputs, use:
 ```
-$ cat input_prefix - | tee input_log | python3 emulator.py challenge.bin
+$ cat recorded_inputs - | tee inputs_log | python3 emulator.py challenge.bin
 ```
 
 ### Maze solver
@@ -24,9 +24,9 @@ $ cat maze - | python3 emulator.py challenge.bin
 
 ### Teleporter bypass
 
-The control command `@` dumps a trace of every instruction executed while `&` modifies register 8 (see `emulator.py` source code for the associated bypass).
+The control command `@` dumps a trace of every instruction executed while `&` modifies register 8 (see `emulator.py` source code for more details on the *associated bypass*).
 
-We dump the teleporter validation code:
+We trace the teleporter validation computation (just kill it after a few seconds):
 ```
 $ cat teleporter - | python3 emulator.py challenge.bin
 ```
@@ -69,4 +69,7 @@ def f(R0=4, R1=1):
     return f(R0-1, f(R0,R1-1))
 ```
 Which is a variant of the [Ackermann function](https://en.wikipedia.org/wiki/Ackermann_function) (`R7 = 1` gives the standard Ackermann).
-It is computed efficiently enough in `ack.cpp`.
+
+We bypass the computation by `noop`-ing the `call` at 5489 and either `set R0 0 at 5483` or `jt R1 5579` at 5495.
+
+But we still need to find `R7` such that `f(4,1) == 6` (test at 5491). This is computed efficiently enough in `ack.cpp`.
