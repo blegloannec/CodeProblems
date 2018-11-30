@@ -24,7 +24,7 @@ $ cat maze - | python3 emulator.py challenge.bin
 
 ### Teleporter bypass
 
-The control command `@` dumps a trace of every instruction executed while `&` modifies register 8 (see also `emulator.py` source code for more details on the associated bypass).
+The control command `@` dumps a trace of every instruction executed while `&` modifies the 8th register `R7` (see also `emulator.py` source code for more details on the associated bypass).
 
 We trace the teleporter validation computation (just kill it after a few seconds):
 ```shell
