@@ -70,6 +70,6 @@ def f(R0=4, R1=1):
 ```
 Which is a variant of the [Ackermann function](https://en.wikipedia.org/wiki/Ackermann_function) (`R7 = 1` gives the usual Ackermann).
 
-We can bypass the computation by `noop`-ing the `call` at 5489 and either `set R0 0` at 5483 or `jt R1 5579` at 5495.
+We can bypass the computation by `noop`-ing the `call` at 5489 and either `set R0 6` at 5483 or `jt R1 5579` at 5495.
 
 However we still need to find `R7` such that `f(4,1) == 6` (test at 5491), otherwise we won't get the correct validation code for that part of the challenge. This is computed efficiently enough in `ack.cpp` (relying on terminal recursion and memoization).
