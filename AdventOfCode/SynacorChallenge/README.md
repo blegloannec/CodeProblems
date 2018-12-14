@@ -64,7 +64,7 @@ The second part is where the computation seem to loop and directly translates in
 def f(R0=4, R1=1):
     if R0==0:
         return R1+1
-    elif R1==0:
+    if R1==0:
         return f(R0-1, R7)
     return f(R0-1, f(R0,R1-1))
 ```

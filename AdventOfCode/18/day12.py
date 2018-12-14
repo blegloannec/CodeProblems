@@ -63,5 +63,5 @@ t = 300
 C = steps(C0,t)
 S = sum(C)        # constant part value at t
 N = len(C)        # nb of alive cells
-T = 50*10**9      # required large time
+T = 50*10**9      # requested large time
 print(S+N*(T-t))  # formula
