@@ -80,8 +80,8 @@ def simu(R,Prog):
         step(R,Instr)
 
 def candidates(R0,Instr,R1):
+    _,A,B,C = Instr
     for O in Names:
-        _,A,B,C = Instr
         R = R0[:]
         try:
             step(R,(O,A,B,C))
