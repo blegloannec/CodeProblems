@@ -11,3 +11,6 @@
 
 ## Day 13
 ![Day 13 Part 1](pictures/anim13.gif)
+
+## Day 17
+![Day 17 Part 2](pictures/anim17.gif)
