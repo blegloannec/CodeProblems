@@ -14,3 +14,6 @@
 
 ## Day 17
 ![Day 17 Part 2](pictures/anim17.gif)
+
+## Day 18
+![Day 18 Part 2](pictures/anim18.gif)
