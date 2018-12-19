@@ -1,0 +1,48 @@
+#ip 1
+00  addi 1 16 1    ## ip += 16    (jump 17)
+
+# computation part
+01  seti 1 (4) 2   #  R2 = 1      (when arriving here, only R5 matters)
+02  seti 1 (0) 3   #  R3 = 1
+03  mulr 2 3 4     #  R4 = R2*R3
+04  eqrr 4 5 4     #  R4 = R4==R5 (testing R5==R2*R3 in R4)
+05  addr 4 1 1     ## ip += R4    (if R5==R2*R3 then jump 7)
+06  addi 1 1 1     ## ip += 1     (else              jump 8)
+07  addr 2 0 0     #  R0 += R2    (result += R2)
+08  addi 3 1 3     #  R3 += 1
+09  gtrr 3 5 4     #  R4 = R3>R5
+10  addr 1 4 1     ## ip += R4    (if R3>R5 then jump 12)
+11  seti 2 (4) 1   ## ip = 2      (else          jump 3)
+12  addi 2 1 2     #  R2 += 1
+13  gtrr 2 5 4     #  R4 = R2>R5
+14  addr 4 1 1     ## ip += R4    (if R2>R5 then jump 16)
+15  seti 1 (1) 1   ## ip = 1      (else          jump 2)
+16  mulr 1 1 1     ## ip = ip^2   (jump 257 -- HALT)
+
+# the computation part is equivalent to:
+# R0 = 0
+# for R2 = 1 to R5
+#   for R3 = 1 to R5
+#     if R2*R3 == R5 then R0 += R2
+# hence in the end R0 contains the sum of the divisors of R5
+
+# init part below
+17  addi 5 2 5     #  R5 += 2
+18  mulr 5 5 5     #  R5 = R5^2
+19  mulr 1 5 5     #  R5 *= 19
+20  muli 5 11 5    #  R5 *= 11    (R5 = 11*19*(R5+2)^2)
+21  addi 4 2 4     #  R4 += 2
+22  mulr 4 1 4     #  R4 *= 22
+23  addi 4 16 4    #  R4 += 16    (R4 = 22*(R4+2)+16)
+24  addr 5 4 5     #  R5 += R4
+25  addr 1 0 1     ## ip += R0    (if R0==1 then jump 27, assuming R0 in {0,1})
+26  seti 0 (7) 1   ## ip = 0      (else          jump 1)
+27  setr 1 (5) 4   #  R4 = 27
+28  mulr 4 1 4     #  R4 *= 28
+29  addr 1 4 4     #  R4 += 29
+30  mulr 1 4 4     #  R4 *= 30
+31  muli 4 14 4    #  R4 *= 14
+32  mulr 4 1 4     #  R4 *= 32    (R4 = 10550400)
+33  addr 5 4 5     #  R5 += R4
+34  seti 0 (9) 0   #  R0 = 0      (R0 = 0 from now)
+35  seti 0 (4) 1   ## ip = 0      (jump 1)
