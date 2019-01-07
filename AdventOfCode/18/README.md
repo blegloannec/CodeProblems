@@ -22,4 +22,4 @@
 ![Day 18 Part 2](pictures/anim18.gif)
 
 ## Day 22
-![Day 22 Part 2](pictures/out22.gif)
+![Day 22 Part 2](pictures/out22.png)
