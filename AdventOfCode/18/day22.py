@@ -49,6 +49,7 @@ def dijkstra():
     u0 = (0,0,1)
     uf = (TX,TY,1)
     Dist = {u0: 0}
+    Pred = {u0: None}  # only for the path in the picture
     Q = [(0,u0)]
     while Q:
         d,u = heappop(Q)
@@ -59,7 +60,34 @@ def dijkstra():
         for v,w in succ(*u):
             if v not in Dist or Dist[u]+w<Dist[v]:
                 Dist[v] = Dist[u]+w
+                Pred[v] = u
                 heappush(Q,(Dist[v],v))
-    return Dist[uf]
+    Path = []
+    while u is not None:
+        Path.append(u)
+        u = Pred[u]
+    Path.reverse()
+    return Dist[uf],Path
 
-print(dijkstra())
+dist,Path  = dijkstra()
+print(dist)
+
+
+# Picture for the fun
+from PIL import Image
+def pic():
+    Col = [(100,100,100),(90,90,255),(40,40,40)]
+    col_path = (255,0,0)
+    W = max(x for x,_,_ in Path)+3
+    H = max(y for _,y,_ in Path)+3
+    Img = Image.new('RGB',(W,H))
+    Pix = Img.load()
+    for i in range(W):
+        for j in range(H):
+            Pix[i,j] = Col[C[i][j]]
+    for i,j,_ in Path:
+        Pix[i,j] = col_path
+    Img.transpose(Image.ROTATE_90).transpose(Image.FLIP_TOP_BOTTOM).save('out22.png')
+    Img.close()
+
+#pic()
