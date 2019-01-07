@@ -119,26 +119,36 @@ def turn():
     update_units()
     return full_turn
 
-def show(t=-1):
+
+# ASCII slideshow for the fun
+# to convert to a GIF by pictures/day15ascii2gif.py
+Slides = []
+def frame(t):
     O = [L[:] for L in G]
     for i,j,g,h in Units:
         O[i][j] = g
-        O[i].append(' %s(%d)' % (g,h))
-    if t>=0:
-        print('t = %d' % t)
-    print('\n'.join(''.join(L) for L in O))
-    print()
+        O[i].append(' %s(%03d)' % (g,h))
+    return ('t = %d\n'%t) + '\n'.join(''.join(L) for L in O)
 
-def run():
+
+def run(anim=False):
     reset_units()
     t = 0
     while Cnt['E']!=0 and Cnt['G']!=0:
         if turn():
             t += 1
-        #show(t)
+        if anim:
+            Slides.append(frame(t))
     return t*sum(h for _,_,_,h in Units)
 
-print(run())
+anim = False
+print(run(anim))
+if anim:
+    F = open('pictures/day15_ascii_slides','w')
+    F.write('%d\n' % (H+1))
+    F.write('\n'.join(Slides))
+    F.write('\n')
+    F.close()
 
 
 # Part 2
