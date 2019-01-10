@@ -1,5 +1,7 @@
 # Advent of Code 2018 in pictures
 
+Apparently [ranked 164th](https://www.reddit.com/r/adventofcode/comments/a9dh93/2018_complete_global_leaderboard/) competing only a few days for the fun of it.
+
 ## Day 6
 ![Day 6 Part 1](pictures/diagram6.png)
 
@@ -20,6 +22,9 @@
 
 ## Day 18
 ![Day 18 Part 2](pictures/anim18.gif)
+
+## Day 20
+![Day 20 Part 1](pictures/anim20.gif)
 
 ## Day 22
 ![Day 22 Part 2](pictures/out22.png)
