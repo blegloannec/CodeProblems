@@ -1,18 +1,1 @@
-#!/usr/bin/env python
-
-def fact(n):
-    return 1 if n<2 else n*fact(n-1)
-
-def permut(N,C):
-    res = []
-    digits = range(N)
-    for p in range(N-1,0,-1):
-        f = fact(p)
-        k = C/f
-        res.append(digits[k])
-        digits = digits[:k]+digits[k+1:]
-        C -= k*f
-    res.append(digits[0])
-    return res
-
-print ''.join(map(str,permut(9+1,1000000-1)))
+Ed6IvebsXsIIcSFz2OMbff3w8cjinebZCMhrCao+FJMtpx+SduTtYqrSkz5bJJZ3et4l4X5jrytihizT4p6cHea4HlIqHe8R7b96f859+UzeOuLjwQNjWb3/olrEoQlvzU9BMsvw0XmRlyZLoTe94AYMfnl5pOgGhfivngniUzMGnLSLMZ2Qexubiz0JROx/8sBbAYF/0KioIQ1M0fVCAsQvVR9QzkcEePBl/WfM0pltf8v06JKoUdASHE68tMaGHeGIHvMLEycnUGVzPlcRsO60q/JN8L0HRXC5bFrJGBbRtMG/ArJNJtVnkW1bQMC5zlN7lnFukkoWUN1/51Bxhy8tMqUF1xV0B2zx4tqrvVKPEDm+zuSwGX8LNKooh63B+KXfxoRPPJYkFnHAOid0uUcODoDdkWQc2GVH+rYvw239NJcvxlL1KhOE4bVgDuKpQYDes/pjPK5MkrMGWj7PTiS77DdwB45jSZdtFNCeliY=

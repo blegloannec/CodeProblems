@@ -1,13 +1,1 @@
-#!/usr/bin/env python
-
-def cpt(n):
-    aucun = 13**n
-    pas0 = 15**n
-    pas1 = pasA = 14*15**(n-1)
-    pas1A = 13*14**(n-1)
-    pas01 = pas0A = 14**n
-    tous = 15*16**(n-1)
-    # inclusion-exclusion
-    return tous - (pas0+pas1+pas1) + (pas1A+pas01+pas0A) - aucun
-
-print '%X' % sum(cpt(n) for n in xrange(3,17))
+tHaBEmTOM7u9kpTWi6xlgZOFLKs7crTmvtwYs2Wa7BJESvRTH+qmgqD1RSJTcmgE1eschX2iu8cUiQCJK+BorrYpT1qDcfooIcrX59W/cg40/INRZM6cfkQI1yRIC7cKB9dDc5ZJT97Xf1IwT5zPxEJMR9z2orheN5SZ2Wig0M4rPglz3Hh79nDI9vePpba1JUXfspFI5In4M/mjf13GJsCYNjmGCw3k6urFyt4Kfs3CkC4Xa/c+rk7r21fy1VDByig0+jN1BzpkaereEkqD/5hgKTcCIKiMG45kFRIhUxHH97lCDfZzhgNGa4h1waUN81hpxYK7mXYmepT+6j0bm8sFEg7r0mWcMIApmqsp3RCsNuL49MhaVPVYF9rHDq8Nav8lQ0uNOYQxcdrWhi+aiPpTdPyW+1J0TAqGPSiMwwM=

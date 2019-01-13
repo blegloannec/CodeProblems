@@ -1,10 +1,1 @@
-#!/usr/bin/env python
-
-def problem1():
-    s = 0
-    for i in range(1000):
-        if i%3==0 or i%5==0:
-            s += i
-    print s
-
-problem1()
+2nYbA5IvkXWszMvA8BpYh0K5YdExJ53Ln2cKnHykXM4CaVLXyekGMLHlhEo6mhtdLXoaAkkHZ/lGwwE3C5+MSLAQlJTY5XhjR9n55eHtLgnHmi+8B8plQt04+v1JOVPdaK6lbL7oAL7wwceZOi0hZaux3KAUs7jlgtjmgN0pGKIVZ9008pj2tiA06R2psJAwUs3nQnbVDY4o8U94vSO/3A==

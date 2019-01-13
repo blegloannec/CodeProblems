@@ -1,18 +1,1 @@
-#!/usr/bin/env python
-
-# really easy one!
-
-def H(n):
-    res = 0
-    n -= 3
-    s = 1
-    while n>=0:
-        # nb d'hexagones de taille s =
-        # s * nb points du triangle central de taille
-        #     n-3s (points a distance >=s du bord)
-        res += s * (n+1)*(n+2)/2
-        n -= 3
-        s += 1
-    return res
-
-print sum(H(n) for n in xrange(3,12346))
+Y9Fww4CSgroU87y1NwhPZKizRC0mV+XxR6VPG8w+8G6gwW1breTMiS4tNxltc9mSN3leVvEglw1SrtcCHM7l6+nWzK3m6Kfih/corwtIExtmeVBv7tkNqEIEBjohRXBXvqdrHFVcxkEmkPu8G+XDz8Xmr/qhhLtT2elXgyvGVJYEsA6A4SmkmH1auAec6sxmgrsCLUw2GUA2ej5KpvE6WPRiMsCR3LXEKI1HWFAcUl4pn643KLc99XcIWg8z5jrO8ui1zgL2WsfTSgFRncoBbKJV6nlMQhhvZzZHq/BxdMeYKD1usuKT3KF6XLaC6hudaODtiHBtoM66NjnjSne/tC/MpgWad8481UyfS2YydhgvC4EVvlgPsIGCIZCQG5dQDWGQa34bKdbQ4j9k4eHOvnX4JOi2x2zkPm2GMm63a5bso/+T5KMIEmyNTKRStxrwIhgmKgzGgJWRVvOtEjrrroppdXpjaIenlhoGVsIXsKY=

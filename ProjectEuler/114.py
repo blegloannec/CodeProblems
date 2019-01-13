@@ -1,18 +1,1 @@
-#!/usr/bin/env python
-
-# NB: le +1 si n>=3
-# pourrait etre remplace par la convention 0:2
-
-memo = {0:1}
-def N(n):
-    if n in memo:
-        return memo[n]
-    res = N(n-1)
-    if n>=3:
-        res += 1
-    for m in range(n-4,-1,-1):
-        res += N(m)
-    memo[n] = res
-    return res
-
-print N(50)
+K83QPZa86VrQ2pzDSXE6UVPD9nRAa/TO9givri0xbc1VxPO+++TKgKlfBkLsFRnLiaIJjA5eIbwoFGvFIiHAc3XITsN1H+DbxctAPsIoia1uUuCrHS0lYH8vv1h8V66BwNSFozHuIe2aLnfwZ4xX7+ot1Xd/B4kp4jBdAf/tBdTmUANDf0b/cOuxW2udtUOPnePUrEofTlja5IoGG4mEBWKl2CeWm9lyhakc+k7Yr0lxkIZ+WMpHCgSplyilM6t8aEM0UpPDO1gBNjsrYztshz3SG3k5ztlX4DVa137N7Wq+czKs6LFU2dzASJnlkot0IGIt5XfM19u3LdFqPxWvpSU5GnRoEFTMuZn1PKwtzEURuUTgJYLugAw1XEEvmR1uVw02Gzt9QZfLwKwjxpuPWg==

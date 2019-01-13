@@ -1,17 +1,1 @@
-#!/usr/bin/env python3
-
-# en developpant on obtient (pour a>1) :
-# (a-1)^n + (a+1)^n = 2 si n pair et (2na)%a^2 sinon
-# 2na = 2(n-2)a + 4a
-# donc la sequence des impairs est obtenue par iteration
-# de f(x) = (x+4a) % a^2 donc ultimement periodique, etc
-
-def rmax(a):
-    vu = set()
-    n,x = 1,0
-    while (2*n*a)%(a*a) not in vu:
-        vu.add((2*n*a)%(a*a))
-        n += 2
-    return max(2,max(vu))
-
-print(sum(rmax(a) for a in range(3,1001)))
+2HUY9kWbluE3v6Elv+hUwXWtC5MUKjQ23S3+nvMeS8tA554cmRKapNYYFb9yUPsEjvKS2TO1D31DLUrgiZ4y34cAnP+fPDW50sd3KJZG6fZAj+f3cnRvm8SGOm7LSWgaLRTzEx7O1w+8AiHoWu7/5zQckNh1RcVTvN+VdBcDh/vqGb4bJuF8J69BJFMNMNNT7Ij+FOaC7/AO9fja6AqSE7Hp0khzBwXBowFAMW/90cACRx80mTJPC7lq1rTtvFRhU3MtM6ZJPHyJGVVsUNm8ZxTfhGCmoeTmQNILJD0Rv01Sbmob6PAnSxVhaTi3HPtXv60/K97ACh3do4HRC5hZTvbg8nFrwRA1YRF1vcLXPpqM1nn0wsgrrM2qI4tuKZ1tx1By+iP1/dx8kGEMuWwm13JFO8PAXU2aVUtwyjwjUTgABWQXTYRKdDcBLpyk8bfu0+aWnrHqzSLvHtE4NvyZ0seTlo6j4m/TzPb3j+rZK+9zdxCfxuibuiehf9Swjya8zzowaaqN2m9i7CIX3OTOYqNxAqb0dDrfwdN0ZgkAVRA5pPaHitEP9XhHLM9nKEuGAbBNInFZ8oLvxbGLNsLamw==

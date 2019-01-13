@@ -1,17 +1,1 @@
-#!/usr/bin/env python
-
-memo = {}
-def N(n):
-    if n<0:
-        return 0
-    if n==0:
-        return 1
-    if n in memo:
-        return memo[n]
-    res = N(n-1)
-    for m in range(2,5):
-        res += N(n-m)
-    memo[n] = res
-    return res
-
-print N(50)
+yGC/BCh8NcoFPs2MXwzX+0CV8ugfsLeiVn3PDb7z7JHFbIFFzGWRt0CkG5Ri5bBt0vdsxa5Iu3vwhBLnZA2fHHJbUAcChRYPXDrksd8uaFdMZqYLY08/itxKSF/0zFW0fQh2OTU9/sSp3mS2EjRk9cGpoR0XfFSjBwjNUGyAbtptAv9yzefYvCTA+GzFpyH5XnNeQmib+qYde2SETkDgYhB/auypJ5/UnHQQjEEviRNoy1Wb/81GmKKF8I/UG4N2j1ZEW2KViAJqreoc8fGunt2FhSFgFPZFNRNbBaXYQaf0jFyV+vx56RH58BlIUfGqOOJdCSzPVVFL0QFSjS5h8w==

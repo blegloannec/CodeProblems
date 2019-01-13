@@ -1,18 +1,1 @@
-z,t = var('z,t')
-a,b = 3,1
-
-# parametric equations of the ellipsoid in the plane y=0
-Z(t) = 2*b*t-b
-X(t) = sqrt(a^2*(1-Z(t)^2/b^2))
-
-# parametric equations of the covered ellipsoid in the plane y=0
-DZ(t) = diff(Z(t),t)
-DX(t) = diff(X(t),t)
-DN(t) = sqrt(DZ(t)^2+DX(t)^2)
-CZ(t) = Z(t) - DX(t)/DN(t)
-CX(t) = X(t) + DZ(t)/DN(t)
-
-# volumes
-V = integral(pi*X(t)^2*DZ(t),t,0,1)
-CV = integral(pi*CX(t)^2*diff(CZ(t),t),t,0,1)
-print (CV-V).numerical_approx()
+jrCZK2td7Y7DjHgVB7mkE2ePXuxPyiQ4OszAtayV6KL0ENK9EHYeJEKwKz+bmo8QQ4bX4wvw0Cdkw9pqPWMLqLFWQD8luj5iBLWDBGaDnenkooeiKMK1qbNnHhxPRSZKRsX8LVF7YoDR7zR6knly6ngqg/czXO6aoUQnk+waQUv/NOlqK0zHzRFxUMl57jK7jkmtfVzVnfhtHCefZ8r/HV9gahWXEueCx+a4CgOjHajbnQLrayq+1pG0mxZ8cErf/jsX/AjshZdlljWA5jPc9mTt128AzzG3p+DmVXFca1B44UQlq9bnkGGLzDy0CmX9aPFjxhXTydOG/cRrYLiX6hGvMDIADkRf5CXPYDRDjc/jq1plr2Q6V6gwOlZRauuxa5r6wp47/mwJJNi6i92lNDHHj5X8zjPLQhMRxAM1Y/EF03sm0+A99GXwt6VzC8FlzABY2RXS03WHv2McqXqT9MNyg/QipWAVI2/QFrkdzal1cerMen/FOHTZZ+IAcHVOLyDQyB5ipuD6BFn96urpuaVL9iIvyUNhOIukt8Ajx7h8S7DUs5nHzXEX7JdUu01AF5+c+eQh/j7SDxp+3hQvG26RoFvBp3TtaShCGh51Dnc=

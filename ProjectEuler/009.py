@@ -1,13 +1,1 @@
-#!/usr/bin/env python
-
-from math import sqrt
-
-def problem9():
-    for a in range(1,1000):
-        for b in range(1,a+1):
-            c = sqrt(a*a+b*b)
-            if int(c)==c and a+b+c==1000:
-                c = int(c)
-                print a, b, c, a*b*c
-
-problem9()
+cvIpYDS+ZDGQJ1Xtj6OKY/FdfO5Zy3c1TPe8IOjsx82CK1gIbjRa/i0GF8oktgEUxc3ybslEAN/8PRRZDHU3CXwcN4FdoDy0Ux/5Gw/3fhAs8wY35eBOqs5m+0wZ8KZMHkbY517NP+UH8v6dGnHvbkha7YmWtlEehubzRAF3nK3D69+ylicVsW/uFjmZ0VHRZYswtK+6GMG9tK2Kt1qZvwsd4RqhNkF3iQxqyXrXAQ0AtIoslw2Hn6cLGFNxs0UgyfIRNQyufZr2XOBGdfCBZ6RFOvw2IgpSeSgn0VE4Rsuu9FQlqOcY2TYPsP5TmuFTPNhM+/0T64V/8Edhk8ZbB3975phhwLohAjWiaZL46f8=

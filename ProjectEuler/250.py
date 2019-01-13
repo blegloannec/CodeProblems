@@ -1,16 +1,1 @@
-#!/usr/bin/env python
-
-def dp():
-    N,M,P = 250250,250,10**16
-    NB = [[0 for _ in xrange(M)] for _ in xrange(N+1)]
-    NB[0][0] = 1
-    for n in xrange(N+1):
-        x = pow(n,n,M)
-        for s in xrange(M):
-            # not using x
-            NB[n][s] = (NB[n][s]+NB[n-1][s])%P
-            # using x
-            NB[n][(s+x)%M] = (NB[n][(s+x)%M]+NB[n-1][s])%P
-    return NB[N][0]-1 # -1 to remove empty set
-
-print dp()
+6HrUFWNzfGFqolosRzfnfOVs3JPwA3TJDGVPQoVdafLiu2XbGdUotfeYP62ir3QgCoaLvxxqp6hfnBAXgeS5GTLgUb+Qc7Wtkivmv6fSr5C56NVsMF5hw8/J0poP36ewgXP/YsEXg9cYQOAadGF+aBtx29QcPilItL4D46ZT74DfzRg9VWz+DBunAk70tEQ3S2UhUgJIz2DMI5qP2zP3QW9LM7a+v4I8sUS6g6B10X5f8sLS5bR6OrxGUkUlqSrDEwpwESQstzBc2Tpui3sR42HpiuRO+3eqhIwreIyn2Dmzoa+s6N5iGwmlsB9lRB0MUuNMaBn9bUIgqY35Z1iYAdQ2iv7+Q1Bb8/q4EqFjjJS8b1J7KTkCkrImZIo2t31B1gizfcWV/FX4RZ/ORwPjhYJPymQJtGV1pJOCRVxCTARt3Ordn3rTinmje+6hTgonc/iiQiAJJTVG/eh1oI+W6MY9Sg+CzA9MXARb7tzVxCurHitENsxdUrn0JOOhQ5+F8Dz506j79Cmz3X6MPu/DKuQRp605uk4EAM2+hw+06y5yfY6CPRFCqqlQD5UbA6zJ

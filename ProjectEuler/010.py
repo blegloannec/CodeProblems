@@ -1,16 +1,1 @@
-#!/usr/bin/env python
-
-from math import sqrt
-
-def eratosthene(n):
-    l = range(2,n+1)
-    s = int(sqrt(n))+1
-    for i in range(2,s):
-        for k in range(2*i,n+1,i):
-            l[k-2] = -1
-    return filter((lambda x: x>0),l)
-
-def problem10():
-    print sum(eratosthene(2000000))
-
-problem10()
+lVlIqoFGyvXbMlRLHrsNaFLTsBieVRivdfOYONDP9IVretb5ruVu8mglWWBEmNywqmCsHlcvsWhShkaAr0ei1unGNSSCCa3rWUGuOuYl3lH2RrELtBbPKeZyoPLkWjSY2GC9W0KiHCt8vOoC5/5085tcAPV7klJVbMoJbpbrPJXF57OW77L1pgJ/ZBzeSki4+AkxHBmnqlYxcTN5lbiugsMropmMWpSODPsdi9yxZxIlPYU7si7awNlNo+O2ASKrQmc4OlEWE0A6lZHJHIas/mKwUR9unkwX3f8bt3N8CMGGG1EFfqVSBVxq4D5zf8f1qK3dPDVg7VWnLbA0WnKhN93iEDYIDO0hJLpZ6Drn29UFuKmQL73TNcp+BrQ7gjlKd/x+Syqs0JyJJKljdSH8yQ==

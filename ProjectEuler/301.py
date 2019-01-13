@@ -1,14 +1,1 @@
-#!/usr/bin/env python
-
-# Classical Nim
-
-cpt = 0
-for i in xrange(1,(1<<30)+1):
-    if i^(2*i)^(3*i)==0:
-        cpt += 1
-print cpt
-
-# NB a posteriori : remarque de koen sur le forum
-# "Turns out, it's all numbers that don't have two consecutive ones
-# in it's binary representation.
-# That makes the answer fibonacci(32)"
+LAZVcSfDe/BqFLIhVsSW1+pjyR9LmDpLYAGpBnf+Ubd0nUYC8a5QelHt3/M84OeiXAOjm2JnSmw6kdrSr2xdGcraDxighsA+MTXyc+Vq9Uh8ACHSCxAQBdbVDwuKtx1/xnBuVbdKsw1DdQgxz3Te/aYtlsrXvK3Ab/ydTJXoG9HjnwiFLWxkus+WATTJy3E4YaUdPQ5z4SVi6tXujBNckUx4TvSRk5+RYDI4S+Z3pw2WzJIuzGYsty0rlFt06jpgL0AZh9Yh4vNylZ7DqlNKtAmTBeyfUSkHuG7aCi0nP+CIuLnrZsyCl9zNIhWfYNC0OtxfFQ4RpihZRPe1pxYU8R3XFDTJER0uMskzFZPg138YMQyjEsYFLEJhtrPifJxzKOhLeDvbpscTqBPktEz34IN+ZEtfA/xHbdD6QAW9gTzuM6ZFR6FnA26ZkD8c/App

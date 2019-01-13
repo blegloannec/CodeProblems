@@ -1,15 +1,1 @@
-#!/usr/bin/env python
-
-def problem2():
-    x0 = 1
-    x1 = 2
-    s = 0
-    while x1<=4000000:
-        if x1%2==0:
-            s += x1
-        svg = x1
-        x1 += x0
-        x0 = svg
-    print s
-
-problem2()
+Jz+NfcdbEu7ucWY9r+aXpIyQ82CGkTfSzTTWk26fREB4FAETGOf8+pGtKwNwa+kD4UtklROjMjjjhSORHzQdCwONxrDXHnxSohy35eRWBPTd8qg+5S50iD1vuuxS21oEGkSHXDwm+uSfFLhZorXgsVv19lOTFY0ZUhfiTQ0UNcETScynHfpEm4n6g43Up5ncFTippRhC/bOCPCJ23jht45ZW2xB5xiAhewwwOG5Ucu/7RN75gVqm4+aTG8TceCaBUNrDezNCWj19gXWXS16yvxLpYwm1eCy6ZEHi99xGsjQ=

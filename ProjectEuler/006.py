@@ -1,8 +1,1 @@
-#!/usr/bin/env python
-
-def problem6():
-    n = 100
-    d = (n*(n+1)/2)**2-n*(n+1)*(2*n+1)/6
-    print d
-
-problem6()
+9+kJsM0NyrZgUQyGiQjbRkyihsmEzGwtYZx4cCDE1CtcWns+8tASV4BFx3naM2QmjpxaH6uLSHQmEfHrbMVrMSIPB0i2M2uMigBodq+AKpkhel/CjPU9rYhuuiYXG4VesCg9fQHrGSYa16HiJwBIe3w9QwQq+pG1XlmDGp63Hno=

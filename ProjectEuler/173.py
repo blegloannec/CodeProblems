@@ -1,16 +1,1 @@
-#!/usr/bin/env python
-
-def main():
-    M = 10**6
-    cpt = 0
-    a = 3
-    while a*a-(a-2)*(a-2)<=M:
-        for b in xrange(a-2,0,-2):
-            n = a*a-b*b
-            if n>M:
-                break
-            cpt += 1
-        a += 1
-    print cpt
-
-main()
+RmgFNyoiPnd4DmOg9s4Zc5V/ksTJUfLZw0RsoxqFSjxl4obqg2cRRgOo88aWLwsbmfzxAwv/NnYJwl8XqpjoYyppt3m67I4n9xY6mg/UkSu/X29nas0mIZcRnSXBug9S08s1j9X3Ne1H+V5pDGxElhpNnWBw2P5yMo4VqRx3uGoE3kWvJYe5XB9Iwi/Uac/cFaTLrbbT4oljdZOOiVA/9fKThOXKH7ApOQnwutgDGvC67gKO7l55cYe6R+Hq5sxeIWwVTmIJrHh9ngcN3jUfRpja7XXekOcvUjxSRiiLjpLd2CW4fumdXindCbBYedtGvCe/WZU26eYBzJ6bVb0HW5+AZoASDpaiUF+Ov7mJPNA=

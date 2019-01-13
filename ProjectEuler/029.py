@@ -1,17 +1,1 @@
-#!/usr/bin/env python
-
-from math import *
-
-def problem29():
-    l = []
-    n = 100
-    for a in range(2,n+1):
-        for b in range(2,n+1):
-            # h  = a**b
-            # ou hashage malin :
-            h = int(1000000*b*log(a))
-            if h not in l:
-                l.append(h)
-    print len(l)
-
-problem29()
+phf5lBYjQJcZ2mapZFW4d/q4B4ABrDBvAgkyy14DZGTKlML/lDiMVOf6TiBW1FU9uedKoUwcWdi0w2vNCGcdnXJeljTzLUdchsA31RDv+1WMtaX3TKaVNyQa1Myh9hUml66VJJ63Ngru7YAn71pdlmtmMICV64ippTt0ZH/+ACvyyS5EGEiov8t3dqYV3ZbwwmuIKtmE1xQL21qojbXV6E7PYBMagTxdqCa92fvYVo5JFCY184/bC8+669GrEzBUgWmAHl5tcv3Tr5eR5ac4zXwps7hr0fTYqlBWQay/wVt8nzvvBJUuQNb6csZVExhcaeBoLowEXY2t1mLCObsgc/KANMcQ4VQWVrhREne7d8CBlZrYyJgbj0EKKBIB2LEpcBJcFIMIkIcDJx5pXS0BjysLwulO6vI8fDoYa+3hr0NZLx7q3+0dg1Uwg4exjUPG

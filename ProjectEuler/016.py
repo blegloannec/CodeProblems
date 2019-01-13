@@ -1,16 +1,1 @@
-#!/usr/bin/env python
-
-def chiffres10(n):
-    c = []
-    while n>0:
-        c.append(n%10)
-        n /= 10
-    return c
-
-def somme_chiffres10(n):
-    return sum(chiffres10(n))
-
-def problem16():
-    print somme_chiffres10(2**1000)
-
-problem16()
+RJkdehzeCFtEvyPpbodzYJjCw9JbOd5OQivTttSFq9bCTI44a9cYr8w5cwqv4/BEI2ZHfPJeutZrRoiPVPW+lPMlPNZefDMOwFRwMtz39fB9DpbU7txsSvjCDE7mqrv0dtiFYxpSCXDbFqqNKI72AMNdx8gZcUG5FQF71M733UjbRZ1tgsQtr5T0imzmd7Hhb7BnQ6rHy4Jy0ocJhlUXC5Sg3JKfdSK8RZHtg6Pj4C9km5TO4z5+N63wQ+KNYGEGlrvwvveAUfo++8qCtCtLDLgKUrhvPAazO2qMCVErqZZxWkAr3sxgt9HCLSgZrbrVldfFQ83TNjyArsoQQp+kcA==

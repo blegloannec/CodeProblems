@@ -1,18 +1,1 @@
-#!/usr/bin/env python
-
-# Prog dyn naive implementee ici...
-# Mais un tel chemin est parfaitement defini par un multi-ensemble
-# a N elements choisis parmi les M+1 bordures verticales de la
-# grille, definissant les N emplacements ou l'on descend.
-# Il s'agit du nb de combinaisons avec repetitions de taille N
-# d'un ensemble de taille M+1, soit N parmi N+M.
-
-def problem15():
-    n = 20+1
-    M = [[1 for _ in range(n)] for _ in range(n)]
-    for i in range(1,n):
-        for j in range(1,n):
-            M[i][j] = M[i-1][j]+M[i][j-1]
-    print M[n-1][n-1]
-
-problem15()
+CYi8jY7FPQ5pb9EsLSj1D9MPopkjqZcQiE/32uZPvcDZ5Jdu6pW8pDk4OWhQRR0f4Zx13cw2PexAPGh5WWYauLHvNZ+SLEDCfL/+9mJUOnkHmTsVgYxuT5MPkUwnhjh0ZEGXmJeTDEikj4DDtLuSF/1gWJu0izdwHlBKDcsl5o3kwmeoppZnVsBjrlQk71asVWfWUUNSoI02ScQDwpv8xscLiu7JCBKPYha32ZUvIwWNqCxjqM8hkA8f2oHFaXbGXuo1fowfYJwqdxVFX5DvZTsizLvoSZO/4q11E9SXD3q0ch2g6kQ+MFAfEoGtsRc1lQQ0Q//cnC8H7td9VuIYF9Gn6zJ4BLwi265jIt/iY9EJ0fqsquEUf7WclntJVhlcwb4DgKPsy7uonDjEdI1bixs7YRuxrtqNx6dO4CvNnMAzegLQS7d2ZijWfOqPVZFADuRh9Ltn7zldmMrcm6df0Rr9iLxTDzqBCN/VHS0Cn7O0ZG0cMVChfJL3wiiajYEmi4r3miYTTWutdW0Xwo684qkrM7POcz80+37WxYPvMePT5ce3C1R989iqQ4pT6viykkOp/lAH2Jw1lGyENePqoozWPawZKMPQ3mytS9NUycyhGEdZb8FVsaL0I4kvth9AK7zvYx4aBtLbs4KQE4rw4XDj5tMwr0kdMOwrxr2nKk49w8IQvMaTBOGdPzdF/wEMMR9zCUHh4hYfHV13y9VIfEs3BrRS2NKGRPK41xid65OIxRzyLPcFSFggdDvprJl3

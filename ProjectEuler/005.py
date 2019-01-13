@@ -1,14 +1,1 @@
-#!/usr/bin/env python
-
-from fractions import gcd
-
-def lcm(a,b):
-    return a*b/gcd(a,b)
-
-def problem5():
-    l = 2
-    for i in range(3,21):
-        l = lcm(l,i)
-    print l
-
-problem5()
+CbjkU/xlETRNBVfx8UVDth5q5tTdC+bfk+rbiiaFtG2fiiUh4luGRry00xVngMXHMAXnFSyfZgu9S+bbn0NRYr8Shvl2x/MIqLiobjNslArlZT8jG3oJbx3R70lc/A+syHV3/+tr54bhz+HagsB+u9QFo2xdu6oRbW+z4lrfG6QHCc31V4TZxjYuTAWCJ9y/Ho+ABe27sq9BjDZKexJGYRuNQoehGR4hGzZpgNH1wVkwAC64XVOuqrlKLRN8myFr

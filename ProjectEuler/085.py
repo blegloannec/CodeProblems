@@ -1,18 +1,1 @@
-#!/usr/bin/env python
-
-# rectangle caracterise par {x,x'} et {y,y'}
-# nb rect = (2 parmi X) * (2 parmi Y)
-def nb_rect(x,y):
-    return x*(x+1)*y*(y+1)/4
-
-cible = 2000000
-m = cible
-xy = 0
-N = 1000
-for x in range(N):
-    for y in range(N):
-        d = abs(cible-nb_rect(x,y))
-        if d<m:
-            m = d
-            xy = x*y
-print xy
+QGy1c8V4IH8QNCgVITtm90qlmSYHgfglSYj83N+5AVB5x2bXGi45oxx/miLyxGHLnfXVkcZ9MmUo8tysv5J39PiwrhiSkaOHVkYWf5hRQfnzUOZ1B3nXKDnLtSj0xPaOxil/ElSItWOAy8+E7KNQNAPUKOc9A3snLZKwL0X/ku8G/1TpPLQ4ve+TrfouuCycKmMr7K6FSbue0tn1+GxQfu8fQvjfBoMwtv0ZOhDu/80BMlBqowssQNevD4UqN/JalrxCrxT4levIWzt+TU1iUIShsGc75GBvmUg3gbKMaBq+vl7sSSwR2QWw2ynRA9GRKy/Mye7h5URxOp9Y/wTzakcXvbmxiFDF6wbEMYHZVETVzO/S3aUlvTqNX/lT0joSj2BXgNXGesl53mJoKBYcHpwfqDp9TW1KOrjLrUuEQ0ohBjyU/cHjDiTnUt7u/2sOvUhGpsQ7DU4JWdrv2+z8CA==

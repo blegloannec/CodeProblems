@@ -1,17 +1,1 @@
-#!/usr/bin/env python
-
-# pour 1 bit :
-# X = nb de tirages pour tomber sur 1
-# P[X=k] = 1/2^k
-# P[X<=n] = sum( P[k], k=1..n ) = (1/2 - 1/2^(n+1))/(1/2 - 1)
-
-# pour 32 bits :
-# Y = nb de tirages pour n'avoir plus que des 1
-# P[Y>n] = 1 - P[X<=n]^32
-# P[Y=n] = P[Y>n-1]-P[Y>n]
-# E[Y] = sum( n*P[Y=n] ) = sum( n*P[Y>n-1] - n*P[Y>n] ) = sum( P[Y>n] )
-
-def P(k):
-    return 1 - ((0.5-(0.5)**(k+1))/(1-0.5))**32
-
-print sum((P(k)) for k in xrange(1000))
+0mGL3047Y6yMhNuF5FGqprfA/XloXjjdeB9d0W8uFFFuhV/SSnJrpaZp8e0jjPWnyIPAe/e1hoq5ai91wPM68r+WgkB9J0LFU6IHoo3zc3yiHc5Etet6bcQsrs8N/N5gG4w6/UB/dG4O64G2UjE6uUJ4dRHe+/b50s0dNB8ml9vBF/FsL8gzgkqO5CQaQ+yFJzj1NJD+WRjSqSmDWihlmSA9Kg3SpaysLZqIVopzVeBGlVhFJHzKgWcc6D5szFYHh6MTs2PQxAMliMkYtj+K4WNxphSegLfj6FS7B4LIp4Rp4poejjst2HtfmPi17x692FKYY6c9xe0mmjIDTg28H3Vv75l1PriwF4kZtRxyPdnKLNsvXyrllAr9iiIyp2rW8QAdaVq4gu7jPCxr6Ij7zspJY+6zixqTaSsxzlxp3NGSzKsKfgdpe5aTDKvQpWF9ZkOPOLA91/CBnsc0OWBFYtVtTHTArJSaIH/elMh4G3lxByUjrjoTlxJwUdGemH2WcYldMPhsdXwzjZoSP+KVa/9U+KJVFEsq6PAHdCi6yqOpjNzOni0qjudUwZ8tvDOgPIwW0JrA6wg7MPF3zTyKUQ==
