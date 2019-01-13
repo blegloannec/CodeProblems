@@ -102,35 +102,42 @@ struct Matrice {
     n = M[0].size();
   }
 
-  static Matrice zero(int m, int n) {
-    matrice M0(m);
-    for (int i=0; i<m; ++i) M0[i].resize(n,0);
-    return Matrice(M0);
+  Matrice(int m, int n, scal x=0) : m(m), n(n) {
+    M.resize(m);
+    for (int i=0; i<m; ++i) M[i].resize(n,x);
   }
 
   static Matrice id(int n) {
-    Matrice M = zero(n,n);
-    for (int i=0; i<n; ++i) M.M[i][i] = 1;
+    Matrice M(n,n);
+    for (int i=0; i<n; ++i) M[i][i] = 1;
     return M;
+  }
+
+  vector<scal> &operator[](int i) {
+    return M[i];
+  }
+  
+  const vector<scal> &operator[](int i) const {
+    return M[i];
   }
   
   Matrice operator*(const Matrice &A) const {
     //assert(n==A.m);
-    Matrice C = zero(m,A.n);
+    Matrice C(m,A.n);
     for (int i=0; i<m; ++i)
       for (int k=0; k<n; ++k)
 	for (int j=0; j<A.n; ++j)
-	  C.M[i][j] += M[i][k] * A.M[k][j];
+	  C[i][j] += M[i][k] * A[k][j];  // % MOD here if needed
     return C;
   }
   
   Matrice copy() const {
-    matrice M0(n);
-    for (int i=0; i<n; ++i) M0[i] = M[i]; // copy
-    return Matrice(M0);
+    Matrice C(m,n);
+    for (int i=0; i<n; ++i) C[i] = M[i]; // copy
+    return C;
   }
   
-  Matrice pow(int b) const {
+  Matrice pow(long long b) const {
     //assert(m==n);
     Matrice result = id(n);
     Matrice A = copy();
