@@ -21,7 +21,6 @@ if __name__=='__main__':
         sys.exit(1)
     solution = sys.argv[1]
     H = sha256(solution.encode()).digest()
-    assert len(H)==32
     Key,IV = H[:16],H[16:]
     F = open(sys.argv[2],'rb')
     M = F.read()
