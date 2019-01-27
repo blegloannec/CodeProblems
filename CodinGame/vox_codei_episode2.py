@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 from heapq import *
 from collections import defaultdict
 
@@ -8,58 +7,66 @@ Radius = 3
 Delay = 2
 Dirs = [(-1,0),(1,0),(0,-1),(0,1)]
 
-def precomp_node_positions(r0, rounds):
+def targ_at_time(n,t):
+    return TCycle[n][t%len(TCycle[n])]
+
+def precomp_positions(r0, rounds):
     global TPos
     R = r0+rounds+1
     TPos = [defaultdict(list) for _ in range(R)]
     for d in range(r0,R):
-        for t in range(len(Targets)):
-            i,j = TCycle[t][(d+Delay+1)%len(TCycle[t])]
+        for t in range(NbTargets):
+            i,j = targ_at_time(t,d+Delay+1)
             TPos[d][i,j].append(t)
             for dx,dy in Dirs:
                 x,y,r = i+dx,j+dy,1
                 while r<=Radius and 0<=x<H and 0<=y<W and Grid[x][y]!='#':
                     TPos[d][x,y].append(t)
                     x,y,r = x+dx,y+dy,r+1
-
+                    
 def dfs(t0, bombs, rounds):
-    u0 = (t0, bombs, tuple(range(len(Targets))), ())
+    u0 = (t0, bombs, tuple(range(NbTargets)), (), ())
     Q = [u0]
     Pred = {}
     while Q:
         u = Q.pop()
-        d,b,T,Pending = u
-        if not T:
+        d, b, RemTargs, PendBombs, PendTargs = u
+        if not RemTargs:
             break
         if b==0 or d==rounds-Delay:
             continue
-        Pend1 = [(p,t-1) for p,t in Pending if t!=1]
-        # Waiting
-        vwait = (d+1, b, T, tuple(Pend1))
+        PendB1 = [(p,t-1) for p,t in PendBombs if t!=1]
+        PendT1 = [(p,t-1) for p,t in PendTargs if t!=1]
+        # Waiting (time d+1)
+        vwait = (d+1, b, RemTargs, tuple(PendB1), tuple(PendT1))
         if vwait not in Pred:
             Pred[vwait] = (u,'WAIT')
             Q.append(vwait)
-        # Node positions at time d
+        # Candidate positions at time d
         Pos = {}
         for p in TPos[d]:
-            L = [t for t in TPos[d][p] if t in T]
+            L = [t for t in TPos[d][p] if t in RemTargs]
             if L:
                 Pos[p] = L
-        Occupied = [TCycle[t][d%len(TCycle[t])] for t in T] + [p if isinstance(p,tuple) else TCycle[p][d%len(TCycle[p])] for p,_ in Pending]
+        # Placing one bomb at time d
+        Occupied = [targ_at_time(t,d) for t in RemTargs] + [p for p,_ in PendBombs] + [targ_at_time(p,d) for p,_ in PendTargs]
         Avail = sorted((p for p in Pos if p not in Occupied), key=(lambda p: len(Pos[p])))
         for p in Avail:
             in_bomb_radius = False
-            for q,_ in Pending:
-                if isinstance(q,tuple) and (q[0]==p[0] or q[1]==p[1]):
+            for q,_ in PendBombs:
+                if q[0]==p[0] or q[1]==p[1]:
                     if abs(q[0]-p[0])+abs(q[1]-p[1])<=Radius:
                         in_bomb_radius = True
                         break
             if not in_bomb_radius:
-                Pendv = tuple(Pend1 + [(p,Delay)] + [(i,Delay) for i in Pos[p]])
-                v = (d+1, b-1, tuple(i for i in T if i not in Pos[p]), Pendv)
+                PendBv = tuple(PendB1 + [(p,Delay)])
+                PendTv = tuple(PendT1 + [(i,Delay) for i in Pos[p]])
+                RemTv = tuple(i for i in RemTargs if i not in Pos[p])
+                v = (d+1, b-1, RemTv, PendBv, PendTv)
                 if v not in Pred:
                     Pred[v] = (u, '%d %d' % p[::-1])
                     Q.append(v)
+    # Extracting final plan
     Plan = []
     while u in Pred:
         u,x = Pred[u]
@@ -67,43 +74,49 @@ def dfs(t0, bombs, rounds):
     Plan.reverse()
     return Plan
 
-def dijkstra_fewest_bombs(t0, bombs, T0, rounds):
-    u0 = (0, t0, T0, ())
+def dijkstra_fewest_bombs(t0, bombs, Targs0, rounds):
+    u0 = (0, t0, Targs0, (), ())
     Q = [u0]
     Pred = {}
     while Q:
         u = heappop(Q)
-        b,d,T,Pending = u
-        if not T:
+        b, d, RemTargs, PendBombs, PendTargs = u
+        if not RemTargs:
             break
         if b==bombs or d==rounds-Delay:
             continue
-        Pend1 = [(p,t-1) for p,t in Pending if t!=1]
-        # Waiting
-        vwait = (b, d+1, T, tuple(Pend1))
+        PendB1 = [(p,t-1) for p,t in PendBombs if t!=1]
+        PendT1 = [(p,t-1) for p,t in PendTargs if t!=1]
+        # Waiting (time d+1)
+        vwait = (b, d+1, RemTargs, tuple(PendB1), tuple(PendT1))
         if vwait not in Pred:
             Pred[vwait] = (u,'WAIT')
             heappush(Q,vwait)
+        # Candidate positions for bombs at time d
         Pos = {}
         for p in TPos[d]:
-            L = [t for t in TPos[d][p] if t in T]
+            L = [t for t in TPos[d][p] if t in RemTargs]
             if L:
                 Pos[p] = L
-        Occupied = [TCycle[t][d%len(TCycle[t])] for t in T] + [p if isinstance(p,tuple) else TCycle[p][d%len(TCycle[p])] for p,_ in Pending]
+        # Placing one bomb at time d
+        Occupied = [targ_at_time(t,d) for t in RemTargs] + [p for p,_ in PendBombs] + [targ_at_time(p,d) for p,_ in PendTargs]
         Avail = [p for p in Pos if p not in Occupied]
         for p in Avail:
             in_bomb_radius = False
-            for q,_ in Pending:
-                if isinstance(q,tuple) and (q[0]==p[0] or q[1]==p[1]):
+            for q,_ in PendBombs:
+                if q[0]==p[0] or q[1]==p[1]:
                     if abs(q[0]-p[0])+abs(q[1]-p[1])<=Radius:
                         in_bomb_radius = True
                         break
             if not in_bomb_radius:
-                Pendv = tuple(Pend1 + [(p,Delay)] + [(i,Delay) for i in Pos[p]])
-                v = (b+1, d+1, tuple(i for i in T if i not in Pos[p]), Pendv)
+                PendBv = tuple(PendB1 + [(p,Delay)])
+                PendTv = tuple(PendT1 + [(i,Delay) for i in Pos[p]])
+                RemTv = tuple(i for i in RemTargs if i not in Pos[p])
+                v = (b+1, d+1, RemTv, PendBv, PendTv)
                 if v not in Pred:
                     Pred[v] = (u, '%d %d' % p[::-1])
                     heappush(Q,v)
+    # Extracting final plan
     Plan = []
     while u in Pred:
         u,x = Pred[u]
@@ -146,7 +159,7 @@ def cycle(i,j,di,dj):
     return C
 
 def main():
-    global W,H,Grid,Targets,TCycle,FixedTargets,MovingTargets
+    global W, H, Grid, Targets, NbTargets, TCycle, FixedTargets, MovingTargets
     W,H = map(int,input().split())
     # game loop
     ready = False
@@ -164,12 +177,13 @@ def main():
                     if Grid[i][j]=='@':
                         Targets.append((i,j))
                         Grid[i][j] = '.'
+            NbTargets = len(Targets)
             print('WAIT')
         elif not ready:  # we are still figuring what moves and how
             if TCycle is None:  # init
                 TCycle = [[[(i,j)]]+[cycle(i,j,di,dj) for di,dj in Dirs if 0<=i+di<H and 0<=j+dj<W and Grid[i+di][j+dj]=='.'] for i,j in Targets]
             Grid1 = [input() for _ in range(H)]  # checking/updating info
-            for k in range(len(Targets)):
+            for k in range(NbTargets):
                 C = []
                 for L in TCycle[k]:
                     x,y = L[t%len(L)]
@@ -179,23 +193,23 @@ def main():
             if all(len(C)==1 for C in TCycle):  # we know the cycles!
                 TCycle = [C[0] for C in TCycle]
                 ready = True
-                FixedTargets = [Targets[p] for p in range(len(Targets)) if len(TCycle[p])==1]
-                MovingTargets = [Targets[p] for p in range(len(Targets)) if len(TCycle[p])>1]
+                FixedTargets = [Targets[p] for p in range(NbTargets) if len(TCycle[p])==1]
+                MovingTargets = [Targets[p] for p in range(NbTargets) if len(TCycle[p])>1]
                 # we precomp the potential bomb positions at each time
-                precomp_node_positions(t,rounds)
+                precomp_positions(t,rounds)
                 # we compute the components
                 components()
             print('WAIT')
         else:
             if Plan is None and c<len(TComp):
                 t0 = t
-                if len(TComp)<=3:
+                if len(TComp)<=3:  # Case 1: Ignore components when there are too few of them
                     Plan = dfs(t0,bombs,rounds)
                     c = len(TComp)
-                else:
+                else:              # Case 2: Planning each component independently, minimizing bombs
                     Plan = dijkstra_fewest_bombs(t0, bombs, tuple(TComp[c]), rounds)
                     c += 1
-            for _ in range(H):
+            for _ in range(H):     # reading (and throwing away) the current grid
                 input()
             if Plan is not None and t-t0<len(Plan):
                 print(Plan[t-t0])
