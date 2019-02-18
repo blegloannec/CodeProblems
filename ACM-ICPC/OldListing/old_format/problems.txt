@@ -1,0 +1,61 @@
+01/2008 || 3917 || Tiling a Grid With Dominoes || Relation de r&eacute;currence || http://acm.uva.es/archive/nuevoportal/data/problem.php?p=3917 || dominoes2.cpp
+01/2008 || 3960 || Reaux! Sham! Beaux! || Manipulation de <i>strings</i> || http://acm.uva.es/archive/nuevoportal/data/problem.php?p=3960 || roshambo.cpp
+S&eacute;ance 1 || 100 || The 3n + 1 problem || Syracuse avec m&eacute;morisation || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=36 || syracuse.cpp
+S&eacute;ance 1 || 102 || Ecological Bin Packing || <i>Backtracking</i> (&eacute;num&eacute;ration des cas) || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=38 || binpacking.cpp
+S&eacute;ance 2 || 10480 || Sabotage || Ford-Fulkerson - MinCut || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1421 || sabotage.cpp
+S&eacute;ance 2 || 10983 || Buy one, get the rest free || Ford-Fulkerson - MaxFlow (ATTENTION : programme peu efficace) || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1924 || flights.cpp
+S&eacute;ance 3 || 558 || Wormholes || Bellman-Ford - Cycles n&eacute;gatifs || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=499 || wormholes.cpp
+S&eacute;ance 3 || 515 || King || Bellman-Ford - Cycles n&eacute;gatifs || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=456 || king.cpp
+25/02/08 || 3850 || Here We Go(relians) Again || Dijkstra (listes d'adjacence) || http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=3850 || dijkstra.cpp
+S&eacute;ance 4 || 612 || DNA Sorting || Programmation dynamique sur <i>strings</i> || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=553 || DNA.cpp
+S&eacute;ance 4 || 231 || Testing the CATCHER || Programmation dynamique (C<sub>1</sub> en n<sup>2</sup>) et plus astucieux (C<sub>2</sub> en n.log(n)) || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=167 || catcher.cpp || catcher2.cpp
+S&eacute;ance 4 || 10003 || Cutting Sticks || Programmation dynamique (ATTENTION : probablement pas optimal) || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=944 || cutting_sticks.cpp
+S&eacute;ance 4 || 104 || Arbitrage || Prog. dyn. chemins poids min toutes paires de sommets  || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=40 || arbitrage.cpp
+07/03/08 || 10462 || Is There A Second Way Left? || Arbres couvrants - Kruskal (avec Tarjan) || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1403 || second_way.cpp
+S&eacute;ance 5 || 112 || Tree Summing || <i>Backtracking</i> || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=48 || 112.cpp
+S&eacute;ance 5 || 10776 || Determine The Combination || <i>Backtracking</i> || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1717 || 10776.cpp
+S&eacute;ance 5 || 10483 || The Sum Equals the Product || <i>Backtracking</i> || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1424 || sum_prod.cpp
+S&eacute;ance 6 || 10929 || You can say 11 || Jeux math&eacute;matiques || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1870 || 10929.cpp
+S&eacute;ance 6 || 11254 || Consecutive Integers || Jeux math&eacute;matiques || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2221 || 11254ter.cpp
+S&eacute;ance 6 || 10299 || Relatives || Jeux math&eacute;matiques - Indicatrice d'Euler || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1240 || 10299.cpp
+S&eacute;ance 7 || 10489 || Boxes of Chocolates || Jeux math&eacute;matiques || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1430 || 10489.cpp
+S&eacute;ance 7 || 11179 || Bit Stream || Jeux math&eacute;matiques || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2120 || 11179.cpp
+S&eacute;ance 8 || 291 || The House Of Santa Claus || M&eacute;thode hongroise &amp; co || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=227 || 291.cpp
+S&eacute;ance 8 || 138 || Street Numbers || M&eacute;thode hongroise &amp; co || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=74 || 138.cpp
+S&eacute;ance 8 || 200 || Rare Order || Arbres lexicographiques - Tri topologique || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=136 || 200.cpp
+Partiel || 11063 || B2-Sequence ||  || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2004 || b2sequence.cpp
+Partiel || 10702 || Travelling Salesman || Programmation dynamique || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1643 || tsp2.cpp
+Partiel || 10948 || The primary problem || Nombres premiers || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1889 || prim.cpp
+Partiel || 10721 || Bar Codes || Programmation dynamique || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1662 || codbar.cpp
+Partiel || 10768 || Planarity || Bourrinage violent || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1709 || planarity.cpp
+S&eacute;ance 9 || 147 || Dollars || Programmation dynamique || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=83 || 147.cpp
+S&eacute;ance 9 || 707 || Robbery || Programmation dynamique || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=648 || 707.cpp
+S&eacute;ance 10 || 10432 || Polygon Inside A Circle || G&eacute;om&eacute;trie || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1373 || 10432.cpp
+S&eacute;ance 10 || 10451 || Ancient Village Sports || G&eacute;om&eacute;trie || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1392 || 10451.cpp
+S&eacute;ance 10 || 218 || Moth Eradication || G&eacute;om&eacute;trie - Enveloppe Convexe || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=154 || 218.cpp
+S&eacute;ance 10 || 10002 || Centre of Masses || G&eacute;om&eacute;trie || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=943 || 10002.cpp
+S&eacute;ance 11 || 688 || Mobile Phone Coverage || G&eacute;om&eacute;trie - Calcul d'aire - Balayage (v1) / Bourrinage (v2) || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=629 || 688.cpp || 688v2.cpp
+03/05/08 || 10245 || The Closest Pair Problem || G&eacute;om&eacute;trie - Distance min 2D || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1186 || 10245.cpp
+Examen || 10450 || World Cup Noise || Suite du type Fibonacci || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1391 || wcn.cpp
+Examen || 10490 || Mr. Azad and His Son!!!!! || Nombres parfaits || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1431 || azad.cpp
+Examen || 10408 || Farey sequences || Fractions || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=1349 || farey.cpp
+Examen || 11137 || Ingenuous Cubrency || Programmation dynamique || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=2078 || cubrency.cpp
+S&eacute;ance 12 || 575 || Skew Binary || Premier probl&egrave;me valid&eacute; par Philippe (mais c'est pas sa version du code) ! || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=516 || 575.cpp
+Summer 08 (BLG) || 457 213 256 299 297 || || || || 457.cpp || 213.cpp || 256.cpp || 299.cpp || 297.cpp
+Summer 08 (BLG) || 136 || Ugly Numbers || Bourrinage math&eacute;matique - Code puis code de g&eacute;n&eacute;ration || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=139 || 136.cpp || gen136.cpp
+Summer 08 (TT) || 686 900 11415 583 543 10055 636 621 || ||  || || 686.cpp || 900.cpp || 11415.cpp || 583.cpp || 543.cpp || 10055.cpp || 636.cpp || 621.cpp
+Summer 08 (BLG) || 10001 || Garden Of Eden || Automates cellulaires &eacute;l&eacute;mentaires || http://icpcres.ecs.baylor.edu/onlinejudge/index.php?option=com_onlinejudge&amp;page=show_problem&amp;problem=942 || 10001naif.cpp || 10001.cpp || gen10001.cpp || 10001opt.cpp
+M1 S&eacute;ance 1 || 10189 10137 706 10033 10196 10142 10050 10258 || || Probl&egrave;mes d'I/O || || 10189.cpp || 10137.cpp || 706.cpp || 10033.cpp || 10196.cpp || 10142.cpp || 10050.cpp || 10258.cpp
+M1 S&eacute;ance 2 || 10003 10074 10131 10405 10602 || || Prog. dyn. || || 10003.cpp || 10074.cpp || 10131.cpp || 10405.cpp || 10602.cpp
+M1 S&eacute;ance 3 || 112 114 343 10909 10918 10959 11465 || || || || 112.cpp || 114.cpp || 343.cpp || 10909.cpp || 10918.cpp || 10959.cpp || 11465.cpp
+M1 S&eacute;ance 4 || 10009 10127 10192 10194 10400 10409 10440 || || || || 10009.cpp || 10127.cpp || 10192.cpp || 10194.cpp || 10400.cpp || 10409.cpp || 10440.cpp
+M1 S&eacute;ance 5 || 10016 10026 10390 10534 10543 10790 || || || || 10016.cpp || 10026.cpp || 10390.cpp || 10534.cpp || 10543.cpp || 10790.cpp
+M1 S&eacute;ance 6 || 117 315 334 352 10034 10397 10926 || || Graphes || || 117.cpp || 315.cpp || 334.cpp || 352.cpp || 10034.cpp || 10397.cpp || 10926.cpp
+M1 Partiel || 485 539 544 590 10100 10300 || || || || 485.cpp || 539.cpp || 544.cpp || 590.cpp || 10100.cpp || 10300.cpp
+M1 S&eacute;ance 7 || 143 688 10002 10065 10078 || || G&eacute;om&eacute;trie || || 143.cpp || 688.cpp || 10002.cpp || 10065.cpp || 10078.cpp
+M1 S&eacute;ance 8 || 374 686 10106 10220 10299 || || Arithm&eacute;tique et grands nombres || || 374.cpp || 686.cpp || 10106.cpp || 10220.cpp || 10299.cpp
+M1 S&eacute;ance 9 || 218 673 10742 || || || || 218.cpp || 673.cpp || 10742.cpp
+M1 Examen || 494 737 10083 10672 10853 10898 || || || || 494.cpp || 737.cpp || 10083.cpp || 10672.cpp || 10853.cpp || 10898.cpp
+SWERC 08 || 4296 4302 4303 4304 4305 || || || http://acm.uva.es/archive/nuevoportal/region.php?r=sw&year=2008 || horse.cpp || toll_road.cpp || top.cpp || book.cpp || wizards.cpp
+Autres || 11105 || || || || 11105.cpp
+
