@@ -1,6 +1,9 @@
 *~
-*.pyc
+#*#
 *.o
-*.html
-*.txt
 *.out
+*.pyc
+*.txt
+*.cmi
+*.cmo
+*.cmx
