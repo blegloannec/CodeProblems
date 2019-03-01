@@ -10,9 +10,6 @@ def brute():
 
 
 # Backtracking with memoization
-# similar to an O(|N|^2) DP tweaked for enumeration
-# NB: the DP implementation actually is O(|N|^3) here due to the "int(N[i:j])",
-# but that does not matter much as the enumeration is in O(3^|N|) in the worst case)
 Sol = []
 cut = set()
 def dp(k,i=0):
