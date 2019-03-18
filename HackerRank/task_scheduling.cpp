@@ -1,12 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <climits>
 using namespace std;
 
-typedef int elem;
 
 /* ===== BEGIN LazySegmentTree ===== */
+typedef int elem;
+
 struct LazySegmentTree {
-  const elem NEUTRAL = 0; // neutre
+  const elem NEUTRAL = INT_MIN; // neutre
   const elem NEUTRAL_UP = 0; // neutre pour up_op
   unsigned int N = 0;
   vector<elem> S,L;
@@ -14,13 +17,13 @@ struct LazySegmentTree {
 
   // operation utilisee, e.g. min, +, *, etc
   static elem op(elem a, elem b) {
-    return a+b;
+    return max(a,b);
   }
 
   // operation iteree n fois
   // a pour min, n*a pour +, a^n pour *
   static elem iter_op (elem a, int n) {
-    return n*a;
+    return a;
   }
 
   // operation de mise a jour (via set() et set_range())
@@ -130,18 +133,69 @@ elem LazySegmentTree::_range(int p, int start, int span, int i, int j) {
 /* ===== END LazySegmentTree ===== */
 
 
+/* ===== Fenwick Trees ===== */
+typedef int ent;
+
+struct Fenwick {
+  vector<ent> FT;
+
+  void add(int i, ent v);
+  ent prefix_sum(int i) const;
+
+  Fenwick(int n) {
+    FT.resize(n+1,0);
+  }
+};
+
+void Fenwick::add(int i, ent v=1) {
+  //assert(i>0);
+  while (i<(int)FT.size()) {
+    FT[i] += v;
+    i += i&-i;
+  }
+}
+
+ent Fenwick::prefix_sum(int i) const { // prefix sum
+  ent s = 0;
+  while (i>0) {
+    s += FT[i];
+    i -= i&-i;
+  }
+  return s;
+}
+/* ===== END Fenwick ===== */
+
+
+struct Task {
+  int i,D,M;
+  Task(int i, int D, int M) : i(i), D(D), M(M) {}
+  bool operator<(const Task &B) const {
+    return (D<B.D) || (D==B.D && i<B.i);
+  }
+};
+
 int main() {
-  vector<elem> T = {5,6,4,9,2,1,3,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5};
+  int T;
+  cin >> T;
+  vector<Task> Tasks;
+  for (int i=0; i<T; ++i) {
+    int D,M;
+    cin >> D >> M;
+    Tasks.push_back(Task(i,D,M));
+  }
+  sort(Tasks.begin(),Tasks.end());
+  vector<int> Idx(T);
+  for (int i=0; i<T; ++i) Idx[Tasks[i].i] = i;
   LazySegmentTree ST(T);
-  for (int i=0; i<(int)T.size(); ++i)
-    cout << ST.get(i) << ' ';
-  cout << endl;
-  ST.set_range(1,16,10);
-  ST.set_range(1,9,10);
-  ST.set_range(10,16,10);
-  ST.set_range(1,16,10);
-  for (int i=0; i<(int)T.size(); ++i)
-    cout << ST.get(i) << ' ';
-  cout << endl;
+  Fenwick F(T);
+  for (int i=0; i<T; ++i) {
+    int j = Idx[i];
+    int t = F.prefix_sum(j);
+    F.add(j+1,Tasks[j].M);
+    if (j<T-1) ST.set_range(j+1,T-1,Tasks[j].M); // adds M to the range [j+1..]
+    ST.set(j,-ST.get(j));               // reset to 0
+    ST.set(j,t+Tasks[j].M-Tasks[j].D);  // sets to the right overshot
+    cout << max(0,ST.range(0,T-1)) << endl;
+  }
   return 0;
 }
