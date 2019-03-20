@@ -3,7 +3,11 @@
 #include <cassert>
 using namespace std;
 
-/* Fenwick Trees */
+/*
+  Fenwick Trees
+  /!\ indices (parameters i,a,b) are 1-based
+      add ++i at the beginning of add/prefix_sum to change to 0-based
+*/
 typedef long long ent;
 
 struct Fenwick {
