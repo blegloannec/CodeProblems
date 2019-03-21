@@ -1,3 +1,18 @@
+/*
+  NOT an actual scheduling problem...
+  Given a set of n indexed tasks (not sorted in any way),
+  one has to compute the maximum lateness of the "1 | pmtn | Lmax"
+  scheduling problem of the first k tasks, for all k from 1 to n.
+  Without release times on 1 machine, pmtn does not make any difference
+  and the basic earliest-deadline-first heuristic is optimal.
+  Given the deadline-sorted planning for the first k tasks, one has to
+  insert the task k+1 at its position (sorted by deadline, which shifts the
+  tasks planified after by the duration of this task) and to update Lmax.
+  The following code implements this in O(n log n) relying on
+  sorting  (to compute the final planning & insertion positions)
+    &  (max,+) lazy segment tree  (to shift tasks & compute Lmax)
+    &  + fenwick tree  (to compute insertion times on-the-fly)
+*/
 #include <iostream>
 #include <vector>
 #include <algorithm>
