@@ -1,4 +1,7 @@
-// Sqrt-decomposition of the y-sorted fighters in O((N+Q) sqrt N)
+/*
+  Offline sqrt-decomposition of the y-sorted fighters in O((N+Q) sqrt N)
+  See also HackerRank/almost_equal-advanced.cpp for a similar approach
+*/
 #include <cstdio>
 #include <vector>
 #include <cmath>
@@ -22,38 +25,35 @@ struct fighter {
 vector<fighter> Fighters;
 
 struct query {
-  int y0, y1, f0, f1, b0, b1, q, res;
+  int y0, y1, f0, f1, b0, q, res;
   
   query(int y0, int y1, int q) : y0(y0), y1(y1), q(q) {
-    // fighters indices of the query (f0 included, f1 excluded)
+    // fighters indices of the query (both included)
     f0 = distance(Fighters.begin(), lower_bound(Fighters.begin(), Fighters.end(), fighter(y0)));
-    f1 = distance(Fighters.begin(), upper_bound(Fighters.begin(), Fighters.end(), fighter(y1)));
+    f1 = distance(Fighters.begin(), upper_bound(Fighters.begin(), Fighters.end(), fighter(y1)))-1;
     // corresponding blocks indices
     b0 = f0/S;
-    b1 = f1/S;
   }
   
   bool operator<(const query &B) const {
-    return b0<B.b0 || (b0==B.b0 && b1<B.b1);
+    return b0<B.b0 || (b0==B.b0 && f1<B.f1);
   }
   
   void process() {
     /*
       Computing the result of the query in O(sqrt N)
       When this is called, Counter is assumed to already count the occurrences
-      of the fighters f-values in blocks b0+1 to b1-1.
-      Here we simply take into account the initial/final missing segments.
+      of the fighters f-values from block b0+1 to index f1.
+      Here we simply take into account the initial missing segment.
     */
     res = MaxOcc;
-    if (b0==b1) {
-      for (int i=f0; i<f1; ++i) res = max(res, ++Counter[Fighters[i].f]);
-      for (int i=f0; i<f1; ++i) --Counter[Fighters[i].f];
+    if (f1<(b0+1)*S) {
+      for (int i=f0; i<=f1; ++i) res = max(res, ++Counter[Fighters[i].f]);
+      for (int i=f0; i<=f1; ++i) --Counter[Fighters[i].f];
     }
     else {
       for (int i=f0; i<(b0+1)*S; ++i) res = max(res, ++Counter[Fighters[i].f]);
-      for (int i=b1*S; i<f1; ++i)     res = max(res, ++Counter[Fighters[i].f]);
       for (int i=f0; i<(b0+1)*S; ++i) --Counter[Fighters[i].f];
-      for (int i=b1*S; i<f1; ++i)     --Counter[Fighters[i].f];
     }
   }
 };
@@ -63,18 +63,15 @@ vector<query> Queries;
 void process_queries() {
   sort(Queries.begin(), Queries.end());
   int q = 0;
-  for (int b0=0; b0<=N/S; ++b0) {
+  for (int b0=0; b0<=N/S && q<Q; ++b0) {
     MaxOcc = 0;
-    Counter.clear();
-    for (int b1=b0; b1<=N/S; ++b1) {
-      if (b1>b0+1)
-	// including block b1-1 into Counter
-	for (int i=(b1-1)*S; i<b1*S; ++i)
-	  MaxOcc = max(MaxOcc, ++Counter[Fighters[i].f]);
-      // processing queries starting in b0 and ending in b1
-      while (q<Q && Queries[q].b0==b0 && Queries[q].b1==b1)
-	Queries[q++].process();
+    for (int f1=b0*S; f1<N && q<Q && Queries[q].b0==b0; ++f1) {
+      if (f1>=(b0+1)*S)
+	MaxOcc = max(MaxOcc, ++Counter[Fighters[f1].f]);  // including f1 into Counter
+      // processing queries starting in b0 and ending at f1
+      while (q<Q && Queries[q].b0==b0 && Queries[q].f1==f1) Queries[q++].process();
     }
+    Counter.clear();
   }
 }
 
