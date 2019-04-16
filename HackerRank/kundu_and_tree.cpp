@@ -35,7 +35,7 @@ void addmod(ll &a, ll b) {
 
 /*
   We use 0 as an arbitrary root.
-  First pass DFS to count colors withing subtrees:
+  First pass DFS to count colors within subtrees:
   SubBlack[u] = nb of nodes v in the subtree rooted at u such that
                 path u~~v is fully black
   SubRed[u]   = the complementary
@@ -52,6 +52,7 @@ void dfs_sub(int u=0, int u0=-1) {
   }
 }
 
+// Second pass DFS to actually compute the required results
 ll dfs_count_triplets(int u=0, int u0=-1, int SupRed=0, int SupBlack=0) {
   ll res = 0;
   int TotalRed = SupRed + SubRed[u];
