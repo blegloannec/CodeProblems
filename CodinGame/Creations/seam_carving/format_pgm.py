@@ -24,7 +24,7 @@ def resize(Img, a):
 if __name__=='__main__':
     Parser = argparse.ArgumentParser()
     Parser.add_argument('img_file', nargs='+')
-    Parser.add_argument('--maxsize', type=int, default=10000)
+    Parser.add_argument('--maxsize', type=int, default=MAXSIZE)
     Parser.add_argument('--shrink', type=int, default=0)
     Parser.add_argument('--out')
     Args = Parser.parse_args()
