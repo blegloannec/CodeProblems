@@ -30,10 +30,11 @@ def lcm(a,b):
 
 def multiplicative_order(G,P):
     assert gcd(G,P)==1
-    D = decomp(P-1)
+    Phi = P-1
+    D = decomp(Phi)
     o = 1
     for Q,M in D:
-        G0 = pow(G,(P-1)//Q**M,P)
+        G0 = pow(G,Phi//Q**M,P)
         o0 = 1
         while G0!=1:
             G0 = pow(G0,Q,P)
