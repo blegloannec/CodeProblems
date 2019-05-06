@@ -36,9 +36,8 @@ def geo_sum_mod(r,n,m):
 
 
 def sieve(N):
-    P = [True for _ in xrange(N)]
-    P[0] = False
-    P[1] = False
+    P = [True]*N
+    P[0] = P[1] = False
     for i in xrange(2,int(sqrt(N))+1):
         if P[i]:
             for k in xrange(2*i,N,i):
@@ -46,10 +45,9 @@ def sieve(N):
     return P
 
 def sieve_list(N):
-    P = [True for _ in xrange(N)]
+    P = [True]*N
     L = []
-    P[0] = False
-    P[1] = False
+    P[0] = P[1] = False
     for i in xrange(2,N):
         if P[i]:
             L.append(i)
@@ -60,7 +58,7 @@ def sieve_list(N):
 # crible pour marquer les nb premiers L <= n <= R
 def prime_int(L,R):
     P = sieve_list(int(sqrt(R))+1)
-    D = [True for _ in xrange(R-L+1)]
+    D = [True]*(R-L+1)
     for p in P:
         for n in xrange(max(2,(L+p-1)/p)*p,R+1,p):
             D[n-L] = False
@@ -73,10 +71,9 @@ def prime_int(L,R):
 # Voir en particulier pbs 70,72
 
 def sieve_factors(N):
-    P = [True for _ in xrange(N)]
+    P = [True]*N
     Factors = [[] for _ in xrange(N)]
-    P[0] = False
-    P[1] = False
+    P[0] = P[1] = False
     for i in xrange(2,N):
         if P[i]:
             Factors[i].append(i)
@@ -86,10 +83,9 @@ def sieve_factors(N):
     return P,Factors
 
 def sieve_decomp(N):
-    P = [True for _ in xrange(N)]
+    P = [True]*N
     Decomp = [[] for _ in xrange(N)]
-    P[0] = False
-    P[1] = False
+    P[0] = P[1] = False
     for i in xrange(2,N):
         if P[i]:
             Decomp[i].append((i,1))
@@ -103,24 +99,30 @@ def sieve_decomp(N):
                 Decomp[k].append((i,m))
     return P,Decomp
 
-# NB: phi(n) = n*Prod( 1 - 1/p, p facteur premier de n)
-# donc eulerphi(n) est calculable a partir des facteurs seuls
-# (sans leur multiplicite, ie avec sieve_factors au lieu de sieve_decomp)
-# mais ce calcul est a base de float, alors qu'on le fait ici en int
+
 def eulerphi(decomp):
     res = 1
-    for (p,m) in decomp:
+    for p,m in decomp:
         res *= (p-1)*p**(m-1)
     return res
+
+# NB: phi(n) = n * Prod( (p-1) / p, p facteur premier de n )
+# donc eulerphi(n) est calculable a partir des facteurs seuls
+# (sans leur multiplicite, ie avec sieve_factors au lieu de sieve_decomp)
+def eulerphi(n, decomp):
+    res = n
+    for p,_ in decomp:
+        res = (p-1)*res/p
+    return res
+
 
 # Version acceleree
 # le dernier facteur (>racine) manque potentiellement
 # mais dans ce cas sa multiplicite est 1
 def faster_sieve_decomp(N):
-    P = [True for _ in xrange(N)]
+    P = [True]*N
     Decomp = [[] for _ in xrange(N)]
-    P[0] = False
-    P[1] = False
+    P[0] = P[1] = False
     S = int(sqrt(N))+1 # pour accelerer
     for i in xrange(2,S):
         if P[i]:
@@ -138,8 +140,8 @@ def faster_sieve_decomp(N):
 # eulerphi associee :
 def eulerphi(n,decomp): # decomp potentiellement partielle
     res = 1
-    for (p,m) in decomp:
-        f = expo(p,m-1)
+    for p,m in decomp:
+        f = p**(m-1)
         n /= f*p
         res *= (p-1)*f
     if n>1: # dernier facteur manquant
@@ -148,10 +150,9 @@ def eulerphi(n,decomp): # decomp potentiellement partielle
 
 # ou encore
 def sieve_totient(N):
-    P = [True for _ in xrange(N)]
-    Totient = [1 for _ in xrange(N)]
-    P[0] = False
-    P[1] = False
+    P = [True]*N
+    Totient = [1]*N
+    P[0] = P[1] = False
     for i in xrange(2,N):
         if P[i]:
             Totient[i] = i-1
@@ -251,10 +252,9 @@ def nb_diviseurs(n): # for n>1!
     return s
 
 def sieve_nb_divisors(N):
-    P = [True for _ in xrange(N)]
-    Nbdiv = [1 for _ in xrange(N)]
-    P[0] = False
-    P[1] = False
+    P = [True]*N
+    Nbdiv = [1]*N
+    P[0] = P[1] = False
     for i in xrange(2,N):
         if P[i]:
             Nbdiv[i] = 2
