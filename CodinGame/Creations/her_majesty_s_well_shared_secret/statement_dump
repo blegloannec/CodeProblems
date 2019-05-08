@@ -1,0 +1,384 @@
+Classic Puzzle (IN/OUT)
+
+Difficulty : Hard
+
+Title *
+Her Majesty's well shared secret
+Title is mandatory
+Statement *
+
+Some top secret information has been shared between Her Majesty's
+double-zero agents. Time has come to reveal it! But in order to avoid
+the secret to fall too easily into the hands of the enemy, a deeply
+thought process has been used to share it. First, each of the nine
+double-zero agents (from 001 to 009) only carries a distinct "part" of
+the secret. Also, there is a <<threshold>> [[k]] ({{1}}<[[k]]<{{9}})
+such that <<at least any [[k]] parts>> of the secret are necessary to
+reveal it. This allows to retrieve the secret even with a few agents
+missing in action. Finally, the knowledge of less than [[k]] parts does
+not allow to derive any information about the secret! (There might be
+some statistical biases for some poorly chosen parameters, but in
+general there is none.) The enemy has to capture or hire at least [[k]]
+agents to learn anything. <<Your task is to figure out how to reveal the
+secret given at least [[k]] parts.>> The following describes the secret
+sharing process in details. First of all, the secret message [[S]] is
+written using the following alphabet of {{53}} characters:
+{{abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_}} where each
+character is <<identified by its index>> from {{0}} to {{52}}: a=0, b=1,
+..., underscore=52. Given a threshold [[k]]≥2, the secret sharing
+process is the following: For each index i of [[S]], a polynomial
+```P[i] = A[i,k-1]⋅X^(k-1) + A[i,k-2]⋅X^(k-2) + ... + A[i,1]⋅X + S[i]```
+is defined where the coefficients A[..] are chosen randomly between
+{{0}} and {{52}} (inclusive) with the additional constraint A[i,k-1]>0.
+Each agent 00{{x}} is provided with the string representing the values
+[P[0]({{x}})%53, P[1]({{x}})%53, ...]. This constitutes his part of the
+secret, while the secret itself is the string representing [P[0]({{0}}),
+P[1]({{0}}), ...]. <<Example:>> Consider [[k]]=2 and [[S]] = "SIS" =
+[44, 34, 44]. For each character we pick a random polynomial of degree 1
+with the corresponding character as constant coefficient: ```P0 = 41X +
+44, P1 = 8X + 34, P2 = 2X + 44``` Agent 001 receives [P0(1)%53,
+P1(1)%53, P2(1)%53] = [32, 42, 46] = GQU; Agent 002 receives [P0(2)%53,
+P1(2)%53, P2(2)%53] = [20, 50, 48] = uYW; ...
+Statement is mandatory
+Cover
+
+UPLOAD
+
+  * Recommended size: 1920 x 1080px
+  * Recommended document type: JPEG, PNG, GIF
+
+Tags (up to 5)
+
+Cryptography
+Secret sharing
+Mathematics
+Interpolation
+Polynomials
+Difficulty *
+
+Difficulty is mandatory
+Input description *
+
+<<Line 1:>> An integer [[N]], the number of parts gathered. <<Next [[N]]
+lines:>> The code number [[Ci]] of an agent followed by his part [[Si]]
+of the secret. All the [[Si]] have the same size.
+Input description is mandatory
+Output description *
+
+One single string corresponding to the revealed secret.
+Output description is mandatory
+Constraints
+
+{{1}}<[[N]]<{{9}} It is guaranteed that [[N]]≥[[k]] the threshold that
+was used to share the secret. All the [[Si]] have the same length <{{300}}.
+Constraints are mandatory
+Test cases *
+
+EXAMPLE
+Edit title
+Remove
+
+2 005 Lvb 004 Xn_ SIS
+REDACTED #0
+Edit title
+2 009 yHc 002 CRL oiV
+------------------------------------------------------------------------
+INTEL #1
+Edit title
+Remove
+
+2 001 tPwgrGoTViRGTSgWUpLZrvpnssoJEDoneJmuQtxQVFm 008
+uzRugynlcwErXudCxoC_LowMlQltzXFfDEijfpzScSf
+Intels_might_contain_worthwhile_information
+REDACTED #1
+Edit title
+2 004 WbRkddVdbyailoMTVLzrWXWGXTiGKaeacxAMaudONna 003
+sDzwluGmHBdeXlNyvtudldBshnJRgROSNCRdKzsmbOD
+IhyfJsONxKmTecQoXsfogyrDOxkxwnQrSRPeMOkIUpk
+------------------------------------------------------------------------
+INTEL #2
+Edit title
+Remove
+
+3 002
+yJpZeDuPXGvwXZn_PVrpqLqyeyCalMfqjLksjwMLVHjIsrslhVWjBMYbfnKYhjdQomgJmNqlfDNdVALfXeLOSEcD
+008
+qLKvYgsQkFAACpPCevNLzMTHZzMVJFjehgwXCToOHlrbmmJtEzlGeHkJcTvzkwkGsllPkndDuWSKuIVqZrASBjJY
+007
+INtHrulo_iDuYPqCEPWCSwolUeOUUKBXlAajNXUYiVEbEOiOrOCZnZBLiSTuqNXkZtdrcisYjHRCChmdklTXJftU
+SPECTRE_means_SPecial_Executive_for_Counter_intelligence_Terrorism_Revenge_and_Extortion
+
+REDACTED #2
+Edit title
+3 004
+ZMrGBYbeJUjblGyTGHHvZZcFGJWpLhnCELCUizFhcMbVNNFIVu_AgDKIcdzYiNcplLbxweTyLbGtwasllEQaWFkC
+005
+JZJzCQTsbeIoPiOYoopJrBhjrqYoOLywKUssPSqniCYDjkujUpmuaEKzvgQVSXHIBjfndVjfiFSNtuMDQQovwMio
+001
+ZltFuUEwbNKRpJpMtNyziHXRwFcnRBTkBKJUxlHMhxFFUduKC_tLeovGSxp_NJzUrmFCccHwwIhLDTbWqzMyhbgL
+JgdPIafWpkAFEnzdkyayqYYDsBSUYJQTFjmsndLVIdVuddLEGHkdGfleMeRpzhKpLMcNfAQLKHuqnQTupqziQPtD
+
+------------------------------------------------------------------------
+INTEL #3
+Edit title
+Remove
+
+8 008
+TfJwSxfyriTMPLNVSpjdyzlIRCDCGqdYpTMNVpbFFgFsEwSw_EqEIuZLUndmnpZbcYzJBIbMGMCWpJdnfGqSiAKvFdOFEvnTWIjiJwKRiaAThHIYGnOHtxKwkxGuCXJ_AiNi_jTWKKCtFJXBw
+005
+UsxtdCRKpDwvYSMTakLwskJczaquGC_EoLxyxOqCDFXUb_vpUBkAIwtYnaIstoWQBYnCbpqhalZARLOnpHsYXCIgXDIxDQyBNQCdWGkuwpKmsjiYcVwXwzolBmYzddyzsR_vBvcCzLEjZVuQK
+006
+aGWxHnSdEXwMQfMZFHFCevzJADzWQQqvQZvzympPQcXkcaZLlZQCmihLuJJymxQLOOx_VdqcVLZJAMvMegfOtVeraOpqhRGWZjitBLxtHSSgKfWrUFyPLLcWdNHJYmHuefctkgfmzPQFWqtxb
+009
+sZKJyIUlKivtZXpcrqSAZLU_lAvqpsUTh_jqbEXYXVsRmK_aNaPUymwltiDaadoZkkipBxB_AhSAkxnpvylabnqMMVOTWSdXeL_nStBSiZhKAJcWb_coAbIpOueOdGzrrgQCvLpWfJmnhtxJs
+007
+LwtvMXjtoxlSmNqFdkwWqoLLOqvBpFoAifIKiySJskZWCahCtxNjvnxWvngvOXIbnYcQBKninVCDTvqVahsETHKspqQudU_oYQZHAwQnOKnANsaUzevEVsJhyK_rZAUPxBVbZseTsewmRxVVy
+003
+OjZkDBKmkVElVJwzShSYGcRe_zskbaBrXOjsaKNuuzThfiuh_fUHoqGouAKuvL_jCMyWdrFZCDkpWYXxYCvBlXumiKHHwhkDITbhFIucwwWZrwSoKrbPdgepaapRbLyTxowzSgmUJXXZsLlBD
+001
+osaCoXJdxTlwSKpfmTZwHulVWGNmqSsaFmzd_xCcJnthicKYwdBtszFRoQPdyTQcTQssIUaKGtoVZNhCKyLIJPeUzOdDLwWoTgPxcncccMvPLsuZtphDQZMha_rYCRfsggCdMNLQeiNALTKjF
+004
+wqeaCWTtzmiViaceVAPdJZvsivwFkvgWHDlZNkRClOwHvBBIKxIWitwBxPaaTUzcyedNpUtkdzJpwwQ_FNTKQQiAnRpTduURcKVwUzICQUmsfTCumfPLJHQBrPtSVWVNiEBtPfcnNPIMeR_Ga
+Jaws_appears_in_The_Spy_Who_Loved_Me_and_is_two_meters_seventeen_tall_while_Nick_Nack_from_The_Man_with_the_Golden_Gun_is_one_meter_nineteen_tall
+
+REDACTED #3
+Edit title
+8 007
+xhAhGM_FAZpRYuTIuepzhbSWCYPyEGxmtkbn_JAfbPeubNktuAUDGgcuOkky_PwbWfBrdKpgczYwiDhHhP_pSprxhtoVBHNqVTPPxxHbfaKyuRvGyzKlgg_fOx_yhcpNmIqjFsY_BOkykvYAZ
+002
+BTQeHWjttkZQtVTwOjwHKTtWTNxwaqRTxcfHtzCgklxGTcrqZptDbDrYwdeePBYRNnfatXeNVgMTDXdqewPvPsjrlXH_uep_YLKquAuRQlYMuRMes_rXzhuGWfyoWPzOiLNpemlxOzVsbRIbo
+009
+rcyaMilQCkfwoGdTviwbNApcLVifQGzaovfofsrScxjhhIaojOGXtTdYXfEeHu_MBNScGmLZI_GnrHVGD_LEEtutwWoMdvyJazCVmeRxDegYxeuHIzDXWLOzGPLB_PTqKJlGIdIuCBhSSGIms
+004
+bbizcAmCIenMXgCWmTFUJnedagyDqmCqnfdiILqcdSdMenjKyLuKjUFMyFPUjAPItYCWSZtdvoRMJmeoqc_EGHpzyrDrDuXbuwLcRXygDLd_hz_NhxJeVRBrLJXlgOeYWfgfLsqwfDDAQIwsb
+005
+kvqNvWKAElWYvMJGOWLXOlIwpKcTaKurXjxUdsoLdjRtnMJVkYFTSDINEzfJwRNBotSQHPk_DkoNILPMXiYwQgkmInQcKHWyufPYkKIsBCdJAMYsNOPtEZrFZvTqIoeHsyBPzxpCAFYrlI_hm
+006
+klbPWhfwwZMTrPRassuOgIMiIoMTpNrYJpbSaCMzkmmlzXWn_eMCHiSawmhfVCWuGASzTEmpUeuGtrVEzYMRJxmXNGGzqpsGikiQFcRjQywCtnACjIJRt_ILKYlNeuA_ytaEXXIFu_NuarQwS
+008
+sTWtClTpfSllBHIeoceklRBrvQAEoAQmXIIrBhwqgFh_ibQSXFhNSUiNsLEbfKvlLXTMQyjHNXOotSmLfawtXtvHmzdDvWGuPmFejqNqgLvqkjxUGHkrKGTlfaivCkwGIhhp_lOgIXEsQFCJO
+001
+sLlTAIDFvkhsPeECbLclaziSePxPEwQqADfvzfdukubWoEvXgrtXwcsy_NfBSFRqZyamFbacjQARNkqjfkjbVigktCuSiAGMhtTfyYjWGANvLVUwgfuBcgcpEaYCQwYRUarOjiZPqvfxHDnVy
+soxltaTIircdJsSiOWFgaKsEECvldqEh_ezFeKORdjjZKtfphJWAMMYNoXHyCCtLBtKNdNVgWnOnqQfkplJekaACSMEscosTsSDeRoqYYOLQZmBhIoPjr_jedkYtMV_KsChDStSzrGIFCfMcB
+
+------------------------------------------------------------------------
+INTEL #4
+Edit title
+Remove
+
+5 006
+tBdpVtzytFVwpDQRKvqFk_KjNSxeps_WDLgOLybaabIGVbTxUGpsEpQYdWNZIQLWTvLtLQjSwJRrXxwZKyAJZzGqBrBvjbvqxRrUvGLTMN_DrpwrlKsOJ_TSGnJlgRDegWxPCdmcyEgknTGPkoyfpgsCqWZqwA
+001
+LHJajkRgZM_fIKxrSMtmeGYrFjcWqksrKYDTBUeVQsSzTxTcUyZJGoLnFUbYkjfLgTOGbOfsmbOfKrudSxnGtNWQclPiDFJaX_jfysKFC_xpVaBdJacEFhM_RvtbH_ZeHzJuKIAOeeqmIRYJBMLzT_pVFUpO_n
+004
+Kzfw_VobAHXAyAltDNflmePZWbUhyTbmTnMipJFpirSXPHBDmqWaMFYjfqMXtlVhUUbGBwvrGudPUOylxPKlLPlEqMKzqRJcxexmeQbykTHcjflaywKtXvDyOtyBTpOIltdpmOYEiXSiEjOQp_ICfuoAltWgcS
+008
+TOFotlZKbcqIaeqbiAOfyjylqaWtRdUasgFKbqnOaAFmzPqVwdUjvsSAyzdkFJt_bfYdYRHGZqCDjLdvbgPkHDuBvdXATnLeuwTqdzWAOePqsNQQBomEOGKqvnBdbHAOmPpsEbSlyfjUJoMDdpYPlVrcKzZIVE
+007
+GPIHWEshCAgzJBorJtxZLuxdoWvHbfjiDF_LHAwTeJSxmktGpHNxRu_iUjUlmQZKFwEigGgMVawgfcJJdYRYHziaBOKZTMzs_uPGfXIbSrElpecIyhPGsBhdxVBDKBSzmnauLvZeyrmjxVdEbnyCAfKPmXRwhn
+In_Moonraker_Drax_lives_in_California_in_a_castle_imported_from_France_He_did_also_buy_the_Eiffel_tower_but_the_French_government_refused_him_an_export_permit
+
+REDACTED #4
+Edit title
+5 003
+zdVySGdyNVgBqcpZKeUNBpPLRFNvhkWYkUDMlwFuJZMbpFMokBjblEdQQ_GrgdPllPDmzYzzxrLYBAJKpmGQNSrluVKhOOvfdqHsiPILow_LnpcfT_mQVvwknkmG_v_XCzviEivhkqUOouJiyPkvnbgLEIPerE
+001
+ZzWMYHndJxXrfxfRTPkezyXsTqHoh_JHvhzehhoUqpNyoHfiNKngAmrQVOCqLqzqlWESjycigestQZMCurjqmxXxheiUxigChYEoeVUAvvPwYEIJKYllVnXGEbvGFPlYYSHsThFABBRxFBljdOfMxiLCrIgcca
+006
+QaJKnZAEoWfAkttrxpDHKRZgdyYQpxFydcQIKQJGPtezUwgWTONJnYbahAsJXpEAUpfwqOtdvARWfDIGbjuaEeX_OcoufvbfIGgMEjpxAXqIqJtmGxGgxydLmVb_lFVntPPgYBhPCoQPYYBPJDrsEosmLaznCK
+009
+HUhqGQn_LZQYlLaHTNLzjFsnJdMicCaRDQcsKPbmkVusBuobPnJlSMdtgpiVBuwmHIrkkq_sMfbnOcOrzXcBaJEwYGHVog_cGjKZxDSAGNdPfkTCVgJIaRLTcKIevxmmnslKDfAWlGjGCfrjfFBHMooNDuqhBH
+007
+gFZvQniXdYfrKqyiUlKlyOgFQLnYmQWWrNfoXgNpynqfJdxBktGGZCDKSlHvYuTfRKttDeyvbLlZPIfaycMQnPZTbmdcQFKGBwrtgJqTVhuKqExPLSRUdFrLLwSBwtHYeLBdyXPpifBbnltTUXslMracOwVUKK
+GxpyfxobugTPvYjicsESiWTECNafbqnjJUMHBhXspthdpAOYNDehFMIbOGKpTjsBaNwpKAlQQfHxeHIGYGJbyEcOyxqVbwYewpUQOgXLVWvicwIv_PlXRDSEOlZieTXDcsmcYmcutGz_IEqcWPmswXdPvrhZxB
+
+------------------------------------------------------------------------
+INTEL #5
+Edit title
+Remove
+
+6 005
+LMAPSpxmFjgsEgFNdN_UhmRlSWZUPJlXQpPgd_aCMKXnxHwZVjb_ExxiIoaDOnXNVCWKXaOgewFjeKvYlIFCKhLusLFdDhURKEQxyNgwVUTMAwCcMGxEIUtfSKYpbSuFWsCIiQxIWFfPrXNvJrHziRCgwnyoDuKAUouOLhbtqmIJCyUspErlqEcECSYltrvTLIqoIfHcwSlTaZGoQSNuvDXnLjTXxtQWAGGPzFzGAlwFkLFs_Wc_RNcALLqyoPnHpSnszsIj
+007
+VTDsTMqwZKQYVneDsToKQWxtYMqi_QftLPhYsmmYnnUpGKRdkAxmJwOIYKrTLiTcUXNgwYRAxZdmWWsKQfZTsIwOsoYksuJlSNElwVOwSlXRLKfxRLOFJbxSuTkCWjsibJDkoz_FTUFDSJkVtmCxnGOZZZJusmriAx_N_TXYrcVvMeJoKnsBdFJgAbGQyNBa_RxkELTSUBrUwzbcVZKzYUXCnLiMIQSO_iqKnNcQIwucqcssUi_FVAhFezgoxHGkNhu_xHg_
+004
+mwfnPaFWVkDXTdRFCGUhWgfuTDBKvhbieHNcFLxHfrZKHLocRwVAXPoWqgVZagckwphdzIgzMtypDjvjFWbQHFzRQOqOKdyxPPytVpItbTKNKbnrqYoglfwNktjwMZiXLvmyjjNoJuOfAirRzxNUINHzvhz_LyhIKrqKoLoiZLtMaimznuOgoBapDpsIonkOzicgjIIlVO_gXfoRIZ_HcUREPhgBlLEhOXFGIUkwRmHEtKICMkXVsCCMUFeVF_AIeiczURVT
+006
+LiQEBXrnzZuYoawMTcfwnZuKVK_DSFlPKgclJhJORyVpEcVWdavySsxmoSAJtpdAHJTqkXRKuHyaWjFtRaCvgwvQRDGiWBNbipaCMtqtPWNuHvXHmFhFDcaLsHLKHXPMUBFpTQoCLmkqwqFjuQNZCxXlPDvcfBCz__RmOJUOVJeiKqHgxtOECaWdCyRufmuhItkyoJxuP__VPwWPUFenwMsMtnTcxXMpvpRnalvU_zJu_aPWYtbEbpORmNuBHXCoHzqxEOqf
+008
+uUPKgJurBdciztDQCAHBgfDmbamvJcOMaCFRdXaDUCGkJgPfpqvimtwhfXCv_GZNtxWGMqUQhMpotGHEGNbmZPswAESgrPbUFmKyKoToTzcMiriibpMKqCCKypCcowzXVKzFKvCOZYW_HOPbuzVQOfONcuamVaUjnXfGVtkTpaFBWIdSQTbfSMe_fwIshUkErbjoBseRcpBCQEZCQaioSPRUriHCBIukoZJnmqTmxbvubgK_ChiksWIVmXlajiAyoujMTAOR
+001
+GCwGGDDvrZBUmsDQejTpQFxGRWcReMGdjVoIhANRxTVAanTWKfmIlKQ_fzsQfHJVuzXzXuyHgguBsjg_XhXYNMIrjakBjonQHBJAhePB_ejWT_xoYQDKoQoldInlxTOSaBGRdvjuautWoxYcgZIJiCiRROIttNSinhBhOOU_CZuzYbewxdmNXH_GYEIBixTVzBdhcHfJGIcZeKRCAvyTuqFZBJLZAIPGyISWrOPz_RaIZNuBuIwwtispVbPWIkNDeyktZByl
+Oddjob_appears_in_Goldfinger_and_as_a_multiplayer_character_in_the_Nintendo_sixty_four_video_game_Goldeneye_Despite_not_being_a_midget_such_as_Nick_Nack_his_character_is_very_short_in_the_game_making_him_way_harder_to_hit_and_thus_giving_him_a_tremendous_advantage
+
+REDACTED #5
+Edit title
+6 009
+VLPyNshJkuWYhidUcqHHoddoapAoRwUOexTTUqjHsJCeAFvdYuBVbTpVrvgtekEwNhXIVCDzwXzidAomzMASwfZecoqIPudyUsiOS_pNEuVbsdtHfgDjzNf_uxjMGZZFCrVHKQbuiwTpYcaOnxRXejlAeGkxUGLfIiThGAvGwxbyzaTrPOpK_rYjxIFsANXGPcLQNqnrnJUigyirZjoXFCYUTAbuZSoCmVqM_hrBiNmzzIIrMSXEUfyMfIMOlksXavaIJdLu
+008
+SeAtSgRIfzwUDWKiioIquClsIvDfRMnavHDsSqBJHvPzAkaPehbUkBSdAsXRWjiELpIyNGDIsTUvQVHvf_qEKsnDUnLNUqNiCRgIDTikxzbWDYCpmAyDAQYrZMMeLFZuhgMvPNhWGlFlQYVHEOrYPQxJTCnykJHtNECffdLXtKNofIzBDlEtywVWUiutzcuybAKXiFLsrKMcjgnxqPUUkHFpWQVU_QlvIwHBTFkJPwfnlSEuEipXngOMRehakfjP__gTqMbA
+005
+daACqlI_iqXXhVvFR_okgsrqWKqZBkTQPvrqBVkTtEYlcsLjSuQXoMDiNLcPNzVEehlOU_SgBFOkveJDUNJacOoBvccAbAcXtNxDXiZXPASToMYSMbVVUhZUZTahzJjROJHVqfpIkynBrsBpkrNCVyCONaYxqJFSaf_ZWRFtbUFALhBGntomXafCaufCXsnQORrNjPRq_VgqeDYxdVZqneuiEwJqOreD_TdIFVemnlBxxjEyWtuyhsagfhDO_uH_rnvdjJHI
+007
+YRktPXkWRBvsPMUOlEdYhETCtBMmuAhAFJUYIeOYZVwJxjWHxxcZJBkyMTAyyzbKHorqHtWtfOpahLBCObIoxjorSIfJuYoinuJbanJFEmicCUmUjeIsWPkXwPzwaXlqmOdDBRlfDkYKwEpRAHYFqUjUjd_MuZkRCwFAZKJCzSqyLthrvpdAotoPdkfSXDBtUcqFJnEgVrEmtFAIeQXGSqZNrbDNaYaXhXnQIiVjLApraqkDBBmSJLIvUCfDnhQEVshQmh_A
+004
+AaXfQzsSeJtJsSKDQMDElvCFmPlYHhairPoGSZGcqFAtIrzupzLeqLuMvMlOvEBMHYjYoQCeUIIzMXnhMTlbPf_dORkuNVNTygvyRGjgAbjcoDaskxhqFqiLgNsdwzfxXtIWdLPqtaNxKdjljEVTiNOuRbPnDZKtD_CEparNpLhqenqNDtqZyazKzyUSUSkQDOZLhTHQmknbDhjRhXVnGMYIByysSHXQPgSMCwTXluQPmOLrpEAlPtvJCj_yXbFQdoCsZAlH
+003
+UqxRAwEqnCMELoHQyafkmGGSoVNWKIOBzdjHtSnqbGekotqRFoWECpCNCVRlMePYeHFZZzeyOcwTuFoWMbfedqLXkgqNjNWWoWsfkdLSwIthWMNHYThszEkXNvEMZJUeUtEcDbtfCJnuJJCI_yRaaFtElKXcqkMNWrZanMTcjAmOngLTpfhbUBMubLPeusdETtXtFaplwCaarvWhGSrUTVDWYNQJUDNkUxdTxKZolEcfnrvwIxIymEIAvIzyPEequEcwsrFa
+OIINjrftfGnZjIuzLOWPRPetSBUpdpfBhDNMdtQVQVlhaTiSakFwHHY_UqkxiVXrUhXbvZBrHeqTKOeFDGxdFKkxkqXgKRUhoVGacapcExyjlcJZTVPAoupAUur_eKxhGRdloZHczeDsXtufJDaxmsKYtVNpDxLFXXmUIWYpjaAboIwOSavaWQyVUtgnHpAFdjTrfcoHASxDVfLgGiO_zeLKdBQipsquZzSVuuCroemiXXLgjgkCDuAhIwXnCtDqhfkZRt_T
+
+------------------------------------------------------------------------
+INTEL #6
+Edit title
+Remove
+
+8 001 cPFFRRYWpisEAsltNrsIkJ_OBCCDAsEFTDXahZ_svzxefqY_yQ 007
+VxhXBA_WrZQWrEguafRQKpyHkgYTyhcBuXEgeggudyPg_jbSIU 005
+A_lrEQRrzLxA_ogVnHbkWujcXeiWpSmaIIkPQFSzqqXmHf__Hz 008
+hWKBiZzYruZqIzVWMhDsRaIZys_xRfmfuDiPYntwbyjcnROCHm 009
+bqsYKfDj_dkpmbTUuurRhndfsLMrzLGhmLMbHqiokHmjpQaKrI 003
+jNUXMReeERNWbFtQcktIULofdbyVknkdXUrxFeWKudfCKohwAa 006
+fOshZIJXFpcrgWzftuxqfUJGnYdYjhMOEaJMjPtRWGfQQMPUTC 002
+tXfdbwEVcHDgCXV_bvYtSlmdgFc_paWsLZeCEpzBHqhNWtEKuG
+The_process_used_is_called_Shamir_s_Secret_Sharing
+REDACTED #6
+Edit title
+8 002 IuWBMLugtH_BEHvfrTXogEqhwhjrswzJW_OzVYhIzxuILWZJzs 007
+zgPoXllgFxHCZQQzkjJkuJtESbMiavQeYlTIqsSTIEYgWIQBwH 009
+U_fwasaEfugJPujDfGUSJtLbrWbhcxiWoht_FKsdpJPLhjSeO_ 003
+QJlFHJxcSbypuRXGr_VKqOWOXuJdQnJ__MRkaHwDEDElzkKWon 004
+SmmppIOsoDAMWDCzlqKyZQaNJDDzGqfDtEnymyYzEdPkjmAIxO 008
+XuEsgZazEKFbVnNP_FMxwYDEEleUmHvZdPbhPcytbhhqDhyfdR 001
+OXQMEWhuXvSsxbOpiLddhmeEDaBwRBdEpTMrghekQGbipkAHEP 005
+MuOoHEDgDwifUZAM_eNBepHGavEaZxkffPTPajBBodyIbIBsBb
+nAPGjkloNqmhlQZKdWJDPJesQeqgmULFvwiQPpgsNemuFCvNQt
+------------------------------------------------------------------------
+INTEL #7
+Edit title
+Remove
+
+8 008
+jfqNiTLUABlOkmTKnTSHSiJLqWwFuIUohjlBWNMWakPsbUUzRZE_ptLmyjmjMkDmWxtgfBeCUMZoWGIxzSqMGsxFASOKHevadfyrsBOvTOuhWGGNVcTjfNPVkeYUzRARWXyQpyadcEocCeBGgDNEKnYcMmqxPkdrMOuyPErxIuRKnxlFXRhohWNDJvIANdAhbfILxmJGGtKJruZwwlYnPlpjDdWCfYotNSvgJGQdzytRugcziTsBSGUfnuzh_BeHPnCfsIfvGedGQJ
+006
+uewaJwoiQdkHTHUuxghHARGzGNCCfTVSIehfSpZfngdMKoGJLKbfkZOTTyFfCustMnJPKfXhpDaBYopGeMskvHrwJXrJEPkSLcGeGShbpbpQsIhBdOwQprTlXLBkMunqJHUIAuJifzcNbtVaUnMceR_IQ_hoVuNKHRyFCSjeZzpggdkgVJKRBpr_JEsJVoBXi_mGNWtPLgdkIQlITMtBqmkATwvgViIQUdJRsLDsjOFCODFMSCixBgmiUirKsVYQpeLoUrjNgbljhw
+003
+IUOqjuEumVKMFkxJB_uEXyDhEWIuQJJJnMa_kv_iMfmiENqdmqWXdprAFomnjVxQiGldXpHKSnxyDcIkHWgjPLbbqjf_UUwwPWGaFIzSqdGNXpwjRzCtncoNfWh_yVElpTHECZGfp_JFbYdrcKlmWYoMsqsnrzyzysNmRymAHjOOPXTyWCaqtKuvHLgEROaPGvW_ClwByoVMSdneusFcPGFiyxkxUbaBELTnYaBThjoNsFewLqSddSJoBQfhlCmvbFfWFXioENbIEC
+007
+XrAXosQsARJbwkBgBszIdnaDgtJawgKOSFMUbVBBgjtFRxH_kyvIffLRADRYaIpbfSvBhwCnstvocQxrQlfeFpdjCiGEzuhUWGziA_iPvMNy_eU_ykwOcGzqMprJyxQirbceN_pRsAZdyfPE_CEbtSLaQfjzsYsPkIHtdoATLXlGCLKZSIUqQkKYUOgndPdaaAGmLDbczgTYNdmoykKUgDYpORspW_ho_oNMCZVaNIxD_DnIQIKZrCuzaGJsWf_bXtSXIvvt_JQzkR
+002
+YcYokHQVHFCczvmdVcUkPcWlLNuryRDdmdlFHZSdYYpXaMJ_BFtYDDOHkpsgSkxnxZANsKpWuGgLoCVuegLgGyzYOFGRIkKmRfBKfckJWBBJSeHygWROOsPpuZcWacTeWJrOsrjGleSJVrTIjILfSzcT_rTqArlRJZYqVfcOqdmFMRvUj_dfVOVolDBbiqAOUwPXkddv_GXeqJwccMTIhGDMxfIC_EIXSQheYuWrMwkBiGEIJzngabBytOeULREAzClZwpigZdrHlm
+001
+fcRDGlzuIDtzairehOMEnksUPrVwaCDqyJMvptrNKAssZbsXcLwuaZtVZjSsRQaixaMYcGlkyPAdbIiuGBX_AUJlLGdPKueqpQmhsclSH_AaBbjxBvKDzsaGpsPzcvALVDHCSODdrj_fVlTqFmPcmzqKCQRMFXOoGt_CBHxmYHnDLSIYoVDpWHUgznfALiUIginxDBoxWTlPmHhlAsiqENgAavwUnQTaytCAYxwpODaPFUULDEaQJjy_JfoFUMtrjTVEbrNeXluisI
+005
+HcurkRFBxkfmlNtXoDKfdncXFVJikpMnwFBkRIkzomDlUJrhswDuvqwFNFjtAavbqDuwneWQlwYlaCDOTioCwaqwjaDCpvUjckSSXAgpxIoKEKIzhirqCOPxMhGEPSSlqqqEALRCKWsqNWaYQXrfBFPLnzKczqHgDddKHLfYJtFPvtcHIswqkfLtlk_tajAhGomj_jdbxhzAwjGyEQFMURygDkYYBTCtcUPEstWOUIiSLzcJPpRrESbkmMFaePgoHVFOaMyMkTfROn
+004
+FMbnSUdkjKmnKHMrdzcmPJerTituuEmtBIDOHWGcvWeMkWJbIcHFhJiwanVONYiItXaAOIhJSUzWJqvllymWJsYxYtHZjOpKfNIdguvNSPyyUpWHpsmlqiyslKHYBeAABjGVOjEQbXEuFEgOLkmnlyigfvIarMZlERxGrtzzdTTomAlAcyojCQybCmrn_zbXERQGPGYHISDbsDkFLnuRDCyBonPsHROqcFuPObknoBZbgOCMMDyZfSmcKwXtjauRNFlAyqHhrPLech
+This_process_is_only_worthwhile_if_one_does_need_the_threshold_Otherwise_seeing_the_secret_as_a_bitstring_it_is_enough_to_give_random_bitstrings_of_the_same_size_to_all_the_agents_but_one_and_the_bitwise_XOR_of_the_secret_with_all_these_random_bitstrings_to_the_last_one
+
+REDACTED #7
+Edit title
+8 008
+tRNnwXvmu_gMbvhITJBQUJcdFOQDyiFprdcteBnHxIUjHVzp_FnrZSvMbzCK_MsBRVGvwYmIsnSdoTYQLNkRmmQUauHyRBZRAczspkhjDvHoROLHLjorYkQRstgtLUdtZ_eYFSVcIgiCBXkpsIMHlDJWnvuaWoYbPGktJNBHuOWnDEfZL_rYPDSUMLncwRDEPb_DNqAG_oOstizRieMtkTXrnQiQghwkWD_odmzAjqxuXetGWliYXbArAFN_sPgucdcUZroDEYZZRn
+001
+UTUJyhzWKtsqEfYphSfdTLAYXfeboxRiePQspDtvELpUrhYMgLVZHoUhxqPzpPBEfLLWtuRQiVZDJtvwTAAfjPfgtWYPMLpvOdncMKmqaLSFCsqJhZAeMFIukjUnDFZS_nOVgGDEGGUqIhpJifGhaNrbonrRuvYdjTCpNyLuFpkKkkSJcZKMQMMWX_EAqjjvYzSmgZrmaAWwzeoutLLCFyayvhalwwmlZfMMcokBY_xGrsUSzHljIeitCTJyvGtJUlyXHtlBLEag_O
+007
+UQ_JcDZnezZUgrpZaoBiEoeHpaSApandeXFNsfUuEiSeHtSC_oWRrTIckTlnzxNqoXdbFUyrarFPHsqoFSFtuJvOTiQLRIimtTrKCTPOLAIEDjNahtixhLbBrUPvmRnsavaOIUpyLSTtUVddEdMHCSggwfCLz_jJdbkxG_wmWIVzVHgikoqAhBJEBuVOmOjb_OsSlSDArSZ_udcjMdRjYce_vWZCnfWakpcHWTxpikhuKkPHYYnhYHjnTC_MkgTMjPOZRRvNadqHIw
+009
+QmHkmDrUvSuduMCqeWRZjWwKeZYhmItBFmcwWTPwkIq_LZArfjGiDTqpJVUqdmeWYMuJgqEwQyBCcPtsrJljsSZqXiiBmppMODNBOUnZLMdKYHCPAhPxSJBqjwHugvOSxHGnjvggUJhHzSlCASDdmxtaCdMvccLYYXjmSTGYQJOggQwYcmmDfbNcadoMiKGDZxBqtmLjBwNjEvODbXqNNwoQXHQSKDPAAAysRrswkDUaUGUIXarLBp_vnGxAfTVoIWEuqsUSLkVvGr
+002
+ucahbkitCWfTKHiNLgIMBxphDkQlLESrUvnJeFngMufPrNUoJAxrQgQPvABVGDQqBeQgJVSTDyyOHQCesUBKyNiNgJuuSZPePBbahuwGmEUkHIamgosJeNrxBOYUKAzLlPCqFRpmVUJcVMOylWxdOSMyVukqRboBIvrjeNLcLZNOO_DMHCsMvkUSVpRdAbQHGcWnxgyUvHfqpwsuOVWFSfuCbisercVVqKlwSNHkzSmbbReFcDrsHElWOiioiiEUHiLNPgognCdWyT
+004
+fTGonWlqaAXJBaFeGakhAXftMCQTVFLZWJNGvQHuITapstCIgaICTqTMwuzxPCMMBFKhenNlRFjIwEMdLyQwargyATDkJRDJaYnKxCMUwBhsGdlNIItKCjvTb_YQFdssQWxhBxMeZoMTgETvBvWwbfRfpBUOwKAJkgwzxZKtzTmKJlVYXItblNYIfeEnECFqBwgvfvscmC_NPzwDFZHoHmMNeaHvYTDZqxPEmGJDgvGAmxrppyuJkG_xS_emLHGlmRhIEdxTsqXEtl
+003
+_pzqkUIZBmjrj_yWhoFkjgNG_oWrbznzlEckwvkyywsDLadpcLTijpGIF_drUYxzCmbhDBPUGYQCiHXsJgrP_dUOOpEghxUIqcItKIKwCDBYKbwoGqyAbJXVslWLDWx_FcPgVXSWXSotAWSFTaemFuaPKHGMoJYlRqlWxkWvFzasKfNMUYmAINuUeWzSPblqSdJdJXYeuvctgFLrFYyVXwEQmtyFQPGzqaOQCBvVmfjCgUhlDCyrrFYdaLUWvKnkIrWwXzLWY_wTVe
+006
+mUXIhtHHUeUFstAFdxWZhKOmoqnLlEIgyW_cFIfsoCYZPDSf_ymwBuHLFgnnZsJeYtPLSGoknDNIN_MYINbfeYGA_Z_OpjYJECE_JOCrwTQwyPuQCiNKCRCcUtmnRJw_OwzqWcHwmHkKykyKFAQtywqkwkZLTqnlIsJAHDUKBecsZEqzuxuIokugKPqAJSem_RAGaGPMXSKMd_rA_aFOYkiWOHJyptsWmJObyHEBLDPdXYMzAuiUMWkUFOMsCyQYwWujCKlGvfLjHT
+f_ZSDgDtRPTXDEoojNqxzlSQvYuDFbeEhwEDksXwMKiGgz_TYguJPeYtIDzLApNpJkEyevn_SLBYBKYvISplQQeVTKFhLMDuJg_CltzeMgR_MX_yuFPQdfn_iLWOZaWjQjCIsyNKCmnRutKYRtBTwfLaNGzisdxJdaTJ_whsbpBSLzOuTyzyBInQlEimJyxAjsQiiaePbjUFQBifiPZADYSMBNlDGBJ_CywolBMaKFUpTGrAIKxccKETxhLESfjUUHWXrDHfHNfpEO
+
+ADD A TEST CASE
+Solution language *
+
+Solution language is mandatory
+Solution *
+
+  
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+#!/usr/bin/env python3
+AlphaChr = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_'
+AlphaOrd = {a:i for i,a in enumerate(AlphaChr)}
+B = 53  # prime
+# modular inverse
+def inv(x):
+    return pow(x,B-2,B)
+# modular Lagrange interpolation
+def lagrange(Pts, x=0):
+    y = 0
+    for xi,yi in Pts:
+        pi = yi
+        for xj,_ in Pts:
+            if xj!=xi:
+                pi = (pi*(x-xj)*inv(xi-xj)) % B
+        y = (y+pi) % B
+    return y
+def reveal(Parts):
+    Secret = []
+    for i in range(len(Parts[0][1])):
+        Pts = [(x,AlphaOrd[s[i]]) for x,s in Parts]
+        Secret.append(AlphaChr[lagrange(Pts)])
+    return ''.join(Secret)
+if __name__=='__main__':
+    N = int(input())
+    Parts = []
+    for _ in range(N):
+        a,s = input().split()
+        a = int(a)
+        Parts.append((a,s))
+    print(reveal(Parts))
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Solution is mandatory
+Stub generator input *
+
+  
+1
+2
+3
+read N:int
+loop N read i:int s:word(300)
+write Revealed_Secret
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
