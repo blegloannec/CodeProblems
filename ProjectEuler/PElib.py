@@ -389,7 +389,7 @@ def is_penta(p):
     return (d*d==D and (1+d)%6==0)
 
 
-# Miller-Rabin (requires digits())
+# Miller-Rabin
 def witness(a,n,b):
     d = 1
     for i in xrange(len(b)-1,-1,-1):
@@ -401,19 +401,29 @@ def witness(a,n,b):
             d = (d*a)%n
     return d!=1
 
-def miller_rabin(n,s=15):
-    b = digits(n-1,2)
+def miller_rabin(n, s=15):
+    if n<2:
+        return False
+    m = n-1
+    b = []
+    while m:
+        b.append(m&1)
+        m >>= 1
     for j in xrange(s):
         if witness(random.randint(1,n-1),n,b):
             return False
     return True
 
 # version deterministe 32 bits
-def det_miller_rabin_32(n):
-    #if n<2:
-    #    return False
-    b = digits(n-1,2)
-    for w in [2,7,61]:
+def miller_rabin_32(n):
+    if n<2:
+        return False
+    m = n-1
+    b = []
+    while m:
+        b.append(m&1)
+        m >>= 1
+    for w in (2, 7, 61):
         if n==w:
             return True
         if witness(w,n,b):
@@ -421,12 +431,17 @@ def det_miller_rabin_32(n):
     return True
 
 # version deterministe 64 bits
-def det_miller_rabin_64(n):
-    b = digits(n-1,2)
-    for w in [2,3,5,7,11,13,17,19,23,29,31,37]:
-        if n==w:
-            return True
-        if witness(w,n,b):
+# http://miller-rabin.appspot.com/
+def miller_rabin_64(n):
+    if n<2:
+        return False
+    m = n-1
+    b = []
+    while m:
+        b.append(m&1)
+        m >>= 1
+    for w in (2, 325, 9375, 28178, 450775, 9780504, 1795265022):
+        if w%n!=0 and witness(w,n,b):
             return False
     return True
 
