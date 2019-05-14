@@ -191,10 +191,8 @@ bool miller_rabin(ent n) {
     b.push_back(((m&1)==1));
     m >>= 1;
   }
-  for (vector<ent>::iterator w=W.begin(); w!=W.end(); ++w) {
-    if (n == *w) return true;
-    if (witness(*w,n,b)) return false;
-  }
+  for (vector<ent>::iterator w=W.begin(); w!=W.end(); ++w)
+    if ((*w)%n!=0 && witness(*w,n,b)) return false;
   return true;
 }
 
@@ -253,14 +251,16 @@ factors full_factorisation(ent n) {
 
 // === Matrix 2x2 ===
 struct Matrix2 {
-  ent m00,m01,m10,m11;
+  ent m00, m01, m10, m11;
   
-  Matrix2(ent a=1, ent b=0, ent c=0, ent d=1) {
-    m00 = a; m01 = b; m10 = c; m11 = d;
-  }
+  Matrix2(ent a=1, ent b=0, ent c=0, ent d=1) :
+    m00(a), m01(b), m10(c), m11(d) {}
   
   Matrix2 operator*(const Matrix2 &B) const {
-    return Matrix2(((this->m00*B.m00)%P+(this->m01*B.m10)%P)%P,((this->m00*B.m01)%P+(this->m01*B.m11)%P)%P,((this->m10*B.m00)%P+(this->m11*B.m10)%P)%P,((this->m10*B.m01)%P+(this->m11*B.m11)%P)%P);
+    return Matrix2(((m00*B.m00)%P+(m01*B.m10)%P)%P,
+		   ((m00*B.m01)%P+(m01*B.m11)%P)%P,
+		   ((m10*B.m00)%P+(m11*B.m10)%P)%P,
+		   ((m10*B.m01)%P+(m11*B.m11)%P)%P);
   }
   
   Matrix2 pow(ent n) const {
