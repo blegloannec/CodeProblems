@@ -16,8 +16,8 @@ def label(x):
 def number(L):
     x = 0
     for c in L:
-        x = 26*x + ord(c)-ord('A')
-    return x + (26**len(L)-1)//25
+        x = 26*x + ord(c)-ord('A') + 1
+    return x
 
 def opposite(X):
     if '0'<=X[0]<='9':
