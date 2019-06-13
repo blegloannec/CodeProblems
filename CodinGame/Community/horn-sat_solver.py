@@ -22,12 +22,13 @@ def horn_sat_solver(V, Conj):
     Sol = [None]*(V+1)
     while Unit:
         i = Unit.pop()
-        if len(Conj[i])==0:
-            return None
-        Active[i] = False
-        x = Conj[i].pop()
-        v = abs(x)
-        if Sol[v] is None:
+        if Active[i]:
+            if len(Conj[i])==0:
+                return None
+            Active[i] = False
+            x = Conj[i].pop()
+            v = abs(x)
+            #assert Sol[v] is None
             Sol[v] = x
             for j in Var2Clause[x]:
                 Active[j] = False
@@ -36,8 +37,6 @@ def horn_sat_solver(V, Conj):
                     Conj[j].remove(-x)
                     if len(Conj[j])==1:
                         Unit.append(j)
-        elif Sol[v]!=x:
-            return None
     for v in range(1,V+1):
         if Sol[v] is None:
             Sol[v] = -v
