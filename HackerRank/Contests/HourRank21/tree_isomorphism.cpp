@@ -22,29 +22,27 @@ typedef vector< vector<int> > graph;
 // standard versions
 vector<int> center(graph &T) {
   int n = T.size();
-  vector< vector<int> > leaves(2);
-  vector<int> degree(n);
+  vector<int> leaves, degree(n);
   for (int u=0; u<n; ++u) {
     degree[u] = T[u].size();
     // degree can be 0 for the one vertex tree
     if (degree[u]<=1) {
-      leaves[0].push_back(u);
+      leaves.push_back(u);
       degree[u] = -1; // to mark treated vertices
     }
   }
-  int c = 0;
-  while (leaves[c].size()>2) {
-    int d = (c+1)%2;
-    for (vector<int>::iterator iu=leaves[c].begin(); iu!=leaves[c].end(); ++iu)
+  while (leaves[c].size()>=2) {
+    vector<int> new_leaves;
+    for (vector<int>::iterator iu=leaves.begin(); iu!=leaves.end(); ++iu)
       for (vector<int>::iterator iv=T[*iu].begin(); iv!=T[*iu].end(); ++iv)
 	if (degree[*iv]>=1 && --degree[*iv]<=1) {
-	  leaves[d].push_back(*iv);
+	  new_leaves.push_back(*iv);
 	  degree[*iv] = -1;
 	}
-    leaves[c].clear();
-    c = d;
+    if (new_leaves.empty()) break;
+    swap(leaves, new_leaves);
   }
-  return leaves[c];
+  return leaves;
 }
 
 ll rooted_tree_hash(graph &T, int u, int u0=-1) {
@@ -74,30 +72,28 @@ bool isin(int mask, int i) {
 // masked versions (the mask defines a subgraph)
 vector<int> center(graph &T, int mask) {
   int n = T.size();
-  vector< vector<int> > leaves(2);
-  vector<int> degree(n,0);
+  vector<int> leaves, degree(n,0);
   for (int u=0; u<n; ++u)
     if (isin(mask,u)) {
       for (vector<int>::iterator iv=T[u].begin(); iv!=T[u].end(); ++iv)
 	if (isin(mask,*iv)) ++degree[u];
       if (degree[u]<=1) {
-	leaves[0].push_back(u);
+	leaves.push_back(u);
 	degree[u] = -1;
       }
     }
-  int c = 0;
-  while (leaves[c].size()>2) {
-    int d = (c+1)%2;
-    for (vector<int>::iterator iu=leaves[c].begin(); iu!=leaves[c].end(); ++iu)
+  while (leaves.size()>=2) {
+    vector<int> new_leaves;
+    for (vector<int>::iterator iu=leaves.begin(); iu!=leaves.end(); ++iu)
       for (vector<int>::iterator iv=T[*iu].begin(); iv!=T[*iu].end(); ++iv)
 	if (isin(mask,*iv) && degree[*iv]>=1 && --degree[*iv]<=1) {
-	  leaves[d].push_back(*iv);
+	  new_leaves.push_back(*iv);
 	  degree[*iv] = -1;
 	}
-    leaves[c].clear();
-    c = d;
+    if (new_leaves.empty()) break;
+    swap(leaves, new_leaves);
   }
-  return leaves[c];
+  return leaves;
 }
 
 ll rooted_tree_hash(graph &T, int mask, int u, int u0=-1) {
