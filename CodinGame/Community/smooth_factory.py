@@ -3,7 +3,7 @@
 from itertools import product
 from heapq import *
 
-# classig generation problem of 5-smooth / ugly / Hamming  numbers
+# classic generation problem of 5-smooth / ugly / Hamming numbers
 # http://oeis.org/A051037
 # http://oeis.org/A250089
 # http://rosettacode.org/wiki/Hamming_numbers
