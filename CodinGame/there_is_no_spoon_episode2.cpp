@@ -1,3 +1,4 @@
+// NB: Nikoli puzzle https://en.wikipedia.org/wiki/Hashiwokakero
 #include <iostream>
 #include <vector>
 #include <array>

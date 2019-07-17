@@ -7,7 +7,7 @@ To access it, consider the problem expected output to the following input of siz
 ```
 (which is the concatenation of the SHA-512 hashes of the strings `nintendo` and `NIN10DO`)
 
-Now remove all the whitespace characters from that output to get a single hexadecimal string. That string has been used as the key to encrypt the code using the following basic XOR encryption/decryption `python3` lines (see `xorcat.py`):
+Now remove all the whitespace characters from that output to get a single hexadecimal string (note that `bytes.fromhex()` used below actually already does that for you, alternatively use `tr -d "[:space:]"`). That string has been used as the key to encrypt the code using the following basic XOR encryption/decryption `python3` lines (see `xorcat.py`):
 ```
 K = bytes.fromhex(open(sys.argv[1],'r').read().strip())
 M = sys.stdin.buffer.read()

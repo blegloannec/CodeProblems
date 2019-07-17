@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# see also https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/undead.html
+
 import numpy as np
 
 Chars = ['V','G','Z']
