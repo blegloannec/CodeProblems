@@ -36,7 +36,7 @@ begin
    H.T[j] := svg;
 end;
 
-procedure HeapPush(var H : Heap; var e : HeapElem);
+procedure HeapPush(var H : Heap; constref e : HeapElem);  // constref = var+const
 var
    i : Int32;
 begin
