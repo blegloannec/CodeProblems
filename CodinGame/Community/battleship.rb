@@ -47,8 +47,8 @@ end
 
 def main()
     shot = gets.chomp
-    grid = 10.times.map{gets.chomp}
-    sx = shot[1].to_i - 1
+    grid = S.times.map{gets.chomp}
+    sx = shot[1..-1].to_i - 1
     sy = shot[0].ord - 'A'.ord
     coule = ->(ship) {ship.all?{|x,y| grid[x][y]=='_'}}
     comp = components(grid)
