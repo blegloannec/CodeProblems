@@ -4,7 +4,8 @@
 # NB: This was the expected approach here as A.max is small,
 #     although this can also be solved in O(N log N) using 2 heaps
 #     (a max-heap for the lower half of the window and
-#      a min-heap for the upper half).
+#      a min-heap for the upper half; note however that
+#      arbitrary-removal-able heaps would be required here).
 #     see HR/find_the_running_median.py for that approach
 
 # returns the double of the median given the frequency array
