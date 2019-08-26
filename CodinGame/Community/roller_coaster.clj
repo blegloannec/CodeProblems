@@ -1,9 +1,7 @@
 (ns Solution (:gen-class))
 
-(defn readarr [n] (loop [n n t []] (if (zero? n) t (recur (dec n) (conj t (read))))))
-
 (defn -main [& args]
-    (let [L (read) C (read) N (read) P (readarr N) nidx (fn [i] (mod (inc i) N))]
+    (let [L (read) C (read) N (read) P (vec (repeatedly N read)) nidx (fn [i] (mod (inc i) N))]
 
     (def ride (memoize (fn [i0]
         (loop [i (nidx i0) l (nth P i0)]
