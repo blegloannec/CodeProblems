@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sys
+import sys, os.path
 from PIL import Image
 from math import gcd
 
@@ -60,6 +60,7 @@ class Transformaccel:
 
     def precomp(self):
         self.return_time = 1
+        self.periods = {}
         self.cycles = [[None]*self.H for _ in range(self.W)]
         for x0 in range(self.W):
             for y0 in range(self.H):
@@ -73,6 +74,7 @@ class Transformaccel:
                         x,y = self.F(x,y,self.W,self.H)
                         p += 1
                     self.return_time = lcm(self.return_time, p)
+                    self.periods[p] = self.periods.get(p,0) + 1
 
     def iteration(self, n=1):
         def Fitr(x,y,w,h):
@@ -85,8 +87,16 @@ class Transformaccel:
 
 
 if __name__=='__main__':
-    Img = Morphimage(sys.argv[1])
+    try:
+        niter = int(sys.argv[1])
+        fname = sys.argv[2]
+        Img = Morphimage(fname)
+    except:
+        print('usage: %s iterations path/to/imgfile' % sys.argv[0], file=sys.stderr)
+        sys.exit(1)
     T = Transformaccel(photomaton, Img.size)
-    print(T.return_time)
-    Img.transform(T.iteration(3))
-    Img.save('out.png')
+    print('Period: %d' % T.return_time)
+    print(sorted(((p*c,p) for p,c in T.periods.items()), reverse=True))
+    Img.transform(T.iteration(niter))
+    oname = os.path.splitext(os.path.basename(fname))[0]
+    Img.save('out_%s_%d.png' % (oname,niter))
