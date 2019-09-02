@@ -42,8 +42,8 @@ R = {}
 # 0 -> 1 -> 2 -> 3 -> 0
 # 4 -> 9 -> 14 -> 19 -> 4
 # 7 -> 8 -> 13 -> 18 -> 7
-R["F"] = Permutation((0,1,2,3))*Permutation((4,9,14,19))*Permutation((7,8,13,18))
-R["F'"] = R["F"]*R["F"]*R["F"]
+R["F'"] = Permutation((0,1,2,3))*Permutation((4,9,14,19))*Permutation((7,8,13,18))
+R["F"] = R["F'"]*R["F'"]*R["F'"]
 
 # (4,5,6,7)(1,17,21,9)(2,18,22,10)
 R["R'"] = Permutation((4,5,6,7))*Permutation((1,17,21,9))*Permutation((2,18,22,10))
