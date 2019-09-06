@@ -1,0 +1,15 @@
+┌──────┐      ┌──┬──┬──┐      ┌───┬───┐      ┌──────┐
+│ABCDEF│      │AB│CD│EF│      │ACE│BDF│      │ACEBDF│
+│GHIJKL│      │GH│IJ│KL│      │MOQ│NPR│      │MOQNPR│
+│MNOPQR│  ~>  ├──┼──┼──┤  ~>  ├───┼───┤  ~>  │GIKHJL│
+│STUVWX│      │MN│OP│QR│      │GIK│HJL│      │SUWTVX│
+└──────┘      │ST│UV│WX│      │SUW│TVX│      └──────┘
+              └──┴──┴──┘      └───┴───┘
+
+
+┌──────┐    ┌──────┐    ┌──────┐    ┌──────┐    ┌──────┐
+│ABCDEF│    │ACEBDF│    │AEDCBF│    │ADBECF│    │ABCDEF│
+│GHIJKL│    │MOQNPR│    │GKJIHL│    │MPNQOR│    │GHIJKL│
+│MNOPQR│ ~> │GIKHJL│ ~> │MQPONR│ ~> │GJHKIL│ ~> │MNOPQR│
+│STUVWX│    │SUWTVX│    │SWVUTX│    │SVTWUX│    │STUVWX│
+└──────┘    └──────┘    └──────┘    └──────┘    └──────┘
