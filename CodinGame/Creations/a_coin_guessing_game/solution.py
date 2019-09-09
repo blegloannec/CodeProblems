@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
 # - Seeing the possibilities as a bipartite graph, the solution must to be
-# its unique perfect matching.
-# If this graph had no cycle (a forest), we could build the solution
-# by a greedy iterated leaf-cutting process.
-# Uniqueness of the matching would be guaranteed by the fact that the
-# symmetric difference between two perfect matchings always is a set of cycles.
-# The given criterion informally suggests us that a leaf-cutting
-# (deduction) process will always break the cycles so that we are in an
-# equivalent situation as the ideal one.
-# - Of course, a maximum bipartite matching approach is also possible and
-# should pass here.
+#   its unique perfect matching.
+#   If this graph had no cycle (a forest), we could build the solution
+#   by a greedy iterated leaf-cutting process.
+#   The given criterion informally suggests us that a leaf-cutting
+#   (deduction) process will always break the cycles so that we are in an
+#   equivalent situation as the ideal one.
+#    [NB (harder to see, stated here without a proof): This approach actually
+#     always works provided that the graph has a unique perfect matching.
+#     The given criterion is only there to help the solver convince himself that this
+#     rather natural deduction process will work).]
+# - Of course, a maximum bipartite matching approach is also possible and passes here.
 # - Some efficient enough backtracking can also probably pass...
 # Anyway, there is no need to know/understand that much to solve the puzzle.
 
