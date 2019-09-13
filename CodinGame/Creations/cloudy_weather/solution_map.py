@@ -31,6 +31,30 @@ def dijkstra():
     Path.reverse()
     return Dist[i1,j1], Path
 
+def draw_comp_map(Clouds, Path):
+    Img = Image.new('RGB', (len(X),len(Y)), (255,255,255))
+    Pix = Img.load()
+    for x,y,w,h in Clouds:
+        for i in range(DX[x],DX[x+w]):
+            for j in range(DY[y],DY[y+h]):
+                Pix[i,j] = (64,64,64)
+    for p in Path:
+        Pix[p] = (255,0,0)
+    Img.save('comp_map.png')
+
+def draw_scal_map(Clouds, Path):
+    Xmax, Ymax = X[-1], Y[-1]
+    A = 800./max(Xmax,Ymax)
+    Img = Image.new('RGB', (int(A*Xmax)+1,int(A*Ymax)+1), (255,255,255))
+    Pix = Img.load()
+    for x,y,w,h in Clouds:
+        for i in range(round(A*x),round(A*(x+w))):
+            for j in range(round(A*y),round(A*(y+h))):
+                Pix[i,j] = (64,64,64)
+    #for x,y in Path:
+    #    Pix[round(A*X[x]),round(A*Y[y])] = (255,0,0)
+    Img.save('scal_map.png')
+
 def main():
     global X0,Y0,X1,Y1,X,Y,DX,DY,Map
     X0,Y0 =  map(int,input().split())
@@ -45,17 +69,13 @@ def main():
     DX = {x:i for i,x in enumerate(X)}
     DY = {y:i for i,y in enumerate(Y)}
     Map = [[True]*len(Y) for _ in range(len(X))]
-    Img = Image.new('RGB', (len(X),len(Y)), (255,255,255))
-    Pix = Img.load()
     for x,y,w,h in Clouds:
         for i in range(DX[x],DX[x+w]):
             for j in range(DY[y],DY[y+h]):
                 Map[i][j] = False
-                Pix[i,j] = (64,64,64)
     dist,Path = dijkstra()
     print(dist)
-    for p in Path:
-        Pix[p] = (255,0,0)
-    Img.save('comp_map.png')
+    draw_comp_map(Clouds, Path)
+    #draw_scal_map(Clouds, Path)
 
 main()
