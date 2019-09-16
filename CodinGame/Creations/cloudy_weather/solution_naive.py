@@ -29,8 +29,8 @@ def ascii_map(Path):
     Out = [['.' if Map[x][y] else '#' for x in range(Xmax)] for y in range(Ymax)]
     for i,j in Path:
         Out[j][i] = 'x'
-    Out[Y0][X0] = '@'
-    Out[Y1][X1] = 'X'
+    Out[Y0][X0] = 'S'
+    Out[Y1][X1] = 'D'
     return '\n'.join(''.join(L) for L in Out)
 
 def main():
