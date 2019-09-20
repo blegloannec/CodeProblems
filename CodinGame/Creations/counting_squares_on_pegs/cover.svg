@@ -1,0 +1,96 @@
+<svg width="2000" height="1100">
+<line x1="300" y1="700" x2="400" y2="500" stroke="#d247ca" stroke-width="5" />
+<line x1="400" y1="500" x2="600" y2="600" stroke="#d247ca" stroke-width="5" />
+<line x1="600" y1="600" x2="500" y2="800" stroke="#d247ca" stroke-width="5" />
+<line x1="500" y1="800" x2="300" y2="700" stroke="#d247ca" stroke-width="5" />
+<line x1="1200" y1="600" x2="1400" y2="100" stroke="#540948" stroke-width="5" />
+<line x1="1400" y1="100" x2="1900" y2="300" stroke="#540948" stroke-width="5" />
+<line x1="1900" y1="300" x2="1700" y2="800" stroke="#540948" stroke-width="5" />
+<line x1="1700" y1="800" x2="1200" y2="600" stroke="#540948" stroke-width="5" />
+<line x1="400" y1="300" x2="500" y2="800" stroke="#2cec9e" stroke-width="5" />
+<line x1="500" y1="800" x2="1000" y2="700" stroke="#2cec9e" stroke-width="5" />
+<line x1="1000" y1="700" x2="900" y2="200" stroke="#2cec9e" stroke-width="5" />
+<line x1="900" y1="200" x2="400" y2="300" stroke="#2cec9e" stroke-width="5" />
+<line x1="1300" y1="600" x2="1500" y2="400" stroke="#ab0405" stroke-width="5" />
+<line x1="1500" y1="400" x2="1700" y2="600" stroke="#ab0405" stroke-width="5" />
+<line x1="1700" y1="600" x2="1500" y2="800" stroke="#ab0405" stroke-width="5" />
+<line x1="1500" y1="800" x2="1300" y2="600" stroke="#ab0405" stroke-width="5" />
+<line x1="800" y1="400" x2="800" y2="800" stroke="#086c8b" stroke-width="5" />
+<line x1="800" y1="800" x2="1200" y2="800" stroke="#086c8b" stroke-width="5" />
+<line x1="1200" y1="800" x2="1200" y2="400" stroke="#086c8b" stroke-width="5" />
+<line x1="1200" y1="400" x2="800" y2="400" stroke="#086c8b" stroke-width="5" />
+<line x1="1500" y1="400" x2="1700" y2="200" stroke="#d54458" stroke-width="5" />
+<line x1="1700" y1="200" x2="1900" y2="400" stroke="#d54458" stroke-width="5" />
+<line x1="1900" y1="400" x2="1700" y2="600" stroke="#d54458" stroke-width="5" />
+<line x1="1700" y1="600" x2="1500" y2="400" stroke="#d54458" stroke-width="5" />
+<line x1="1200" y1="600" x2="1300" y2="1000" stroke="#4b96cb" stroke-width="5" />
+<line x1="1300" y1="1000" x2="1700" y2="900" stroke="#4b96cb" stroke-width="5" />
+<line x1="1700" y1="900" x2="1600" y2="500" stroke="#4b96cb" stroke-width="5" />
+<line x1="1600" y1="500" x2="1200" y2="600" stroke="#4b96cb" stroke-width="5" />
+<line x1="600" y1="400" x2="600" y2="600" stroke="#c4330c" stroke-width="5" />
+<line x1="600" y1="600" x2="800" y2="600" stroke="#c4330c" stroke-width="5" />
+<line x1="800" y1="600" x2="800" y2="400" stroke="#c4330c" stroke-width="5" />
+<line x1="800" y1="400" x2="600" y2="400" stroke="#c4330c" stroke-width="5" />
+<line x1="1100" y1="800" x2="1300" y2="600" stroke="#6f1615" stroke-width="5" />
+<line x1="1300" y1="600" x2="1500" y2="800" stroke="#6f1615" stroke-width="5" />
+<line x1="1500" y1="800" x2="1300" y2="1000" stroke="#6f1615" stroke-width="5" />
+<line x1="1300" y1="1000" x2="1100" y2="800" stroke="#6f1615" stroke-width="5" />
+<line x1="500" y1="100" x2="500" y2="800" stroke="#2541da" stroke-width="5" />
+<line x1="500" y1="800" x2="1200" y2="800" stroke="#2541da" stroke-width="5" />
+<line x1="1200" y1="800" x2="1200" y2="100" stroke="#2541da" stroke-width="5" />
+<line x1="1200" y1="100" x2="500" y2="100" stroke="#2541da" stroke-width="5" />
+<line x1="400" y1="500" x2="500" y2="100" stroke="#695589" stroke-width="5" />
+<line x1="500" y1="100" x2="900" y2="200" stroke="#695589" stroke-width="5" />
+<line x1="900" y1="200" x2="800" y2="600" stroke="#695589" stroke-width="5" />
+<line x1="800" y1="600" x2="400" y2="500" stroke="#695589" stroke-width="5" />
+<circle cx="100" cy="400" r="10" fill="red" />
+<circle cx="100" cy="600" r="10" fill="red" />
+<circle cx="100" cy="1000" r="10" fill="red" />
+<circle cx="200" cy="800" r="10" fill="red" />
+<circle cx="300" cy="400" r="10" fill="red" />
+<circle cx="300" cy="700" r="10" fill="red" />
+<circle cx="300" cy="800" r="10" fill="red" />
+<circle cx="400" cy="300" r="10" fill="red" />
+<circle cx="400" cy="500" r="10" fill="red" />
+<circle cx="500" cy="100" r="10" fill="red" />
+<circle cx="500" cy="800" r="10" fill="red" />
+<circle cx="600" cy="100" r="10" fill="red" />
+<circle cx="600" cy="400" r="10" fill="red" />
+<circle cx="600" cy="600" r="10" fill="red" />
+<circle cx="700" cy="100" r="10" fill="red" />
+<circle cx="800" cy="400" r="10" fill="red" />
+<circle cx="800" cy="600" r="10" fill="red" />
+<circle cx="800" cy="700" r="10" fill="red" />
+<circle cx="800" cy="800" r="10" fill="red" />
+<circle cx="900" cy="200" r="10" fill="red" />
+<circle cx="900" cy="900" r="10" fill="red" />
+<circle cx="1000" cy="100" r="10" fill="red" />
+<circle cx="1000" cy="700" r="10" fill="red" />
+<circle cx="1100" cy="800" r="10" fill="red" />
+<circle cx="1200" cy="100" r="10" fill="red" />
+<circle cx="1200" cy="200" r="10" fill="red" />
+<circle cx="1200" cy="300" r="10" fill="red" />
+<circle cx="1200" cy="400" r="10" fill="red" />
+<circle cx="1200" cy="600" r="10" fill="red" />
+<circle cx="1200" cy="800" r="10" fill="red" />
+<circle cx="1300" cy="600" r="10" fill="red" />
+<circle cx="1300" cy="700" r="10" fill="red" />
+<circle cx="1300" cy="900" r="10" fill="red" />
+<circle cx="1300" cy="1000" r="10" fill="red" />
+<circle cx="1400" cy="100" r="10" fill="red" />
+<circle cx="1500" cy="400" r="10" fill="red" />
+<circle cx="1500" cy="700" r="10" fill="red" />
+<circle cx="1500" cy="800" r="10" fill="red" />
+<circle cx="1600" cy="100" r="10" fill="red" />
+<circle cx="1600" cy="300" r="10" fill="red" />
+<circle cx="1600" cy="400" r="10" fill="red" />
+<circle cx="1600" cy="500" r="10" fill="red" />
+<circle cx="1700" cy="200" r="10" fill="red" />
+<circle cx="1700" cy="600" r="10" fill="red" />
+<circle cx="1700" cy="800" r="10" fill="red" />
+<circle cx="1700" cy="900" r="10" fill="red" />
+<circle cx="1800" cy="200" r="10" fill="red" />
+<circle cx="1900" cy="200" r="10" fill="red" />
+<circle cx="1900" cy="300" r="10" fill="red" />
+<circle cx="1900" cy="400" r="10" fill="red" />
+</svg>

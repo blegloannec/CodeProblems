@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 
+import random
+random.seed()
+
+def rand_color():
+    return '#{:06x}'.format(random.randint(0,(1<<24)-1))
+
 def sqr_norm(S):
     i = S.index(min(S))
-    return S[i:]+S[:i]
+    S = S[i:]+S[:i]
+    if S[1]>S[3]:
+        S = (S[0],S[3],S[2],S[1])
+    return S
 
 def squares(P):
     N = len(P)
@@ -21,14 +30,17 @@ def squares(P):
     return Sqr
 
 def make_svg(Pts, Sqr):
-    xmax, ymax = max(x for x,_ in Pts), max(y for _,y in Pts)
-    SVG = ['<svg width="{}" height="{}">'.format(xmax,ymax)]
+    A, L = 100, 5
+    xmax, ymax = max(x for x,_ in Pts)+1, max(y for _,y in Pts)+1
+    C = lambda x: A*(x+1)
+    SVG = ['<svg width="{}" height="{}">'.format(C(xmax),C(ymax))]
     for S in Sqr:
+        col = rand_color()
         for i in range(4):
             (x1,y1), (x2,y2) = S[i], S[(i+1)%4]
-            SVG.append('line x1="{}" y1="{}" x2="{}" y2="{}" stroke="blue" />'.format(x1,y1,x2,y2))
+            SVG.append('<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="{}" stroke-width="{}" />'.format(C(x1),C(y1),C(x2),C(y2),col,L))
     for x,y in Pts:
-        SVG.append('<circle cx="{}" cy="{}" r="1" fill="red" />'.format(x,y))
+        SVG.append('<circle cx="{}" cy="{}" r="{}" fill="red" />'.format(C(x),C(y),2*L))
     SVG.append('</svg>')
     return '\n'.join(SVG)
 
