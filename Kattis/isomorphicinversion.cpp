@@ -1,3 +1,13 @@
+/*
+  O(n) approach by greedily cutting at the smallest prefixes-suffixes,
+  using hashing to identify them.
+  This works as if S = u|...|u is an optimal decomposition, then consider
+  v the smallest prefix-suffix of u. If |v|<|u|, then we must have u = vwv
+  (w might be empty) as if v overlaps itself, then the overlapping part
+  would be a smaller prefix-suffix.
+  Then S = v|w|v|...|v|w|v is a better decomposition!
+  Hence v = u.
+*/
 #include <iostream>
 using namespace std;
 using ll = long long;
