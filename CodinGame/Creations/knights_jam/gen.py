@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# inspired by https://open.kattis.com/problems/knightsfen
+
 from collections import deque
 import random
 random.seed(55)
