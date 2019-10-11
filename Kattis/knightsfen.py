@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
 
+# The max distance is limited to 10 here (~50k configurations)...
+# However, in general, there are 25*binom(24,12) (~68M) possible
+# configurations which are all reachable in <= 39 steps.
+# The full exploration takes ~2 min with pypy.
+# Here is the repartition by minimal distance:
+# [1, 8, 14, 38, 148, 368, 1001, 2440, 6468, 14116, 32825, 64782, 137262, 240404, 455522, 716458, 1224370, 1720894, 2645274, 3327210, 4594399, 5148132, 6372557, 6345924, 6997217, 6160052, 6002337, 4635014, 3942462, 2634392, 1921476, 1086234, 658300, 300838, 144842, 49078, 17065, 3428, 488, 62]
+# The 62 furthest configurations are relatively close to the "symmetric"
+# of the start (which is itself at distance 36), e.g.:
+# 00000  000 0
+# 01000  10000
+# 10101  11010
+# 11110  11100
+# 111 1  11111
+
 from collections import deque
 
 S = 5
