@@ -12,7 +12,7 @@ ent gcd(ent a, ent b) {
 
 struct Fraction {
   ent p,q;
-
+  
   Fraction(ent p0=0) {
     p = p0;
     q = 1;
@@ -28,29 +28,37 @@ struct Fraction {
       q = -q;
     }
   }
-
+  
   Fraction operator+(const Fraction &B) const {
-    return Fraction(this->p*B.q+B.p*this->q,this->q*B.q);
+    return Fraction(p*B.q+B.p*q, q*B.q);
   }
-
+  
   Fraction operator-(const Fraction &B) const {
-    return Fraction(this->p*B.q-B.p*this->q,this->q*B.q);
+    return Fraction(p*B.q-B.p*q, q*B.q);
   }
-
+  
   Fraction operator-() const {
-    return Fraction(-this->p,this->q);
+    return Fraction(-p, q);
   }
   
   Fraction operator*(const Fraction &B) const {
-    return Fraction(this->p*B.p,this->q*B.q);
+    return Fraction(p*B.p, q*B.q);
   }
   
   Fraction operator/(const Fraction &B) const {
-    return Fraction(this->p*B.q,this->q*B.p);
+    return Fraction(p*B.q, q*B.p);
+  }
+  
+  bool operator<(const Fraction &B) const {
+    return p*B.q < q*B.p;
+  }
+  
+  bool operator==(const Fraction &B) const {
+    return p==B.p && q==B.q;
   }
   
   void print() const {
-    cout << this->p << '/' << this->q << endl;
+    cout << p << '/' << q << endl;
   }
 };
 
