@@ -10,7 +10,7 @@ class ACTrie:
         self.G = [{}]   # transitions
         self.O = [[]]   # final states
         self.F = [None] # fail function
-        self.B = [None]  # dict backlink
+        self.B = [None] # dict backlink
         for iw in range(len(self.W)):
             w = self.W[iw]
             s = 0
@@ -65,15 +65,15 @@ class ACTrie:
             # IMPLEM. 1 dans laquelle on complete l'output
             # if self.O[s]: # motif(s) trouve(s)
                 # renvoie les indices des motifs
-                #yield (i,self.O[s])
+                # yield (i,self.O[s])
                 # renvoie les motifs
                 # yield (i,list(map(lambda iw: self.W[iw], self.O[s])))
-            # IMPLEM. 2 dans laquelle on utilise des backlink
+            # IMPLEM. 2 dans laquelle on utilise des backlinks
             if self.O[s] or self.B[s]: # motif direct ou backlink
                 # renvoie le noeud du trie
                 yield (i,s)
 
-    # IMPLEM 2 - calculer l'ouput d'un noeud
+    # IMPLEM. 2 - calculer l'output d'un noeud
     # (version iterative, parce que Python)
     def output(self,s):
         while s:
