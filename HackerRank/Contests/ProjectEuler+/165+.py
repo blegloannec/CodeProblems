@@ -39,8 +39,9 @@ def main():
         for b in range(a+1,N):
             B = T[4*b:4*b+4]
             I = true_intersection(A,B)
-            if I!=None:
-                P.add(I)
+            if I is not None:
+                # way way faster than hashing the Fraction objects
+                P.add((I[0].numerator,I[0].denominator,I[1].numerator,I[1].denominator))
     print(len(P))
 
 main()
