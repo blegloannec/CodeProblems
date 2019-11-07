@@ -56,8 +56,8 @@ bool intersect(int p1, int p2) {
   //     but here this has to be  A1-----B1&2-----A2
   if (V1*V2==0) return false; // // or aligned
   // general case: testing sides
-  return !(sign(V1*(A2-A1))*sign(V1*(B2-A1))>0 ||
-	   sign(V2*(A1-A2))*sign(V2*(B1-A2))>0);
+  return (sign(V1*(A2-A1))!=sign(V1*(B2-A1)) &&
+	  sign(V2*(A1-A2))!=sign(V2*(B1-A2)));
 }
 
 bool bipartite(const graph &G) {

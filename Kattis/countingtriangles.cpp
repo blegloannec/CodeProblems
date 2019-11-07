@@ -27,8 +27,8 @@ bool intersect(const point &A1, const point &B1, const point &A2, const point &B
   point V1 = B1-A1, V2 = B2-A2;
   if (V1*V2==0) return false; // // or aligned
   // general case: testing sides
-  return !(sign(V1*(A2-A1))*sign(V1*(B2-A1))>0 ||
-	   sign(V2*(A1-A2))*sign(V2*(B1-A2))>0);
+  return (sign(V1*(A2-A1))!=sign(V1*(B2-A1)) &&
+	  sign(V2*(A1-A2))!=sign(V2*(B1-A2)));
 }
 
 int main() {
