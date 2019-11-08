@@ -1,7 +1,7 @@
 /*
   Union of rectangles in O(n^2) using a vector for the sweepline.
   This approach could be optimized in O(n log n) replacing the
-  vector by a (lazy) segment tree.
+  vector by a segment tree (see unrealestate_ter.cpp).
 */
 #include <cstdio>
 #include <vector>
