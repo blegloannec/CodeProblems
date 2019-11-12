@@ -26,7 +26,6 @@ def pattern(n):
         if x>n:
             return False
         i += 1
-    print(X)
 
 def main():
     for L in sys.stdin.readlines():
