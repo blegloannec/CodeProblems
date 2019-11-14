@@ -1,5 +1,6 @@
 /*
-  Union of rectangles in O(n log n) using a segment tree to stock intervals for the sweepline.
+  Union of rectangles in O(n log n) using a segment tree to store intervals
+  for the sweepline.
   https://en.wikipedia.org/wiki/Segment_tree
 */
 #include <cstdio>
