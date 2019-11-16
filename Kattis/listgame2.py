@@ -24,17 +24,20 @@ def main():
     N = int(input())
     Div = [1]
     n = N
-    p = 2
+    while n&1==0:
+        n >>= 1
+        Div.append(Div[-1]<<1)
+    p = 3
     while n>1 and p*p<=n:
         if n%p==0:
             L = len(Div)
-            m = 1
+            q = p
             while n%p==0:
                 for i in xrange(L):
-                    Div.append(p**m * Div[i])
+                    Div.append(q * Div[i])
                 n //= p
-                m += 1
-        p += 1
+                q *= p
+        p += 2
     if n>1:
         for i in xrange(len(Div)):
             Div.append(n*Div[i])
