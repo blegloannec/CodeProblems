@@ -18,9 +18,12 @@ def run(P, noun=12, verb=2):
 
 print(run(P))
 
+
 # Part 2
-for noun in range(100):
-    for verb in range(100):
-        if run(P,noun,verb)==19690720:
-            print(100*noun+verb)
-            break
+def part2():
+    for noun in range(100):
+        for verb in range(100):
+            if run(P,noun,verb)==19690720:
+                return 100*noun+verb
+
+print(part2())
