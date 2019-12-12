@@ -31,7 +31,7 @@ print(smax)
 
 
 # Part 2
-X = sorted((angle(xa-x0,ya-y0), dist2(xa-x0,ya-y0), (xa,ya)) for xa,ya in A)
+X = sorted((angle(xa-x0,ya-y0), dist2(xa-x0,ya-y0), (xa,ya)) for xa,ya in A if (xa,ya)!=(x0,y0))
 X = [p for i,(a,_,p) in enumerate(X) if i==0 or a!=X[i-1][0]]  # first rot.
 assert len(X)>=200  # 200th is in the first rotation
 xa,ya = X[199]      # 200th
