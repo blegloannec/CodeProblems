@@ -5,3 +5,6 @@
 
 ## Day 11
 ![Day 11 Part 2](pictures/anim11.gif)
+
+## Day 13
+![Day 13 Part 2](pictures/anim13.gif)
