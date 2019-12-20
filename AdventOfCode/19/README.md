@@ -11,3 +11,6 @@
 
 ## Day 15
 ![Day 15 Part 1](pictures/anim15.gif)
+
+## Day 20
+![Day 20 Part 1](pictures/anim20.gif)
