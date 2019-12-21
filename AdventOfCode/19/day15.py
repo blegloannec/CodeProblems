@@ -85,6 +85,8 @@ def dfs(Droid, Map, x,y):
                 stat = Droid.Out.popleft()
                 assert stat == Map[x][y]
 
+# NB: turns out the labyrinth is a tree, the dfs could have been recycled
+#     to compute the distances, but one could not know beforehand...
 def bfs(Map, x0,y0, stop2=False):
     S = len(Map)
     Dist = [[None]*S for _ in range(S)]

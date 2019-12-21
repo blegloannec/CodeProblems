@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env pypy
 
 import sys
 from collections import deque
@@ -74,10 +74,10 @@ class IntcodeComputer:
 
 def part1():
     S = 50
-    G = [['.']*S for _ in range(S)]
+    G = [['.']*S for _ in xrange(S)]
     cnt = 0
-    for x in range(S):
-        for y in range(S):
+    for x in xrange(S):
+        for y in xrange(S):
             D = IntcodeComputer(P,[x,y])
             D.run()
             if D.Out[0]==1:
@@ -86,7 +86,7 @@ def part1():
     print(cnt)
     #print('\n'.join(''.join(L) for L in G))
     # finding slopes of the beam
-    for x in range(S-1,0,-1):
+    for x in xrange(S-1,0,-1):
         y1 = next(y for y in xrange(S) if G[y][x]=='#')
         y2 = next(y for y in xrange(S-1,-1,-1) if G[y][x]=='#')
         if y2<S-1:
@@ -102,9 +102,9 @@ def part2():
     EPS = 1./50.
     N = 100
     S = 1200
-    G = [[0]*S for _ in range(S)]
+    G = [[0]*S for _ in xrange(S)]
     x0 = int(N/(s2-s1))
-    for x in range(x0,S):
+    for x in xrange(x0,S):
         # top end of the beam
         y1 = max(1, int((s1-EPS)*x))
         while True:
@@ -122,7 +122,7 @@ def part2():
                 break
             y2 -= 1
         # DP for largest square of 1 in a 0/1 grid
-        for y in range(y1,y2+1):
+        for y in xrange(y1,y2+1):
             G[x][y] = 1 + min(G[x-1][y],G[x][y-1],G[x-1][y-1])
             if G[x][y]>=N:
                 return (x-N+1)*10000 + y-N+1

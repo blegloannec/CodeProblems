@@ -78,7 +78,7 @@ def bfs_key_to_key(x0,y0):
                     Q.append(v)
     return [(key(G[x][y]),d,k) for (x,y),(d,k) in DistReq.items() if is_key(G[x][y])]
 
-KeyGraph = [None for _ in xrange(key_cnt)]
+KeyGraph = [None]*key_cnt
 for i in xrange(H):
     for j in xrange(W):
         if is_key(G[i][j]):

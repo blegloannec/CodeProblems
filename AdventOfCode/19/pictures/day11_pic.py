@@ -106,5 +106,6 @@ def robot_pic(x0,y0, x1,y1, A=4, init=1):
 os.system('mkdir anim11')
 os.system('rm anim11.gif')
 robot_pic(-2,-8,42,3)
-os.system('convert -loop 0 -delay 5 anim11/*.gif anim11.gif')
+#os.system('convert -loop 0 -delay 5 anim11/*.gif anim11.gif')
+os.system('gifsicle -O3 -d5 -l anim11/*.gif > anim11.gif')
 os.system('rm -r anim11')

@@ -87,7 +87,7 @@ x0,y0 = Label['AA'][1]
 x1,y1 = Label['ZZ'][1]
 Path = bfs()
 
-A = 3
+A = 4
 Img = Image.new('RGB',(W,H))
 Pix = Img.load()
 PDest = set(Portal.values())
@@ -119,5 +119,6 @@ for y,x in Path:
         Img1.close()
     x0,y0 = x,y
 Img.close()
-os.system('convert -loop 0 -delay 3 anim20/*.gif anim20.gif')
+#os.system('convert -layers OptimizeTransparency -loop 0 -delay 3 anim20/*.gif anim20.gif')
+os.system('gifsicle -O3 -d3 -l anim20/*.gif > anim20.gif')
 os.system('rm -r anim20')

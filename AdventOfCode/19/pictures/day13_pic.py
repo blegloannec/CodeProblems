@@ -100,5 +100,6 @@ def breakout_gif():
 
 os.system('mkdir anim13')
 breakout_gif()
-os.system('convert -loop 0 -delay 4 anim13/*.gif anim13.gif')
+#os.system('convert -loop 0 -delay 4 anim13/*.gif anim13.gif')
+os.system('gifsicle -O3 -d3 -l anim13/*.gif > anim13.gif')
 os.system('rm -r anim13')

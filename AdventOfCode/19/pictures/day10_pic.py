@@ -58,7 +58,6 @@ while X:
     if L:
         X.append(L)
 Img.close()
-os.system('rm anim10.gif')
-os.system('sleep 3')
-os.system('convert -loop 0 -delay 5 anim10/*.gif anim10.gif')
+#os.system('convert -loop 0 -delay 5 anim10/*.gif anim10.gif')
+os.system('gifsicle -O3 -d5 -l anim10/*.gif > anim10.gif')
 os.system('rm -r anim10')
