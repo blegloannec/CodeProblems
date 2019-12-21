@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import sys, os
+import sys
 from collections import deque
-from PIL import Image
 
 P = list(map(int,sys.stdin.readline().strip().split(',')))
 
@@ -72,46 +71,31 @@ class IntcodeComputer:
                 self.halt = True
                 break
 
-S = 41
-Col = [(50,50,50), (220,220,220), (0,0,255), (255,0,0)]
-T = 0
 
-def frame(x,y):
-    global T
-    Pix[x,y] = Col[-1]
-    Img.resize((4*S,4*S)).save('anim15/frame%04d.gif' % T)
-    Pix[x,y] = Col[Map[x][y]]
-    T += 1
+to_ascii = lambda s: list(map(ord,s))
+to_str = lambda l: ''.join(map(chr,l))
 
-def dfs(x,y):
-    for d,(vx,vy) in enumerate(((x-1,y),(x+1,y),(x,y-1),(x,y+1))):
-        if Map[vx][vy] is None:
-            Droid.In.append(d+1)
-            Droid.run()
-            Map[vx][vy] = Droid.Out.popleft()
-            Pix[vx,vy] = Col[Map[vx][vy]]
-            frame(x,y)
-            if Map[vx][vy]!=0:
-                dfs(vx,vy)
-                Droid.In.append((1,0,3,2)[d]+1)
-                Droid.run()
-                frame(x,y)
-                stat = Droid.Out.popleft()
-                assert stat == Map[x][y]
+def part1():
+    IC = IntcodeComputer(P)
+    Droid = ('OR A J', 'AND B J', 'AND C J', 'NOT J J', 'AND D J')
+    IC.In += to_ascii('\n'.join(Droid))
+    IC.In += to_ascii('\nWALK\n')
+    IC.run()
+    res = IC.Out.pop()
+    #print(to_str(IC.Out))
+    return res
 
-def droid():
-    global Droid, Map, Img, Pix
-    x0 = y0 = (S+1)//2
-    Map = [[None]*S for _ in range(S)]
-    Map[x0][y0] = 1
-    Droid = IntcodeComputer(P)
-    Img = Image.new('RGB',(S,S))
-    Pix = Img.load()
-    os.system('mkdir anim15')
-    dfs(x0,y0)
-    #os.system('convert -loop 0 -delay 2 anim15/frame*.gif anim15.gif')
-    os.system('gifsicle -O3 -l -d2 anim15/frame*.gif > anim15.gif')
-    os.system('rm -r anim15')
-    Img.close()
+print(part1())
 
-droid()
+
+def part2():
+    IC = IntcodeComputer(P)
+    Droid = ('OR A J', 'AND B J', 'AND C J', 'NOT J J', 'AND D J', 'OR E T', 'OR H T', 'AND T J')
+    IC.In += to_ascii('\n'.join(Droid))
+    IC.In += to_ascii('\nRUN\n')
+    IC.run()
+    res = IC.Out.pop()
+    #print(to_str(IC.Out))
+    return res
+
+print(part2())
