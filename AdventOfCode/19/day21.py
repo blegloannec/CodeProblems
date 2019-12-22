@@ -75,27 +75,19 @@ class IntcodeComputer:
 to_ascii = lambda s: list(map(ord,s))
 to_str = lambda l: ''.join(map(chr,l))
 
-def part1():
+def springdroid(springscript, start_command):
     IC = IntcodeComputer(P)
-    Droid = ('OR A J', 'AND B J', 'AND C J', 'NOT J J', 'AND D J')
-    IC.In += to_ascii('\n'.join(Droid))
-    IC.In += to_ascii('\nWALK\n')
+    IC.In += to_ascii('\n'.join(springscript))
+    IC.In += to_ascii('\n%s\n' % start_command)
     IC.run()
     res = IC.Out.pop()
     #print(to_str(IC.Out))
     return res
 
-print(part1())
+Droid1 = ('OR A J', 'AND B J', 'AND C J', 'NOT J J', 'AND D J')
+print(springdroid(Droid1,'WALK'))
 
 
-def part2():
-    IC = IntcodeComputer(P)
-    Droid = ('OR A J', 'AND B J', 'AND C J', 'NOT J J', 'AND D J', 'OR E T', 'OR H T', 'AND T J')
-    IC.In += to_ascii('\n'.join(Droid))
-    IC.In += to_ascii('\nRUN\n')
-    IC.run()
-    res = IC.Out.pop()
-    #print(to_str(IC.Out))
-    return res
-
-print(part2())
+# Part 2
+Droid2 = ('OR A J', 'AND B J', 'AND C J', 'NOT J J', 'AND D J', 'OR E T', 'OR H T', 'AND T J')
+print(springdroid(Droid2,'RUN'))

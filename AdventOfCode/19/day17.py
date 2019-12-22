@@ -74,10 +74,39 @@ class IntcodeComputer:
 
 Dir = {'<':(0,-1), '>':(0,1), '^':(-1,0), 'v':(1,0)}
 
+to_ascii = lambda s: list(map(ord,s))
+to_str = lambda l: ''.join(map(chr,l))
+
+def compress_path(Path):
+    Path += ','
+    LMAX = 21  # 20 + 1 for the final ',' of each subseq
+    for i in range(len(Path)):
+        if Path[i]==',':
+            A = Path[:i+1]
+            if len(A)>LMAX:
+                break
+            Q = Path.split(A)
+            for j in range(i+1,len(Path)):
+                if Path[j]==',':
+                    B = Path[i+1:j+1]
+                    if len(B)>LMAX:
+                        break
+                    C = set()
+                    for q in Q:
+                        C |= set(q.split(B))
+                    C.discard('')
+                    if len(C)==1:
+                        C = C.pop()
+                        if len(C)<=LMAX:
+                            MAIN = Path.replace(A,'A,').replace(B,'B,').replace(C,'C,')
+                            return (MAIN[:-1],A[:-1],B[:-1],C[:-1])
+
 def robot():
+    # Exploring the path and computing part 1 at the same time
+    # (part 1 could have been done independently more easily though)
     D = IntcodeComputer(P)
     D.run()
-    G = ''.join(map(chr,D.Out))
+    G = to_str(D.Out)
     #print(G)
     G = [list(L) for L in G.split()]
     H,W = len(G),len(G[0])
@@ -104,20 +133,28 @@ def robot():
         i += di
         j += dj
         step += 1
-    print(part1)
     Path.append(str(step-1))
-    #print(','.join(Path))  # Path
-    # easily "compressed" by hand:
-    # A(R,10,R,10,R,6,R,4),B(R,10,R,10,L,4),A(R,10,R,10,R,6,R,4),C(R,4,L,4,L,10,L,10),A(R,10,R,10,R,6,R,4),B(R,10,R,10,L,4),C(R,4,L,4,L,10,L,10),B(R,10,R,10,L,4),C(R,4,L,4,L,10,L,10),B(R,10,R,10,L,4)
-    
-    # /!\ the following ONLY works for MY input!
+    print(part1)
+
+    # Compressing the path for part 2
     D = IntcodeComputer(P)
     D.P[0] = 2
-    D.In += list(map(ord,'A,B,A,C,A,B,C,B,C,B\n'))  # MAIN
-    D.In += list(map(ord,'R,10,R,10,R,6,R,4\n'))    # A
-    D.In += list(map(ord,'R,10,R,10,L,4\n'))        # B
-    D.In += list(map(ord,'R,4,L,4,L,10,L,10\n'))    # C
-    D.In += list(map(ord,'n\n'))                    # no trace
+    Path = ','.join(Path)
+    #print(Path)
+    
+    # Easily "compressed" by hand (/!\ the following ONLY works for MY input):
+    # A(R,10,R,10,R,6,R,4),B(R,10,R,10,L,4),A(R,10,R,10,R,6,R,4),C(R,4,L,4,L,10,L,10),
+    # A(R,10,R,10,R,6,R,4),B(R,10,R,10,L,4),C(R,4,L,4,L,10,L,10),B(R,10,R,10,L,4),
+    # C(R,4,L,4,L,10,L,10),B(R,10,R,10,L,4)
+    #D.In += to_ascii('A,B,A,C,A,B,C,B,C,B\n')  # MAIN
+    #D.In += to_ascii('R,10,R,10,R,6,R,4\n')    # A
+    #D.In += to_ascii('R,10,R,10,L,4\n')        # B
+    #D.In += to_ascii('R,4,L,4,L,10,L,10\n')    # C
+    #D.In += to_ascii('n\n')                    # no trace
+    
+    # But let's do it "properly" (assuming it's not too overlapping...):
+    D.In += to_ascii('\n'.join(compress_path(Path)))
+    D.In += to_ascii('\nn\n')
     D.run()
     print(D.Out.pop())
 
