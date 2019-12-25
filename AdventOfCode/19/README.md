@@ -1,5 +1,7 @@
 # Advent of Code 2019 in pictures
 
+Ranked [112th](https://betaveros.github.io/extra-aoc-stats/) (not competing the first 8 days).
+
 ## Day 10
 ![Day 10 Part 2](pictures/anim10.gif)
 
