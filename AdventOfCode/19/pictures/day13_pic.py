@@ -95,7 +95,7 @@ def breakout_gif():
             else:
                 Pix[x,y] = Color[t]
         Game.In.append(sgn(bx-px))
-        Img.resize((4*W,4*H)).save('anim13/frame%04d.gif' % f)
+        Img.resize((6*W,6*H)).save('anim13/frame%04d.gif' % f)
         f += 1
 
 os.system('mkdir anim13')

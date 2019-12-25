@@ -132,8 +132,8 @@ Path = dijkstra_in_key_graph()
 
 Col = {'.': (220,220,220), '#': (50,50,50), '@': (255,0,0)}
 for i in range(key_cnt):
-    Col[chr(i+ord('a'))] = (80,200,80)
-    Col[chr(i+ord('A'))] = (0,100,100)
+    Col[chr(i+ord('a'))] = (0,220,220)
+    Col[chr(i+ord('A'))] = (0,0,150)
 
 A = 5
 Img = Image.new('RGB',(W,H))

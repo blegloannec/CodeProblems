@@ -2,6 +2,8 @@
 
 Ranked [112th](https://betaveros.github.io/extra-aoc-stats/) (not competing the first 8 days).
 
+GIF frames generated using Python Imaging Library (PIL), animated and optimized with `gifsicle`.
+
 ## Day 10
 ![Day 10 Part 2](pictures/anim10.gif)
 

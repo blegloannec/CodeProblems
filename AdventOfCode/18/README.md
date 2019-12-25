@@ -1,6 +1,8 @@
 # Advent of Code 2018 in pictures
 
-Apparently [ranked 164th](https://www.reddit.com/r/adventofcode/comments/a9dh93/2018_complete_global_leaderboard/) competing only a few days for the fun of it.
+Apparently [ranked 164th](https://www.reddit.com/r/adventofcode/comments/a9dh93/2018_complete_global_leaderboard/) while competing only a few days for the fun of it.
+
+GIF frames generated using Python Imaging Library (PIL), animated using ImageMagick's `convert`, optimized with `gifsicle -O3`.
 
 ## Day 6
 ![Day 6 Part 1](pictures/diagram6.png)

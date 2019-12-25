@@ -79,7 +79,7 @@ T = 0
 def frame(x,y):
     global T
     Pix[x,y] = Col[-1]
-    Img.resize((4*S,4*S)).save('anim15/frame%04d.gif' % T)
+    Img.resize((6*S,6*S)).save('anim15/frame%04d.gif' % T)
     Pix[x,y] = Col[Map[x][y]]
     T += 1
 
