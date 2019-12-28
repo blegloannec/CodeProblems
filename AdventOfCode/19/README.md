@@ -21,3 +21,7 @@ GIF frames generated using Python Imaging Library (PIL), animated and optimized 
 
 ## Day 20
 ![Day 20 Part 1](pictures/anim20.gif)
+
+## Day 24
+Every two steps (otherwise it blinks a lot) of the cellular automaton on a 100×100 torus:
+![Day 24 CA](pictures/anim24.gif)
