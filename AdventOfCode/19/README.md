@@ -10,6 +10,9 @@ GIF frames generated using Python Imaging Library (PIL), animated and optimized 
 ## Day 11
 ![Day 11 Part 2](pictures/anim11.gif)
 
+## Day 12
+![Day 12 Part 1](pictures/anim12.gif)
+
 ## Day 13
 ![Day 13 Part 2](pictures/anim13.gif)
 
