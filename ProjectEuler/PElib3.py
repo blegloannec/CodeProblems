@@ -21,7 +21,7 @@ def sieve(N):
     P[0] = P[1] = False
     for i in range(2,int(sqrt(N))+1):
         if P[i]:
-            for k in range(2*i,N,i):
+            for k in range(i*i,N,i):
                 P[k] = False
     return P
 
@@ -32,7 +32,7 @@ def sieve_list(N):
     for i in range(2,N):
         if P[i]:
             L.append(i)
-            for k in range(2*i,N,i):
+            for k in range(i*i,N,i):
                 P[k] = False
     return L
 
