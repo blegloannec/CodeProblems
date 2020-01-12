@@ -9,10 +9,10 @@ int sieve() {
   int cpt = 0;
   P.resize(N+1,true);
   P[0] = P[1] = false;
-  for (int i=2; i<=N; ++i)
+  for (long long i=2; i<=N; ++i)
     if (P[i]) {
       ++cpt;
-      for (int k=2*i; k<=N; k+=i)
+      for (long long k=2*i; k<=N; k+=i)
 	P[k] = false;
     }
   return cpt;

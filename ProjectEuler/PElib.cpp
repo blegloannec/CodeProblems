@@ -33,9 +33,9 @@ ent inv_mod(ent a, ent n) {
 vector<bool> P(N,true);
 void sieve() {
   P[0] = P[1] = false;
-  for (int i=2; i*i<N; ++i)
+  for (long long i=2; i*i<N; ++i)
     if (P[i])
-      for (int k=i*i; k<N; k+=i)
+      for (long long k=i*i; k<N; k+=i)
 	P[k] = false;
 }
 
@@ -43,10 +43,10 @@ vector<bool> P(N,true);
 vector<int> F;
 void sieve_smallest_factor() {
   P[0] = P[1] = false;
-  for (int i=2; i<N; ++i)
+  for (long long i=2; i<N; ++i)
     if (P[i]) {
       F[i] = i;
-      for (int k=i*i; k<N; k+=i)
+      for (long long k=i*i; k<N; k+=i)
 	if (P[k]) {
 	  P[k] = false;
 	  F[k] = i;
