@@ -11,8 +11,7 @@ def AES_CBC_encrypt(Key, IV, M):
 
 def PKCS7_pad(M, BS=16):
     r = len(M)%BS
-    if r>0:
-        M += bytes([BS-r]*(BS-r))
+    M += bytes([BS-r]*(BS-r))
     return M
 
 if __name__=='__main__':

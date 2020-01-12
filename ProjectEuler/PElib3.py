@@ -94,19 +94,14 @@ def eulerphi(n, decomp):
 # ou encore
 def sieve_totient(N):
     P = [True]*N
-    Totient = [1]*N
+    Totient = list(range(N))
     P[0] = P[1] = False
     for i in range(2,N):
         if P[i]:
             Totient[i] = i-1
             for k in range(2*i,N,i):
                 P[k] = False
-                m = 1
-                l = k//i
-                while l%i==0:
-                    l //= i
-                    m *= i
-                Totient[k] *= (i-1)*m
+                Totient[k] *= (i-1)*Totient[k]//i
     return P,Totient
 
 

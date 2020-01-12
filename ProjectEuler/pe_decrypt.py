@@ -10,8 +10,9 @@ def AES_CBC_decrypt(Key, IV, M):
     return C.decrypt(M)
 
 def PKCS7_unpad(M, BS=16):
-    assert len(M)%BS==0
-    if M and M[-1]<BS:
+    if M:
+        assert len(M)%BS==0
+        assert 0<M[-1]<=BS
         assert all(M[i]==M[-1] for i in range(len(M)-M[-1],len(M)-1))
         M = M[:-M[-1]]
     return M
