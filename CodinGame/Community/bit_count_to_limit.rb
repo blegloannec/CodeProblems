@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
 
-N = n = gets.to_i + 1
+m = gets.to_i
+n = m+1
 cnt1 = 0
 p2 = 1
-while n!=0
-    q,r = N.divmod p2
-    cnt1 += (q/2)*p2 + (q%2)*r
+while m!=0
+    q,r     = n.divmod p2
+    blk,par = q.divmod 2
+    cnt1 += blk*p2 + par*r
     p2 <<= 1
-    n >>= 1
+    m  >>= 1
 end
 puts cnt1
