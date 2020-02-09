@@ -1,7 +1,7 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 def majuscule(c):
-    return ord('A')<=ord(c)<=ord('Z')
+    return 'A'<=c<='Z'
 
 def c2i(c):
     return ord(c)-ord('A')
@@ -44,26 +44,26 @@ class Reflecteur:
     def __init__(self, permut):
         self.permut = permut
 
-    def chiffre(self,c):
+    def chiffre(self, c):
         return self.permut[c]
 
 
 class Brouilleur:
     def __init__(self):
-        self.permut = range(26)
+        self.permut = list(range(26))
 
-    def chiffre(self,c):
+    def chiffre(self, c):
         return self.permut[c]
 
-    def ajoute_fiche(self,a,b):
-        for c in [a,b]:
-            assert(self.permut[c]!=c)
+    def ajoute_fiche(self, a, b):
+        for c in (a,b):
+            assert self.permut[c]!=c
         self.permut[a] = b
         self.permut[b] = a
 
-    def retire_fiche(self,a):
+    def retire_fiche(self, a):
         b = self.permut[a]
-        assert(a!=b)
+        assert a!=b
         self.permut[a] = a
         self.permut[b] = b
 
@@ -76,7 +76,15 @@ class Enigma:
 
     def chiffre(self, c):
         self.rotors[0].incr()
-        d = i2c(self.brouilleur.chiffre(self.rotors[0].chiffre_inv(self.rotors[1].chiffre_inv(self.rotors[2].chiffre_inv(self.reflecteur.chiffre(self.rotors[2].chiffre(self.rotors[1].chiffre(self.rotors[0].chiffre(self.brouilleur.chiffre(c2i(c)))))))))))
+        d = i2c(self.brouilleur.chiffre(    \
+                self.rotors[0].chiffre_inv( \
+                self.rotors[1].chiffre_inv( \
+                self.rotors[2].chiffre_inv( \
+                self.reflecteur.chiffre(    \
+                self.rotors[2].chiffre(     \
+                self.rotors[1].chiffre(     \
+                self.rotors[0].chiffre(     \
+                self.brouilleur.chiffre(c2i(c)))))))))))
         if self.rotors[1].pos==self.rotors[1].trigger:
             self.rotors[1].incr()
             self.rotors[2].incr()
@@ -116,15 +124,15 @@ def parse_permut(S):
     return P
 
 def main():
-    r0 = parse_permut(raw_input())
-    t0 = c2i(raw_input())
-    r1 = parse_permut(raw_input())
-    t1 = c2i(raw_input())
-    r2 = parse_permut(raw_input())
-    t2 = c2i(raw_input())
-    r = parse_permut(raw_input())
-    clef = raw_input().split()
-    mess = raw_input()
+    r0 = parse_permut(input())
+    t0 = c2i(input())
+    r1 = parse_permut(input())
+    t1 = c2i(input())
+    r2 = parse_permut(input())
+    t2 = c2i(input())
+    r = parse_permut(input())
+    clef = input().split()
+    mess = input()
     E = Enigma(r0,t0,r1,t1,r2,t2,r)
     E.clef(clef)
     print(E.chiffre_mess(mess))
