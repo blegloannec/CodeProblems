@@ -3,7 +3,6 @@
 import re, sys
 from collections import defaultdict
 
-Noun = {}
 Context = {}
 Stack = defaultdict(list)
 
@@ -61,7 +60,8 @@ def parseConst(i):
         x <<= 1
         i += 1
     if i<len(line):
-        x *= Noun[line[i]]
+        if line[i] in Bad:
+            x = -x
         i += 1
     else:
         x = None
@@ -69,14 +69,11 @@ def parseConst(i):
     return x,i
 
 def main():
-    global speaker, line
+    global speaker, line, Noun, Bad
     numGood,numBad = map(int,input().split())
-    Good = input().split()
-    Bad = input().split()
-    for w in Good:
-        Noun[w] = 1
-    for w in Bad:
-        Noun[w] = -1
+    Noun = input().lower().split()
+    Bad = input().lower().split()
+    Noun += Bad
     numLines = int(input())
     for _ in range(numLines):
         line = re.sub(r"[,;.?!']", '', input().lower()).split()
