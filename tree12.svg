@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="800" height="500">
 <polygon points="400.000,490.000 514.286,490.000 514.286,375.714 400.000,375.714" style="fill:rgb(0,50,0);"/>
 <polygon points="400.000,375.714 473.143,320.857 418.286,247.714 345.143,302.571" style="fill:rgb(0,67,0);"/>
