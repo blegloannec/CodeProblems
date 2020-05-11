@@ -23,7 +23,7 @@ struct point {
   ent x,y;
   point(ent x, ent y) : x(x), y(y) {}
   point operator-(const point &A) const {
-    return point(-(x-A.x), -(y-A.y));
+    return point(x-A.x, y-A.y);
   }
   ent operator*(const point &A) const {
     return x*A.y - y*A.x;

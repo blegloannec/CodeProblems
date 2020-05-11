@@ -23,7 +23,6 @@ int sign(double x) {
 
 // recycled from cleaningpipes.cpp
 bool intersect(const point &A1, const point &B1, const point &A2, const point &B2) {
-  //if (A1==A2 || A1==B2 || B1==A2 || B2==A2) return true;
   point V1 = B1-A1, V2 = B2-A2;
   if (V1*V2==0) return false; // // or aligned
   // general case: testing sides
@@ -32,29 +31,39 @@ bool intersect(const point &A1, const point &B1, const point &A2, const point &B
 }
 
 int main() {
-  while (true) {
-    int N;
-    cin >> N;
-    if (N<=0) break;
-    vector<point> A,B;
-    for (int i=0; i<N; ++i) {
-      double x1,y1,x2,y2;
-      cin >> x1 >> y1 >> x2 >> y2;
-      A.push_back(point(x1,y1));
-      B.push_back(point(x2,y2));
+  int T;
+  cin >> T;
+  for (int t=0; t<T; ++t) {
+    int H,W;
+    cin >> H >> W;
+    double X,Y,S;
+    cin >> X >> Y >> S;
+    point DA1(X,Y), DB1(X+S,Y+S), DA2(X,Y+S), DB2(X+S,Y);
+    vector<point> P;
+    for (int i=0; i<=H; ++i) {
+      P.push_back(point(i,0));
+      P.push_back(point(i,W));
     }
+    for (int i=1; i<W; ++i) {
+      P.push_back(point(0,i));
+      P.push_back(point(H,i));
+    }
+    int N = P.size();
+    vector< vector<bool> > I(N, vector<bool>(N, false));
+    for (int i=0; i<N; ++i)
+      for (int j=i+1; j<N; ++j)
+	I[i][j] = I[j][i] = intersect(P[i],P[j],DA1,DB1) || intersect(P[i],P[j],DA2,DB2);
     int cnt = 0;
-    vector< vector<bool> > I(N, vector<bool>(N));
     for (int i=0; i<N; ++i)
       for (int j=i+1; j<N; ++j)
-	I[i][j] = intersect(A[i],B[i],A[j],B[j]);
-    for (int i=0; i<N; ++i)
-      for (int j=i+1; j<N; ++j)
-	if (I[i][j])
+	if (!I[i][j])
 	  for (int k=j+1; k<N; ++k)
-	    if (I[i][k] && I[j][k])
+	    if (!I[i][k] && !I[j][k] &&
+		!(P[i].x==P[j].x && P[j].x==P[k].x) &&
+		!(P[i].y==P[j].y && P[j].y==P[k].y)) {
 	      ++cnt;
-    cout << cnt << "\n";
+	    }
+    cout << cnt << endl;
   }
   return 0;
 }
