@@ -44,6 +44,7 @@ def main():
     T = int(input())
     for _ in range(T):
         p,q = map(int,input().split())
-        print(bfs(p,q))
+        d = bfs(p,q)
+        print(d if d>=0 else 'Impossible')
 
 main()

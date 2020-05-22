@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# see also blowingcandles.py for a harder variant
+
 from math import sqrt
 
 dist = lambda x,y: sqrt(x*x + y*y)
@@ -14,6 +16,7 @@ def main():
         n = dist(x0, y0)
         nx, ny = -y0/n, x0/n
         d = 0.
+        # naive O(N) search, could be ternary searched (see blowingcandles.py)
         for k in range(N):
             if k!=i and k!=j:
                 x1, y1 = P[k][0]-P[i][0], P[k][1]-P[i][1]
