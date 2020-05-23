@@ -22,39 +22,38 @@ def andrew(S):
         while len(bot)>=2 and not left_turn(bot[-2],bot[-1],p):
             bot.pop()
         bot.append(p)
-    return bot[:-1]+top[:0:-1]
+    bot.pop()
+    bot += top[:0:-1]
+    return bot
 
 # recycled and improved from playingtheslots
-def ternary_search(P, i):
+# O(N) by a rotating-calipers-like technique
+def rotating_edge_vertex_dist(P):
     N = len(P)
-    j = (i+1)%N
-    xi,yi = P[i]
-    x0, y0 = P[j][0]-xi, P[j][1]-yi
-    n = dist(x0, y0)
-    nx, ny = -y0/n, x0/n
-    l, r = i+2, i+N-1
-    while l%N!=r%N:
-        m1 = (l+r)//2
-        k = m1%N
-        d1 = abs((P[k][0]-xi)*nx + (P[k][1]-yi)*ny)
-        m2 = m1+1
-        k = m2%N
-        d2 = abs((P[k][0]-xi)*nx + (P[k][1]-yi)*ny)
-        if d1==d2:
-            l = r = m1
-        elif d1<d2:
-            l = m2
-        else:
-            r = m1
-    k = l%N
-    return abs((P[k][0]-xi)*nx + (P[k][1]-yi)*ny)
+    dmin = float('inf')
+    k = 1  # furthest vertex from current edge
+    for i in range(N):
+        xi,yi = P[i]
+        j = (i+1)%N
+        x0, y0 = P[j][0]-xi, P[j][1]-yi  # current edge
+        n = dist(x0, y0)
+        nx, ny = -y0/n, x0/n
+        dk = abs((P[k][0]-xi)*nx + (P[k][1]-yi)*ny)
+        l = (k+1)%N
+        dl = abs((P[l][0]-xi)*nx + (P[l][1]-yi)*ny)
+        while l!=i and dl>=dk:
+            k, dk = l, dl
+            l = (k+1)%N
+            dl = abs((P[l][0]-xi)*nx + (P[l][1]-yi)*ny)
+        dmin = min(dmin, dk)
+    return dmin
 
 def main():
     N,_ = map(int, input().split())
     P = [tuple(map(int, input().split())) for _ in range(N)]
     P = [(float(x),float(y)) for x,y in andrew(P)]
     N = len(P)
-    min_diam = 0. if N<=2 else min(ternary_search(P,i) for i in range(N))
+    min_diam = 0. if N<=2 else rotating_edge_vertex_dist(P)
     print(min_diam)
 
 main()

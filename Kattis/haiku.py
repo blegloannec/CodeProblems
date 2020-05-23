@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# ideal problem for a trie? let's use hashing then!
-# actually we barely need it size the max size of things to hash is 7
+# ideal problem for a trie? use hashing then!..
+# actually barely needed as the max length of words to hash is 7
 HB = 29
 HS = 7
 
