@@ -26,8 +26,8 @@ def send_pt_recv(p):
 def rand_pt():
     return (random.randint(-S,S), random.randint(-S,S))
 
-make_pt_x = lambda y: lambda x : (x,y)
-make_pt_y = lambda x: lambda y : (x,y)
+make_pt_x = lambda y: lambda x: (x,y)
+make_pt_y = lambda x: lambda y: (x,y)
 
 class CenterFound(Exception):
     pass
@@ -58,20 +58,15 @@ def case():
     # binary searching for the horizontal and vertical borders
     # of the circle from that point
     try:
-        xl = dicho(-S, x0, 'MISS', make_pt_x(y0))
+        xl = dicho(-S, x0, 'MISS', make_pt_x(y0))+1
         xr = dicho(x0,  S,  'HIT', make_pt_x(y0))
-        yl = dicho(-S, y0, 'MISS', make_pt_y(x0))
+        yl = dicho(-S, y0, 'MISS', make_pt_y(x0))+1
         yr = dicho(y0,  S,  'HIT', make_pt_y(x0))
     except CenterFound:
         return True
-    # the center is approximately in the middle on both axis
-    xm = (xl+xr)//2
-    ym = (yl+yr)//2
-    for x in (xm, xm+1):
-        for y in (ym, ym+1):
-            if send_pt_recv((x,y))=='CENTER':
-                return True
-    return False
+    # the center is in the middle on both axis
+    c = ((xl+xr)//2, (yl+yr)//2)
+    return send_pt_recv(c)=='CENTER'
 
 def main():
     T,A,B = map(int, recv().split())
