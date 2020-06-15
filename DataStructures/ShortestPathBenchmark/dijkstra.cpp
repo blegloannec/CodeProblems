@@ -3,9 +3,10 @@
 
 vector<weight> dijkstra(const graph &G, int u0) {
   int n = G.size();
-  priority_queue< pair<int,weight> > Q;
-  vector<weight> Dist(n, MAX_WEIGHT);
+  vector<weight> Dist(n, INF);
   Dist[u0] = 0;
+  priority_queue< pair<int,weight> > Q;
+  Q.push(make_pair(-Dist[u0], u0));
   while (!Q.empty()) {
     weight d = -Q.top().first;
     int u = Q.top().second;

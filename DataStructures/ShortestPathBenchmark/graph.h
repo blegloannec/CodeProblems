@@ -11,6 +11,7 @@ typedef pair<int,weight> edge;
 #define _v_ first
 #define _w_ second
 #define MAX_WEIGHT LLONG_MAX
+const weight INF = MAX_WEIGHT;
 
 typedef vector< vector<edge> > graph;
 

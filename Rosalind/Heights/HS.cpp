@@ -22,7 +22,7 @@ void heapify(vector<int> &H) {
 int heap_pop(vector<int> &H) {
   assert(!H.empty());
   int root = H[0];
-  swap(H[(int)H.size()-1],H[0]);
+  H[0] = H.back();
   H.pop_back();
   percolate_down(H,0);
   return root;

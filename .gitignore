@@ -7,3 +7,5 @@
 *.cmi
 *.cmo
 *.cmx
+*.in
+in_*
