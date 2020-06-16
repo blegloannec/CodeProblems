@@ -43,43 +43,57 @@ graph generate_edge_proba(int n, double p, bool directed=true) {
   return G;
 }
 
-int main() {
+vector<double> test_graph(const graph &G, bool run_quad=true) {
+  vector<double> T;
+  {
+    double dt = -1;
+    if (run_quad) {
+      clock_t t0 = clock();
+      vector<weight> Dist0 = bellman_ford(G, 0);
+      clock_t t1 = clock();
+      dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
+    }
+    T.push_back(dt);
+  }
+  {
+    clock_t t0 = clock();
+    vector<weight> Dist1 = dijkstra(G, 0);
+    clock_t t1 = clock();
+    double dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
+    T.push_back(dt);
+  }
+  {
+    clock_t t0 = clock();
+    vector<weight> Dist2 = dijkstra_custom_heap(G, 0);
+    clock_t t1 = clock();
+    double dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
+    T.push_back(dt);
+  }
+  {
+    clock_t t0 = clock();
+    vector<weight> Dist3 = desopo_pape(G, 0);
+    clock_t t1 = clock();
+    double dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
+    T.push_back(dt);
+  }
+  return T;
+}
+
+/*
+vector<double> avg_edge_mode(int n, int m, int nb=50) {
+  vector<double> S;
+  for (int i=0; i<nb; ++i) {
+    vector<double> 
+  }
+  for (int i=0; i<4
+}
+*/
+
+int main(int argc, char *argv[]) {
   srand(time(NULL));
   //int n = 50000;
   //graph G = generate_random_edges(n, 2000*n);
   graph G = generate_edge_proba(10000, 0.3);
-  
-  clock_t t0, t1;
-  double dt;
-  
-  /*
-  t0 = clock();
-  vector<weight> Dist0 = bellman_ford(G, 0);
-  t1 = clock();
-  dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
-  cout << "BF " << dt << endl; 
-  */
-  
-  t0 = clock();
-  vector<weight> Dist1 = dijkstra(G, 0);
-  t1 = clock();
-  dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
-  cout << "Dij   " << dt << endl;
-  
-  t0 = clock();
-  vector<weight> Dist2 = dijkstra_custom_heap(G, 0);
-  t1 = clock();
-  dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
-  cout << "Dij2  " << dt << endl;
-  
-  t0 = clock();
-  vector<weight> Dist3 = desopo_pape(G, 0);
-  t1 = clock();
-  dt = (double)(t1-t0) / (double)CLOCKS_PER_SEC;
-  cout << "DP    " << dt << endl;
-  
-  //assert(Dist1==Dist0);
-  assert(Dist1==Dist2);
-  assert(Dist1==Dist3);
+  test_graph(G, false);
   return 0;
 }

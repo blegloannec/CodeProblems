@@ -2,6 +2,7 @@
 #include <cassert>
 
 
+const int NONE = -1;
 struct UpdatableHeap {  // custom updatable MIN heap
   int n, nmax;          // current size, max size
   vector<int> H, Idx;   // heap, index table
@@ -11,10 +12,10 @@ struct UpdatableHeap {  // custom updatable MIN heap
     n = 0;
     nmax = size;
     H.resize(nmax);
-    Idx.resize(nmax, -1);
+    Idx.resize(nmax, NONE);
     W.resize(nmax);
   }
-
+  
   bool empty() const {
     return n==0;
   }
@@ -59,7 +60,7 @@ struct UpdatableHeap {  // custom updatable MIN heap
   
   void set(int u, weight w) {  // push or update
     assert(0<=u && u<nmax);
-    if (Idx[u]<0) _push(u, w);
+    if (Idx[u]==NONE) _push(u, w);
     else _update(u,w);
   }
   
@@ -67,6 +68,7 @@ struct UpdatableHeap {  // custom updatable MIN heap
     assert(!H.empty());
     int root = H[0];
     _swap(0, n-1);
+    Idx[root] = NONE;
     --n;  // ~pop back
     _percolate_down(0);
     return root;
