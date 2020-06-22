@@ -45,7 +45,7 @@ def dijkstra(G, u0, uf):
             break
         if Dist[u]<d:
             continue
-        for v,w in G[u]:            
+        for v,w in G[u]:
             if d+w<Dist[v]:
                 Dist[v] = d+w
                 heappush(Q, (Dist[v],v))
