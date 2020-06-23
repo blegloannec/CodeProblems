@@ -23,7 +23,7 @@ int sign(double x) {
 
 // recycled from cleaningpipes.cpp
 bool intersect(const point &A1, const point &B1, const point &A2, const point &B2) {
-  //if (A1==A2 || A1==B2 || B1==A2 || B2==A2) return true;
+  //if (A1==A2 || A1==B2 || B1==A2 || B1==B2) return true;
   point V1 = B1-A1, V2 = B2-A2;
   if (V1*V2==0) return false; // // or aligned
   // general case: testing sides
