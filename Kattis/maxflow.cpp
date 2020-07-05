@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <vector>
-#include <deque>
+#include <queue>
 #include <climits>
 using namespace std;
 
@@ -38,9 +38,10 @@ elem residual_dfs(vector<int> &Pred, int s, int t, elem min_flow=1) {
 elem binary_residual_dfs(vector<int> &Pred, int s, int t) {
   static int B = 30;  // largest B such that 2^B < expected flow
   while (B>=0) {
+    // looking for an augmenting flow >= 2^B
     elem f = residual_dfs(Pred, s, t, 1LL<<B);
     if (f>0) return f;
-    else --B;
+    else --B;  // otherwise decrement B
   }
   return 0;
 }
@@ -50,18 +51,18 @@ elem residual_bfs(vector<int> &Pred, int s, int t) {
   Pred[s] = s;
   vector<elem> ResF(N, 0);
   ResF[s] = INF;
-  deque<int> Q;
-  Q.push_back(s);
+  queue<int> Q;
+  Q.push(s);
   while (!Q.empty()) {
     int u = Q.front();
     if (u==t) break;
-    Q.pop_front();
+    Q.pop();
     for (int v : G[u]) {
       elem Ruv = C[u][v] - F[u][v];  // residual capacity
       if (Ruv>0 && Pred[v]<0) {
 	Pred[v] = u;
 	ResF[v] = min(ResF[u], Ruv);
-	Q.push_back(v);
+	Q.push(v);
       }
     }
   }
@@ -70,6 +71,7 @@ elem residual_bfs(vector<int> &Pred, int s, int t) {
 
 elem ford_fulkerson(int s, int t) {
   F.resize(N, vector<elem>(N, 0));
+  elem flow = 0;
   while (true) {
     vector<int> Pred;
     // classic Ford-Fulkerson in O(n * m * c)
@@ -79,6 +81,7 @@ elem ford_fulkerson(int s, int t) {
     // Edmonds-Karp in O(n * m^2)
     //elem f = residual_bfs(Pred, s, t);
     if (f==0) break;
+    flow += f;
     int v = t, u = Pred[t];
     while (u!=v) {
       F[u][v] += f;
@@ -86,10 +89,7 @@ elem ford_fulkerson(int s, int t) {
       v = u; u = Pred[v];
     }
   }
-  // computing flow
-  elem f = 0;
-  for (int v : G[s]) f += F[s][v];
-  return f;
+  return flow;
 }
 
 int main() {
