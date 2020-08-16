@@ -1,129 +1,242 @@
-Classic Puzzle (IN/OUT)
-
-Difficulty : Hard
-
-Title *
+===== BEGIN Title =====
 Harmless Rooks
-Title is mandatory
-Statement *
+=====  END  Title =====
 
-The <<rook>> is a chess piece that can move along its current line
-(horizontally) or column (vertically) through any number of free
-(unoccupied) squares. In this problem, we consider an [[N]] × [[N]]
-generalized chess board where the squares are either free ({{.}} in the
-input) or already occupied ({{X}} in the input) and hence cannot be
-crossed by the rooks. Compute the <<maximum number of rooks>> that can
-be placed on <<free squares>> in such a way that <<no two rooks threaten
-each other>> (hence two rooks on the same line/column must be separated
-by at least one occupied square).
-Statement is mandatory
-Cover
 
-UPLOAD
+===== BEGIN Statement =====
+The <<rook>> is a chess piece that can move along its current line (horizontally) or column (vertically) through any number of free (unoccupied) squares.
 
-  * Recommended size: 1920 x 1080px
-  * Recommended document type: JPEG, PNG, GIF
+In this problem, we consider an [[N]] × [[N]] generalized chess board where the squares are either free ({{.}} in the input) or already occupied ({{X}} in the input) and hence cannot be crossed by the rooks.
 
-Tags (up to 5)
+Compute the <<maximum number of rooks>> that can be placed on <<free squares>> in such a way that <<no two rooks threaten each other>> (hence two rooks on the same line/column must be separated by at least one occupied square).
+=====  END  Statement =====
 
-Optimization
-Difficulty *
 
-Difficulty is mandatory
-Input description *
+===== BEGIN Input Description =====
+<<Line 1:>> An integer [[N]], the size of the square board.
+<<Next [[N]] lines:>> A string of length [[N]] describing a line of the board, {{.}} indicates a free square and {{X}} an occupied one.
+=====  END  Input Description =====
 
-<<Line 1:>> An integer [[N]], the size of the square board. <<Next [[N]]
-lines:>> A string of length [[N]] describing a line of the board, {{.}}
-indicates a free square and {{X}} an occupied one.
-Input description is mandatory
-Output description *
 
-A single integer corresponding to the maximum number of rooks that can
-be placed on free squares without directly threatening each other.
-Output description is mandatory
-Constraints
+===== BEGIN Output Description =====
+A single integer corresponding to the maximum number of rooks that can be placed on free squares without directly threatening each other.
+=====  END  Output Description =====
 
+
+===== BEGIN Constraints =====
 1 ≤ [[N]] ≤ 99
-Constraints are mandatory
-Test cases *
+=====  END  Constraints =====
 
-Size 5
-Edit title
-Remove
 
-5 XX..X ....X XX.X. X.... ..... 6
-Validator 1
-Edit title
-5 .X.X. ..X.. ..X.X ....X X..X. 7
-------------------------------------------------------------------------
-Size 8
-Edit title
-Remove
+===== BEGIN Input Test 0 =====
+5
+XX..X
+....X
+XX.X.
+X....
+.....
 
-8 ........ ........ ..X...X. X.....X. .XX.X... X...X... ........
-..X....X 14
-Validator 2
-Edit title
-8 .X...... ...X.... ........ ........ ...X.... X..X.X.. ......X.
-.....X.. 12
-------------------------------------------------------------------------
-Size 16
-Edit title
-Remove
+=====  END  Input Test 0 =====
 
-16 .X......XXX..... .X.............X .....X.......... X..X.......X.X..
-..XX..X..X.XXX.X X............... ...X...X..X.X.X. .X.X..........XX
-...XX.XX....XX.. ....X...X.....X. .X......X....X.. .X.X...X.X..XX..
-.........X...... .X..X.X........X .X..X.X....X...X ..X............. 47
-Validator 3
-Edit title
-16 ..........XX.X.. X.X....X........ ..........X.XX.. X....XX.X..X...X
-X....XXXX...XX.. ........X...X... X......X.X.XX... .....X........X.
-..XX.XX....X.... X.....X...X.X... .XX....X........ XXX.....XXXX.XX.
-............X... ..X..X...X.X..X. .........XX..... .....X.........X 46
-------------------------------------------------------------------------
-Size 30
-Edit title
-Remove
 
-30 XXX.X.X.....X..X......X..X..X. X........XXX........XX...X....
-.X..XXXXXX.......X...X......X. ....X.....X.....X.X.X...X.X...
-.XXXX..X......XXX.X...X.X..... X..XXX...XX..X......X..X.....X
-....XX...XX..X..X....X......X. .......X..X...X............X.X
-X...X.X...X.......XX.X..X...X. ...XX........X.X..X.XX....X...
-.X.....X...X....X...X..X...... .X....X.....X.X..X..X.X......X
-...X......XX.XXX..X.XX.XXX.... X.....XX...X.X..............X.
-...X......X...X...X...X..X.... .XXX.X.....X...............X.X
-.XXX................X.X.XX.... ...X......XXX..X....X...X..X.X
-..XX...X..............X..X.XXX .X..X......X.........X.X.XXXX.
-X..X......X.....X.....XX....XX ..X.X.XX.........X.X.XX..XX...
-..XX...X....................XX ..X...XX........X.......X.X...
-...X..X..X.X....X..XX...X..X.. ....X..X.....X............X.X.
-.XX.XX...X.X..X........X...... X........XX..X..X....X....XX..
-X.X.X.....X..XX......X....X... ...X.......X.X..X...........X. 165
-Validator 4
-Edit title
-30 X.X....X..X.........X..X..X..X ......X.......X....X....X.....
-.X.XX..XX..X...X.XX.X..X...... .X..XX.....X.XX.....X......X..
-...X....XX......XX......X..... ..X.X........X.X..X...X.......
-.X......X.....X..X..X......... ...X..................X..XX...
-X.XX.X.......XX...XX....X...XX ..XX....XX.....X..X....XX...X.
-....X.X.X.X..X.............X.. ....XX.X.........X......X..X..
-X....X.....X..XX..XX....X...X. ..........X.X..X...XX..XXX..X.
-..X...X.XX...X....XX...XX..X.. .X...X.....X.X.X.X.....X.X....
-..X.X................X.X...... ........XXX........X....X.X.X.
-X....X..........X..X..X....... .X..X..XX......X..............
-X..XXXX..............X.X..X... X....X.....X..................
-....................X.....X..X ......X................X..X...
-.....XXXX......X..XXX..X.X.... .....XXX.X...X....XX..........
-.....X.....X.....XXXX.X.X....X ...X.X.........X..........X..X
-...X......X..XX....X.......... ....X...........X....XXX.X.... 150
-------------------------------------------------------------------------
-Size 50
-Edit title
-Remove
+===== BEGIN Output Test 0 =====
+6
+=====  END  Output Test 0 =====
 
-50 ..X..XX.X.....X...XX.X............X.XXXXX..X.X.XX.
+
+===== BEGIN Input Validator 0 =====
+5
+.X.X.
+..X..
+..X.X
+....X
+X..X.
+
+=====  END  Input Validator 0 =====
+
+
+===== BEGIN Output Validator 0 =====
+7
+=====  END  Output Validator 0 =====
+
+
+===== BEGIN Input Test 1 =====
+8
+........
+........
+..X...X.
+X.....X.
+.XX.X...
+X...X...
+........
+..X....X
+
+=====  END  Input Test 1 =====
+
+
+===== BEGIN Output Test 1 =====
+14
+=====  END  Output Test 1 =====
+
+
+===== BEGIN Input Validator 1 =====
+8
+.X......
+...X....
+........
+........
+...X....
+X..X.X..
+......X.
+.....X..
+
+=====  END  Input Validator 1 =====
+
+
+===== BEGIN Output Validator 1 =====
+12
+=====  END  Output Validator 1 =====
+
+
+===== BEGIN Input Test 2 =====
+16
+.X......XXX.....
+.X.............X
+.....X..........
+X..X.......X.X..
+..XX..X..X.XXX.X
+X...............
+...X...X..X.X.X.
+.X.X..........XX
+...XX.XX....XX..
+....X...X.....X.
+.X......X....X..
+.X.X...X.X..XX..
+.........X......
+.X..X.X........X
+.X..X.X....X...X
+..X.............
+
+=====  END  Input Test 2 =====
+
+
+===== BEGIN Output Test 2 =====
+47
+=====  END  Output Test 2 =====
+
+
+===== BEGIN Input Validator 2 =====
+16
+..........XX.X..
+X.X....X........
+..........X.XX..
+X....XX.X..X...X
+X....XXXX...XX..
+........X...X...
+X......X.X.XX...
+.....X........X.
+..XX.XX....X....
+X.....X...X.X...
+.XX....X........
+XXX.....XXXX.XX.
+............X...
+..X..X...X.X..X.
+.........XX.....
+.....X.........X
+
+=====  END  Input Validator 2 =====
+
+
+===== BEGIN Output Validator 2 =====
+46
+=====  END  Output Validator 2 =====
+
+
+===== BEGIN Input Test 3 =====
+30
+XXX.X.X.....X..X......X..X..X.
+X........XXX........XX...X....
+.X..XXXXXX.......X...X......X.
+....X.....X.....X.X.X...X.X...
+.XXXX..X......XXX.X...X.X.....
+X..XXX...XX..X......X..X.....X
+....XX...XX..X..X....X......X.
+.......X..X...X............X.X
+X...X.X...X.......XX.X..X...X.
+...XX........X.X..X.XX....X...
+.X.....X...X....X...X..X......
+.X....X.....X.X..X..X.X......X
+...X......XX.XXX..X.XX.XXX....
+X.....XX...X.X..............X.
+...X......X...X...X...X..X....
+.XXX.X.....X...............X.X
+.XXX................X.X.XX....
+...X......XXX..X....X...X..X.X
+..XX...X..............X..X.XXX
+.X..X......X.........X.X.XXXX.
+X..X......X.....X.....XX....XX
+..X.X.XX.........X.X.XX..XX...
+..XX...X....................XX
+..X...XX........X.......X.X...
+...X..X..X.X....X..XX...X..X..
+....X..X.....X............X.X.
+.XX.XX...X.X..X........X......
+X........XX..X..X....X....XX..
+X.X.X.....X..XX......X....X...
+...X.......X.X..X...........X.
+
+=====  END  Input Test 3 =====
+
+
+===== BEGIN Output Test 3 =====
+165
+=====  END  Output Test 3 =====
+
+
+===== BEGIN Input Validator 3 =====
+30
+X.X....X..X.........X..X..X..X
+......X.......X....X....X.....
+.X.XX..XX..X...X.XX.X..X......
+.X..XX.....X.XX.....X......X..
+...X....XX......XX......X.....
+..X.X........X.X..X...X.......
+.X......X.....X..X..X.........
+...X..................X..XX...
+X.XX.X.......XX...XX....X...XX
+..XX....XX.....X..X....XX...X.
+....X.X.X.X..X.............X..
+....XX.X.........X......X..X..
+X....X.....X..XX..XX....X...X.
+..........X.X..X...XX..XXX..X.
+..X...X.XX...X....XX...XX..X..
+.X...X.....X.X.X.X.....X.X....
+..X.X................X.X......
+........XXX........X....X.X.X.
+X....X..........X..X..X.......
+.X..X..XX......X..............
+X..XXXX..............X.X..X...
+X....X.....X..................
+....................X.....X..X
+......X................X..X...
+.....XXXX......X..XXX..X.X....
+.....XXX.X...X....XX..........
+.....X.....X.....XXXX.X.X....X
+...X.X.........X..........X..X
+...X......X..XX....X..........
+....X...........X....XXX.X....
+
+=====  END  Input Validator 3 =====
+
+
+===== BEGIN Output Validator 3 =====
+150
+=====  END  Output Validator 3 =====
+
+
+===== BEGIN Input Test 4 =====
+50
+..X..XX.X.....X...XX.X............X.XXXXX..X.X.XX.
 ...X..X......X..XX.X.X.X.X.....X.........X...X....
 ....X.X.....X.XXX.......X..X...XXX.......X.....X..
 .X.....X....X..X....XX...X.XX...X........XX.......
@@ -172,10 +285,19 @@ X..XXXX.X........X.XXXX.X....X...X..XX.XX..XX.....
 .X.X.....X......XX..XX..X.....XX.X...X..X.X.......
 X.......X...X...X.......XX......X....X..XXX....X..
 ....XXX..X.X....X..X..X...X.X.X.....X.X..X.X..X..X
-......X....XX.X......XX...X..XX...XX.X..X....X.... 484
-Validator 5
-Edit title
-50 ...X.X..X.......XX.X.XX.....X..........X.XXX.XX.XX
+......X....XX.X......XX...X..XX...XX.X..X....X....
+
+=====  END  Input Test 4 =====
+
+
+===== BEGIN Output Test 4 =====
+484
+=====  END  Output Test 4 =====
+
+
+===== BEGIN Input Validator 4 =====
+50
+...X.X..X.......XX.X.XX.....X..........X.XXX.XX.XX
 .......X...XX..X.X.....X.X..X..X..............X...
 ....X...X.XX..XXX..X...XXX...X...X........X.X...X.
 .XXX...X..XX.X...XXX.X....XXXX..X...X....XX.XXX...
@@ -224,12 +346,17 @@ X......X.X..X.X...X...XXX.XX.........XXX.XX.....X.
 ..X.....X....XX.X.....X.X.X.........X....X.X.XX...
 ...X.....X..X......X..X.X.X.X.X......X.X.X.XX...X.
 X.X.....X.X.......XX.XX..X...XX.......X.XX..XXXX.X
-...XXX.X.....X...X...XXXX....XX.XXX....XXXX....... 489
-------------------------------------------------------------------------
-Size 99
-Edit title
-Remove
+...XXX.X.....X...X...XXXX....XX.XXX....XXXX.......
 
+=====  END  Input Validator 4 =====
+
+
+===== BEGIN Output Validator 4 =====
+489
+=====  END  Output Validator 4 =====
+
+
+===== BEGIN Input Test 5 =====
 99
 ..XX..XX....X...XXX....X....XX..X....XX.......XX...X.XX......XX...........X...X.....X..X..X....X...
 ....XX...X.X.X......XXX.X.X...X.X...XX..X..X............X...X...X..XXX..XXXXX.X..X.X...XX.X....XX..
@@ -330,9 +457,16 @@ X........XXX......X...XX......XXX...X.........X.XX.X......X..X.X..X....XX.X.X.X.
 X..X..XX..X.X..X..XXX...XX.XX..X..X.XX.............XXX..X..X........X.....X..X.X.X.X..X...X...XX...
 ...X..X..X..X......X..X..X.X.XX..X.X..X.X.XX...X...X......X.X....X...X...X....X........X.X.XX.X.XXX
 ....X..XX....X..X.XX..X....XX.......X.XXXX...................XX..XX..X.X.X......X..X....X..X.......
+
+=====  END  Input Test 5 =====
+
+
+===== BEGIN Output Test 5 =====
 1911
-Validator 6
-Edit title
+=====  END  Output Test 5 =====
+
+
+===== BEGIN Input Validator 5 =====
 99
 XX.....X............XX..XX....X.....X........X..X.X..X.XX.X..X....X...X...XX.X........X........XX.X
 ...X..........X.X.XX.XX....XXX...X.X....XX..X.X.....X..X....XXXX...X..X........XX.....X....XXX.....
@@ -433,12 +567,16 @@ X....XX.X...X....X......X......X.....X.X.X.XX........XX.X...X....X.XX.....XXX.XX
 X....XXXX...X...X.XXXX...X.XX.......XX..XX.......X...X..........XX..X.X.X.X.X.X..X....XX...XX.X.X..
 X..X.X....X..XX.XX.........XX.XX.XX.X..X...X.X.XX......X..XX..X.X.XXX.XX..X.....X.X.XX.XX...X......
 .XXXXX.X..X..XXX.X....XXX.....X....XX.X....XX.XX....XX.X..XX.XX.XX.X.X......X...X.XX..X.X.XXX.XX...
-1826
-------------------------------------------------------------------------
-Size 99
-Edit title
-Remove
 
+=====  END  Input Validator 5 =====
+
+
+===== BEGIN Output Validator 5 =====
+1826
+=====  END  Output Validator 5 =====
+
+
+===== BEGIN Input Test 6 =====
 99
 XX....X.X......X.......X..X.X..XXX.X....XX.X.X.X.....XXXX..X.XXX..X...X.......X..X..X..XXXXX.....X.
 XXX.X..XX.........XXXXX....X.X...X.........X.....XXX...XXX...X..XXXXX...X..X..X.....X..X.XX.X.X.X..
@@ -539,9 +677,16 @@ XXX.....X.XX.X.X..X.XX..XXXX.X.X......X..XXX.....X..XX...X........XX....X.X..X..
 X..X.X....X.XX.X....XXXX.X.X.X.X.XX.XX...X.XX....XX.....XX...X.X.........X..XX...XX.X...X....X...X.
 X....XXXX.....XX..X......X..X.XX.....XXX....XX..X........X......X..XX.X.XX......XX..X...X......XXX.
 ...X.....XX..X..XX......XXX.X.X..X...X..X.X..X......XX.X...XX...X..XX..X.XX.X.X...XX...XX........X.
+
+=====  END  Input Test 6 =====
+
+
+===== BEGIN Output Test 6 =====
 2018
-Validator 7
-Edit title
+=====  END  Output Test 6 =====
+
+
+===== BEGIN Input Validator 6 =====
 99
 XX.X..X.X.XXXX...X.XX.XXXXX.X...X....X.....XX..X.X.X.X.....X...XX.XX..XX..XX....X..X...X.X.X.XX..X.
 X............X..X..X.XX.X.X...X...XX....X.XXX.X.XXX.X.XX.XX......X..XX.X.XXX...XX.XX...XXXX.XX..XXX
@@ -642,12 +787,16 @@ X..XX..XXX..XXX..XX....XXX..XXXX...XX..XX........X...XX.X..X.X..X.X.XX.X.X.....X
 ....XXX..X....X......X.....XXXX.XXX.XXX..X.X...X..XX....X.....X..XX.XX...X.X..X.X.X...XXX...X.X....
 X.XX..XX.X.............XXX.X.XX.X.....X..X..XXXX....X...X...X.X.......XXX......XX.XXXXXXX..XXXX..X.
 ....XXX.XX....XXX.X...X..X.X.X.......XX.XX...XXXX.X..X..X.XXX.....X...X.X.....XX......XX....X.X.XX.
-2055
-------------------------------------------------------------------------
-Size 99
-Edit title
-Remove
 
+=====  END  Input Validator 6 =====
+
+
+===== BEGIN Output Validator 6 =====
+2055
+=====  END  Output Validator 6 =====
+
+
+===== BEGIN Input Test 7 =====
 99
 X...X...XXX.X...X.X.X....XX.XX.XX..X...X..XXXX.XXXX..X.X.XXXX.X.X...X..XX.XXXXX....XX...X...XXXX.X.
 ..XXXXX.......XXX.XX.XX.XXXXX..XX..X.XX.XX.XXX..X.X..X.X.XX...X..X.X....XXXX..X..X..XXX..XXX.X..X.X
@@ -748,9 +897,16 @@ X......XX.X...X......X..X.X.X..XX......XX..XX.......XX.X.X.X...XX..X.XXXXX.X.XXX
 ..XXXXX....XX.XXX.....X.XXXXX....XX.XXX..XX......XX.XXXX.X..X.X...XX.XXX....XX..X..XXX.XXX..X..XXXX
 X..XXX.X..XX.....X.....XXXXXX.X....XXXX..X.XX..X.XXX....XX..XX.X.X.XXXXX...X..XXX..X.XX...X..X..X.X
 .XXXXX.XXXX..XX...XXX.X.X..XXX.X..X.X..X....XXXXXXX.X.X.....XXXX..X...XXXX.....X....XXXXX...X.XXX..
+
+=====  END  Input Test 7 =====
+
+
+===== BEGIN Output Test 7 =====
 2076
-Validator 8
-Edit title
+=====  END  Output Test 7 =====
+
+
+===== BEGIN Input Validator 7 =====
 99
 XXX.X.XX.X..XXXX.XXXXXX..X...XX..XXX.X..XX.XX.XX...XXX.XXX.XXX..X.X.XXXXXX.XXXXX.XX.X..XXX....XXXX.
 .XX...X.XXXXX..X..X.X.XXX.X.X.X.XXXXX...XXXX....X..X...X.XX.XXX.XXXXX..XX...X..X.XX.XX.XXXX..XX.XXX
@@ -851,61 +1007,45 @@ X.XX.X.XXXX.XXXXX.....XX.XX..XXXXX.X.XXX........X.X....XXXXX..XX...X.X..X..XX...
 ..XX..X.XX.X.X.XXXX..X..XXX.XXXX.X.....X..X.XXXX.X...XXX..XX.X.XX..X.....X.X.X.XX.X...X.X..X.X....X
 X...XX..X.XXXXX...XX...XXXXXXXX..X....XXX..X.XXX.....XXXX.XX...XXX..XXXX...XX.X..XX.....X.XX..XX.XX
 XXX.X.XXX..XX..XX.X.X..XX....XXXXXX.X..XX..X..XXX.XX.X.X.XX..X..X.XXXXXX.X...X.X...X...X......X.X..
+
+=====  END  Input Validator 7 =====
+
+
+===== BEGIN Output Validator 7 =====
 2099
-------------------------------------------------------------------------
-Size 1
-Edit title
-Remove
+=====  END  Output Validator 7 =====
 
-1 . 1
-Validator 9
-Edit title
-1 X 0
-ADD A TEST CASE
-Solution language *
 
-Solution language is mandatory
-Solution *
-
-  
+===== BEGIN Input Test 8 =====
 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
+.
+=====  END  Input Test 8 =====
+
+
+===== BEGIN Output Test 8 =====
+1
+=====  END  Output Test 8 =====
+
+
+===== BEGIN Input Validator 8 =====
+1
+X
+=====  END  Input Validator 8 =====
+
+
+===== BEGIN Output Validator 8 =====
+0
+=====  END  Output Validator 8 =====
+
+
+===== BEGIN Solution Language =====
+string:Python3
+=====  END  Solution Language =====
+
+
+===== BEGIN Solution =====
 #!/usr/bin/env python3
+
 def aug(u,G,M,seen):
     for v in G[u]:
         if not seen[v]:
@@ -914,11 +1054,13 @@ def aug(u,G,M,seen):
                 M[v] = u
                 return True
     return False
+
 def bip_match(G,Us,Vs):
     M = [None]*Vs
     for u in range(Us):
         aug(u,G,M,[False]*Vs)
     return M
+
 def main():
     N = int(input())
     B = [input() for _ in range(N)]
@@ -939,13 +1081,19 @@ def main():
                 G[Lc].append(Cc[j])
             else:
                 Lc = Cc[j] = None
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-Solution is mandatory
-Stub generator input *
+    M = bip_match(G,L,C)
+    S = len(M) - M.count(None)
+    print(S)
 
-  
-1
-2
+main()
+
+=====  END  Solution =====
+
+
+===== BEGIN Stub =====
 read N:int
 loop N read ROW:string(N)
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+=====  END  Stub =====
+
+

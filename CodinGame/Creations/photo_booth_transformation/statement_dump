@@ -1,0 +1,460 @@
+===== BEGIN Title =====
+Photo Booth Transformation
+=====  END  Title =====
+
+
+===== BEGIN Statement =====
+Given a [[W]]×[[H]] image, with [[W]] and [[H]] both even, we define its <<photo booth transformation>> as the image obtained after the following process:
+ - Divide the image into 2×2 blocks (which is possible as both dimensions are even);
+ - Build four [[W]]/2×[[H]]/2 images by gathering the top-left pixels of each block into one image (following the blocks ordering) and similarly the top-right / bottom-left / bottom-right pixels into three other images;
+ - Glue together these four images (following the inside-block ordering) to obtain a new [[W]]×[[H]] image.
+
+<<Example:>> 6×4 image```┌──────┐      ┌──┬──┬──┐      ┌───┬───┐      ┌──────┐
+│ABCDEF│      │AB│CD│EF│      │ACE│BDF│      │ACEBDF│
+│GHIJKL│      │GH│IJ│KL│      │MOQ│NPR│      │MOQNPR│
+│MNOPQR│  ~>  ├──┼──┼──┤  ~>  ├───┼───┤  ~>  │GIKHJL│
+│STUVWX│      │MN│OP│QR│      │GIK│HJL│      │SUWTVX│
+└──────┘      │ST│UV│WX│      │SUW│TVX│      └──────┘
+              └──┴──┴──┘      └───┴───┘```This transformation results in an image which contains four reduced versions of the original image, though none of them have a single a pixel in common (each of them contains exactly 1/4 of the original pixels).
+
+<<Illustrations:>>
+- https://i.imgur.com/632iL82.png
+- https://i.imgur.com/nK8s3c7.png
+- https://i.imgur.com/rMfqTYM.png
+
+Iterating this transform from a given image always brings us back to the original image after a (positive) number of steps that we call a <<period>> of the image.
+
+Given some even dimensions [[W]] and [[H]], <<what is the minimum period common to all [[W]]×[[H]] images?>>
+
+<<Back to the example:>> Assuming all pixel values are distinct, we have:```┌──────┐    ┌──────┐    ┌──────┐    ┌──────┐    ┌──────┐
+│ABCDEF│    │ACEBDF│    │AEDCBF│    │ADBECF│    │ABCDEF│
+│GHIJKL│    │MOQNPR│    │GKJIHL│    │MPNQOR│    │GHIJKL│
+│MNOPQR│ ~> │GIKHJL│ ~> │MQPONR│ ~> │GJHKIL│ ~> │MNOPQR│
+│STUVWX│    │SUWTVX│    │SWVUTX│    │SVTWUX│    │STUVWX│
+└──────┘    └──────┘    └──────┘    └──────┘    └──────┘```Hence the minimum period is <<4>>.
+
+<<Additional illustrations (and references in French):>>
+ - http://www.lifl.fr/~pmathieu/transform/joc_phot.html
+ - http://www.lifl.fr/~pmathieu/transform/earth_phot.html
+=====  END  Statement =====
+
+
+===== BEGIN Input Description =====
+<<Line 1:>> One single integer [[T]] for the number of testcases to follow.
+<<Next [[T]] lines:>> Two space-separated integers [[Wi]] and [[Hi]] corresponding to the width and height of the image.
+=====  END  Input Description =====
+
+
+===== BEGIN Output Description =====
+<<[[T]] lines:>> One single integer corresponding to the period of the photo booth map on [[Wi]]×[[Hi]] images.
+=====  END  Output Description =====
+
+
+===== BEGIN Constraints =====
+1 ≤ [[T]] ≤ 10
+2 ≤ [[W]], [[H]] ≤ 2000
+Both [[W]] and [[H]] are even.
+=====  END  Constraints =====
+
+
+===== BEGIN Input Test 0 =====
+2
+6 4
+4 6
+
+=====  END  Input Test 0 =====
+
+
+===== BEGIN Output Test 0 =====
+4
+4
+
+=====  END  Output Test 0 =====
+
+
+===== BEGIN Input Validator 0 =====
+2
+8 2
+2 8
+
+=====  END  Input Validator 0 =====
+
+
+===== BEGIN Output Validator 0 =====
+3
+3
+
+=====  END  Output Validator 0 =====
+
+
+===== BEGIN Input Test 1 =====
+10
+2 4
+6 10
+2 4
+4 8
+8 10
+6 6
+6 6
+2 10
+2 8
+4 2
+
+=====  END  Input Test 1 =====
+
+
+===== BEGIN Output Test 1 =====
+2
+12
+2
+6
+6
+4
+4
+6
+3
+2
+
+=====  END  Output Test 1 =====
+
+
+===== BEGIN Input Validator 1 =====
+10
+2 4
+2 10
+4 4
+4 8
+10 4
+4 6
+4 4
+10 6
+4 2
+10 6
+
+=====  END  Input Validator 1 =====
+
+
+===== BEGIN Output Validator 1 =====
+2
+6
+2
+6
+6
+4
+2
+12
+2
+12
+
+=====  END  Output Validator 1 =====
+
+
+===== BEGIN Input Test 2 =====
+10
+16 16
+18 8
+14 2
+6 20
+14 6
+20 12
+2 10
+20 14
+14 12
+16 8
+
+=====  END  Input Test 2 =====
+
+
+===== BEGIN Output Test 2 =====
+4
+24
+12
+36
+12
+90
+6
+36
+60
+12
+
+=====  END  Output Test 2 =====
+
+
+===== BEGIN Input Validator 2 =====
+10
+18 8
+10 16
+10 14
+8 10
+12 8
+4 10
+14 8
+4 18
+18 18
+16 12
+
+=====  END  Input Validator 2 =====
+
+
+===== BEGIN Output Validator 2 =====
+24
+12
+12
+6
+30
+6
+12
+8
+8
+20
+
+=====  END  Output Validator 2 =====
+
+
+===== BEGIN Input Test 3 =====
+5
+46 74
+64 88
+44 80
+48 18
+50 44
+
+=====  END  Input Test 3 =====
+
+
+===== BEGIN Output Test 3 =====
+36
+84
+546
+184
+42
+
+=====  END  Output Test 3 =====
+
+
+===== BEGIN Input Validator 3 =====
+5
+46 78
+2 28
+86 14
+90 2
+68 72
+
+=====  END  Input Validator 3 =====
+
+
+===== BEGIN Output Validator 3 =====
+60
+18
+24
+11
+2310
+
+=====  END  Output Validator 3 =====
+
+
+===== BEGIN Input Test 4 =====
+7
+84 354
+368 336
+344 70
+98 486
+32 274
+100 338
+434 62
+
+=====  END  Input Test 4 =====
+
+
+===== BEGIN Output Test 4 =====
+3608
+8052
+3234
+48
+60
+210
+360
+
+=====  END  Output Test 4 =====
+
+
+===== BEGIN Input Validator 4 =====
+7
+30 146
+164 220
+40 70
+406 266
+270 214
+178 16
+32 154
+
+=====  END  Input Validator 4 =====
+
+
+===== BEGIN Output Validator 4 =====
+28
+162
+132
+1404
+9380
+116
+120
+
+=====  END  Output Validator 4 =====
+
+
+===== BEGIN Input Test 5 =====
+5
+604 958
+172 446
+538 918
+280 234
+170 622
+
+=====  END  Input Test 5 =====
+
+
+===== BEGIN Output Test 5 =====
+4620
+396
+34710
+870
+5148
+
+=====  END  Output Test 5 =====
+
+
+===== BEGIN Input Validator 5 =====
+5
+258 518
+526 150
+396 416
+262 660
+438 42
+
+=====  END  Input Validator 5 =====
+
+
+===== BEGIN Output Validator 5 =====
+1840
+2220
+6396
+3948
+1980
+
+=====  END  Output Validator 5 =====
+
+
+===== BEGIN Input Test 6 =====
+3
+1716 638
+462 110
+1178 1632
+
+=====  END  Input Test 6 =====
+
+
+===== BEGIN Output Test 6 =====
+588
+4140
+46110
+
+=====  END  Output Test 6 =====
+
+
+===== BEGIN Input Validator 6 =====
+3
+378 468
+460 150
+1056 1246
+
+=====  END  Input Validator 6 =====
+
+
+===== BEGIN Output Validator 6 =====
+19572
+2664
+17220
+
+=====  END  Output Validator 6 =====
+
+
+===== BEGIN Solution Language =====
+string:Python3
+=====  END  Solution Language =====
+
+
+===== BEGIN Solution =====
+#!/usr/bin/env python3
+
+from math import gcd
+
+lcm = lambda a,b: a*b//gcd(a,b)
+
+photobooth = lambda w,h: lambda x,y: (x//2+(x%2)*(w//2), y//2+(y%2)*(h//2))
+
+# period of a permutation = LCM of the sizes of its cycles
+def permutation_period(P):
+    per = 1
+    Seen = [False]*len(P)
+    for i in range(len(P)):
+        if not Seen[i]:
+            c = 0
+            while not Seen[i]:
+                Seen[i] = True
+                c += 1
+                i = P[i]
+            per = lcm(per,c)
+    return per
+
+# O(w*h) approach (expected)
+def solution2d(w,h):
+    F = photobooth(w,h)
+    idx = lambda x,y: x*h+y
+    P = [idx(*F(*divmod(i,h))) for i in range(w*h)]
+    return permutation_period(P)
+
+# O(w+h) approach noticing both dimensions are independent
+def solution1d(w,h):
+    F = photobooth(w,h)
+    Px = [F(x,0)[0] for x in range(w)]
+    Py = [F(0,y)[1] for y in range(h)]
+    return lcm(permutation_period(Px), permutation_period(Py))
+
+# There is also a "formula" for the period of the 1d-permutations
+# (period on one dimension w = multiplicative order of 2 mod w-1)
+# - ad-hoc proof (in French):
+#   https://fr.wikipedia.org/wiki/Transformation_du_clich%C3%A9_Photomaton
+# - or notice the 1d-perm. is the inverse of a classic cards "faro shuffle":
+#   https://en.wikipedia.org/wiki/Faro_shuffle
+def solution_formula(w,h):
+    l = 1
+    for d in (w-1, h-1):
+        if d>1:
+            # multiplicative order of 2 mod d (odd), computed "naively"
+            k, p = 2, 1
+            while k!=1:
+                k = (2*k)%d
+                p += 1
+            l = lcm(l,p)
+    return l
+
+def main():
+    T = int(input())
+    for _ in range(T):
+        w,h = map(int,input().split())
+        print(solution2d(w,h))
+        #print(solution1d(w,h))
+        #print(solution_formula(w,h))
+
+main()
+=====  END  Solution =====
+
+
+===== BEGIN Stub =====
+read T:int
+loop T read W:int H:int
+write 0
+=====  END  Stub =====
+
+
