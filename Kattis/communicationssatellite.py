@@ -10,11 +10,12 @@ def dist(i,j):
     dx = xi-xj; dy = yi-yj
     return sqrt(dx*dx+dy*dy)-ri-rj
 
-def prim():
+def prim(u0=0):
     mst = 0.
-    Q = [(0.,0)]
     Seen = [False]*N
     Dist = [float('inf')]*N
+    Dist[u0] = 0.
+    Q = [(0.,u0)]
     while Q:
         d,u = heappop(Q)
         if Seen[u]:
