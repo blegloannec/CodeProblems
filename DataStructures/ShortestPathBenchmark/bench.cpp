@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cstdio>
 #include <cstdlib>
 #include <ctime>
 #include <cassert>
@@ -79,21 +79,32 @@ vector<double> test_graph(const graph &G, bool run_quad=true) {
   return T;
 }
 
-/*
-vector<double> avg_edge_mode(int n, int m, int nb=50) {
-  vector<double> S;
-  for (int i=0; i<nb; ++i) {
-    vector<double> 
+void test1(int nb=25) {
+  vector<int> N {1000, 10000, 100000, 1000000};
+  for (int n : N) {
+    bool quad = (n<=5000);
+    vector<double> T(4, 0.);
+    for (int t=0; t<nb; ++t) {
+      int f = (rand()%3)+2;
+      graph G = generate_random_edges(n, f*n);
+      vector<double> T0 = test_graph(G, quad);
+      for (int i=0; i<4; ++i) T[i] += T0[i];
+    }
+    if (!quad) printf("\t");
+    for (int i=(quad?0:1); i<4; ++i) {
+      T[i] /= nb;
+      printf("%.6lf%c", T[i], (i==3?'\n':'\t'));
+    }
+    printf("\n");
   }
-  for (int i=0; i<4
 }
-*/
 
 int main(int argc, char *argv[]) {
   srand(time(NULL));
-  //int n = 50000;
-  //graph G = generate_random_edges(n, 2000*n);
-  graph G = generate_edge_proba(10000, 0.3);
-  test_graph(G, false);
+  /*
+    graph G = generate_edge_proba(10000, 0.3);
+    test_graph(G, false);
+  */
+  test1();
   return 0;
 }
