@@ -1,5 +1,5 @@
 (*
-  Faster code using Hashtbl
+  Code using Hashtbl (~ same perf.)
   /!\ the initial size given to the table at creation is crucial as
       it affects the cost of Hashtbl.reset / Hashtbl.clear
 *)
