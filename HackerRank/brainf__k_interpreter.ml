@@ -4,7 +4,7 @@
    - arrays for the program/input as they are static anyway
 *)
 type token = NOP | LEFT | RIGHT | PLUS | MINUS | DOT | COMMA | LBRACK of int | RBRACK of int
-and program = token array
+type program = token array
 type tape = Blank | Cell of tape * int * tape
 
 (* when moving left/right, we have to recreate the left/right neighbor
@@ -79,8 +79,9 @@ let parse_program : string -> program = fun sprog ->
         begin
           prog.(i) <-
             (match sprog.[i] with
-             | '<' -> LEFT | '>' -> RIGHT  | '+' -> PLUS | '-' -> MINUS
-             | '.' -> DOT   | ',' -> COMMA | _ -> NOP);
+             | '<' -> LEFT  | '>' -> RIGHT | '+' -> PLUS
+             | '-' -> MINUS | '.' -> DOT   | ',' -> COMMA
+             |  _  -> NOP);
           aux (i+1) lstack
         end
   in
