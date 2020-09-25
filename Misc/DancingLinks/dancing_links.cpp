@@ -120,14 +120,14 @@ bool solve(cell *header, vector<int> &sol) {
   return false;
 }
 
-bool dancing_links(int size, subsets &sets, vector<int> &sol) {
+bool dancing_links(int size, const subsets &sets, vector<int> &sol) {
   cell *header = new cell(NULL,NULL,0,NULL);
   vector<cell*> col;
   for (int j=0; j<size; ++j)
     col.push_back(new cell(header,NULL,0,NULL));
   for (int i=0; i<(int)sets.size(); ++i) {
     cell *row = NULL;
-    for (subset::iterator jt=sets[i].begin(); jt!=sets[i].end(); ++jt) {
+    for (auto jt=sets[i].begin(); jt!=sets[i].end(); ++jt) {
       ++(col[*jt]->S);
       row = new cell(row,col[*jt],i,col[*jt]);
     }
@@ -142,12 +142,12 @@ void solve_count(cell *header, int &sol) {
     ++sol;
     return;
   }
-  //cell *c = NULL;
-  cell *c = header->R;
-  /*while (j!=header) {
+  cell *c = NULL;
+  cell *j = header->R;
+  while (j!=header) {
     if (c==NULL || j->S<c->S) c = j;
     j = j->R;
-    }*/
+  }
   cover(c);
   cell *r = c->D;
   while (r!=c) {
@@ -169,14 +169,14 @@ void solve_count(cell *header, int &sol) {
   uncover(c);
 }
 
-int dancing_links_count(int size, subsets &sets) {
+int dancing_links_count(int size, const subsets &sets) {
   cell *header = new cell(NULL,NULL,0,NULL);
   vector<cell*> col;
   for (int j=0; j<size; ++j)
     col.push_back(new cell(header,NULL,0,NULL));
   for (int i=0; i<(int)sets.size(); ++i) {
     cell *row = NULL;
-    for (subset::iterator jt=sets[i].begin(); jt!=sets[i].end(); ++jt) {
+    for (auto jt=sets[i].begin(); jt!=sets[i].end(); ++jt) {
       ++(col[*jt]->S);
       row = new cell(row,col[*jt],i,col[*jt]);
     }

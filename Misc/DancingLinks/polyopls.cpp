@@ -1,12 +1,18 @@
+/*
+  Jean-Paul DELAHAYE, Formes et ensembles autopavables, PLS 277, 12/2016
+  http://cristal.univ-lille.fr/~jdelahay/pls/2016/277.pdf
+  Paver un carré 23x24 avec des polyominos #####
+                                            #
+*/
 #include <iostream>
 #include <vector>
-#include "dancing_links.cpp"
+#include "dancing_links.h"
 using namespace std;
 
 #define P(X,Y) ((X)*L+(Y))
 
-int H = 30;
-int L = 30;
+const int H = 23;
+const int L = 24;
 
 void gen(subsets &res) {
   for (int i=0; i<H; ++i)
