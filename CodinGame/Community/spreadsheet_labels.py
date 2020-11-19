@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 
 def label(x):
-    k = 0
-    p = 1
-    while x>=p:
-        x -= p
-        k += 1
-        p *= 26
     L = []
-    for _ in range(k):
-        L.append(chr(x%26+ord('A')))
-        x //= 26
+    while x>0:
+        x,c = divmod(x-1, 26)
+        L.append(chr(c+ord('A')))
     return ''.join(reversed(L))
 
 def number(L):
@@ -20,10 +14,7 @@ def number(L):
     return x
 
 def opposite(X):
-    if '0'<=X[0]<='9':
-        return label(int(X))
-    else:
-        return number(X)
+    return label(int(X)) if '0'<=X[0]<='9' else str(number(X))
 
-n = int(input())
-print(' '.join(str(opposite(X))  for X in input().split()))
+N = int(input())
+print(' '.join(opposite(X) for X in input().split()))
