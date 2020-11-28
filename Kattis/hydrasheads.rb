@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-while true
+loop do
   h,t = gets.split.map &:to_i
   break if h==0
   res = 0

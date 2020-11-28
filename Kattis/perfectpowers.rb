@@ -2,7 +2,7 @@
 
 require 'prime'
 
-while true
+loop do
   n = gets.to_i
   break if n==0
   k = Prime.prime_division(n.abs).reduce(0){|g,(_,m)|g.gcd(m)}
