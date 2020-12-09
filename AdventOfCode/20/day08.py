@@ -40,10 +40,9 @@ print(interpret(P).acc)
 
 # Part 2
 for i,(c,v) in enumerate(P):
-    if c=='acc':
-        continue
-    Q = P.copy()
-    Q[i] = (('nop' if c=='jmp' else 'jmp'), v)
-    res = interpret(Q)
-    if res.term:
-        print(res.acc)
+    if c!='acc':
+        P[i] = (('nop' if c=='jmp' else 'jmp'), v)
+        res = interpret(P)
+        if res.term:
+            print(res.acc)
+        P[i] = (c, v)
