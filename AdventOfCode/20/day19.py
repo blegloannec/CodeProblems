@@ -36,6 +36,8 @@ print(part1)
 
 
 # Part 2 - Ad-hoc matching backtracking
+# NB: There is room for memoization, or, pretty much equivalently,
+#     one could use CYK, but this is unnecessary here.
 Rule[8] = ((42,), (42, 8))
 Rule[11] = ((42, 31), (42, 11, 31))
 
@@ -46,6 +48,7 @@ def match_chain(S, i, C, j=0):
         for l in match_rule(S, i, C[j]):
             yield from match_chain(S, l, C, j+1)
 
+# yields all l such that rule r generates S[i:l]
 def match_rule(S, i=0, r=0):
     if i<len(S):
         if isinstance(Rule[r], str):
