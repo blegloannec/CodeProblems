@@ -40,7 +40,7 @@ print(part1())
 # Faster sparse implementation here
 def part2(T=6):
     C = {(i,j,0,0) for i,j in Init}
-    for t in range(1,T+1):
+    for _ in range(T):
         Vcnt = {}
         for u in C:
             i,j,k,l = u

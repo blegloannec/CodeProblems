@@ -7,13 +7,15 @@ class Link:
         self.v = v
         self.l = self.r = None
 
+def link_lr(L, R):
+    L.r = R
+    R.l = L
+
 def crab(Cups, steps=100):
     N = len(Cups)
     # init. doubly-linked list
     Links = [Link(v) for v in Cups]
-    for i in range(N):
-        Links[i].l = Links[i-1]
-        Links[i-1].r = Links[i]
+    for i in range(N): link_lr(Links[i-1], Links[i])
     # init. value -> link array
     V2L = [None]*(N+1)
     for L in Links: V2L[L.v] = L
@@ -27,21 +29,15 @@ def crab(Cups, steps=100):
             V3.append(R.v)
             R = R.r
         # remove them
-        currL.r = R
-        R.l = currL
+        link_lr(currL, R)
         # find the destination
-        destv = currL.v - 1
-        if destv==0: destv = N
+        destv = N if currL.v==1 else currL.v-1
         while destv in V3:
-            destv -= 1
-            if destv==0: destv = N
+            destv = N if destv==1 else destv-1
         destL = V2L[destv]
         # insert them
-        destR = destL.r
-        destL.r = V2L[V3[0]]
-        V2L[V3[0]].l = destL
-        destR.l = V2L[V3[-1]]
-        V2L[V3[-1]].r = destR
+        link_lr(V2L[V3[-1]], destL.r)
+        link_lr(destL, V2L[V3[0]])        
         # next current link
         currL = currL.r
     return V2L[1]
@@ -57,6 +53,6 @@ print()
 
 
 # Part 2
-I.extend(range(10, 10**6+1))
+I.extend(range(len(I)+1, 10**6+1))
 Lstar = crab(I, 10**7).r
 print(Lstar.v * Lstar.r.v)
