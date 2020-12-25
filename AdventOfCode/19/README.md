@@ -1,6 +1,6 @@
 # Advent of Code 2019 in pictures
 
-Ranked [111th](https://betaveros.github.io/extra-aoc-stats/) (not competing the first 8 days).
+Unofficially ranked [111th](https://betaveros.github.io/extra-aoc-stats/) (677 points, see also [this](../scripts/full_leaderboard_2019)) while not competing the first 8 days.
 
 GIF frames generated using Python Imaging Library (PIL), animated and optimized with `gifsicle`.
 

@@ -1,0 +1,837 @@
+  1	4238	(anonymous user #193354)
+  2	4194	betaveros (AoC++)
+  3	4150	Simon Parent
+  4	3676	Robert Xiao
+  5	3473	petertseng
+  6	3352	David Wahler (AoC++)
+  7	3250	zielmicha
+  8	2957	Jonathan Paulson (AoC++)
+  9	2897	mcpower
+ 10	2846	Strikeskids
+ 11	2666	Antonio Molina
+ 12	2583	Michael Fogleman (AoC++)
+ 13	2568	iburinoc
+ 14	2477	sciyoshi
+ 15	2450	Nathan Fenner
+ 16	2194	ethframe
+ 17	2149	bluepichu
+ 18	2145	winger
+ 19	2120	gengkev
+ 20	2081	Brandon Lin
+ 21	2061	tckmn
+ 22	2028	gzgreg
+ 23	2011	ttalvitie
+ 24	1921	orez-
+ 25	1759	mserrano
+ 26	1660	ZED.Charley William Thairo
+ 27	1643	Matt Gruskin
+ 28	1623	drougge (AoC++)
+ 29	1592	Andy Rock
+ 30	1556	Ben Mirtchouk
+ 31	1555	Joel Jonsson (AoC++)
+ 32	1501	Colton Pauderis
+ 33	1497	Andreas Hansson
+ 34	1475	Jay Foad (AoC++)
+ 35	1470	Jonathan Rupp (AoC++)
+ 36	1431	sdamashek
+ 37	1429	cesium12
+ 38	1359	Kevin Yap (AoC++)
+ 39	1311	Brandon Zhang
+ 40	1301	an-empty-string (AoC++)
+ 41	1287	Alexander Udalov
+ 42	1283	etotheipi1
+ 43	1271	Sophie Alpert (AoC++)
+ 44	1269	David Pritchard (AoC++)
+ 45	1263	drysle
+ 46	1253	VeeArr (AoC++)
+ 47	1211	Martin Pärtel
+ 48	1191	msullivan (AoC++)
+ 49	1166	Lance Nathan (AoC++)
+ 50	1158	tbodt
+ 51	1133	Joshua Wise (AoC++)
+ 52	1117	Ben Buchwald (AoC++)
+ 53	1098	Zarel (AoC++)
+ 54	1097	shengwu
+ 55	1075	Sam Cappleman-Lynes
+ 56	1063	algmyr
+ 57	1061	(anonymous user #60233) (AoC++)
+ 58	1057	Igor Naverniouk (AoC++)
+ 58	1057	printfn
+ 60	1048	tianyi5309
+ 61	1022	Jim Zhang
+ 62	1021	Michael Goldwasser (AoC++)
+ 63	1015	Andrew Skalski
+ 64	1006	glguy (AoC++)
+ 65	 982	Thai Pangsakulyanont (AoC++)
+ 66	 975	Rafał Burczyński
+ 67	 956	Jerry Chen
+ 68	 930	rcarneva (AoC++)
+ 69	 929	RJ Walsh
+ 70	 922	Raven Black
+ 71	 910	Nathanaël Courant
+ 72	 907	Ben Jacobson
+ 72	 907	(anonymous user #289309)
+ 74	 895	Kevin Sun
+ 75	 890	Springo
+ 75	 890	Andrey Anurin
+ 77	 887	andyleap
+ 78	 882	divergentdave
+ 79	 863	Jennifer Zhou
+ 80	 854	(anonymous user #411481)
+ 81	 853	goffrie
+ 82	 833	jhawthorn (AoC++)
+ 83	 814	Eoin Davey
+ 84	 812	Cameron Aavik (AoC++)
+ 85	 811	Benedikt Werner
+ 86	 810	Kenny K (AoC++)
+ 87	 799	k21
+ 88	 798	sburuiana (AoC++)
+ 89	 797	Craig Gidney
+ 90	 792	Max Jäger (AoC++)
+ 91	 775	jebouin (AoC++)
+ 92	 771	Lewin Gan
+ 93	 757	Toni Fadjukoff (AoC++)
+ 94	 746	(anonymous user #230381)
+ 95	 741	Unihedron (AoC++)
+ 96	 737	aropan
+ 97	 735	Erik Amirell Eklöf
+ 98	 733	huzecong
+ 99	 729	m4tx
+100	 723	Tigran Saluev
+101	 721	Gregor Stocks
+102	 713	tomtseng
+102	 713	Alex Wice
+104	 709	nthistle
+105	 705	Måns Magnusson
+106	 675	Scott Swingle
+107	 656	val tron
+108	 653	vash3r
+109	 643	Magnus Holm
+110	 640	Green Lightning (AoC++)
+111	 638	Matthew Reeder
+112	 635	Ji An Yang (AoC++)
+113	 634	okready
+114	 628	ecnerwala
+115	 609	Elliott Jin (AoC++)
+116	 607	ghlmtz
+117	 596	@raisfathin
+117	 596	Amon Al-Khatib
+119	 589	Anton Likhtarov (AoC++)
+120	 581	ephemient (AoC++)
+121	 570	Oscar Franzén (AoC++)
+121	 570	Brian Bucklew (AoC++)
+123	 562	seligman99 (AoC++)
+124	 561	Tom Sirgedas
+125	 559	ben blum
+126	 554	Peter Trebaticky (AoC++)
+127	 551	jamie
+128	 544	stringham
+129	 521	Tim Vermeulen (AoC++)
+130	 511	Kate Miháliková (AoC++)
+131	 505	Samu Jussila
+132	 501	sguest (AoC++)
+132	 501	zirkonit
+134	 497	funnything
+135	 493	tellowkrinkle
+136	 492	pbfy0
+137	 484	Tautvydas Žilys
+138	 478	Augustin Wenger
+138	 478	(anonymous user #197858)
+140	 477	(anonymous user #289486)
+141	 474	(anonymous user #204638)
+142	 470	sgstair
+143	 457	(anonymous user #388836)
+144	 452	Thomas Steinke
+145	 434	icicl
+146	 428	(anonymous user #388959)
+147	 426	Vlad-Shcherbina
+148	 423	wmorganjr
+149	 422	Dan Roche
+150	 420	jtbandes (AoC++)
+151	 419	Matija Herceg (AoC++)
+152	 417	Jeffrey Considine
+153	 395	lukechampine
+154	 389	Jordan Lewis
+154	 389	Karl Jiang
+156	 383	jorendorff (AoC++)
+157	 382	arknave
+158	 379	m1el
+159	 372	Marcus Andrews
+160	 371	Areesh Mittal
+161	 365	Mike Forrest (AoC++)
+162	 363	hyper-neutrino
+163	 358	jacobly0
+164	 357	Niak
+165	 353	sblom
+166	 351	Tong Wei
+167	 349	(anonymous user #199929)
+168	 345	bradleysigma
+169	 343	Zeyu Chen
+170	 342	allefant
+171	 334	Ikusaba-san
+172	 333	Taras Petruk
+173	 321	(anonymous user #8336)
+173	 321	Paul Prestidge (AoC++)
+175	 316	Sahil Kochar
+176	 315	(anonymous user #380)
+177	 314	(anonymous user #371225)
+178	 313	kovleventer
+178	 313	uber5001
+180	 307	danbaterisna
+181	 306	Ian Collier
+182	 305	Galen Elias (AoC++)
+182	 305	Jon Adams
+182	 305	Julia Valchuk
+185	 304	vincentwoo (AoC++)
+186	 300	Alex O'Neill
+187	 299	Lars Haulin
+188	 298	sonneveld
+189	 290	awychong
+189	 290	Hunter Goldstein
+191	 287	Kragnir
+192	 286	Michael Spencer
+193	 285	ruuddotorg
+194	 280	Martyn Smith (AoC++)
+195	 278	Branimir Filipović
+196	 277	Matt Boehm (AoC++)
+197	 276	Winston Ewert
+198	 275	(anonymous user #505111)
+199	 268	Patrick Brans
+199	 268	clorton (AoC++)
+201	 266	chun-ho
+202	 265	(anonymous user #390615)
+202	 265	(anonymous user #233439)
+204	 262	Retsam
+205	 261	HumanEquivalentUnit (AoC++)
+205	 261	Nate Cook (AoC++)
+207	 260	Ian Savchenko (AoC++)
+208	 256	Kevin Scannell (AoC++)
+209	 255	Antti Haapala (AoC++)
+210	 252	WildUtah
+211	 251	Nano Shino
+212	 248	(anonymous user #381579)
+213	 244	(anonymous user #468053)
+214	 243	broomweed
+215	 240	kaivanes
+215	 240	Nathan Shirley
+215	 240	Bulat Yaminov
+218	 239	kristjan (AoC++)
+218	 239	Santiclause
+220	 237	abal
+221	 236	Tim Roberts (AoC++)
+222	 235	Brian O'Neill
+223	 234	Cam McKinnon
+224	 233	abnew123
+225	 232	Giedrius
+226	 227	(anonymous user #198392)
+227	 226	tecknicaltom
+228	 220	John Rizzo (AoC++)
+229	 218	phil_r
+230	 217	Adam Forsyth (AoC++)
+230	 217	dlwocks31
+230	 217	Luiz Fernando Scheidegger (AoC++)
+233	 216	Rob Shearer (AoC++)
+234	 215	tterrag (AoC++)
+234	 215	dzaima
+236	 214	rsaarelm
+236	 214	kuroneko2539
+238	 213	sb8244
+239	 212	kejadlen (AoC++)
+239	 212	LukasGelbmann
+239	 212	Jonathan Skeate
+242	 211	Daniel Martin
+243	 210	Mark Sherry (AoC++)
+244	 209	boogie
+245	 208	mispy
+245	 208	jschnei
+247	 207	Peter Ruibal (AoC++)
+248	 206	James Arruda
+249	 205	Kevin Wang
+249	 205	regality
+251	 202	Søren Fuglede Jørgensen
+252	 200	xkompas
+253	 196	LasaBir (AoC++)
+253	 196	Keegan Carruthers-Smith (AoC++)
+253	 196	f00ale
+256	 195	jakzo
+256	 195	Thomas Redfern
+258	 194	Joseph Roque (AoC++)
+258	 194	Mark Polyakov
+260	 191	andreasgruenh
+261	 190	Edward Keyes (AoC++)
+261	 190	Murray Edwards (AoC++)
+261	 190	Vilius Pranckaitis
+264	 189	zchen088
+265	 188	tinau n.
+266	 187	Jakub Beránek (AoC++)
+266	 187	James Weinkam
+268	 185	Birdulon (AoC++)
+268	 185	Kai Si
+270	 181	Vorname Nachname
+270	 181	Stephen Merriman
+272	 179	tagoria
+272	 179	atmz
+272	 179	Asger Hautop Drewsen (AoC++)
+275	 178	Timothy Loh
+276	 177	Alex Koay
+277	 176	cushon
+278	 174	Jacob Wirth (AoC++)
+279	 173	Gjosiah
+279	 173	Allis IO
+281	 172	George Georgiev (AoC++)
+282	 171	Chris Breederveld
+283	 170	Matthew Ramina
+284	 168	Daniel Rejment (AoC++)
+285	 166	KrzaQ (AoC++)
+285	 166	(anonymous user #390161)
+287	 165	Thomas Hines
+287	 165	CCC_037
+289	 164	sdt (AoC++)
+290	 163	RodericDay
+291	 162	Jonathan Chow
+292	 160	brendanburkhart
+292	 160	Alex Crimi
+294	 159	seejohnrun (AoC++)
+294	 159	(anonymous user #18180)
+294	 159	soldieroflight (AoC++)
+297	 158	an on
+297	 158	(anonymous user #434905)
+297	 158	droonkid
+300	 156	jannic (AoC++)
+301	 155	Derek Dong
+302	 154	(anonymous user #365713) (AoC++)
+302	 154	(anonymous user #379229)
+302	 154	Matthew Neeley
+305	 152	Maerig
+305	 152	@davedelong
+305	 152	(anonymous user #493082)
+305	 152	Boo1098
+309	 150	hanss314
+309	 150	Ryan Fitzgerald
+309	 150	Peter Dowdy
+312	 149	(anonymous user #264793)
+313	 146	Artemigos
+313	 146	zhiayang
+313	 146	ryndvs96
+313	 146	Globidev
+313	 146	0e4ef622
+318	 145	AsamK
+319	 143	Grant
+320	 142	Jakob Cornell
+320	 142	Shemetz
+320	 142	(anonymous user #451085)
+323	 140	BrenBarn
+323	 140	pkoenig10
+325	 139	Timo Vink (AoC++)
+325	 139	(anonymous user #458961)
+327	 138	strawstack (AoC++)
+327	 138	Shuang Wu
+329	 137	rec
+329	 137	Lily Ballard
+331	 136	AdiCutitoiu
+332	 135	Robert Usher
+333	 134	Simon-Tang
+333	 134	nigelzor
+335	 133	David Kim
+335	 133	myndzi
+337	 131	degemer
+337	 131	Erinn Kirchner
+339	 130	commieprincess
+339	 130	Daniel Ong
+339	 130	bohuss
+339	 130	n3o59hf (AoC++)
+343	 129	b-mehta
+344	 127	JPricey
+345	 126	Will Killian (AoC++)
+345	 126	Chenyang Yuan
+347	 125	Alex Cornellier
+348	 123	Arrain
+349	 122	Ethan Morgan (AoC++)
+349	 122	dqdt
+349	 122	Michael Chock
+352	 120	Kyle Stewart
+352	 120	Tyler Zhang
+352	 120	vstrimaitis (AoC++)
+355	 118	(anonymous user #148112)
+355	 118	Caleb Robinson
+357	 117	Rich Hogg (AoC++)
+357	 117	poomrokc (AoC++)
+357	 117	Jota (AoC++)
+357	 117	Elliot Nelson
+361	 116	Chris Egerton (AoC++)
+361	 116	maket
+361	 116	Nathaniel Flath
+364	 114	Joey Rees-Hill
+364	 114	(anonymous user #450327)
+366	 113	Jean-Noël Monette
+366	 113	Tyler Schaltenbrand
+366	 113	Nathan Skillen
+369	 112	gmacdougall
+369	 112	@CHz16
+371	 111	Andrew Madsen (AoC++)
+371	 111	Peter Weinkam
+373	 109	SHyx0rmZ (AoC++)
+374	 108	Ruxandra985
+375	 107	Matthew Ellsworth
+375	 107	Theo Spears
+377	 106	Kevin Vick
+377	 106	Keith Nicholas (AoC++)
+379	 105	tblock007
+380	 104	Daniel Cheng
+380	 104	Bartholomew Furrow
+380	 104	Arthur Tomlin
+380	 104	Jimmy Mårdell (AoC++)
+380	 104	Hampus Skystedt
+385	 103	peff
+385	 103	kentonlam
+385	 103	Feynman 675
+385	 103	Jared Neil
+385	 103	angus-g (AoC++)
+385	 103	SwipedRight
+385	 103	Zachary Wade
+385	 103	Alex Coleman
+393	 102	A Gardner
+393	 102	Dave Buchfuhrer (AoC++)
+393	 102	epiphone
+396	 101	(anonymous user #443664)
+397	 100	Elvin Yung
+397	 100	Krists Boitmanis
+397	 100	Ian Adam Naval (AoC++)
+400	  99	LK
+400	  99	dad00de
+400	  99	Yuriy Savchenko
+400	  99	mastercs999
+404	  98	Chris Philip
+405	  97	Michael Schertenleib
+405	  97	twattanawaroon
+407	  96	Daniel Roy (AoC++)
+408	  95	Wojciech Rychlik
+408	  95	mebeim (AoC++)
+410	  94	zqvt
+410	  94	gurgeous
+410	  94	leftylink
+410	  94	cyphase
+414	  93	(anonymous user #374494)
+414	  93	kacredolo
+414	  93	Chuck Walker
+414	  93	Maxim Kulikov (AoC++)
+414	  93	(anonymous user #239026)
+414	  93	(anonymous user #260995)
+420	  92	Aesthetikx
+420	  92	George Samidare
+420	  92	Henk van der Laan
+420	  92	Mattias Nilsson
+424	  91	AdamHerrmann
+424	  91	ayceblue
+424	  91	Tim Hill
+427	  90	(anonymous user #404769)
+427	  90	Christofer Ohlsson (AoC++)
+427	  90	Frank Yellin
+430	  89	Manuel Bucher
+430	  89	(anonymous user #234746)
+432	  88	Erik Dyrelius (AoC++)
+432	  88	Matthew Olsson
+432	  88	u794575248
+432	  88	freedomofkeima
+436	  87	Nohus (AoC++)
+436	  87	q----
+438	  86	(anonymous user #385271)
+438	  86	(anonymous user #406649)
+440	  85	Mike Podruchny
+440	  85	Daniel Tebbutt (AoC++)
+440	  85	Víctor Oliva (AoC++)
+443	  84	Matt Goodrich (AoC++)
+444	  83	jonatan
+444	  83	Scott Greenlay
+446	  82	hawkjo
+446	  82	Jamal
+446	  82	Olaf Gottschalk (AoC++)
+446	  82	Keypad SDM
+446	  82	Hideyuki Tanaka
+451	  81	Peter De Wachter
+451	  81	dan144
+451	  81	Mateusz Matejczyk (AoC++)
+454	  79	Arma Değer Mut
+454	  79	Maj Stenmark
+456	  78	casper01
+456	  78	Tim Gordon
+456	  78	Matt Cosand
+456	  78	Ameobea
+460	  77	Bubbler-4
+460	  77	bwakell
+460	  77	David Choo
+460	  77	Geerten Vink (AoC++)
+464	  76	tomtheisen
+464	  76	(anonymous user #225974)
+464	  76	angelman
+464	  76	(anonymous user #528157)
+468	  75	Zack M. Davis
+468	  75	Pablo Dal Lago
+468	  75	mpcowan
+471	  74	Bolivar Pereira
+471	  74	Theydidthemadlibs
+471	  74	fnuttplus (AoC++)
+474	  73	ahinz
+474	  73	Andrew Hogan
+476	  72	rseldon (AoC++)
+476	  72	(anonymous user #208103)
+476	  72	Justin Kaufman (AoC++)
+479	  71	Marco Jäger
+479	  71	sol_hsa
+481	  70	Filip Młynarski
+481	  70	Kolo9
+481	  70	Oleg Godovykh (AoC++)
+481	  70	provegard
+485	  69	Alex Stephens
+485	  69	Matthew Merrill
+487	  68	Pontus Walck (AoC++)
+487	  68	Joel Harmon
+487	  68	ckarmann
+487	  68	Starwort
+487	  68	(anonymous user #493185)
+492	  67	(anonymous user #19765)
+492	  67	Maxime Goyette
+492	  67	jelder
+495	  66	nomatteus (AoC++)
+495	  66	Jayson Zhu
+497	  65	zid
+497	  65	Codrut Lemeni
+497	  65	@caudamus
+497	  65	AJ Manning
+497	  65	raglnd
+502	  64	xLany
+502	  64	e36freak
+502	  64	(anonymous user #199042)
+505	  63	usbpc
+505	  63	DaveRoox
+505	  63	Colin Stewart
+505	  63	Tom Dryer
+509	  62	jelmer
+510	  61	SimonPrins
+510	  61	Peter200lx (AoC++)
+510	  61	Unlucky
+510	  61	vikram8128
+514	  60	1lann
+514	  60	(anonymous user #334223)
+514	  60	thatfreakingguy
+514	  60	Jon Payne (AoC++)
+518	  59	81632641282565121024
+518	  59	Brian Gates
+518	  59	Chad Groft
+518	  59	wouterken
+522	  58	Yoann Peronneau
+522	  58	Hayes Neuman
+522	  58	lizthegrey (AoC++)
+525	  57	(anonymous user #374060)
+525	  57	Oaf Ijev
+525	  57	Liam Powell
+525	  57	maddogAxa
+529	  56	unsignedint
+529	  56	Dmitry Isaenko
+529	  56	dlofstrom
+532	  55	banteg (AoC++)
+532	  55	Magnus Hagmar (AoC++)
+532	  55	Morganamilo
+532	  55	lppham
+532	  55	Chao Harold
+537	  54	Brent Walsh
+537	  54	Niko Lockenvitz
+537	  54	triazo
+540	  53	(anonymous user #393546) (AoC++)
+540	  53	Lei "Fred" Wu
+542	  52	Jonas Högström (AoC++)
+542	  52	Owen Gillespie
+542	  52	terorie
+542	  52	Gergely Elias (AoC++)
+542	  52	WaruiBJ
+547	  51	Michelle Yi (AoC++)
+547	  51	Thomren
+547	  51	Erik Szalay
+547	  51	Mak Jankovsky
+551	  50	(anonymous user #227312)
+551	  50	(anonymous user #194227)
+553	  49	Stephen Longfield (AoC++)
+553	  49	Mark Kahn (AoC++)
+553	  49	devast8a
+553	  49	(anonymous user #529267)
+553	  49	(anonymous user #538069)
+558	  48	Chris Smith (AoC++)
+558	  48	Jouni K. Seppänen
+558	  48	masonium (AoC++)
+558	  48	Michael Herms
+558	  48	frigley1
+563	  47	mniip
+563	  47	BretHudson (AoC++)
+563	  47	Pod
+563	  47	Shane Mc Cormack (AoC++)
+563	  47	TroZ
+563	  47	Paul Collins
+569	  46	Justin Le (AoC++)
+569	  46	catminusone
+569	  46	Jason Henline
+572	  45	CanGreenBeret
+572	  45	ah-
+572	  45	Radu Nicolae
+572	  45	Barney Boisvert (AoC++)
+572	  45	Katherine Prevost
+577	  44	Elliot Penson
+578	  43	Carlos Scheidegger
+578	  43	(anonymous user #547127)
+580	  42	Brian Browning
+580	  42	bmalehorn
+580	  42	Axenu (AoC++)
+580	  42	Nora Gruner
+584	  41	jabdownsmash
+584	  41	Péter Szendrei
+584	  41	slothmaster
+587	  40	Albert
+587	  40	Василий Кравец
+589	  39	randrews (AoC++)
+589	  39	Ryryme
+589	  39	shinincs
+589	  39	paiv
+589	  39	Michael Grossfeld
+589	  39	Harshil Shah
+595	  38	Reilly Watson
+595	  38	haaawk
+595	  38	Nathan Herzing
+598	  37	Andre Pratama
+598	  37	David
+598	  37	Simon Rösch
+598	  37	DanilaFe
+602	  36	that_lego_guy (AoC++)
+602	  36	jonenst
+602	  36	scottstanie
+602	  36	vyrp
+602	  36	Sree P
+607	  35	benfred
+607	  35	994125010
+607	  35	Sean K
+607	  35	advanced_caveman
+607	  35	SamWheating (AoC++)
+612	  34	John Lopez (AoC++)
+612	  34	Xin Wei Chow
+612	  34	tony chang (AoC++)
+612	  34	darkterbear (AoC++)
+612	  34	EdwarDDay
+617	  33	noyoshi
+617	  33	DavidVorick
+617	  33	ullerrm (AoC++)
+617	  33	K.C. Bell
+617	  33	licinius
+622	  32	(anonymous user #388807)
+622	  32	maxmcd
+622	  32	Stephen Warren (AoC++)
+622	  32	SalusaSecondus
+622	  32	Simon
+622	  32	Guillaume Derval
+622	  32	jonremy
+622	  32	silvamerica
+622	  32	Zefick
+622	  32	Gabriel Grinberg (AoC++)
+632	  31	UsmannK
+632	  31	ccbrown
+632	  31	Ian Su
+632	  31	Sameer Pai
+632	  31	sin3141592
+632	  31	Stef (AoC++)
+632	  31	DoctorBalanced
+632	  31	Brayzure
+632	  31	Paul Brook
+641	  30	elibaldwin
+641	  30	(anonymous user #248340)
+641	  30	marcins (AoC++)
+644	  29	asishm
+644	  29	rennex
+644	  29	Roy Wright
+644	  29	farafonoff
+644	  29	Christopher Vittal (AoC++)
+644	  29	Rene Engbers (AoC++)
+644	  29	Bill Rockenbeck
+644	  29	robostac (AoC++)
+652	  28	Merlin Katz
+652	  28	Bryan Clair
+652	  28	(anonymous user #199604)
+652	  28	agent_who_glows (AoC++)
+656	  27	Cal Jacobson
+656	  27	Marko Raguž
+656	  27	Jacob Danks
+656	  27	Matt Rollins
+656	  27	(anonymous user #388888)
+656	  27	mich101mich
+656	  27	korylprince (AoC++)
+663	  26	nwn
+663	  26	Sebastian Höffner
+663	  26	Michael C. Martin
+663	  26	Adam Gausmann
+663	  26	Schobers
+663	  26	Vaughan Weatherall
+663	  26	johnor
+663	  26	Bryce Pasechnik (AoC++)
+663	  26	swerder
+672	  25	Kartikay26
+672	  25	Karthik Shanmugam
+672	  25	autid
+672	  25	Mårten Nilsson
+672	  25	MatthewFrench
+672	  25	Ryan Mentley
+678	  24	(anonymous user #233152)
+678	  24	Chicken-Bones
+678	  24	slovb
+681	  23	nevivurn
+681	  23	pbnjay
+681	  23	mlc
+681	  23	(anonymous user #500370)
+681	  23	James Jiang
+681	  23	Chokladmunk
+681	  23	LysanderGG
+688	  22	kuhlmanngj
+688	  22	pyelias
+688	  22	lewinski (AoC++)
+688	  22	(anonymous user #434749)
+688	  22	Ben Soh
+688	  22	Marek Magdziak
+694	  21	Christian Briones
+694	  21	jhggins
+694	  21	SuperTux88 (AoC++)
+697	  20	(anonymous user #381117)
+697	  20	Alexander Curtiss
+697	  20	Albert Xing
+697	  20	causal-agent
+701	  19	David Kiger
+701	  19	Jenna Sloan
+701	  19	Suhas Joshi
+701	  19	Thomas Wright
+701	  19	nvojkovic (AoC++)
+701	  19	J.C. Moyer
+701	  19	Alex Quenon
+708	  18	(anonymous user #125479)
+708	  18	Thomas Mahoney (AoC++)
+710	  17	Viper Muffin (AoC++)
+710	  17	phoe
+710	  17	(anonymous user #393613)
+710	  17	David Cashman
+710	  17	Mark Triggs (AoC++)
+710	  17	Selicre
+710	  17	Justin Kao
+710	  17	grgrdvrt
+710	  17	Ryan Widmaier (AoC++)
+710	  17	Alexander Spichak
+710	  17	Stephanie Yang
+710	  17	Martin Krisell (AoC++)
+710	  17	Patrick Johannessen
+723	  16	supermitch (AoC++)
+723	  16	(anonymous user #285091)
+723	  16	Chris Martin
+723	  16	ltomic
+723	  16	Chris Hinnerschietz
+723	  16	(anonymous user #223890)
+723	  16	Vrael_Vrangr
+723	  16	Andy Wilcock
+723	  16	Lutz Hofmann
+723	  16	AndyShafer
+733	  15	LumiWang
+733	  15	Richard Clark (AoC++)
+733	  15	Jan Štola
+733	  15	🅳🅰🆅🅸🅳 🆆🅷🅸🆃🆃🅰🅺🅴🆁 (AoC++)
+733	  15	@Alex_erson
+733	  15	ByteDM
+733	  15	BafDyce (AoC++)
+740	  14	dsemi
+740	  14	jarohen (AoC++)
+740	  14	Spencer Gautreaux
+740	  14	benyb9
+740	  14	Sean Abraham
+745	  13	(anonymous user #396500)
+745	  13	Gaelan
+745	  13	Sebastian Nielsen
+745	  13	(anonymous user #494348)
+745	  13	Nipinium
+745	  13	migerh
+745	  13	ben thomas
+745	  13	SimpleJian
+753	  12	Julien2313 (AoC++)
+753	  12	nath
+753	  12	Wunkolo
+753	  12	Joel Grus (AoC++)
+753	  12	nim-ka
+753	  12	@neruson
+753	  12	Derya
+753	  12	Allypost (AoC++)
+753	  12	Mikko Heikelä
+753	  12	rabuf
+753	  12	fnuecke
+753	  12	slemsvamp
+765	  11	Lokathor
+765	  11	(anonymous user #418513)
+765	  11	MarshallOfSound
+765	  11	Ningning
+765	  11	(anonymous user #271222)
+765	  11	isnbh0
+765	  11	Jerome Labonte
+772	  10	Brian Folts
+772	  10	Samuel Dale
+772	  10	dramforever
+772	  10	Evan
+772	  10	Michael LeKander
+772	  10	mkopa
+772	  10	Magne Groenhuis (AoC++)
+772	  10	Thomas Broquist
+780	   9	epitron
+780	   9	Mario Saldinger
+780	   9	Tim Woods
+780	   9	Michael Tardibuono (AoC++)
+780	   9	Tanner Stephens (AoC++)
+780	   9	Frode Johannesen
+780	   9	T S
+787	   8	Ambrose Feinstein
+787	   8	mikecheb
+787	   8	(anonymous user #388859)
+787	   8	bonflintstone (AoC++)
+787	   8	effie-0
+787	   8	Tomasz Homoncik
+793	   7	Timothy Burchfield
+793	   7	daviecar
+793	   7	swopet
+793	   7	pnappa
+793	   7	Vrashabh Irde
+793	   7	bleeblap (AoC++)
+793	   7	Thomas Kläger
+800	   6	bravech
+800	   6	Colm Baston
+800	   6	Mark VanMiddlesworth
+803	   5	rokob
+803	   5	Evan Li
+803	   5	udoprog (AoC++)
+803	   5	(anonymous user #426829)
+803	   5	chambost
+803	   5	danh32
+809	   4	erijones
+809	   4	(anonymous user #370584)
+809	   4	James Smith
+809	   4	rno jaja
+809	   4	xffox
+809	   4	Frank Brizuela
+809	   4	encse (AoC++)
+816	   3	Dallin Osmun
+816	   3	Tom Kwong
+816	   3	(anonymous user #419145)
+819	   2	M1Fream
+819	   2	TheNeuralBit (AoC++)
+819	   2	David Carlin
+819	   2	Daniel Dara
+819	   2	George Heineman
+819	   2	Matthew Simmons
+819	   2	Kinva Pung
+819	   2	(anonymous user #379776)
+819	   2	Sedsarq
+819	   2	Rascal_Two
+819	   2	Martin Butler (AoC++)
+830	   1	Valdas
+830	   1	Florian Cassayre
+830	   1	Doug Strain
+830	   1	jwalck (AoC++)
+830	   1	MiLk
+830	   1	c-Viorel (AoC++)
+830	   1	nmutalik
+830	   1	mpajunen

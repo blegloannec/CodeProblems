@@ -1,5 +1,7 @@
 # Advent of Code 2020 in pictures
 
+Unofficially ranked [138th](../scripts/full_leaderboard_2020) (471 points).
+
 GIF frames generated using Python Imaging Library (PIL), animated and optimized with `gifsicle`.
 
 ## Day 11
