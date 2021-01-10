@@ -44,10 +44,7 @@ points andrew(points &S) {  // convex hull
     bot.push_back(p);
   }
   bot.pop_back();
-  while (top.size()>1) {
-    bot.push_back(top.back());
-    top.pop_back();
-  }
+  bot.insert(bot.end(), top.rbegin(), top.rend()-1);
   return bot;
 }
 
