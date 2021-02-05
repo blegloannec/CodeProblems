@@ -2,27 +2,17 @@
 
 import sys
 from base64 import b64encode
-from hashlib import sha256
 from Crypto.Cipher import AES
-
-def AES_CBC_encrypt(Key, IV, M):
-    C = AES.new(Key,AES.MODE_CBC,IV)
-    return C.encrypt(M)
-
-def PKCS7_pad(M, BS=16):
-    r = len(M)%BS
-    M += bytes([BS-r]*(BS-r))
-    return M
+from Crypto.Hash import SHA256
+from Crypto.Util.Padding import pad
 
 if __name__=='__main__':
     if len(sys.argv)!=3:
-        sys.stderr.write('usage: %s solution /path/to/source_file > encrypted_code\n' % sys.argv[0])
+        sys.stderr.write(f'usage: {sys.argv[0]} solution /path/to/source_file > encrypted_code\n')
         sys.exit(1)
-    solution = sys.argv[1]
-    H = sha256(solution.encode()).digest()
+    solution = sys.argv[1].strip()
+    H = SHA256.new(solution.encode()).digest()
     Key,IV = H[:16],H[16:]
-    F = open(sys.argv[2],'rb')
-    M = F.read()
-    C = b64encode(AES_CBC_encrypt(Key,IV,PKCS7_pad(M)))
+    M = open(sys.argv[2], 'rb').read()
+    C = b64encode(AES.new(Key, AES.MODE_CBC, iv=IV).encrypt(pad(M, 16)))
     sys.stdout.write(C.decode())
-    F.close()
