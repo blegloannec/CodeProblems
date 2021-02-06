@@ -27,6 +27,9 @@ print(part1)
 
 
 # Part 2 - Solving by leaf elimination (recycled from Day 16)
+# it works as it is a perfect matching problem with a unique solution
+# unique perfect matching => there always exists a leaf
+# see CodinGame/Creations/a_coin_guessing_game
 Sol = {}
 Q = [a for a,P in Alle.items() if len(P)==1]
 while Q:

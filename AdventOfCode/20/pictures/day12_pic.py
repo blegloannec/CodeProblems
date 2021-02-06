@@ -40,11 +40,11 @@ def animate(X, Y):
 
 # Part 1
 anim = animate(*sail(DIR['E']))
-anim.save('anim12_1.mp4')
-#plt.show()
+#anim.save('anim12_1.mp4')
+plt.show()
 plt.close()
 
 # Part 2
 anim = animate(*sail(complex(10,1), True))
-anim.save('anim12_2.mp4')
-#plt.show()
+#anim.save('anim12_2.mp4')
+plt.show()

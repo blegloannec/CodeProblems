@@ -8,3 +8,12 @@ GIF frames generated using Python Imaging Library (PIL), animated and optimized 
 | Part 1 | Part 2 |
 | ---    | ---    |
 | ![Day 11.1](pictures/anim11_1.gif) | ![Day 11.2](pictures/anim11_2.gif) |
+
+## Day 12
+
+Run Matplotlib animations:
+```
+$ python3 pit/day12_pic.py < input/input12
+```
+
+## Day 24
