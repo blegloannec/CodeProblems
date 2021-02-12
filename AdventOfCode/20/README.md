@@ -2,7 +2,7 @@
 
 Unofficially ranked [138th](../scripts/full_leaderboard_2020) (471 points).
 
-GIF frames generated using Python Imaging Library (PIL), animated and optimized with `gifsicle`.
+Not so much a great year for pictures...
 
 ## Day 11
 | Part 1 | Part 2 |
@@ -13,7 +13,15 @@ GIF frames generated using Python Imaging Library (PIL), animated and optimized 
 
 Run Matplotlib animations:
 ```
-$ python3 pit/day12_pic.py < input/input12
+$ python3 pictures/day12_pic.py < inputs/input12
 ```
 
 ## Day 24
+
+### Part 1
+
+![Day 24.1](pictures/anim24_1.gif)
+
+### Part 2
+
+![Day 24.2](pictures/anim24_2.gif)
