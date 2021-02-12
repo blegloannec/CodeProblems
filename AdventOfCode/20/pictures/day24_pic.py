@@ -70,15 +70,14 @@ def part1():
         surf, ctx = draw_frame(B)
         X = P()
         for d in re.findall(r'e|se|sw|w|nw|ne', L):
+            X.draw(ctx, color=(0.4, 0.4, 1))
             X += D[d]
-            X.draw(ctx, color=(0.3, 0.3, 1))
-            f += 1
         if X in B:
             B.remove(X)
             X.draw(ctx, color=(1, 0.3, 0.3))
         else:
             B.add(X)
-            X.draw(ctx, color=(0.3, 1, 0.3))
+            X.draw(ctx, color=(0.3, 0.9, 0.3))
         SP.append(Process(target=save_frame, args=(surf, f)))
         SP[-1].start()
         f += 1
