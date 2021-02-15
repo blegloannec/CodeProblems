@@ -4,6 +4,8 @@
 
 A nice initiative, some fun and interesting problems.
 
+My [stats](scripts/personal_stats_graphs.png) (as _Niak_).
+
 Behind the scenes:
  * https://www.youtube.com/watch?v=bS9882S0ZHs
  * https://www.youtube.com/watch?v=gibVyxpi-qA
