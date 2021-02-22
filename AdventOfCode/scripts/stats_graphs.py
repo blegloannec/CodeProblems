@@ -33,7 +33,6 @@ def plot_top(board, top=100, label=True):
 
 def plot_stats():
     plt.rc('font', size=8)
-    plt.tight_layout(pad=1.)
     plt.margins(tight=True)
     H = len(YEARS)
     for idx, year in enumerate(YEARS):
@@ -64,6 +63,7 @@ def plot_stats():
         ax.tick_params(labelsize='small')
         plot_top(board, 1000, False)
         print('done')
+    plt.tight_layout(pad=1.)
     plt.show()
 
 if __name__=='__main__':
