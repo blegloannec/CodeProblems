@@ -4,7 +4,7 @@ from collections import deque
 
 # Aho-Corasick, Efficient String Matching, 1975
 # using dictionnaries (fast but memory expensive)
-class ACTrie:
+class ACTrie1:
     def __init__(self,W):
         self.W = W[:]   # copy for safety
         self.G = [{}]   # transitions
@@ -80,11 +80,11 @@ class ACTrie:
             yield from self.O[s]
             s = self.B[s]
 
-A = ACTrie(['he','she','is','hers'])
+A = ACTrie1(['he','she','is','hers'])
 for (i,s) in A.find('ishers'):
     print(i,[A.W[a] for a in A.output(s)])
 
-B = ACTrie(['aaa','a','aa'])
+B = ACTrie1(['aaa','a','aa'])
 for (i,s) in B.find('aaaaa'):
     print(i,[B.W[a] for a in B.output(s)])
 
@@ -94,13 +94,13 @@ for (i,s) in B.find('aaaaa'):
 # version with fixed alphabet size
 # using lists instead of dictionnaries
 # (slighly slower but potentially less memory
-#  exensive, depending on the cases however)
+#  expensive, depending on the cases however)
 Alpha = 26 # alphabet size
 
 def num(c): # char to num
     return ord(c)-ord('a')
 
-class ACTrie:
+class ACTrie2:
     def __init__(self,W):
         self.W = W
         self.G = [[None]*Alpha] # transitions
@@ -167,10 +167,10 @@ class ACTrie:
             s = self.B[s]
 
 
-A = ACTrie(['he','she','is','hers'])
+A = ACTrie2(['he','she','is','hers'])
 for (i,s) in A.find('ishers'):
     print(i,[A.W[a] for a in A.output(s)])
 
-B = ACTrie(['aaa','a','aa'])
+B = ACTrie2(['aaa','a','aa'])
 for (i,s) in B.find('aaaaa'):
     print(i,[B.W[a] for a in B.output(s)])
