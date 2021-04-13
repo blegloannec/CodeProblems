@@ -36,7 +36,7 @@ def main():
         E = 0
         for i in xrange(Q):
             o = sum((sol>>i)&1 for sol in Sol)
-            if 2*o>len(Sol):
+            if 2*o>C:
                 Ans.append('T')
                 E += o
             else:
