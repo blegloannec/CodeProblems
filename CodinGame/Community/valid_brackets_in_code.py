@@ -18,6 +18,6 @@ def validate(code):
             b = True
     return 'Invalid' if B else 'Valid' if b else 'No brackets'
 
-code = sys.stdin.read().replace('\\\\', '')
-code = re.sub(r'".*?[^\\]"', '', code)
+code = sys.stdin.read().replace(r'\\', '').replace(r'\"','')
+code = re.sub(r'".*?"', '', code)
 print(validate(code))
