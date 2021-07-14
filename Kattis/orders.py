@@ -17,8 +17,8 @@ def main():
     for n in range(1, N+1):
         c = C[n-1]
         DP.append(DP[n-1].copy())
-        for s in range(c, SMAX+1):
-            DP[n][s] += DP[n][s-c]
+        for s in range(c, SMAX+1):   # incr. s and ref. to n (not DP[n-1][s-c])
+            DP[n][s] += DP[n][s-c]   # as items can be used more than once
 
     # output
     for s in S:
