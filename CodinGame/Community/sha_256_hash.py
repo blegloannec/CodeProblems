@@ -38,11 +38,11 @@ def sha256(M : bytes) -> bytes:
     # append L as a 64-bit big-endian integer, making the total post-processed length a multiple of 512 bits
     # such that the bits in the message are L 1 00..<K 0's>..00 <L as 64 bit integer> = k*512 total bits
     M = bytearray(M)
-    l = 8*len(M)
-    k = (-(l+1+64)) % 512
+    l = len(M)
+    k = (-(l+1+8)) % 64
     M.append(1<<7)
-    M.extend(0 for _ in range((k+1)//8-1))
-    M.extend(l.to_bytes(8, 'big'))
+    M += bytes(k)
+    M += (8*l).to_bytes(8, 'big')
 
     # Process the message in successive 512-bit chunks
     B = [int.from_bytes(M[i:i+4], 'big') for i in range(0, len(M), 4)]
