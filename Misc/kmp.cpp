@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-void prefs(string &B, vector<int> &P) {
+void prefs(const string &B, vector<int> &P) {
   P.resize(B.size()+1);
   P[0] = -1;
   int k = -1;
@@ -14,12 +14,12 @@ void prefs(string &B, vector<int> &P) {
   }
 }
 
-vector<int> kmp(string &A, string &B) {
+vector<int> kmp(const string &A, const string &B, int i0=0) {
   vector<int> pos;
   vector<int> P;
   prefs(B,P);
   int k = 0;
-  for (int i=0; i<(int)A.size(); ++i) {
+  for (int i=i0; i<(int)A.size(); ++i) {
     while (k>=0 && A[i]!=B[k]) k = P[k];
     ++k;
     if (k==(int)B.size()) {
