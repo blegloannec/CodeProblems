@@ -13,7 +13,7 @@
 # assume (x,y) is the closest ball
 # d² = (x-x0)²   + (y-y0)²
 # e² = (x-x0-1)² + (y-y0)²
-#    = (x-x0)² - 2(x-x0) + 1 +(y-y0)²
+#    = (x-x0)² - 2(x-x0) + 1 + (y-y0)²
 # d²-e² = 2(x-x0)-1
 # x = x0 + (d²-e²+1)/2
 # y = y0 ± √(d²-(x-x0)²)
