@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# interactive problem!
+
 # Idea: Symmetric strategy
 # There are only 3 moves that are self-symmetric for the
 # board central symmetry:
