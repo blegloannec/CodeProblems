@@ -28,7 +28,7 @@
 	    </tr>
 	    <xsl:for-each select="problems/problem">
 	      <tr>
-		<td><xsl:value-of select="date"/></td>
+		<td><xsl:copy-of select="date"/></td>
 		<td>
 		  <xsl:for-each select="ref">
 		    <xsl:element name="a">
@@ -41,8 +41,8 @@
 		    <xsl:text> </xsl:text>
 		  </xsl:for-each>
 		</td>
-		<td><xsl:value-of select="name"/></td>
-		<td><xsl:value-of select="desc"/></td>
+		<td><xsl:copy-of select="name"/></td>
+		<td><xsl:copy-of select="desc"/></td>
 		<td>
 		  <xsl:if test="link!=''">
 		    <xsl:element name="a">

@@ -4,41 +4,36 @@
 <head>
 <title>ACM</title>
 
-<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
-
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
 <meta name="author" content="Bastien LE GLOANNEC" />
 <meta name="robots" content="no" />
 
-<link rel="stylesheet" href="styles/general.css" type="text/css" />
-
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
-
 <div class="cadre">
 
 <div class="titre">
-ACM - Problèmes résolus
+ACM - ProblÃ¨mes rÃ©solus
 </div>
-
 
 <div class="contenu">
 <p>Juge en ligne : <a href="http://uva.onlinejudge.org/">http://uva.onlinejudge.org</a><br />
-Forum associé : <a href="http://acm.uva.es/board/">http://acm.uva.es/board/</a><br />
-Générateur de solutions : <a href="http://uvatoolkit.com">http://uvatoolkit.com</a><br />
-Indications pour certains problèmes : <a href="http://www.algorithmist.com/index.php/UVa_Problemset">http://www.algorithmist.com/index.php/UVa_Problemset</a><br />
+Forum associÃ© : <a href="http://acm.uva.es/board/">http://acm.uva.es/board/</a><br />
+GÃ©nÃ©rateur de solutions : <a href="http://uvatoolkit.com">http://uvatoolkit.com</a><br />
+Indications pour certains problÃ¨mes : <a href="http://www.algorithmist.com/index.php/UVa_Problemset">http://www.algorithmist.com/index.php/UVa_Problemset</a><br />
 Archives du concours : <a href="http://acm.uva.es/archive/nuevoportal/">http://acm.uva.es/archive/nuevoportal/</a></p>
-<p>P : page du problème<br />
-C<sub><i>n</i></sub> : <i>n</i><sup>ième</sup> code solution<br />
-<b><i>n</i>*</b> : code pour le problème numéro <i>n</i> <i>a priori</i> correct mais non validé, à déboguer ou optimiser selon les cas.</p>
-
+<p>P : page du problÃ¨me<br />
+C<sub><i>n</i></sub> : <i>n</i><sup>iÃ¨me</sup> code solution<br />
+<b><i>n</i>*</b> : code pour le problÃ¨me numÃ©ro <i>n</i> <i>a priori</i> correct mais non validÃ©, Ã  dÃ©boguer ou optimiser selon les cas.</p>
 
 <table>
-<tr><td><b>Date</b></td><td><b>Numéro</b></td><td><b>Problème</b></td><td><b>Algorithme</b></td><td><b>Liens</b></td></tr>
+<tr><td><b>Date</b></td><td><b>NumÃ©ro</b></td><td><b>ProblÃ¨me</b></td><td><b>Algorithme</b></td><td><b>Liens</b></td></tr>
 <?PHP
 define("PROBLEMS", "problems.txt", FALSE);
 if (!file_exists(PROBLEMS)) {
-   echo"Fichier des problèmes introuvable !";
+   echo"Fichier des problÃ¨mes introuvable !";
 }
 else {
    $lines = file(PROBLEMS);
@@ -74,6 +69,5 @@ alt="Valide CSS" height="31" width="88" /></a>
 </p>
 
 </div>
-
 </body>
 </html>
