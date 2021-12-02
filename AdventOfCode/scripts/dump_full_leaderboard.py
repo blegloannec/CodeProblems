@@ -2,6 +2,7 @@
 
 import sys, re
 import requests, bs4
+import csv
 
 EXCL_DAYS = {2015: (), 2016: (), 2017: (), 2018: (6,), 2019: (), 2020: (1,)}
 URL = 'https://adventofcode.com/{}/leaderboard/day/{}'
@@ -14,7 +15,7 @@ def dump_ranking(year):
     for day in range(1, 26):
         print(f'Day {day:2d}...', end=' ', flush=True, file=sys.stderr)
         if day in excluded:
-            print(f'skipped (excluded in {year}).', flush=True, file=sys.stderr)
+            print(f'skipped (excluded in {year}).', file=sys.stderr)
             continue
         url = URL.format(year, day)
         req = requests.get(url)
@@ -30,9 +31,10 @@ def dump_ranking(year):
 
     ranking = sorted(scores.items(), key=(lambda ns: ns[1]), reverse=True)
     prev_scr = None
+    csv_out = csv.writer(sys.stdout, delimiter=CSV_DELIM)
     for pos, (name, scr) in enumerate(ranking):
         rank = prev_rank if scr==prev_scr else pos+1
-        print(CSV_DELIM.join((f'{rank:3d}', f'{scr:4d}', name)))
+        csv_out.writerow((f'{rank:3d}', f'{scr:4d}', name))
         prev_rank = rank
         prev_scr = scr
 

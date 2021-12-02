@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 YEARS = (2016, 2018, 2019, 2020)  # <= CHANGE THIS
 URL = 'https://adventofcode.com/{}/leaderboard/self'
-HEADERS = {
-    'Cookie': 'session='  # <= PASTE COOKIE HERE
+COOKIES = {
+    'session': ''  # <= PASTE COOKIE HERE
 }
 
 def plot_top(board, top=100, label=True):
@@ -38,7 +38,7 @@ def plot_stats():
     for idx, year in enumerate(YEARS):
         url = URL.format(year)
         print(f'Extracting year {year}...', end=' ', flush=True)
-        req = requests.get(url, headers=HEADERS)
+        req = requests.get(url, cookies=COOKIES)
         req.encoding = 'utf-8'
         board = re.search(r'Score</span>([^<]*)</pre>', req.text).group(1).strip().split('\n')
         board = [line.split() for line in reversed(board)]

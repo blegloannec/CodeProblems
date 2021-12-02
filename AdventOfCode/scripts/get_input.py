@@ -2,10 +2,10 @@
 
 import sys, datetime, requests
 
-YEAR = 2020  # <= CHANGE THIS
+YEAR = 2021  # <= CHANGE THIS
 URL = f'https://adventofcode.com/{YEAR}/day/{{}}/input'
-HEADERS = {
-    'Cookie': 'session='  # <= PASTE COOKIE HERE
+COOKIES = {
+    'session': ''  # <= PASTE COOKIE HERE
 }
 
 
@@ -14,10 +14,9 @@ def dl_in(day):
     url = URL.format(day)
     fname = f'input{day:02d}'
     print(f'Downloading {url} as ./{fname}...', end=' ', flush=True)
-    req = requests.get(url, headers=HEADERS)
-    out = open(fname, 'w')
-    out.write(req.text)
-    out.close()
+    req = requests.get(url, cookies=COOKIES)
+    with open(fname, 'w') as out:
+        out.write(req.text)
     print('done.')
 
 
