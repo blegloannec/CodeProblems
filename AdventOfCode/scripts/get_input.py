@@ -21,14 +21,15 @@ def dl_in(year, day):
     print('done.')
 
 
-if __name__=='__main__':
+def main():
+    year = TODAY.year
+    day  = TODAY.day
     if len(sys.argv)==2:
-        year = TODAY.year
         day  = int(sys.argv[1])
     elif len(sys.argv)==3:
         year = int(sys.argv[1])
         day  = int(sys.argv[2])
-    else:
-        year = TODAY.year
-        day  = TODAY.day
     dl_in(year, day)
+
+if __name__=='__main__':
+    main()
