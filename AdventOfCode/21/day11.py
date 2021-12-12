@@ -30,7 +30,7 @@ while t<=100 or part2==0:
         F = F1
     if t<=100:
         part1 += fcnt
-    if fcnt==H*W:
+    if part2==0 and fcnt==H*W:
         part2 = t
 print(part1)
 print(part2)
