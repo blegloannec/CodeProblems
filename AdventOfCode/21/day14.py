@@ -12,14 +12,14 @@ Rules = dict(L.strip().split(' -> ') for L in sys.stdin.readlines())
 
 # Compute result from counters of pairs
 def result(Pairs):
-    # pairs counters -> element counters
+    # pairs counters -> elements counters
     Cnt = Counter()
     for p,cnt in Pairs.items():
         Cnt[p[0]] += cnt
         Cnt[p[1]] += cnt
     # every element belongs to 2 pairs, hence is counted twice,
     # except for both ends, so we add one occurrence of each
-    Cnt[start[0]]  += 1
+    Cnt[start[ 0]] += 1
     Cnt[start[-1]] += 1
     return max(Cnt.values())//2 - min(Cnt.values())//2
 
