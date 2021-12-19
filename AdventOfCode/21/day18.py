@@ -3,7 +3,7 @@
 # Going lazy on this one...
 
 import sys
-from copy import *
+from copy import deepcopy
 
 def is_leaf(n):
     return isinstance(n, int)
@@ -11,34 +11,34 @@ def is_leaf(n):
 def is_pair(n):
     return isinstance(n, list)
 
-def child_idx(u, v):
-    return 0 if v is u[0] else 1
+def child_idx(parent, child):
+    return 0 if child is parent[0] else 1
 
- # moves value v from u in direction d
+ # moves value x from node u in direction d
  # (similar to finding pred/succ in a BST)
-def move_incr(u, path, d, v):
+def move_incr(u, path, d, x):
     for p in reversed(path):
         if u is p[d]:
             u = p
         else:
+            r = d^1
             if is_pair(p[d]):
                 u = p[d]
-                while is_pair(u[d^1]):
-                    u = u[d^1]
-                u[d^1] += v
+                while is_pair(u[r]):
+                    u = u[r]
+                u[r] += x
             else:
-                p[d] += v
+                p[d] += x
             break
 
 def explode(n, path):
-    a,b = n
-    move_incr(n, path, 0, a)
-    move_incr(n, path, 1, b)
+    move_incr(n, path, 0, n[0])
+    move_incr(n, path, 1, n[1])
     path[-1][child_idx(path[-1], n)] = 0
 
-def split(n, path):
+def split(n, parent):
     m = n//2
-    path[-1][child_idx(path[-1], n)] = [m, n-m]
+    parent[child_idx(parent, n)] = [m, n-m]
 
 def reduce_explode(n, path):
     if is_pair(n):
@@ -46,26 +46,22 @@ def reduce_explode(n, path):
             explode(n, path)
             return True
         path.append(n)
-        if reduce_explode(n[0], path) or \
-           reduce_explode(n[1], path):
+        if reduce_explode(n[0], path) or reduce_explode(n[1], path):
             return True
         path.pop()
     return False
 
-def reduce_split(n, path):
+def reduce_split(n, parent=None):
     if is_pair(n):
-        path.append(n)
-        if reduce_split(n[0], path) or \
-           reduce_split(n[1], path):
+        if reduce_split(n[0], n) or reduce_split(n[1], n):
             return True
-        path.pop()
     elif n>=10:
-        split(n, path)
+        split(n, parent)
         return True
     return False
 
 def reduce(n):
-    while reduce_explode(n, []) or reduce_split(n, []):
+    while reduce_explode(n, []) or reduce_split(n):
         pass
 
 def add(n1, n2):
@@ -83,7 +79,7 @@ def magnitude(n):
 I = [eval(L) for L in sys.stdin.readlines()]
 
 # Part 1
-s = deepcopy(I[0])
+s = I[0]
 for n in I[1:]:
     s = add(s,n)
 print(magnitude(s))
