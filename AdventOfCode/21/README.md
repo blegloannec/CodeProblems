@@ -13,3 +13,9 @@
 | Part 1 | Part 2 |
 | ---    | ---    |
 | ![Day 15.1](pictures/pic15_1.png) | ![Day 15.2](pictures/pic15_2.png) |
+
+## Day 20
+
+| Sample | Part 2 |
+| ---    | ---    |
+| ![Day 20.0](pictures/anim20_sample.gif) | ![Day 20.2](pictures/anim20.gif) |

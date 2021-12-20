@@ -30,7 +30,7 @@ def gen_orient_scans():
                         elif d==2:
                             x,y,z = z,x,y
                         if o==1:
-                            x,y,z = -x,y,-z
+                            x,y,z = -x,z,y
                         if r==1:
                             y,z = -z,y
                         elif r==2:
