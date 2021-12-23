@@ -30,25 +30,25 @@ from heapq import *
 
 X = set()
 Y = set()
-Z = []
+Zevents = []
 for i,(_,x1,x2,y1,y2,z1,z2) in enumerate(I):
     X.update((x1,x2+1))
     Y.update((y1,y2+1))
-    Z.extend(((z1,i),(z2+1,i)))  # z-event
+    Zevents.extend(((z1,i),(z2+1,i)))  # z-event
 X = sorted(X)
 Y = sorted(Y)
-Z.sort()
+Zevents.sort()
 
 Xidx = {x:i for i,x in enumerate(X)}
 Yidx = {y:i for i,y in enumerate(Y)}
 
 XYheap = [[[] for _ in range(len(Y))] for _ in range(len(X))]
 part2 = xyarea = z0 = 0
-for z,i in Z:
+for z,i in Zevents:
     # update volume
     part2 += xyarea*(z-z0)
     z0 = z
-    # update event
+    # update according to event
     o,x1,x2,y1,y2,z1,z2 = I[i]
     for x in range(Xidx[x1], Xidx[x2+1]):
         for y in range(Yidx[y1], Yidx[y2+1]):

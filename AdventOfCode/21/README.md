@@ -19,3 +19,9 @@
 | Sample | Part 2 |
 | ---    | ---    |
 | ![Day 20.0](pictures/anim20_sample.gif) | ![Day 20.2](pictures/anim20.gif) |
+
+## Day 23
+
+| Part 1 | Part 2 |
+| ---    | ---    |
+| ![Day 23.1](pictures/anim23_1.gif) | ![Day 23.2](pictures/anim23_2.gif) |
