@@ -14,12 +14,10 @@ Pos = InPos.copy()
 Scr = [0,0]
 d = p = r = 0
 while max(Scr)<THRESH:
-    k  = d+1
-    d = (d+1)%DIE
-    k += d+1
-    d = (d+1)%DIE
-    k += d+1
-    d = (d+1)%DIE
+    k = 0
+    for _ in range(3):
+        k += d+1
+        d = (d+1)%DIE
     r += 3
     Pos[p] = (Pos[p]+k)%10
     Scr[p] += Pos[p]+1
@@ -55,4 +53,4 @@ def play(p1,p2, s1=0,s2=0):
         l1 += DieCnt[k]*w2
     return (w1,l1)
 
-print(max(play(InPos[0], InPos[1])))
+print(max(play(*InPos)))
