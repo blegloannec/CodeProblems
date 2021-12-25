@@ -25,3 +25,7 @@
 | Part 1 | Part 2 |
 | ---    | ---    |
 | ![Day 23.1](pictures/anim23_1.gif) | ![Day 23.2](pictures/anim23_2.gif) |
+
+## Day 25
+
+![Day 25](pictures/anim25.gif)

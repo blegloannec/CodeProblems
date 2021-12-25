@@ -12,12 +12,6 @@ from functools import lru_cache
 #    x and y are only used as local variables,
 #    while the only persistent variable is z (initially z = 0)
 
-# z can be seen as a base 26 number that either:
-#  - gets a new digit appended   (when Z=1  and x!=w)
-#  - remains the same            (when Z=1  and x =w)
-#  - gets its last digit changed (when Z=26 and x!=w)
-#  - get divided by 26           (when Z=26 and x =w)
-
 XYZ = ((10,2,1),(15,16,1),(14,9,1),(15,0,1),(-8,1,26),(10,12,1),(-16,6,26),(-4,6,26),(11,3,1),(-3,5,26),(12,9,1),(-7,3,26),(-15,2,26),(-7,3,26))
 
 def f(X,Y,Z, w,z):
@@ -26,6 +20,14 @@ def f(X,Y,Z, w,z):
     if x!=w:
         z = 26*z + w+Y
     return z
+
+# Z always = 1 or 26
+
+# z can be seen as a base 26 number that either:
+#  - gets a new digit appended   (when Z=1  and x!=w)
+#  - remains the same            (when Z=1  and x =w)
+#  - gets its last digit changed (when Z=26 and x!=w)
+#  - gets divided by 26          (when Z=26 and x =w)
 
 # As we want z = 0 in the end, the number of remaining potential
 # divisions by 26 gives an upper bound on the value of z at each step.
