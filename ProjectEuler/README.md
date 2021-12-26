@@ -2,12 +2,11 @@
 
 ![PE Profile](https://projecteuler.net/profile/NiakTheWizard.png)
 
-**Disclaimer:** To protect this repository from cheaters, the codes are encrypted and you need the right answer to each problem to decrypt the associated code.
- - First, the solution, seen as a string, is SHA-256 hashed.
- - The first 16 bytes of the hash are used as the Key and the last 16 bytes as the Initialization Vector for an AES-128 CBC encryption of the PKCS#7-padded source code.
- - Finally, the encrypted data is base64 encoded.
- 
-The script `pe_encrypt.py` was used to execute that process, `pe_decrypt.py` can be used to decrypt.
+**Disclaimer:** To protect this repository from cheaters, the solution codes are encrypted (`openssl` / salted password-based key derivation of 1M `sha256` iterations / ChaCha20 encryption / `base64` encoded ciphertext). You need the answer to each problem to decrypt the associated code. The following command allows decryption:
+
+```
+openssl enc -d -chacha20 -salt -pbkdf2 -iter 1000000 -base64 -pass 'pass:ANSWER' -in filename.enc -out filename
+```
 
 **Language:** Generally Python 2/3 with the fast interpreter `pypy`. Sometimes C++. Only occasionally (for various reasons) OCaml, Prolog, Julia, Lua and some help from Sage...
 
